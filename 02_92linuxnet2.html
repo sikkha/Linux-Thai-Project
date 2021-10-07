@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>TCP/IP</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>TCP/IP</H1>
+
+หาก<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>การ<WBR>ศึกษา<WBR>เรื่อง<WBR>ของ TCP/IP อย่าง<WBR>ละเอียด ขอ<WBR>แนะ<WBR>นำ<WBR>ให้<WBR>อ่าน<WBR>หนังสือ<WBR>ชุด<WBR>ของ TCP/IP สาม<WBR>เล่ม Internetworking with TCP/IP โดย Douglas R. Comer
+จัด<WBR>พิมพ์<WBR>โดย Prentice Hall หนังสือ<WBR>ทั้ง<WBR>สาม<WBR>เล่ม<WBR>จะ<WBR>บอก<WBR>ถึง<WBR>สถาปัตยกรรม การ<WBR>ออก<WBR>แบบ<WBR>และ<WBR>การ<WBR>เขียน<WBR>แอพพ<WBR>ลิ<WBR>เคชั่น<WBR>ใน<WBR>แบบ Client-Server  หนังสือ<WBR>ชุด<WBR>นี้<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>หนังสือ<WBR>หลัก 
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>เข้า<WBR>ใจ<WBR>เนื้อ<WBR>หา<WBR>ด้าน<WBR>ลึก<WBR>ของ TCP/IP<br><br>
+
+การ<WBR>จะ<WBR>ใช้<WBR>งาน TCP/IP ได้<WBR>นั้น<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ของ IP address หรือ<WBR>หมาย<WBR>เลข<WBR>ประจำ<WBR>ตัว<WBR>ให้<WBR>กับ<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>แต่<WBR>ละ<WBR>เครื่อง<WBR>ใน<WBR>เครือ<WBR>ข่าย ซึ่ง<WBR>จะ<WBR>คล้าย<WBR>กับ<WBR>เลข<WBR>ที่<WBR>บ้าน<WBR>ของ<WBR>คุณ ที่<WBR>จะ<WBR>ทำ<WBR>หน้า<WBR>ที่<WBR>บอก<WBR>ตำแหน่ง<WBR>ที่<WBR>อยู่<WBR>ของ<WBR>คุณ<WBR>ให้<WBR>คน<WBR>อื่นๆ<WBR>ได้<WBR>รับ<WBR>ทราบ<br><br>
+
+นอก<WBR>จาก<WBR>นี้<WBR>ก็<WBR>ยัง<WBR>จะ<WBR>มี<WBR>ค่า<WBR>อื่นๆ<WBR>อีก แต่<WBR>ที่<WBR>จำ<WBR>เป็น<WBR>อีก<WBR>อย่าง<WBR>ก็<WBR>คือ<WBR>ค่า<WBR>ของ MTU หรือ Maximum
+Transfer Unit  ซึ่ง<WBR>ค่า<WBR>นี้<WBR>ก็<WBR>จะ<WBR>บอก<WBR>ถึง<WBR>จำนวน<WBR>สูง<WBR>สุด<WBR>ของ<WBR>ข้อ<WBR>มูล (datagram) ที่<WBR>จะ<WBR>ใช้<WBR>ทำ<WBR>การ
+process<br><br>
+
+<H3 ALIGN=CENTER>IP Address</H3>
+IP address เป็น<WBR>ตัว<WBR>เลข<WBR>ความ<WBR>ยาว 32 บิท และ<WBR>จะ<WBR>ต้อง<WBR>กำหนด<WBR>ให้<WBR>แต่<WBR>ละ<WBR>เครื่อง<WBR>มี<WBR>ความ<WBR>แตก
+ต่าง<WBR>กัน  ถ้า<WBR>คุณ<WBR>ใช้<WBR>งาน<WBR>เนต<WBR>เวอร์ก<WBR>ของ<WBR>คุณ<WBR>เพียง<WBR>แค่<WBR>ใน<WBR>หน่วย<WBR>งาน<WBR>ของ<WBR>คุณ<WBR>เอง ใน<WBR>กรณี<WBR>นี้<WBR>คุณ<WBR>สามารถ<WBR>กำหนด<WBR>หมาย<WBR>เลข<WBR>ของ IP ให้<WBR>กับ<WBR>เครื่อง<WBR>ต่างๆ<WBR>ของ<WBR>คุณ<WBR>เอง<WBR>ได้ แต่<WBR>ถ้า<WBR>หาก<WBR>เป็น<WBR>เนต<WBR>เวอร์ก<WBR>ที่<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>สาธารณะ<WBR>เมื่อ<WBR>ใด จะ<WBR>ต้อง<WBR>มี<WBR>การ<WBR>กำหนด<WBR>มา<WBR>จาก<WBR>หน่วย<WBR>งาน<WBR>ที่<WBR>ทำ<WBR>การ<WBR>ควบ<WBR>คุม<WBR>หมาย<WBR>เลข IP
+โดย<WBR>เฉพาะ<WBR>ซึ่ง<WBR>จะ<WBR>เรียก<WBR>ว่า the Network Information Centor (NIC)<br><br>
+
+หมาย<WBR>เลข IP จะ<WBR>ถูก<WBR>แบ่ง<WBR>ออก<WBR>เป็น<WBR>ตัว<WBR>เลข 8 บิท<WBR>จำนวน 4 ส่วน (octets) ตัว<WBR>อย่าง<WBR>เช่น
+IP address 0x954C0C04 จะ<WBR>ถูก<WBR>เขียน<WBR>อย่าง<WBR>ง่าย<WBR>ได้<WBR>เป็น 149.76.12.4 การ<WBR>เขียน<WBR>แบบ<WBR>นี้<WBR>จะ<WBR>เรียก<WBR>ว่า dotted quad notation ประ<WBR>โยชน์<WBR>อีก<WBR>อย่าง<WBR>ของ<WBR>การ<WBR>เขียน<WBR>แบบ<WBR>แบ่ง<WBR>เป็น<WBR>ตัว<WBR>เลข 4 ชุด<WBR>นี้<WBR>คือ<WBR>เพื่อ<WBR>แสดง<WBR>ถึง หมาย<WBR>เลข<WBR>ของ<WBR>เนต<WBR>เวอร์ก และ<WBR>หมาย<WBR>เลข<WBR>ของ<WBR>โฮสต์<br><br>
+
+มี<WBR>การ<WBR>แบ่ง<WBR>เนต<WBR>เวอร์<WBR>กอ<WBR>อก<WBR>เป็น<WBR>ขนาด<WBR>ต่างๆ ซึ่ง<WBR>จะ<WBR>มี<WBR>ผล<WBR>ต่อ<WBR>จำนวน<WBR>ของ<WBR>โฮสต์<WBR>ที่<WBR>มี<WBR>อยู่<WBR>ได้ ใน<WBR>เนต<WBR>เวอร์ก<WBR>แต่<WBR>ละ<WBR>ชนิด<WBR>ด้วย<br>
+
+<ul>
+<li>
+Class A<br>
+    Class A ประกอบ<WBR>ด้วย<WBR>เนต<WBR>เวอร์<WBR>หมาย<WBR>เลข 1.0.0.0 จน<WBR>ถึง 127.0.0.0 หมาย<WBR>เลข<WBR>ของ<WBR>โฮสต์<WBR>จะ<WBR>ประกอบ<WBR>ด้วย<WBR>ตัว<WBR>เลข 24 บิต ซึ่ง<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>มี<WBR>โฮสต์<WBR>ถึง 1.6 ล้าน<WBR>โฮสต์<br>
+</li>
+
+<li>
+Class B<br>
+     Class B ประกอบ<WBR>ด้วย<WBR>เนต<WBR>เวอร์ก<WBR>หมาย<WBR>เลข 128.0.0.0 จน<WBR>ถึง 191.255.0.0
+หมาย<WBR>เลข<WBR>ของ<WBR>โฮสต์<WBR>จะ<WBR>มี 16 บิต มี<WBR>เนต<WBR>เวอร์ก<WBR>ได้ 16320 เนต<WBR>เวอร์ก และ<WBR>มี<WBR>โฮสต์<WBR>ได้ 65024
+โฮสต์ สำหรับ<WBR>แต่<WBR>ละ<WBR>เนต<WBR>เวอร์ก<br>
+</li>
+
+<li>
+Class C<br>
+     Class C ประกอบ<WBR>ด้วย<WBR>เนต<WBR>เวอร์ก<WBR>ตั้ง<WBR>แต่ 192.0.0.0 จน<WBR>ถึง 223.255.255.0 
+จะ<WBR>มี<WBR>เนต<WBR>เวอร์ก<WBR>ได้<WBR>จำ<WBR>วน 2 ล้าน<WBR>เนต<WBR>เวอร์ก ซึ่ง<WBR>แต่<WBR>ละ<WBR>เนต<WBR>เวอร์ก<WBR>จะ<WBR>มี<WBR>จำนวน<WBR>โฮสต์<WBR>ได้ 254 โฮสต์<br>
+</li>
+
+<li>
+Class D, E และ F<br>
+     มี<WBR>แอดเด<WBR>รส<WBR>ตั้ง<WBR>แต่ 224.0.0.0 ถึง 254.0.0.0 อยู่<WBR>ใน<WBR>ระหว่าง<WBR>การ<WBR>ทด<WBR>ลอง<WBR>และ<WBR>สำรอง<WBR>ไว้<WBR>เผื่อ<WBR>อนาคต ไม่<WBR>ได้<WBR>กำหนด<WBR>จำนวน<WBR>เนต<WBR>เวอร์ก<WBR>ใดๆ<br>
+</li>
+</ul>
+
+ตัว<WBR>อย่าง<WBR>เช่น IP หมาย<WBR>เลข 149.76.12.4 จะ<WBR>หมาย<WBR>ถึง<WBR>โฮสต์ 12.4 บน<WBR>เนต<WBR>เวอร์ก Class B
+หมาย<WBR>เลข<WBR>ที่ 149.76.0.0 ใน<WBR>กรณี<WBR>หมาย<WBR>เลข<WBR>เป็น 149.76.255.255 จะ<WBR>หมาย<WBR>ถึง<WBR>โฮสต์<WBR>ทุก<WBR>ตัว<WBR>ที่
+อยู่<WBR>บน<WBR>เนต<WBR>เวอร์ก<WBR>หมาย<WBR>เลข 147.76.0.0 <br><br>
+
+มี<WBR>เนต<WBR>เวอร์ก<WBR>อีก<WBR>สอง<WBR>หมาย<WBR>เลข<WBR>ที่<WBR>ถูก<WBR>สำรอง<WBR>ไว้<WBR>ใช้<WBR>งาน<WBR>เฉพาะ<WBR>ด้าน<WBR>คือ เนต<WBR>เวอร์ก<WBR>หมาย<WBR>เลข
+0.0.0.0 (default root) และ 127.0.0.0 (loopback address)
+loopback จะ<WBR>เป็น<WBR>ช่อง<WBR>ทาง<WBR>พิเศษ<WBR>ที่<WBR>ใช้<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>โฮสต์<WBR>เครื่อง<WBR>นั้น<WBR>เอง บาง<WBR>ที<WBR>จะ<WBR>ใช้<WBR>สำหรับ<WBR>การ<WBR>ทด<WBR>สอบ<WBR>เนต<WBR>เวอร์<WBR>กบา<WBR>งอ<WBR>ย่าง โดย<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ต่อ<WBR>กับ<WBR>เนต<WBR>เวอร์ก<WBR>จริง<br><br>
+
+
+<H3 ALIGN=CENTER>เนต<WBR>มาสก์ (Netmask)</H3>
+เนต<WBR>มาสก์<WBR>เป็น<WBR>ตัว<WBR>บอก<WBR>ให้<WBR>เรา<WBR>ทราบ<WBR>ได้<WBR>ว่า IP ใด<WBR>อยู่<WBR>ใน<WBR>เนต<WBR>เวอร์ก<WBR>เดียว<WBR>กัน<WBR>บ้าง 
+ตัว<WBR>อย่าง ถ้า<WBR>หาก<WBR>เนต<WBR>มาสก์ มี<WBR>ค่า<WBR>เป็น <br>
+<dir>
+	255.255.255.0 
+</dir>
+ดัง<WBR>นั้น<WBR>โฮสต์<WBR>ที่<WBR>มี<WBR>หมาย<WBR>เลข IP เป็น 149.108.10.1 ที่<WBR>มี<WBR>ค่า<WBR>เนต<WBR>มาสก์<WBR>เป็น<WBR>ค่า<WBR>ข้าง<WBR>ต้น 
+เรา<WBR>รู้<WBR>ว่า<WBR>โฮสต์<WBR>ตัว<WBR>นี้<WBR>จะ<WBR>อยู่<WBR>ใน<WBR>เนต<WBR>เวอร์ก<WBR>เดียว<WBR>กัน<WBR>กับ โฮสต์<WBR>ตัว<WBR>อื่นๆ<WBR>ที่<WBR>มี<WBR>หมาย<WBR>เลข IP 
+ขึ้น<WBR>ต้น<WBR>ด้วย 149.108.10<br><br>
+
+<H3 ALIGN=CENTER>โดเ<WBR>มนเ<WBR>นม<WBR>เซอร์ฟ<WBR>เวอร์ (Domain Name Server : DNS)</H3>
+โดเ<WBR>มนเ<WBR>นม<WBR>เซอร์ฟ<WBR>เวอร์<WBR>จะ<WBR>ทำ<WBR>หน้า<WBR>ที่<WBR>คล้าย<WBR>กับ<WBR>สมุด<WBR>โทรศัพท์ ซึ่ง<WBR>เรา<WBR>สามารถ<WBR>จะ<WBR>เปิด<WBR>หา<WBR>ชื่อ<WBR>ของ<WBR>บุคคล<WBR>ที่<WBR>เรา<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ติด<WBR>ต่อ เพื่อ<WBR>ค้น<WBR>หา<WBR>เบอร์<WBR>โทรศัพท์<WBR>ของ<WBR>เขา<WBR>ได้  ใน<WBR>ทำนอง<WBR>เดียว<WBR>กัน<WBR>หมาย<WBR>เลข IP address มี<WBR>ลักษณะ<WBR>เป็น<WBR>ตัว<WBR>เลข<WBR>ที่<WBR>มนุษย์<WBR>ค่อน<WBR>ข้าง<WBR>จะ<WBR>จด<WBR>จำ<WBR>ได้<WBR>ยาก จึง<WBR>มี<WBR>การ<WBR>เปลี่ยน<WBR>มา<WBR>ใช้<WBR>เป็น<WBR>ตัว<WBR>อักษร<WBR>สำหรับ<WBR>แทน<WBR>หมาย<WBR>เลข IP address ต่างๆ และ<WBR>มี<WBR>เครื่อง<WBR>เซอร์ฟ<WBR>เวอร์ ที่<WBR>คอย<WBR>ทำ<WBR>หน้า<WBR>ที่<WBR>บริการ<WBR>เปลี่ยน<WBR>จาก ตัว<WBR>เลข IP ให้<WBR>กลาย<WBR>เป็น<WBR>ตัว<WBR>อักษร<WBR>ได้<br><br>
+
+<H3 ALIGN=CENTER>เกตเวย์ (Gateway)</H3>
+เกตเวย์<WBR>เป็น<WBR>หน<WBR>ทาง<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>ระหว่าง<WBR>เครือ<WBR>ข่าย 2 เครือ<WBR>ข่าย<WBR>เข้า<WBR>ด้วย<WBR>กัน สำหรับ<WBR>ใน<WBR>กรณี<WBR>ที่<WBR>มี<WBR>โฮสต์<WBR>ที่<WBR>อยู่<WBR>ใน<WBR>เครือ<WBR>ข่าย<WBR>ที่<WBR>เป็น<WBR>ซับเน็ต (subnet : เครือ<WBR>ข่าย<WBR>ย่อย) เดียว<WBR>กัน 
+โฮสต์<WBR>ต่างๆ<WBR>เหล่า<WBR>นั้น<WBR>จะ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กัน<WBR>ได้  แต่<WBR>ถ้า<WBR>หาก<WBR>จะ<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>โฮสต์ 
+ที่<WBR>อยู่<WBR>คน<WBR>ละ<WBR>ซับ<WBR>เนต<WBR>กัน<WBR>แล้ว<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>อาศัย<WBR>เกตเวย์<WBR>เข้า<WBR>มา<WBR>ช่วย เกตเวย์<WBR>จะ<WBR>เปรียบ<WBR>เสมือน<WBR>เป็น<WBR>โฮสต์<WBR>ที่<WBR>เป็น<WBR>ที่<WBR>รับ<WBR>รู้<WBR>อยู่ ทั้ง<WBR>สอง<WBR>ซับเน็ต และ<WBR>จะ<WBR>คอย<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>ผ่าน<WBR>ข้อ<WBR>มูล<WBR>ระหว่าง<WBR>ซับ<WBR>เนต<WBR>ทั้ง<WBR>สอง<WBR>ไป<WBR>มา สำหรับ<WBR>การ<WBR>หา<WBR>เส้น<WBR>ทาง<WBR>การ<WBR>สื่อ<WBR>สาร<WBR>ของ<WBR>เครือ<WBR>ข่าย<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>อาศัย<WBR>เครื่อง<WBR>หา<WBR>เส้น<WBR>ทาง (router) เข้า<WBR>มา<WBR>ช่วย<br>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="02_91linuxnet1.html"><img src="PXleft.gif" ></a>
+<a href="02_93linuxnet3.html"><img src="PXright.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

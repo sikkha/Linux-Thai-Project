@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>System Admin (1)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>ดู<WBR>แล<WBR>รักษา<WBR>ระบบ<WBR>เบื้อง<WBR>ต้น</H1>
+
+สำหรับ<WBR>ใน<WBR>ระบบ<WBR>ลีนุกซ์<WBR>จะ<WBR>มี<WBR>ความ<WBR>แตก<WBR>ต่าง<WBR>จาก<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>เซอร์ฟ<WBR>เวอร์<WBR>ขนาด<WBR>ใหญ่ เช่น<WBR>ระบบ<WBR>ของซัน<WBR>ไมโคร<WBR>ซิส<WBR>เต็ม หรือ<WBR>ระบบ<WBR>ของ HP/UX ซึ่ง<WBR>ระบบ<WBR>เหล่า<WBR>นั้น<WBR>ถูก<WBR>ออก<WBR>แบบ<WBR>ให้<WBR>มา<WBR>ใช้<WBR>งาน<WBR>ใน<WBR>ลักษณะ<WBR>ของ<WBR>เซอร์ฟ<WBR>เวอร์ (หรือ<WBR>ผู้<WBR>ให้<WBR>บริการ) เต็ม<WBR>รูป<WBR>แบบ<WBR>จริงๆ ระบบ<WBR>เหล่า<WBR>นั้น<WBR>ต้อง<WBR>การ<WBR>ผู้<WBR>ดู<WBR>แล<WBR>โดย<WBR>เฉพาะ ซึ่ง<WBR>ใน<WBR>แต่<WBR>ละ<WBR>วัน<WBR>จะ<WBR>มี<WBR>หน้า<WBR>ที่<WBR>คอย<WBR>ตรวจ<WBR>สอบ บริหาร<WBR>ระบบ และ<WBR>ทำ<WBR>การ<WBR>ปรับ<WBR>ปรุง<WBR>ระบบ ซึ่ง<WBR>อาจ<WBR>จะ<WBR>เป็น<WBR>งาน<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ<WBR>การ<WBR>ดู<WBR>แล<WBR>ระบบ<WBR>ฐาน<WBR>ข้อ<WBR>มูล หรือ<WBR>การ<WBR>บริหาร<WBR>ระบบ<WBR>เครือ<WBR>ข่าย<WBR>เป็น<WBR>ต้น  การ<WBR>ใช้<WBR>งาน<WBR>ใน<WBR>ลักษณะ<WBR>ของ<WBR>งาน<WBR>ส่วน<WBR>ตัว<WBR>ใน<WBR>ลักษณะ<WBR>ของ PC โดย<WBR>ทั่ว<WBR>ไป<WBR>มัก<WBR>จะ<WBR>ไม่<WBR>นิยม<WBR>กระ<WBR>ทำ<WBR>กัน<WBR>บน<WBR>เครื่อง<WBR>เซอร์ฟ<WBR>เวอร์<WBR>เหล่า<WBR>นั้น ตัว<WBR>อย่าง<WBR>นี้<WBR>คุณ<WBR>อาจ<WBR>จะสัง<WBR>เกตุ<WBR>ได้<WBR>จาก ไมโคร<WBR>ซอฟต์<WBR>จะ<WBR>แบ่ง<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>ของ Window NT ออก<WBR>เป็น<WBR>สอง<WBR>ระดับ<WBR>ก็<WBR>คือ NT server และ NT workstation โดย<WBR>จะ<WBR>วาง NT server ใน<WBR>ระดับ<WBR>ของ<WBR>เครื่อง<WBR>เซอร์ฟ<WBR>เวอร์<WBR>ของ<WBR>องค์<WBR>กร<WBR>ซึ่ง<WBR>อาจ<WBR>จะ<WBR>มี<WBR>การ<WBR>รัน<WBR>ระบบ<WBR>ฐาน<WBR>ข้อ<WBR>มูล และ NT workstation จะ<WBR>นำ<WBR>ไป<WBR>ใช้<WBR>ใน<WBR>ลักษณะ<WBR>ของ<WBR>งาน<WBR>ส่วน<WBR>บุคคล เช่น<WBR>การ<WBR>พัฒนา<WBR>ระบบ<WBR>งาน การ<WBR>ทำ<WBR>งาน<WBR>สำนัก<WBR>งาน<WBR>เป็น<WBR>ต้น<br>
+<br>
+
+ใน<WBR>ระบบ<WBR>ลีนุกซ์ จะ<WBR>ไม่<WBR>ได้<WBR>มี<WBR>การ<WBR>แบ่ง<WBR>แยก<WBR>อย่าง<WBR>ชัดเจน ว่า<WBR>จะ<WBR>อยู่<WBR>ใน<WBR>ส่วน<WBR>ของ server หรือ
+workstation  ทั้ง<WBR>นี้<WBR>ก็<WBR>คง<WBR>ขึ้น<WBR>อยู่<WBR>กับ<WBR>รูป<WBR>แบบ<WBR>ใน<WBR>การ<WBR>ปรับ<WBR>แต่ง<WBR>ของ<WBR>ผู้<WBR>เป็น<WBR>เจ้า<WBR>ของ<WBR>ระบบ<WBR>เอง<WBR>ว่า ต้อง<WBR>การ<WBR>จะ<WBR>ใช้<WBR>งาน<WBR>ลีนุกซ์<WBR>ใน<WBR>ฐานะ<WBR>อะไร หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ใช้<WBR>ใน<WBR>ฐานะ<WBR>ของ<WBR>เซอร์ฟ<WBR>เวอร์<WBR>ไม่<WBR>ว่า<WBR>จะ<WBR>เป็น ดาต้า<WBR>เบส<WBR>เซอร์ฟ<WBR>เวอร์ (ระบบ<WBR>ฐาน<WBR>ข้อ<WBR>มูล), อินท<WBR>ราเน็ต<WBR>เซอร์ฟ<WBR>เวอร์
+หรืออิน<WBR>เทอร์เน็ต<WBR>เซอร์ฟ<WBR>เวอร์ ก็<WBR>ตาม การ<WBR>ใช้<WBR>งาน<WBR>ใน<WBR>ระดับ<WBR>นี้<WBR>คุณ<WBR>ก็<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>ความ<WBR>รู้<WBR>ใน<WBR>ฐานะ<WBR>ของ<WBR>ผู้<WBR>ดู<WBR>แล<WBR>ระบบ (System Administrator) พอ<WBR>สม<WBR>ควร  แต่<WBR>ถ้า<WBR>คุณ<WBR>ใช้<WBR>ลีนุกซ์<WBR>ใน<WBR>ฐานะ<WBR>ของ
+เวอร์กสเตชั่น คุณ<WBR>อาจ<WBR>จะ<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>ความ<WBR>รู้<WBR>ใน<WBR>ฐานะ<WBR>ของ<WBR>ผู้<WBR>ดู<WBR>แล<WBR>ระบบ<WBR>มาก<WBR>ก็<WBR>ได้ เพราะ<WBR>ซอฟต์แวร์<WBR>ส่วน<WBR>ใหญ่<WBR>บน<WBR>ลีนุกซ์<WBR>ที่<WBR>ใช้<WBR>ใน<WBR>ฐานะ<WBR>ของ<WBR>เวอร์กสเตชั่น จะ<WBR>ถูก<WBR>ออก<WBR>แบบ<WBR>มา<WBR>ให้<WBR>ทำ<WBR>การ<WBR>ดู<WBR>แล
+รักษา<WBR>และ<WBR>ใช้<WBR>งาน<WBR>ง่าย รวม<WBR>ทั้ง<WBR>การ<WBR>จัด<WBR>เตรียม<WBR>ระบบ<WBR>มาตร<WBR>ฐาน<WBR>ที่<WBR>มี<WBR>มา<WBR>ให้<WBR>จากดิส<WBR>ตริ<WBR>บิว<WBR>เตอร์
+ก็<WBR>สามารถ<WBR>ทำ<WBR>ให้<WBR>คุณ<WBR>ใช้<WBR>งาน<WBR>ได้<WBR>อย่าง<WBR>สะดวก<WBR>สบาย และ<WBR>มี<WBR>สถิติ<WBR>ที่<WBR>บ่ง<WBR>บอก<WBR>ว่า<WBR>มี<WBR>ผู้<WBR>ใช้<WBR>งาน<WBR>ลีนุกซ์<WBR>จำนวน<WBR>มาก<WBR>ที่<WBR>ไม่<WBR>ได้<WBR>เคย<WBR>ผ่าน<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ยู<WBR>นิกซ์<WBR>มา<WBR>ก่อน ซึ่ง<WBR>เขา<WBR>เหล่า<WBR>นั้น<WBR>ก็<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>ลีนุกซ์<WBR>ได้<WBR>โดย<WBR>ไม่<WBR>มี<WBR>ปัญหา<WBR>อะไร แต่<WBR>อย่าง<WBR>ไร<WBR>ก็<WBR>ตาม<WBR>หาก<WBR>คุณ<WBR>เรียน<WBR>รู้<WBR>เรื่อง<WBR>ของ<WBR>การ<WBR>ดู<WBR>แล<WBR>ระบบ<WBR>ไว้<WBR>บ้าง<WBR>คุณ<WBR>ก็<WBR>จะ<WBR>มี<WBR>ความ<WBR>เข้า<WBR>ใจ<WBR>และ<WBR>ปรับ<WBR>แต่ง<WBR>ระบบ<WBR>ให้<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>อย่าง<WBR>มี<WBR>ประสิทธิภาพ<WBR>ขึ้น<br>
+<br>
+
+เอก<WBR>สาร<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>อธิบาย<WBR>เกี่ยว<WBR>กับ ความ<WBR>รู้<WBR>พื้น<WBR>ฐาน<WBR>ของ<WBR>การ<WBR>เป็น<WBR>ผู้<WBR>ดู<WBR>แล<WBR>ระบบ  หรือ System
+administrator ซึ่ง<WBR>คุณ<WBR>จะ<WBR>ได้<WBR>นำ<WBR>ความ<WBR>รู้<WBR>เหล่า<WBR>นี้<WBR>ไป<WBR>ศึกษา<WBR>และ<WBR>ทด<WBR>ลอง<WBR>ต่อ<WBR>ด้วย<WBR>ตน<WBR>เอง<WBR>ใน<WBR>ระดับ<WBR>สูง<WBR>ต่อ<WBR>ไป<WBR>ได้<br>
+<br>
+
+ผู้<WBR>ใช้<WBR>ทั่ว<WBR>ไป<WBR>จะ<WBR>ถูก<WBR>จำกัด<WBR>การ<WBR>ใช้<WBR>งาน ให้<WBR>อยู่<WBR>ใน<WBR>ขอบ<WBR>เขต<WBR>ตาม<WBR>ที่<WBR>ผู้<WBR>ดู<WBR>แล<WBR>ระบบ<WBR>กำหนด แต่<WBR>สำหรับ<WBR>งาน<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ<WBR>การ<WBR>ดู<WBR>แล<WBR>รักษา<WBR>ระบบ<WBR>แล้ว จำ<WBR>เป็น<WBR>ต้อง<WBR>ใช้<WBR>สิทธิ<WBR>ใน<WBR>ระดับ<WBR>ของ super user
+การ<WBR>เป็น super user หรือ root นั้น<WBR>หมาย<WBR>ถึง<WBR>การ<WBR>มี<WBR>สิทธิ<WBR>อำนาจ<WBR>สูง<WBR>สุด<WBR>ใน<WBR>ระบบ คุณ<WBR>สามารถ<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>และ<WBR>เปลี่ยน<WBR>แปลง<WBR>ได้<WBR>ทุก<WBR>อย่าง แต่<WBR>คุณ<WBR>ก็<WBR>ต้อง<WBR>ระ<WBR>มัด<WBR>ระวัง<WBR>เมื่อ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>ดัง<WBR>กล่าว<WBR>นั้น<WBR>ด้วย เนื่อง<WBR>จาก<WBR>หาก<WBR>มี<WBR>ความ<WBR>ผิด<WBR>พลาด<WBR>อาจ<WBR>หมาย<WBR>ถึง<WBR>การ<WBR>ทำลาย<WBR>ระบบ<WBR>ลง<WBR>ได้<br>
+<br>
+
+คุณ<WBR>สามารถ<WBR>จะ<WBR>เป็น super user ได้<WBR>สอง<WBR>วิธี<WBR>คือ ทำ<WBR>การล็<WBR>อกอิน<WBR>เข้า<WBR>ด้วย<WBR>ชื่อ<WBR>ผู้<WBR>ใช้ "root"
+หรือ<WBR>ใช้<WBR>คำ<WBR>สั่ง "su" ที่<WBR>คอม<WBR>มานด์ไลน์<WBR>เพื่อ<WBR>ขอ<WBR>เปลี่ยน<WBR>สิทธิ<WBR>ผู้<WBR>ใช้<WBR>ให้<WBR>เป็น<WBR>ระดับ<WBR>ของ superuser 
+
+<H3 ALIGN=CENTER>เครื่อง<WBR>มือ<WBR>ที่<WBR>ช่วย<WBR>ใน<WBR>การ<WBR>ดู<WBR>แล<WBR>ระบบ</H3>
+เรา<WBR>สามารถ<WBR>จะ<WBR>ใช้<WBR>เครื่อง<WBR>มือ<WBR>เล็กๆ<WBR>สอง<WBR>ตัว<WBR>คือ grep กับ find เพื่อ<WBR>ช่วย<WBR>ใน<WBR>การ<WBR>บริหาร<WBR>งาน<WBR>ระบบ<WBR>ได้ สำหรับ grep จะ<WBR>ใช้<WBR>เลือก output ที่<WBR>มี<WBR>ความ<WBR>สอด<WBR>คล้อง<WBR>กับ<WBR>ที่<WBR>เรา<WBR>ระบุ<WBR>ไว้<WBR>ขึ้น<WBR>มา<WBR>และ find จะ<WBR>ใช้<WBR>สำหรับ<WBR>ตรวจ<WBR>หา<WBR>ไฟล์<WBR>ที่<WBR>ต้อง<WBR>การ<br>
+<br>
+
+ตัว<WBR>อย่าง<WBR>การ<WBR>ตรวจ<WBR>หา<WBR>โพร<WBR>เซส (โปรแกรม<WBR>ที่<WBR>ถูก<WBR>โหลด<WBR>ไว้<WBR>ใน<WBR>หน่วย<WBR>ความ<WBR>จำ) ของ<WBR>ผู้<WBR>ใช้<WBR>ชื่อ "twg"
+<pre>
+# ps -aux | grep twg
+twg        524  0.0  2.3  2416   728  ?  S   14:03   0:04 fvwm95-2 
+twg        531  0.0  1.6  2208   512  ?  S   14:03   0:00 /usr/X11R6/lib/X11/fv
+twg        532  0.0  2.4  2292   740  ?  S   14:03   0:01 /usr/X11R6/lib/X11/fv
+twg        536  0.0  1.4  2192   432  ?  S   14:03   0:00 /usr/X11R6/lib/X11/fv
+twg        537  0.0  2.9  3336   896  ?  S   14:03   0:00 xclock -bg #c0c0c0 -p
+twg        538  0.0  2.8  3372   880  ?  S   14:03   0:00 xload -nolabel -bg gr
+twg        541  0.0  1.8  1268   572  p1 S   14:03   0:00 -bash
+twg        554  0.0  1.9  1264   612  p2 S   14:03   0:00 -bash 
+twg        649  0.0  0.6  1552   204  ?  S   14:16   0:00 /opt/applix/axdata/ax
+twg       1325  1.0 36.7 16968 11304  ?  S   15:09   0:45 netscape -geometry 79
+twg       1326  0.0  3.0 10276   936  ?  S   15:09   0:00 (dns helper) 
+twg       1648  0.0  2.0  1212   636  p2 S   16:15   0:00 vi sysadmin1.txt
+twg       1661  0.0  1.6  1188   500  p2 S   16:19   0:00 /bin/bash -c (ps -aux
+twg       1662  0.0  1.7  1192   540  p2 S   16:19   0:00 /bin/bash -c (ps -aux
+twg       1663  0.0  1.3   928   416  p2 R   16:19   0:00 ps -aux 
+twg       1664  0.0  1.0   912   308  p2 R   16:19   0:00 grep twg 
+</pre>
+หาก<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>ระบุ<WBR>ส่วน<WBR>หัว<WBR>ซึ่ง<WBR>จะ<WBR>อธิบาย<WBR>ความ<WBR>หมาย<WBR>ของ<WBR>คอลัมน์<WBR>แต่<WBR>ละ<WBR>คอลัมน์<WBR>ด้วย ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+# ps -aux | egrep 'twg|PID'
+</pre>
+คำ<WBR>สั่ง find จะ<WBR>ใช้<WBR>ใน<WBR>การ<WBR>ตรวจ<WBR>ค้น<WBR>หา<WBR>ไฟล์<WBR>ซึ่ง<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ใน<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ดัง<WBR>นี้<br>
+# find (ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>เริ่ม<WBR>ต้น<WBR>ค้น<WBR>หา) (เงื่อน<WBR>ไข<WBR>ที่<WBR>ใช้<WBR>ตรวจ<WBR>หา<WBR>และ<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ทำ<WBR>เมื่อ<WBR>พบ)<br>
+<br>
+ตัว<WBR>อย่าง<WBR>ของ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ใช้<WBR>ตรวจ<WBR>หา<WBR>คือ<br>
+
+<table border>
+<tr>
+<td>คำ<WBR>สั่ง </td>
+<td> ความ<WBR>หมาย </td>
+</tr>
+
+<tr>
+<td>atime n</td>        
+<td>ไฟล์<WBR>ที่<WBR>ถูก<WBR>ใช้<WBR>งาน (accessed) ไป<WBR>เมื่อ n วัน<WBR>ที่<WBR>ผ่าน<WBR>มา<WBR>แล้ว</td>
+</tr><tr>
+<td>mtime n</td>
+<td>ไฟล์<WBR>ที่<WBR>ถูก<WBR>แก้<WBR>ไข (modified) ไป<WBR>เมื่อ n วัน<WBR>ที่<WBR>ผ่าน<WBR>มา<WBR>แล้ว</td>
+</tr><tr>
+<td>size n</td>         
+<td>ไฟล์<WBR>ที่<WBR>มี<WBR>ขนาด<WBR>ความ<WBR>ยาว<WBR>เท่า<WBR>กับ n X 512 ไบต์</td>
+</tr><tr>
+<td>type c</td>     
+<td>ไฟล์<WBR>ที่<WBR>มี<WBR>ชนิด<WBR>เป็น : f = ไฟล์<WBR>ธรรม<WBR>ดา, d = ไดเ<WBR>รก<WBR>ทอ<WBR>รี เป็น<WBR>ต้น<br>
+</tr><tr>
+<td>fstype typ</td> 
+<td>ระบุ<WBR>ประเภท<WBR>ของ<WBR>ระบบ<WBR>ไฟล์ : เช่น nfs (Network file system)</td>
+</tr><tr>
+<td>name nam</td>   
+<td>ไฟล์<WBR>ที่<WBR>มี<WBR>ชื่อ<WBR>เป็น nam</td>
+</tr><tr>
+<td>user usr</td>   
+<td>ไฟล์<WBR>ที่<WBR>มี<WBR>เจ้า<WBR>ของ<WBR>ชื่อ usr</td>
+</tr><tr>
+<td>group grp</td>  
+<td>ไฟล์<WBR>ที่<WBR>เป็น<WBR>ของ<WBR>กลุ่ม<WBR>ที่<WBR>ชื่อ grp</td>
+</tr><tr>
+<td>perm p</td>     
+<td>ไฟล์<WBR>ที่<WBR>มี<WBR>รูป<WBR>แบบ<WBR>การ<WBR>อนุญาต<WBR>การ<WBR>ใช้<WBR>งาน<WBR>เป็น p</td>
+</tr>
+</table>
+
+คุณ<WBR>สามารถ<WBR>ระบุ<WBR>เครื่อง<WBR>หมาย + (มาก<WBR>กว่า) และ<WBR>เครื่อง<WBR>หมาย - (น้อย<WBR>กว่า) ประกอบ<WBR>ไป<WBR>กับ<WBR>เงื่อน<WBR>ไข<WBR>ต่างๆ<WBR>ได้<br>
+<br>
+ตัว<WBR>อย่าง <br>
+<ul>
+<li>
+    -mtime +7  หา<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>การ<WBR>แก้<WBR>ไข<WBR>มา<WBR>แล้ว<WBR>มาก<WBR>กว่า 7 วัน
+</li><li>
+    -atime -2  หา<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>น้อย<WBR>กว่า 2 วัน
+</li><li>
+    -size +100 ไฟล์<WBR>ที่<WBR>มี<WBR>ขนาด<WBR>ใหญ่<WBR>กว่า 50K (512*100)
+</li>
+</ul>
+คุณ<WBR>สามารถ<WBR>จะ<WBR>ใช้ wildcard ควบ<WBR>คู่<WBR>ไป<WBR>กับ<WBR>การ<WBR>ใช้ -name ได้<WBR>เช่น<WBR>ใน<WBR>เงื่อน<WBR>ไข -name '*.dat'
+หมาย<WBR>ถึง<WBR>ให้<WBR>หา<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>ชื่อ<WBR>ลง<WBR>ท้าย<WBR>ด้วย .dat<br>
+<br>
+
+ใน<WBR>การ<WBR>ใช้<WBR>หลายๆ<WBR>เงื่อน<WBR>ไข<WBR>ประกอบ<WBR>กัน จะ<WBR>ถูก<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>รวม<WBR>เข้า<WBR>ด้วย<WBR>กัน (AND)
+เช่น<WBR>เงื่อน<WBR>ไข<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>หมาย<WBR>ถึง<WBR>หา<WBR>ไฟล์<WBR>ที่<WBR>ถูก<WBR>แก้<WBR>ไข<WBR>เมื่อ 4 เดือน (หรือ<WBR>นาน<WBR>กว่า) และ<WBR>ถูก<WBR>ใช้<WBR>งาน<WBR>มา<WBR>เมื่อ 2 เดือน<WBR>ที่<WBR>แล้ว (หรือ<WBR>นาน<WBR>กว่า) คือ
+<pre>
+    -atime +60 -mtime +120
+</pre>
+ให้<WBR>ใช้ -o เพื่อ<WBR>ระบุ<WBR>ว่า<WBR>เป็น เงื่อน<WBR>ไข "หรือ" (OR) เช่น
+<pre>
+    \( -mtime +7 -o -atime +30 \)
+</pre>
+เรา<WBR>สามารถ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>อัศเจรีย์<WBR>เพื่อ<WBR>บอก<WBR>ว่า<WBR>ไม่<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>นั้น (NOT) ได้
+ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>หมาย<WBR>ถึง<WBR>ให้<WBR>หา<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>นามสกุล<WBR>เป็น .dat ทุก<WBR>ตัว<WBR>ยก<WBR>เว้น gold.dat
+<pre>
+    \! -name gold.dat -name \*.dat
+</pre>
+พวก<WBR>ตัว<WBR>อักษร<WBR>วง<WBR>เล็บ "(", ")" หรือ ดอก<WBR>จัน "*" เชลล์<WBR>จะ<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>ตัว<WBR>อักษร<WBR>พิเศษ<WBR>ที่<WBR>มี<WBR>ความ<WBR>หมาย เรา<WBR>ต้อง<WBR>ใช้<WBR>เครื่อง<WBR>หมาย backslash "\" ใน<WBR>การ<WBR>บังคับ<WBR>ไม่<WBR>ให้<WBR>เชลล์<WBR>นำ<WBR>ตัว<WBR>อักษร<WBR>เหล่า<WBR>นั้น<WBR>ไป<WBR>ตี<WBR>ความ<br>
+<br>
+
+คำ<WBR>สั่ง<WBR>ที่<WBR>กระ<WBR>ทำ<WBR>เมื่อ<WBR>ค้น<WBR>หา<WBR>พบ<br>
+<table border>
+<tr>
+<td>คำ<WBR>สั่ง</td>
+<td>ความ<WBR>หมาย</td>
+</tr><tr>
+<td>print</td>    
+<td>ให้<WBR>พิมพ์<WBR>ชื่อ<WBR>แบบ<WBR>ยาว<WBR>ของ<WBR>ไฟล์<WBR>ที่<WBR>ค้น<WBR>หา<WBR>เจอ</td>
+</tr><tr>
+<td>exec cmd</td> 
+<td>ให้<WBR>กระ<WBR>ทำ<WBR>คำ<WBR>สั่ง cmd กับ<WBR>ไฟล์<WBR>ที่<WBR>หา<WBR>เจอ</td>
+</tr><tr>
+<td>ok cmd</td>   
+<td>ให้<WBR>ถาม<WBR>ยืน<WBR>ยัน<WBR>ก่อน<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>คำ<WBR>สั่ง cmd กับ<WBR>ไฟล์<WBR>ที่<WBR>หา<WBR>เจอ</td>
+<tr>
+</table>
+ตัว<WBR>อย่าง<WBR>เช่น<WBR>ให้<WBR>หา<WBR>ไฟล์<WBR>ที่<WBR>เป็น<WBR>ซอร์สโค๊ด<WBR>ของ<WBR>ภาษา<WBR>ซี (จะ<WBR>ลง<WBR>ท้าย<WBR>ด้วย .c) แล้ว<WBR>พิมพ์<WBR>ราย<br>
+ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ที่<WBR>เจอ<WBR>ออก<WBR>มา
+<pre>
+# find . -name \*.c -print
+</pre>
+ตัว<WBR>อย่าง<WBR>ที่<WBR>ซับ<WBR>ซ้อน<WBR>ขึ้น : ค้น<WBR>หา<WBR>ไฟล์<WBR>ที่<WBR>อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /home/u1 และ /home/u2 ที่<WBR>มี<WBR>ขนาด<WBR>ใหญ่<WBR>กว่า 500 K และ<WBR>ถูก<WBR>ใช้<WBR>งาน<WBR>ครั้ง<WBR>สุด<WBR>ท้าย<WBR>เมื่อ 30 วัน<WBR>ผ่าน<WBR>มา<WBR>แล้ว (ไม่<WBR>ได้<WBR>ใช้<WBR>งาน<WBR>มา<WBR>นาน 30 วัน) เมื่อ<WBR>พบ<WBR>ก็<WBR>ให้<WBR>พิมพ์<WBR>ไฟล์<WBR>เหล่า<WBR>นี้<WBR>ออก<WBR>มา นอก<WBR>จาก<WBR>นี้<WBR>ถ้า<WBR>หาก<WBR>เจอ<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ
+core (ซึ่ง<WBR>เป็น<WBR>ไฟล์ core dump ที่<WBR>เกิด<WBR>จาก<WBR>รัน<WBR>โปรแกรม<WBR>แล้ว<WBR>มี<WBR>ปัญหา<WBR>เช่น<WBR>เขียน<WBR>โปรแกรม<WBR>ให้<WBR>จัด<WBR>การ<WBR>กับ<WBR>หน่วย<WBR>ความ<WBR>จำ<WBR>ไม่<WBR>ถูก<WBR>ต้อง เมื่อ<WBR>ระบบ<WBR>ตรวจ<WBR>เจอ<WBR>ก็<WBR>จะ<WBR>หยุด<WBR>การ<WBR>ทำ<WBR>งาน<WBR>ของ<WBR>โปรแกรม<WBR>และ<WBR>เก็บ<WBR>สถานะ<WBR>ของ<WBR>ระบบ<WBR>ใน<WBR>ขณะ<WBR>นั้น<WBR>ลง<WBR>ไฟล์<WBR>นี้ เพื่อ<WBR>นำ<WBR>ไป<WBR>ตรวจ<WBR>สอบ<WBR>หา<WBR>บัก<WBR>ใน<WBR>ภาย<WBR>หลัง) เมื่อ<WBR>เจอ<WBR>ไฟล์<WBR>นี้<WBR>ก็<WBR>จะ<WBR>ลบ<WBR>ทิ้ง<WBR>ไป<WBR>ด้วย จะ<WBR>ใช้<WBR>คำ<WBR>สั่ง find กับ<WBR>เงื่อน<WBR>ไข<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+# find /home/u1 /home/u2 -type f -atime +30 -size +1000 -print \
+  -name core -exec rm {} \;
+</pre>
+การ<WBR>ใช้<WBR>คำ<WBR>สั่ง find จะ<WBR>ช่วย<WBR>ผู้<WBR>ดู<WBR>แล<WBR>ระบบ<WBR>ใน<WBR>เรื่อง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<ul>
+<li>
+ตรวจ<WBR>สอบ<WBR>การ<WBR>ใช้<WBR>เนื้อ<WBR>ที่<WBR>ของดิสก์ เพื่อ<WBR>บริหาร<WBR>การ<WBR>ใช้<WBR>งานดิสก์<WBR>อย่าง<WBR>มี<WBR>ประสิทธิภาพ
+</li><li>
+ค้น<WBR>หา<WBR>ไฟล์<WBR>ที่<WBR>อาจ<WBR>มี<WBR>ปัญหา<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ระบบ<WBR>การ<WBR>รักษา<WBR>ความ<WBR>ปลอด<WBR>ภัย
+</li><li>
+ทำ<WBR>งาน<WBR>ที่<WBR>ซ้ำๆ<WBR>กัน
+</li>
+</ul>
+บาง<WBR>ครั้ง<WBR>คุณ<WBR>จำ<WBR>เป็น<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ง่ายๆ แทน<WBR>คำ<WBR>สั่ง<WBR>อื่นๆ<WBR>ใน<WBR>กรณี<WBR>ฉุกเฉิน ตัว<WBR>อย่าง<WBR>เช่น
+<pre>
+echo *
+</pre>
+คำ<WBR>สั่ง<WBR>นี้<WBR>คุณ<WBR>สามารถ<WBR>ใช้<WBR>แทน "ls *" ได้<br>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

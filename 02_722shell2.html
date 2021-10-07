@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming (2)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ (2)</H1>
+
+<p>
+เนื่อง<WBR>จาก<WBR>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ หรือ เชลล์สค<WBR>ริปต์ (shell script) นั้น<WBR>เป็น<WBR>การ<WBR>นำ<WBR>เอา
+คำ<WBR>สั่ง<WBR>ต่างๆ<WBR>ของ<WBR>ระบบ<WBR>มา<WBR>รวม<WBR>เข้า<WBR>ด้วย<WBR>กัน โดย<WBR>มี<WBR>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>การ<WBR>ทำ<WBR>งาน (flow control) คอย
+เป็น<WBR>ตัว<WBR>บังคับ<WBR>และ<WBR>ควบ<WBR>คุม<WBR>รูป<WBR>แบบ<WBR>ของ<WBR>โปรแกรม ดัง<WBR>นั้น<WBR>หาก<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>คุ้น<WBR>เคย<WBR>กับ<WBR>รูป<WBR>แบบ<WBR>คำ<WBR>สั่ง
+ที่<WBR>เป็น<WBR>ยูทิ<WBR>ลิตี้<WBR>ของ ลีนุกซ์/ยู<WBR>นิกซ์ ขอ<WBR>แนะ<WBR>นำ<WBR>ให้<WBR>คุณ<WBR>อ่าน<WBR>เอก<WBR>สาร<WBR>ที่<WBR>เกี่ยว<WBR>กับ<WBR>การ<WBR>แนะ<WBR>นำ
+ผู้<WBR>ใช้<WBR>เบื้อง<WBR>ต้น (user-guide) เสีย<WBR>ก่อน อย่าง<WBR>น้อย<WBR>คุณ<WBR>ควร<WBR>จะ<WBR>ทำ<WBR>ความ<WBR>คุ้น<WBR>เคย<WBR>กับ<WBR>โปรแกรม
+พวก sort, grep, more หรือ cat  
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>ควบ<WBR>คุม<WBR>ลักษณะ<WBR>ของ<WBR>การ<WBR>แสดง<WBR>ผล</H3>
+
+<p>
+เรา<WBR>สามารถ<WBR>ส่ง<WBR>รหัส<WBR>พิเศษ (escape sequence) ไป<WBR>ทำ<WBR>การ<WBR>ควบ<WBR>คุม<WBR>ลักษณะ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ได้
+โดย<WBR>รหัส<WBR>เหล่า<WBR>นั้น<WBR>จะ<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย รหัส<WBR>ของ escape (\033) ดัง<WBR>นั้น<WBR>จึง<WBR>เรียก<WBR>รหัส<WBR>ชุด<WBR>เหล่า
+นี้<WBR>ว่า escape sequence คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>บังคับ<WBR>ให้<WBR>ระบบ<WBR>ทำ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ตัว<WBR>อักษร<WBR>แบบ<WBR>กระ<WBR>พริบ
+กลับ<WBR>ขาว<WBR>กลับ<WBR>ดำ หรือ<WBR>ขีด<WBR>เส้น<WBR>ใต้<WBR>ได้ ตัว<WBR>อย่าง<WBR>ของ<WBR>รหัส<WBR>ต่างๆ มี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+</p>
+
+<ul>
+<li>
+\033[line;colH 	ตำแหน่ง<WBR>ของ prompt จะ<WBR>ไป<WBR>อยู่<WBR>บน<WBR>บรรทัด line และ<WBR>คอลัมน์ col
+</li>
+<li>
+\033[2J		ลบ<WBR>หน้า<WBR>จอ (คล้าย<WBR>กับ tput clear บน<WBR>ยู<WBR>นิกซ์ หรือ CLS บนดอส)
+</li>
+<li>
+\033[4m 	เข้า<WBR>สู่<WBR>โหมด<WBR>ขีด<WBR>เส้น<WBR>ใต้ ตัว<WBR>อักษร<WBR>ที่<WBR>พิมพ์<WBR>ต่อ<WBR>จาก<WBR>รหัส<WBR>ชุด<WBR>นี้<WBR>จะ
+เป็น<WBR>ตัว<WBR>อักษร<WBR>ที่<WBR>มี<WBR>การ<WBR>ขีด<WBR>เส้น<WBR>ใต้<WBR>ทั้ง<WBR>หมด
+</li>
+<li>
+\033[5m		เข้า<WBR>สู่<WBR>โหมด<WBR>กระ<WBR>พริบ (blink)
+</li>
+<li>
+\033[7m		โหมด<WBR>กลับ<WBR>ขาว<WBR>ดำ (reverse)
+</li>
+<li>
+\033[m		กลับ<WBR>สู่<WBR>โหมด<WBR>ปกติ
+</li>
+</ul>
+
+<p>
+เรา<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง echo เพื่อ<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>รหัส<WBR>เหล่า<WBR>นี้<WBR>ได้ สำหรับ<WBR>รหัส<WBR>ของ escape คุณ
+สามารถ<WBR>ทำ<WBR>ได้ โดย<WBR>การ<WBR>กด<WBR>ปุ่ม Ctrl-v (กด<WBR>ปุ่ม<WBR>คอน<WBR>โทรล<WBR>ค้าง<WBR>ไว้<WBR>และ<WBR>ตาม<WBR>ด้วย v) หลัง<WBR>จาก<WBR>นี้
+เมื่อ<WBR>เรา<WBR>กด<WBR>ปุ่ม<WBR>ไหน<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ส่ง<WBR>รหัส<WBR>ประจำ<WBR>ปุ่ม<WBR>นั้น<WBR>ไป<WBR>ให้<WBR>ระบบ ใน<WBR>ที่<WBR>นี้<WBR>จะ<WBR>กด<WBR>ปุ่ม Esc 
+เมื่อ<WBR>กด<WBR>แล้ว<WBR>ก็<WBR>จะ<WBR>เห็น<WBR>เป็น<WBR>ตัว<WBR>อักษร ^[  ดัง<WBR>นั้น<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ส่ง<WBR>รหัส<WBR>สำหรับ<WBR>เข้า<WBR>สู่<WBR>โหมด
+กระ<WBR>พริบ คุณ<WBR>ก็<WBR>ต้อง<WBR>กด<WBR>ปุ่ม Ctrl-v ตาม<WBR>ด้วย<WBR>ปุ่ม Esc และ<WBR>ปุ่ม [, 5, m ตาม<WBR>ลำ<WBR>ดับ
+เมื่อ<WBR>คุณ<WBR>กด<WBR>รหัส<WBR>ชุด<WBR>นี้<WBR>เสร็จ<WBR>สิ้น<WBR>แล้ว<WBR>คุณ<WBR>จะ<WBR>เห็น<WBR>เป็น<WBR>ชุด<WBR>ตัว<WBR>อักษร ^[[5m 
+</p>
+
+ให้<WBR>ทด<WBR>ลอง<WBR>ป้อน<WBR>คำ<WBR>สั่ง ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ echo ^[[5m 
+</pre>
+
+คุณ<WBR>จะ<WBR>สังเกต<WBR>เห็น<WBR>ว่า<WBR>เมื่อ<WBR>เรา<WBR>พิมพ์<WBR>ตัว<WBR>อักษร<WBR>หลัง<WBR>จาก<WBR>นี้ เรา<WBR>จะ<WBR>เห็น<WBR>เป็น<WBR>ตัว<WBR>อักษร<WBR>กระ<WBR>พริบ
+ทั้ง<WBR>หมด (สำหรับ<WBR>จอ<WBR>ที่<WBR>มี<WBR>การ<WBR>กำหนด<WBR>เป็น<WBR>แอตท<WBR>ริ<WBR>บิวท์<WBR>สี ก็<WBR>จะ<WBR>เห็น<WBR>เป็น<WBR>สี<WBR>ที่<WBR>แตก<WBR>ต่าง<WBR>จาก<WBR>ปกติ)
+ให้<WBR>คุณ<WBR>ป้อน<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้ เพื่อ<WBR>กลับ<WBR>สู่<WBR>โหมด<WBR>ปกติ
+
+<pre>
+$ echo ^[[m
+</pre>
+
+ขอ<WBR>ให้<WBR>ทด<WBR>ลอง<WBR>ป้อน<WBR>รหัส<WBR>อื่นๆ<WBR>ดู คุณ<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง tput clear เพื่อ<WBR>ทำ<WBR>การ<WBR>ลบ<WBR>หน้า<WBR>จอ<WBR>ได้
+ตัว<WBR>อย่าง 
+
+<pre>
+$ tput clear 		  
+$ echo "^[[10;20HMenu"   
+</pre>
+
+คำ<WBR>สั่ง<WBR>ต่างๆ<WBR>เหล่า<WBR>นี้<WBR>คุณ<WBR>สามารถ<WBR>นำ<WBR>มา<WBR>ใส่<WBR>ไว้<WBR>ใน<WBR>ไฟล์<WBR>เดียว<WBR>กัน<WBR>ได้ ซึ่ง<WBR>เรา<WBR>จะ<WBR>เรียก<WBR>ว่า shell 
+script เมื่อ<WBR>คุณ<WBR>เขียน<WBR>เชลล์สค<WBR>ริปต์<WBR>เสร็จ<WBR>แล้ว คุณ<WBR>จะ<WBR>สามารถ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>ไฟล์<WBR>เชลล์สค<WBR>ริปต์
+ของ<WBR>คุณ<WBR>ได้ โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ bash myscript   	    for Bourne Again shell
+</pre>
+
+หรือ
+
+<pre>
+$ ksh myscript		    for Korn shell
+</pre>
+
+หรือ<WBR>ใช้<WBR>คำ<WBR>สั่ง chmod เพื่อ<WBR>เปลี่ยน<WBR>โหมด<WBR>ของ<WBR>ไฟล์<WBR>ให้<WBR>เป็น<WBR>ชนิด<WBR>ที่<WBR>ทำ<WBR>งาน<WBR>ได้ (executable) 
+แล้ว<WBR>เรียก shell script นั้น<WBR>ให้<WBR>ทำ<WBR>งาน โดย<WBR>ป้อน<WBR>ชื่อ<WBR>เข้า<WBR>ไป<WBR>โดย<WBR>ตรง
+
+<pre>
+$ chmod +x myscript 	    เปลี่ยน<WBR>โหมด<WBR>ของ<WBR>ไฟล์<WBR>ให้<WBR>เป็น<WBR>แบบ executable
+$ myscript		    เรียก<WBR>ให้สค<WBR>ริปต์<WBR>ทำ<WBR>งาน<WBR>โดย<WBR>พิมพ์<WBR>ชื่อ<WBR>ลง<WBR>ไป<WBR>โดย<WBR>ตรง
+</pre>
+
+ขอ<WBR>ให้<WBR>คุณ<WBR>ทด<WBR>ลอง<WBR>ทำ<WBR>หน้า<WBR>จอ Menu ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ ลอง<WBR>ทด<WBR>ลอง<WBR>ทำ<WBR>ดู<WBR>เอง<WBR>ก่อน หลัง<WBR>จาก<WBR>ทด<WBR>ลอง<WBR>ทำ
+ได้<WBR>แล้ว<WBR>ลอง<WBR>เปรียบ<WBR>เทียบ<WBR>กับ<WBR>ซอร์ส<WBR>โค้ด<WBR>ด้าน<WBR>ล่าง
+<br>
+
+<img src="P2_722menu.gif" alt="[รูป menu]">
+<br>
+
+<br>
+source code ของ<WBR>สคริปต์
+<hr>
+<pre>
+tput clear
+echo "^[[07;20H+---------------------------------------+"
+echo "^[[07;38H^[[7m  MENU  ^[[m"
+echo "^[[08;20H|                                       |"
+echo "^[[09;20H|   1. Option 1.                        |"
+echo "^[[10;20H|   2. Option 2.                        |"
+echo "^[[11;20H|   3. Option 3.                        |"
+echo "^[[12;20H|   4. Option 4.                        |"
+echo "^[[13;20H|   5. Exit.                            |"
+echo "^[[14;20H|                                       |"
+echo "^[[15;20H+---------------------------------------+"
+echo "^[[16;20H    Please select your choice :"
+read choice
+</pre>
+<hr>
+
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้<WBR>งาน<WBR>ตัวแปร<WBR>และ<WBR>ตัว<WBR>ควบ<WBR>คุม<WBR>อักขระ<WBR>พิเศษ (meta character)</H3>
+
+ใน<WBR>การ<WBR>ใช้<WBR>งาน shell จะสัง<WBR>เกตุ<WBR>เห็น<WBR>ว่า<WBR>มี<WBR>ตัว<WBR>อักขระ<WBR>บาง<WBR>ตัว<WBR>ที่<WBR>มี<WBR>ความ<WBR>หมาย<WBR>พิเศษ ซึ่ง<WBR>เชลล์
+จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ตี<WBR>ความ<WBR>เสีย<WBR>ก่อน ตัว<WBR>อย่าง<WBR>ของ<WBR>ตัว<WBR>อักขระ<WBR>พิเศษ
+
+<ul>
+<li>
+	*   แทน<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้ กี่<WBR>ตัว<WBR>ก็<WBR>ได้
+</li>
+<li>
+	?   แทน<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้<WBR>จำนวน<WBR>หนึ่ง<WBR>ตัว
+</li>
+<li>
+     [...]  ให้<WBR>เลือก<WBR>เอา<WBR>ตัว<WBR>อักษร<WBR>ใน<WBR>เครื่อง<WBR>หมาย<WBR>ก้าม<WBR>ปู<WBR>หนึ่ง<WBR>ตัว	
+</li>
+<li>
+     [!..]  แทน<WBR>ตัว<WBR>อักษร<WBR>ทุก<WBR>ตัว<WBR>ที่<WBR>ไม่<WBR>ได้<WBR>อยู่<WBR>ใน<WBR>ก้าม<WBR>ปู
+</li>
+</ul>
+
+ตัว<WBR>อย่าง<WBR>เช่น สมมุติ<WBR>มี<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+  a  aa  ab aaa aba 
+abb baa bba bcb
+</pre>
+
+คำ<WBR>สั่ง ls * จะ<WBR>เป็น<WBR>การ<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ทุก<WBR>ไฟล์ เนื่อง<WBR>จาก * จะ<WBR>แทน<WBR>ตัว<WBR>อักษร
+อะไร<WBR>ก็<WBR>ได้ และ<WBR>ไม่<WBR>จำกัด<WBR>จำนวน แต่<WBR>หาก<WBR>เป็น
+
+<pre>
+$ ls a*
+</pre>
+ก็<WBR>จะ<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์ a, aa, ab, aaa, aba, abb เนื่อง<WBR>จาก<WBR>เป็น<WBR>การ<WBR>แสดง<WBR>ชื่อ<WBR>ไฟล์
+ที่<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย a และ<WBR>ตาม<WBR>ท้าย<WBR>ด้วย<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้ ไม่<WBR>จำกัด<WBR>จำนวน
+
+<pre>
+$ ls a?
+</pre>
+จะ<WBR>แสดง<WBR>ชื่อ<WBR>ไฟล์ aa และ ab เนื่อง<WBR>จาก เป็น<WBR>การ<WBR>แสดง<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย a และ<WBR>ตาม
+ด้วย<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้ หนึ่ง<WBR>ตัว
+
+<pre>
+$ls a[ab]a
+</pre>
+จะ<WBR>แสดง<WBR>ชื่อ<WBR>ไฟล์ aaa และ aba เนื่อง<WBR>จาก<WBR>เป็น<WBR>การ<WBR>แสดง<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย a และ<WBR>ลง
+ท้าย<WBR>ด้วย a มี<WBR>ความ<WBR>ยาว<WBR>สาม<WBR>ตัว<WBR>อักษร ส่วน<WBR>ตัว<WBR>อักษร<WBR>กลาง<WBR>เป็น ตัว a หรือ b ก็<WBR>ได้
+
+<pre>
+$ls ?[!ab]?
+</pre>
+จะ<WBR>แสดง<WBR>ชื่อ<WBR>ไฟล์  bcb เนื่อง<WBR>จาก<WBR>เป็น<WBR>การ<WBR>แสดง<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>ความ<WBR>ยาว<WBR>สาม<WBR>ตัว<WBR>อักษร และ<WBR>จะ
+ขึ้น<WBR>ต้น<WBR>ด้วย<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้ รวม<WBR>ทั้ง<WBR>ลง<WBR>ท้าย<WBR>ด้วย<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้ แต่<WBR>ตัว<WBR>กลาง<WBR>จะ<WBR>ต้อง
+ไม่<WBR>เป็น<WBR>ตัว a และ<WBR>ตัว b
+
+ให้<WBR>คุณ<WBR>ทด<WBR>ลอง<WBR>ป้อน<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ประกอบ<WBR>ด้วย<WBR>ตัว<WBR>อักขระ<WBR>พิเศษ<WBR>ต่างๆ ด้วย<WBR>ตน<WBR>เอง<WBR>และ<WBR>ลอง<WBR>สังเกต
+ผล<WBR>ลัพธ์<WBR>ที่<WBR>ได้<WBR>ต่างๆ
+
+<H3 ALIGN=CENTER>การ<WBR>ลบ<WBR>ความ<WBR>หมาย<WBR>ของ<WBR>ตัว<WBR>อักษร<WBR>พิเศษ</H3>
+
+เนื่อง<WBR>จาก<WBR>เชลล์<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ตี<WBR>ความ<WBR>ตัว<WBR>อักษร<WBR>พิเศษ<WBR>ดัง<WBR>กล่าว<WBR>ข้าง<WBR>ต้น แต่<WBR>ถ้า<WBR>หาก<WBR>เรา<WBR>ต้อง<WBR>การ
+นำ<WBR>ตัว<WBR>อักษร<WBR>พิเศษ<WBR>เหล่า<WBR>นี้<WBR>มา<WBR>ใช้<WBR>งาน<WBR>จริงๆ ตัว<WBR>อย่าง<WBR>เช่น ต้อง<WBR>การ<WBR>จะ<WBR>ให้<WBR>ระบบ<WBR>พิมพ์<WBR>คำ<WBR>ว่า
+"ls *" ซึ่ง<WBR>เรา<WBR>จะ<WBR>ไม่<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ข้าง<WBR>ล่าง<WBR>นี้<WBR>ได้
+
+<pre>
+echo ls *
+</pre>
+โดย<WBR>ที่<WBR>ระบบ<WBR>จะ<WBR>พิมพ์ "ls" และ<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>ทั้ง<WBR>หมด<WBR>ออก<WBR>มา<WBR>แทน 
+("echo *" คือ<WBR>การ<WBR>พิมพ์<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>ทั้ง<WBR>หมด<WBR>ออก<WBR>มา)
+ดัง<WBR>นั้น<WBR>จึง<WBR>ต้อง<WBR>มี<WBR>วิธี<WBR>การ<WBR>ลบ<WBR>ความ<WBR>หมาย<WBR>ของ<WBR>ตัว<WBR>อักษร<WBR>พิเศษ 3 วิธี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<ul>
+<li>
+'...' การ<WBR>ครอบ<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>เขา<WBR>เดี่ยว วิธี<WBR>นี้<WBR>เชลล์<WBR>จะ<WBR>ไม่<WBR>ตี<WBR>ความ<WBR>ตัว<WBR>ตัว<WBR>อักษร<WBR>พิเศษ
+</li>
+<li>
+"..." การ<WBR>ครอบ<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>เขา<WBR>คู่ วิธี<WBR>นี้<WBR>เชลล์<WBR>จะ<WBR>ไม่<WBR>ตี<WBR>ความ<WBR>ตัว<WBR>อักษร<WBR>พิเศษ แต่<WBR>จะ
+ตี<WBR>ความ<WBR>ของ $ ซึ่ง<WBR>จะ<WBR>ใช้<WBR>เป็น<WBR>สัญลักษณ์<WBR>ของ<WBR>ตัวแปร<WBR>เชลล์ (shell variable) ตัว<WBR>อย่าง<WBR>ของ
+ตัวแปร<WBR>เชลล์<WBR>เช่น $HOME แสดง home directory หรือไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>แรก<WBR>ที่<WBR>เรา<WBR>ทำ<WBR>การล็<WBR>อกอิน
+เข้า<WBR>มา
+และ<WBR>ไม่<WBR>ตี<WBR>ความ<WBR>เครื่อง<WBR>หมาย<WBR>เขา<WBR>กลับ (grave accents) `...` โดย<WBR>ที่<WBR>ชุด<WBR>ตัว<WBR>อักษร<WBR>ภาย<WBR>ใต้
+เครื่อง<WBR>หมาย<WBR>เขา<WBR>กลับ<WBR>นี้<WBR>จะ<WBR>ถูก<WBR>เชลล์<WBR>ตี<WBR>ความ<WBR>หมาย<WBR>และ<WBR>นำ<WBR>ไป<WBR>ประมวล<WBR>ผล (execute)
+สำหรับ<WBR>เรื่อง<WBR>ของ<WBR>ตัวแปร<WBR>เชลล์<WBR>และ<WBR>เครื่อง<WBR>หมาย<WBR>เขา<WBR>กลับ<WBR>จะ<WBR>อธิบาย<WBR>อย่าง<WBR>ละเอียด<WBR>อีก<WBR>ครั้ง<WBR>หนึ่ง
+</li>
+<li>
+\ หรือ backslash จะ<WBR>ใช้<WBR>ลบ<WBR>ความ<WBR>หมาย<WBR>ของ<WBR>ตัว<WBR>อักขระ<WBR>พิเศษ<WBR>ที่<WBR>ตาม<WBR>หลัง<WBR>มา<WBR>หนึ่ง<WBR>ตัว
+</li>
+</ul>
+
+ตัว<WBR>อย่าง
+<pre>
+echo "ls *"		--> ls *
+echo 'ls *'		--> ls *
+echo ls \*		--> ls *
+echo HOME is $HOME	--> HOME is /home/guest
+echo "HOME is $HOME"	--> HOME is /home/guest
+echo 'HOME is $HOME'	--> HOME is $HOME
+echo 'HOME is \$HOME'   --> HOME is \$HOME
+echo "pwd is `pwd`"     --> pwd is /home/guest
+</pre>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

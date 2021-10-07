@@ -1,0 +1,612 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>FAQ</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>ติด<WBR>ตั้ง<WBR>ลีนุกซ์</H1>
+<hr>
+<H3 ALIGN=CENTER>การ<WBR>ติด<WBR>ตั้ง Slackware distribution </H3>
+แปล<WBR>บาง<WBR>ส่วน<WBR>มา<WBR>จาก Linux Developper's Resource CD-ROM August 1995 by Infomagic<br>
+(Slackware 2.3 with kernel 1.2.8 and ELF beta)<br>
+คำ<WBR>เตือน:
+<ol>
+<li>
+	  กรุณา<WBR>ตรวจ<WBR>สอบ<WBR>ฮาร์ดแวร์<WBR>ของ<WBR>คุณ<WBR>ก่อน<WBR>ว่า<WBR>เข้า<WBR>กัน<WBR>ได้<WBR>กับ<WBR>ลีนุกซ์<WBR>หรือ<WBR>ไม่ (ตรวจ<WBR>สอบ<WBR>จาก Listing Linux H/W compatability)
+</li>
+<li>
+           ก่อน<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ลีนุกซ์ คุณ<WBR>ควร<WBR>จะ<WBR>ทำ<WBR>การ<WBR>สำรอง<WBR>ข้อ<WBR>มูล<WBR>เดิม ใน<WBR>ฮาร์ดดิสก์<WBR>ของ<WBR>คุณ<WBR>เสีย<WBR>ก่อน
+</li>
+</ol>
+
+<H4>เริ่ม<WBR>ทำ<WBR>แผ่นบู<WBR>ตระบบ<WBR>สำหรับ<WBR>ลีนุกซ์ </H4>
+เนื่อง<WBR>จาก<WBR>ลีนุกซ์ มี<WBR>ระบบ<WBR>ไฟล์<WBR>และ<WBR>การ<WBR>จัด<WBR>การ<WBR>ระบบ<WBR>ที่<WBR>เป็น<WBR>ของ<WBR>ตน<WBR>เอง โดย<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>ต้อง<WBR>พึ่งอิน<WBR>เทอร์รัปต์<WBR>ขอ<WBR>งดอส ดัง<WBR>นั้น<WBR>จึง<WBR>ต้อง<WBR>มี<WBR>การ<WBR>ทำ<WBR>แผ่นบู<WBR>ตระบบ<WBR>เสีย<WBR>ก่อน ซึ่ง<WBR>จะ<WBR>ประกอบ<WBR>ด้วย 2 แผ่น<WBR>คือ boot disk และ root disk<br>
+
+<ol>
+   <li> การ<WBR>ทำ<WBR>แผ่นบูต<WBR>ของ<WBR>ลีนุกซ์<WBR>โดย<WBR>ใช้ WINDOWS </li>
+       ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>สมมุติ<WBR>ว่า ฮาร์ดดิสก์<WBR>ของ<WBR>คุณ<WBR>เป็นไดรฟ์ C: และ<WBR>ซี<WBR>ดี<WBR>รอมไดรฟ์
+       ของ<WBR>คุณ<WBR>เป็นไดรฟ์ D:<br>
+        <ol>
+	<li>
+        เลือก "run" จาก<WBR>ไฟล์<WBR>เมนู<WBR>ใน program manager
+          โดย<WBR>ใช้<WBR>วิธี browse เอา หรือ<WBR>ใส่<WBR>ข้อ<WBR>ความ<WBR>ว่า
+              D:\lininst\lininst.exe<br>
+           โปรแกรม<WBR>ที่<WBR>สร้าง<WBR>แผ่นบูตดิสก์<WBR>ของ<WBR>ลีนุกซ์<WBR>จะ<WBR>เริ่ม<WBR>ทำ<WBR>งาน<br>
+	</li>
+	<li>
+        เลือก<WBR>ประเภท<WBR>ของ<WBR>ฮารด์ดิสก์<WBR>ที่<WBR>ท่าน<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ<WBR>ลง<WBR>ไป สามารถ<WBR>เลือก<WBR>ได้<WBR>ทั้ง<WBR>แบบ SCSI หรือ IDE<br>
+	</li>
+	<li>
+        ให้<WBR>เลือก source ที่<WBR>โปรแกรม<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>ไป<WBR>อ่าน<WBR>มา<br>
+		<ul>
+                <li>เลือก YES ใน<WBR>หัว<WBR>ข้อ Networking ถ้า<WBR>คุณ<WBR>จะ<WBR>ติด<WBR>ตั้ง<WBR>ผ่าน NFS</li>
+                <li> ถ้า<WBR>จะ<WBR>ติด<WBR>ตั้ง<WBR>ผ่าน CD-ROM ให้<WBR>เลือก<WBR>จาก CD-ROM listing </li>
+		    <ul>
+                     <li> SONY CDU-31A/33A </li>
+                     <li> Mitsumi (Proprietary Interface) </li>
+                     <li> SONY CDU-531/535 </li>
+                     <li> Sound Blaster CD-ROM (Panasonic/Matsushita) </li>
+                     <li> SCSI CD-ROM </li>
+                     <li> NEC 260 (Older non-ATAPI model) </li>
+                     <li> ATAPI (compatible) </li>
+		     </ul>
+		</ul>
+	</li>
+	<li>
+         เลือก<WBR>ชนิด<WBR>ของ<WBR>การ install<br>
+		<ul>
+                <li> Color Install - สำหรับ<WBR>จอ<WBR>สี (ควร<WBR>ใช้<WBR>ตัว<WBR>เลือก<WBR>นี้) </li>
+                <li> TTY Install - สำหรับ<WBR>จอโ<WBR>มโน<WBR>โครม </li>
+                <li> UMSDOS Install - สำหรับ UMSDOS version </li>
+                <li> Tape Install - สำหรับ Install จาก Tape </li>
+		</ul>
+	</li>
+	<li>
+         ถ้า<WBR>คุณ<WBR>มีฟ<WBR>ลอบ<WBR>ปี้ไดรฟ์<WBR>มาก<WBR>กว่า 1 ตัว ขอ<WBR>ให้<WBR>คุณ<WBR>เลือก<WBR>ตัว<WBR>ที่<WBR>สามารถ<WBR>ใช้บูต<WBR>แผ่น<WBR>ได้ (ปกติ<WBR>เป็นไดรฟ์ A:) ถ้า<WBR>คุณ<WBR>มี<WBR>เพียง<WBR>ตัว<WBR>เดียว<WBR>มัน<WBR>จะ<WBR>ถูก<WBR>เลือก<WBR>อยู่<WBR>แล้ว<br>
+	</li>
+	<li>
+         หลัง<WBR>จาก<WBR>ใส่<WBR>ตัว<WBR>เลือก<WBR>ทั้ง<WBR>หมด<WBR>แล้ว<WBR>ให้<WBR>ใช้<WBR>เมาส์ค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม OK<br>
+	</li>
+	<li>
+         โปรแกรม<WBR>จะ<WBR>ให้<WBR>ใส่<WBR>แผ่น<WBR>เปล่า เพื่อ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>สร้าง Boot disk และ Root disk
+(ใส่<WBR>แผ่น<WBR>ตาม<WBR>ลำ<WBR>ดับ)<br>
+	</li>
+	</ol>
+<br>
+        <li> ทำ<WBR>แผ่นบูต<WBR>ของ<WBR>ลีนุกซ์<WBR>โดย<WBR>ใช้ดอส (จะ<WBR>ทำ<WBR>ได้<WBR>ยาก<WBR>กว่า<WBR>ใช้วิน<WBR>โดว์ส) </li>
+	<ol>
+	<li>
+        ให้<WBR>คุณ<WBR>หา<WBR>อ่าน<WBR>ราย<WBR>ละเอียด<WBR>ของบูตอิมเมจ<WBR>ที่<WBR>คุณ<WBR>จะ<WBR>ใช้<WBR>ทำ<WBR>แผ่นบูต<WBR>ของ<WBR>เครื่อง<WBR>คุณ<WBR>ใน
+แผ่น<WBR>ซี<WBR>ดี ที่<WBR>ไฟล์<WBR>ชื่อ bootlist.txt โดย<WBR>หาไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ของ<WBR>ไฟล์<WBR>นี้<WBR>ได้<WBR>จาก help ไดเ<WBR>รก<WBR>ทอ<WBR>รี
+ใน disc1<br>
+	</li>
+	<li>
+         ต้อง<WBR>หา<WBR>ราย<WBR>ละเอียด<WBR>ของ root disk ด้วย โดย<WBR>หา<WBR>ได้<WBR>จาก<WBR>ไฟล์ rootlist.txt<br>
+	</li>
+	<li>
+         เมื่อ<WBR>คุณ<WBR>ตัด<WBR>สิน<WBR>ใจ<WBR>ได้<WBR>แล้ว<WBR>ว่า จะ<WBR>เลือก<WBR>ใช้ Boot และ Root แบบ<WBR>ใด
+คุณ<WBR>จะ<WBR>ต้อง<WBR>ไป<WBR>คลี่ image ของ<WBR>แผ่น<WBR>ทั้ง<WBR>สอง (โดย<WBR>ใช้<WBR>โปรแกรม rawrite.exe) <br> 
+ซึ่ง<WBR>จะ<WBR>หาไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ของ<WBR>ไฟล์<WBR>นี้ ได้<WBR>จาก<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ whereami.txt ซึ่ง<WBR>จะ<WBR>หา<WBR>ได้<WBR>จากไดเ<WBR>รก
+ทอ<WBR>รี help ใน disc1<br>
+	</li>
+	<li>
+         ให้<WBR>สร้างไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ชั่ว<WBR>คราว<WBR>ขึ้น<WBR>มา<WBR>ในไดรฟ์ C เช่น c:\temp ให้<WBR>ทำ<WBR>การ copy ไฟล์<WBR>ที่<WBR>เป็นอิมเมจ<WBR>ของ boot และ root ลง<WBR>ไป<WBR>ในไดเร็ก<WBR>ทอ<WBR>รี<WBR>นี้ รวม<WBR>ทั้ง rawrite.exe <WBR>ด้วย<br>
+	</li>
+	<li>
+         เรียก<WBR>โปรแกรม rawrite.exe โปรแกรม<WBR>จะ<WBR>ถามไดรฟ์<WBR>ที่<WBR>มี<WBR>แผ่น<WBR>เปล่า<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>สร้าง boot disk อยู่  ให้<WBR>ตอบ 'A:' หาก<WBR>แผ่น<WBR>เปล่า<WBR>นั้น<WBR>อยู่<WBR>ที่ฟลอป<WBR>ปีไดรฟ์ A:<br>
+	</li>
+	<li>
+         เมื่อ<WBR>สร้าง boot disk เสร็จ<WBR>แล้ว<WBR>ให้<WBR>ใส่<WBR>แผ่น<WBR>เปล่า<WBR>แผ่น<WBR>ที่<WBR>สอง<WBR>เข้า<WBR>ไป<WBR>เพื่อ<WBR>จะ<WBR>สร้าง root disk จาก<WBR>นั้น<WBR>ก็<WBR>พิมพ์ rawrite เพื่อ<WBR>เรียก<WBR>โปรแกรม<WBR>อีก<WBR>ครั้ง<WBR>หนึ่ง<br>
+	</li>
+	<li>
+         โปรแกรม<WBR>จะ<WBR>ถาม<WBR>ชื่อ<WBR>ของ root image (ตย. ให้<WBR>ใส่ color144) และ<WBR>จะ<WBR>ถามไดรฟ์<br> ให้<WBR>ตอบ<WBR>ชื่อไดรฟ์<WBR>ไป (เช่น A:) และ<WBR>โปรแกรม<WBR>ก็<WBR>จะ<WBR>สร้าง root disk จน<WBR>เสร็จ<br>
+	</li>
+	</ol>
+</ol>
+<br>
+
+เมื่อ<WBR>คุณ<WBR>ได้ boot disk และ root disk แล้ว คุณ<WBR>ก็<WBR>สามารถ<WBR>เริ่ม<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ<WBR>ลีนุกซ์<WBR>ลง<WBR>บน<WBR>ฮาร์ดดิสก์<WBR>ของ<WBR>คุณ<WBR>ได้<br>
+<br>
+ก่อน<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ขอ<WBR>แนะ<WBR>นำ<WBR>ให้<WBR>แบ่ง<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ของ<WBR>ฮาร์ดดิสก์<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ (ตย. สำหรับ<WBR>ฮาร์ดดิสก์ 540Mb)<br>
+	<ol>
+        <li> DOS/WINDOWS  200 </li>
+        <li> LINUX        300 </li>
+        <li> LINUX SWAP    40 </li>
+	</ol>
+คุณ<WBR>อาจ<WBR>จะ<WBR>แบ่ง<WBR>เฉพาะ<WBR>พาร์<WBR>ติชั่น<WBR>แรก (DOS/WINDOWS) ก่อน<WBR>ก็<WBR>ได้ เรา<WBR>สามารถ<WBR>ไป<WBR>เพิ่ม<WBR>พาร์<WBR>ติชั่<WBR>นภาย<WBR>หลัง<WBR>ได้ โดย<WBR>ใช้<WBR>โปรแกรม fdisk บน<WBR>ลีนุกซ์<br>
+
+<ol>
+<li>
+        ใส่<WBR>แผ่น CD ที่<WBR>จะ install ใน<WBR>ซี<WBR>ดี<WBR>รอมไดรฟ์ และ<WBR>ใส่<WBR>แผ่น Boot disk ในไดรฟ์ A: จาก<WBR>นั้น<WBR>ให้<WBR>รีเซ็<WBR>ตระบบ<WBR>โดย<WBR>ใช้ Clt-Alt-Del หรือ<WBR>กด<WBR>ปุ่ม<WBR>รีเซ็ต<br>
+</li>
+<li>
+        จาก<WBR>นั้น<WBR>คุณ<WBR>จะ<WBR>เห็น<WBR>คำ<WBR>ว่า LILO ขึ้น<WBR>ที่<WBR>จอ<WBR>ภาพ<WBR>ซึ่ง<WBR>แสดง<WBR>ว่า<WBR>ระบบ<WBR>กำลังบู<WBR>ตอ<WBR>ยู่
+จาก<WBR>นั้น<WBR>ก็<WBR>จะ<WBR>มี boot: พร้อมพ์<WBR>ที่<WBR>ตอน<WBR>ล่าง<WBR>ของ<WBR>จอ<WBR>ซึ่ง<WBR>จะ<WBR>ทำ<WBR>การ<WBR>รอ<WBR>รับ<WBR>พา<WBR>รา<WBR>มี<WBR>เตอร์<WBR>ที่<WBR>จะ<WBR>ใช้บูต<WBR>กับ<WBR>ฮาร์ดดิสก์<WBR>ของ<WBR>คุณ โดย<WBR>ปกติ<WBR>จะ<WBR>กด Enter ผ่าน<WBR>ไป<WBR>ได้<WBR>เลย
+</li>
+<li>
+       ระบบ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ขอ<WBR>ให้<WBR>เรา<WBR>ใส่<WBR>แผ่น root disk เข้า<WBR>ไป 
+ให้<WBR>เอา<WBR>แผ่น root disk ใส่<WBR>เข้า<WBR>ไป<WBR>แทน ซึ่ง root disk
+นี้<WBR>จะ<WBR>ถูก<WBR>โหลด<WBR>เข้า<WBR>ไป<WBR>ไว้<WBR>ใน ramdisk และ<WBR>ลีนุกซ์ (ชั่ว<WBR>คราว)
+ก็<WBR>จะ<WBR>รัน<WBR>ระบบ<WBR>ผ่าน<WBR>ทาง ramdisk นี้<br>
+</li>
+<li>
+เมื่อ<WBR>ระบบ<WBR>ทำ<WBR>การบูต<WBR>เสร็จ<WBR>สมบูรณ์<WBR>แล้ว <WBR>ก็<WBR>จะ<WBR>ขึ้น login prompt
+ขึ้น<WBR>มา <WBR>ให้<WBR>คุณ<WBR>พิมพ์<WBR>คำ<WBR>ว่า root เข้า<WBR>ไป <WBR>คุณ<WBR>จะ<WBR>ได้ ล็<WBR>อกอิน
+เข้า<WBR>ไป<WBR>ใน<WBR>ฐานะ<WBR>ของ ซู<WBR>เปอร์<WBR>ยู<WBR>เซอร์ <WBR>ซึ่ง<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>เปลี่ยน
+แปลง<WBR>ระบบ<WBR>ได้<WBR>ทั้ง<WBR>หมด<br>
+</li>
+</ol>
+คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>จัด<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ใหม่<WBR>ได้ <WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง<br>
+        <dir> fdisk <ชื่อไดรฟ์><br> </dir>
+โดย drive จะ<WBR>มี<WBR>ชื่อ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้<br>
+	<ul>
+        <li>/dev/hda IDE ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง</li>
+        <li>/dev/hdb IDE ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>สอง</li>
+        <li>/dev/sda SCSI ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง</li>
+        <li>/dev/sdb SCSI ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>สอง</li>
+	</ul>
+ด้ง<WBR>นั้น<WBR>คุณ<WBR>สามารถ<WBR>แทน<WBR>คำ<WBR>ว่า drive ด้วย<WBR>ราย<WBR>ชื่อ<WBR>ดัง<WBR>กล่าว
+ตัว<WBR>อย่าง<WBR>เมื่อ<WBR>จะ<WBR>ทำ<WBR>การ <WBR>จัด<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ของ IDE <WBR>ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง (ที่<WBR>ระบบ
+ส่วน<WBR>ใหญ่<WBR>ใช้)<br>
+        <dir> fdisk /dev/hda<br> </dir>
+สำหรับ<WBR>การ<WBR>แบ่ง<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ของ<WBR>ฮาร์ดดิสก์<WBR>แต่<WBR>ละ<WBR>ตัว<WBR>นั้น <WBR>จะ<WBR>มี<WBR>หมาย<WBR>เลข<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ต่อ<WBR>ท้าย
+ชื่อ<WBR>ของ<WBR>ฮาร์ดดิสก์ <WBR>ตัว<WBR>อย่าง<WBR>เช่น<br>
+	<ul>
+        <li> /dev/hda1 พาร์<WBR>ติ<WBR>ชัน<WBR>แรก<WBR>ของ <WBR>ฮาร์ดดิสก์ IDE <WBR>ตัว<WBR>ที่<WBR>หนึ่ง </li>
+        <li> /dev/hda2 พาร์<WBR>ติ<WBR>ชัน<WBR>ที่<WBR>สอง<WBR>ของ <WBR>ฮาร์ดดิสก์ IDE <WBR>ตัว<WBR>ที่<WBR>หนึ่ง </li>
+        <li> ... </li>
+	</ul>
+<br>
+ใน<WBR>ตอน<WBR>แรก<WBR>คุณ<WBR>ควร<WBR>ตรวจ<WBR>ดู<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ใน<WBR>ฮาร์ดดิสก์<WBR>ของ<WBR>คุณ<WBR>โดย<WBR>ใช้ <WBR>คำ<WBR>สั่ง 'p'
+(สั่ง 'm' <WBR>ถ้า<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>แสดง<WBR>ข้อ<WBR>ความ<WBR>ช่วย<WBR>เหลือ)
+ถ้า<WBR>ตอน<WBR>แรก<WBR>คุณ<WBR>แบ่ง<WBR>เป็น DOS/WINDOWS <WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>เดียว (ตาม<WBR>ข้าง<WBR>บน)
+โปรแกรม<WBR>ควร<WBR>จะ<WBR>ส่ง<WBR>ข้อ<WBR>ความ<WBR>ออก<WBR>มา<WBR>คล้ายๆ<WBR>อย่าง<WBR>นี้<br>
+<br>
+Command (m for help):p<br>
+Disk /dev/hd: 16 heads, 38 sectors, 683 cylinders<br>
+Units=cylinders of 608*512 bytes<br>
+    Device Boot Begin Start End Blocks ID System<br>
+/dev/hda1   *    1       1  203 61693  6  DOS 16-bit>=32M<br>
+<br>
+Command (m for help):<br>
+<br>
+ให้<WBR>คุณ<WBR>ทำ<WBR>การ<WBR>สร้าง <WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>สำหรับ <WBR>ระบบ<WBR>และสแวป <WBR>เพิ่ม<br>
+โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง 'n' <WBR>ดัง<WBR>นี้<br>
+<br>
+Command (m for help):n<br>
+Command action<br>
+    e extended<br>
+    p primary partition (1-4)<br>
+p                                               <-- สั่ง p เพื่อ<WBR>เลือก primary<br>
+<br>
+Partition number(1-4): 2                        <-- partition ที่ 2<br>
+First cylinder(204-683): 204                    <-- ใส่<WBR>หมาย<WBR>เลข cylinder<br>
+Last cylinder or +size of +sizeM or +sizeK(204-683): +80M<br>
+<br>
+จาก<WBR>นั้น<WBR>ก็<WBR>สร้าง swap <WBR>แบบ<WBR>เดียว<WBR>กัน <WBR>แต่<WBR>เปลี่ยน<WBR>หมาย<WBR>เลข<WBR>พาร์<WBR>ติ<WBR>ชัน <WBR>เป็น 3
+เมื่อ<WBR>สั่ง 'p' ดู<WBR>พาร์<WBR>ติชั่น <WBR>ควร<WBR>ได้<WBR>ข้อ<WBR>ความ<WBR>ดัง<WBR>นี้<br>
+<br>
+Command (m for help):p<br>
+Disk /dev/hd: 16 heads, 38 sectors, 683 cylinders<br>
+Units=cylinders of 608*512 bytes<br>
+    Device Boot Begin Start End Blocks ID System<br>
+/dev/hda1   *     1       1  203 61693  6  DOS 16-bit>=32M<br>
+/dev/hda2       204     204  473 82080 83  Linux native<br>
+/dev/hda3       474     474  507 10336 83  Linux native<br>
+<br>
+Command (m for help):<br>
+<br>
+คุณ<WBR>สามารถ<WBR>จะ<WBR>เปลี่ยน type ของ<WBR>พาร์<WBR>ติชั่น <WBR>ที่<WBR>สาม<WBR>ให้<WBR>เป็น swap ได้
+โดย<WBR>การ<WBR>สั่ง 't' ดัง<WBR>นี้<br>
+<br>
+Command (m for help):t<br>
+Partition numer(1-4):3<br>
+Hex code (type L to List codes):82<br>
+<br>
+พาร์<WBR>ติชั่น<WBR>ที่<WBR>สาม<WBR>จะ<WBR>ถูก<WBR>เปลี่ยน type เป็น swap
+สามารถ<WBR>สั่ง 'L' ถ้า<WBR>ต้อง<WBR>การ<WBR>ดู<WBR>รหัส<WBR>ของ<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>แบบ<WBR>อื่นๆ
+เมื่อ<WBR>ทำ<WBR>การ<WBR>จัด<WBR>พาร์<WBR>ติชั่น<WBR>เสร็จ<WBR>แล้ว <WBR>ให้<WBR>สั่ง 'w' เพื่อ<WBR>ทำ<WBR>การ write
+ข้อ<WBR>มูล<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ฮาร์ดดิสก์ <WBR>และ<WBR>ออก<WBR>โดย<WBR>ใช้ <WBR>คำ<WBR>สั่ง 'q'<br>
+<br>
+จาก<WBR>นั้น<WBR>คุณ<WBR>ก็<WBR>สามารถ<WBR>สั่ง<WBR>ให้<WBR>ลีนุกซ์<WBR>เตรียม<WBR>เนื้อ<WBR>ที่<WBR>สำหรับ swap <WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง<br>
+        <dir>mkswap -c <partition> <size><br></dir>
+จาก<WBR>ตัว<WBR>อย่าง<WBR>ข้าง<WBR>บน <WBR>สามารถ<WBR>สั่ง<WBR>ได้<WBR>ดัง<WBR>นี้<br>
+        <dir>mkswap -c /dev/hda3 10336<br></dir>
+จาก<WBR>นั้น<WBR>ก็<WBR>ทำ<WBR>ให้<WBR>ระบบ<WBR>สามารถ<WBR>ใช้เนื่อ<WBR>ที่ swap <WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง<br>
+        <dir>swapon <partition><br></dir>
+<dir>ตัว<WBR>อย่าง  swapon /dev/hda3<br></dir>
+คราว<WBR>นี้<WBR>คุณ<WBR>ก็<WBR>สามารถ<WBR>ใช้<WBR>พื้น<WBR>ที่<WBR>มาก<WBR>กว่า 10 Mb <WBR>เป็น<WBR>พื้น<WBR>ที่สแวป<WBR>ของ
+เวอร์<WBR>ชวลเมโม<WBR>รี<WBR>ได้<WBR>แล้ว
+คุณ<WBR>อาจ<WBR>จะ<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ใช้สแวป<WBR>ก็<WBR>ได้ <WBR>ถ้า<WBR>คุณ<WBR>มั่น<WBR>ใจ<WBR>ว่า เมโม<WBR>รี<WBR>ของ<WBR>คุณ
+มาก<WBR>พอ <WBR>และ<WBR>ไม่<WBR>ใช้ X-windows
+มา<WBR>ถึง<WBR>ตอน<WBR>นี้<WBR>คุณ<WBR>ก็<WBR>สามารถ<WBR>ที่<WBR>จะ<WBR>ติด<WBR>ตั้ง<WBR>แอพพ<WBR>ลิ<WBR>เคชั่น<WBR>อื่นๆ <WBR>ที่<WBR>จำ<WBR>เป็น<WBR>ลง<WBR>ใน<WBR>ฮาร์ดดิสก์
+ได้<WBR>แล้ว<br>
+<br><br><br>
+
+<H4>การ<WBR>เรียก<WBR>โปรแกรม<WBR>เซตอัพ </H4>
+โปรแกรม<WBR>เซตอัพ<WBR>ของ slackware จะ<WBR>มี<WBR>ลักษณะ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>แบบ<WBR>พูล<WBR>ดาวน์<WBR>เมนู
+และ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ ใช้<WBR>งาน<WBR>ตาม<WBR>ลำ<WBR>ดับ<br>
+<ol>
+<li>
+ทำ<WBR>การ<WBR>ลอกอิน<WBR>เข้า<WBR>เป็นซูป<WBR>เปอร์<WBR>ยู<WBR>เซอร์ (root) แล้ว<WBR>จะ<WBR>เห็น
+พร้อมพท์ '#' รอ<WBR>รับ<WBR>คำ<WBR>สั่ง<WBR>อยู่ 
+พิมพ์<WBR>คำ<WBR>ว่า setup<br>
+</li>
+<li>
+เพื่อ<WBR>ความ<WBR>รวด<WBR>เร็ว<WBR>ใน<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ คุณ<WBR>ควร<WBR>ใช้<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>แบบ verbose
+แต่<WBR>ถ้า<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>เห็น<WBR>ราย<WBR>ละเอียด<WBR>ของ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>แต่<WBR>ละ<WBR>โปรแกรม คุณ<WBR>ก็
+ไม่<WBR>ต้อง<WBR>เข้า<WBR>มา<WBR>เลือก<WBR>หัว<WBR>ข้อ<WBR>นี้<WBR>ก็<WBR>ได้ แต่<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>ช้า<WBR>กว่า เพราะ<WBR>จะ<WBR>ต้อง
+คอย<WBR>ตอบ<WBR>คำ<WBR>ถาม<WBR>ตัว<WBR>เลือก<WBR>ต่างๆ<br>
+   การ<WBR>เลือก<WBR>หัว<WBR>ข้อ<WBR>นี้<WBR>โดย<WBR>เลือก<WBR>ไป<WBR>ที่<WBR>หัว<WBR>ข้อ Quick จาก<WBR>เมนู แล้ว<WBR>จึง
+เลือก<WBR>หัว<WBR>ข้อ Verbose หรือ Quick จาก<WBR>เมนู<WBR>ย่อย<WBR>นั้น<WBR>อีก<WBR>ที<br>
+</li>
+<li>
+ขั้น<WBR>ต่อ<WBR>มา<WBR>ให้<WBR>เลือก<WBR>แหล่ง<WBR>ของ<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>จะ<WBR>ใช้<WBR>ติด<WBR>ตั้ง โดย<WBR>เข้า<WBR>ไป<WBR>เลือก<WBR>ที่<WBR>หัว<WBR>ข้อ
+source<br>
+ถ้า<WBR>คุณ<WBR>ไม่<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>จาก CD-ROM ได้<WBR>ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ<WBR>จาก
+ฮาร์ดดิสก์<WBR>โดย<WBR>ใช้<WBR>วิธี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ <br>
+ใน<WBR>ขั้น<WBR>แรก<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ copy ข้อ<WBR>มูล<WBR>จาก CD-ROM โดย<WBR>ใช้<WBR>งาน<WBR>ผ่าน<WBR>ทาง
+ DOS หรือ WINDOWS และ<WBR>จะ<WBR>ต้อง<WBR>เตรียม<WBR>เนื้อ<WBR>ที่<WBR>ว่าง<WBR>ใน<WBR>ฮาร์ดดิสก์<WBR>เพื่อ<WBR>ทำ<WBR>การ<WBR>เก็บ
+ข้อ<WBR>มูล<WBR>อย่าง<WBR>น้อย 40 Mb ขึ้น<WBR>ไป (ขึ้น<WBR>อยู่<WBR>กับ<WBR>ว่า<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>การ<WBR>ใช้
+ลีนุกซ์<WBR>ใน<WBR>ระดับ<WBR>ไหน)<br>
+ให้<WBR>ทำ<WBR>การบูต<WBR>เข้า<WBR>ระบบดอส และ<WBR>สร้างไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>สำหรับ<WBR>เก็บ<WBR>ข้อ<WBR>มูล โดย<WBR>ใช้
+คำ<WBR>สั่ง mkdir c:\slack ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>คุณ<WBR>จะ copy จาก CD-ROM
+จะ<WBR>อยู่<WBR>ที่ \distribu\slackwar\  โดยไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>จะ<WBR>มี<WBR>รูป<WBR>แบบ<WBR>การ
+เก็บ<WBR>ข้อ<WBR>มูล<WBR>ออก<WBR>เป็น<WBR>แพก<WBR>เก็จ<WBR>ต่างๆ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้<br>
+	<ul>
+	<li>
+    		A   จะ<WBR>เก็บ<WBR>ระบบ<WBR>พื้น<WBR>ฐาน<WBR>ที่<WBR>จำ<WBR>เป็น<WBR>ใน<WBR>การ<WBR>ใช้<WBR>งาน การ<WBR>ติด<WBR>ตั้ง<WBR>เฉพาะไดเร็ก<WBR>ทอ<WBR>รี<WBR>นี้<WBR>จะ<WBR>เพียง<WBR>พอ<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>ระบบ<WBR>ทำ<WBR>งาน<WBR>ได้<br>
+	</li>
+	<li>
+	       AP   แอพพ<WBR>ลิ<WBR>เคชั่น<WBR>หลาย<WBR>ชนิด เช่น manual pages, groff, ispell, term, joe, jove, sc, bc, ghost-script และ quota patches<br>
+	</li>
+	<li>
+		D   เก็บ<WBR>เครื่อง<WBR>มือ<WBR>ที่<WBR>ใช้<WBR>ใน<WBR>การ<WBR>พัฒนา<WBR>โปรแกรม เช่น GCC/G++/Objective C, make, byacc , C libraries และ<WBR>เครื่อง<WBR>มือ<WBR>อื่นๆ<WBR>อีก<WBR>มาก<WBR>มาย<br>
+	</li>
+	<li>
+	        E   เก็บ<WBR>โปรแกรม GNU Emacs (เอดิ<WBR>เตอร์<WBR>ชนิด<WBR>หนึ่ง)<br>
+	</li>
+	<li>
+		F   เก็บ FAQ (Frequently Asking Question) และ
+		    เอก<WBR>สาร<WBR>ที่<WBR>น่า<WBR>สน<WBR>ใจ<WBR>อื่นๆ<br>
+	</li>
+	<li>
+		I   เอก<WBR>สาร<WBR>ที่<WBR>อธิบาย<WBR>การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>ต่างๆ
+	</li>
+	<li>
+		N   เก็บ<WBR>โปรแกรม<WBR>ที่<WBR>ใช้<WBR>งาน<WBR>เกี่ยว<WBR>กับ<WBR>ระบบ<WBR>เครือ<WBR>ข่าย เช่น TCP/IP, UUCP, mailx, dip, deliver และ<WBR>อื่นๆ<br>
+	</li>
+	<li>
+	      OOP   เครื่อง<WBR>มือ<WBR>พัฒนา<WBR>โปรแกรม<WBR>ที่<WBR>เป็น<WBR>แบบ<WBR>เชิง<WBR>วัตถุ (Object Oriented Programming) เช่น GNU smalltalk,<br>
+	</li>
+	<li>
+		Q   เก็บ<WBR>ซอร์ส<WBR>โค้ด<WBR>ของ kernel ใน<WBR>รุ่น Alpha และ images ของ kernel หลายๆ<WBR>แบบ<br>
+	</li>
+	<li>
+	      TCL   เก็บ Tcl, Tk, TclX, blt, itcl.<br>
+	</li>
+	<li>
+		Y   เก็บ<WBR>เกมส์<WBR>ต่างๆ ซึ่ง<WBR>รวม<WBR>ทั้ง BSD games , Tretis, และ<WBR>เกมส์ DOOM.<br>
+	</li>
+	<li>
+		X   เก็บ<WBR>โปรแกรม<WBR>ระบบ XFree86 (X window) และ<WBR>แอพพ<WBR>ลิ<WBR>เคชั่น<WBR>ที่<WBR>อยู่<WBR>บน<WBR>ระบบ X window <br>
+	</li>
+	<li>
+	       XAP  แอพพ<WBR>ลิ<WBR>เคชั่น<WBR>ที่<WBR>น่า<WBR>สน<WBR>ใจ<WBR>ที่<WBR>อยู่<WBR>บน<WBR>ระบบ X window เช่น X11ghostscript, seyon, xfilemanager และ<WBR>อื่นๆ<br>
+	</li>
+	<li>
+		XD  เครื่อง<WBR>มือ<WBR>ที่<WBR>ใช้<WBR>พัฒนา<WBR>โปรแกรม<WBR>บน<WBR>ระบบ X window
+		    เช่น X11 libraries, server linkkit และ<WBR>อื่นๆ<br>
+	</li>
+	<li>
+		XV  โปรแกรม<WBR>ที่<WBR>ใช้<WBR>แสดง<WBR>ภาพ<WBR>กราฟ<WBR>ฟิก<WBR>บน<WBR>ระบบ X window สามารถ<WBR>ใช้<WBR>แสดง<WBR>ภาพ<WBR>กราฟ<WBR>ฟิก<WBR>ได้<WBR>หลายฟอร์แมต<br>
+	</li>
+	<li>
+		IV  Interviews libraries และ Open look virtual
+		    และ non-virtual window manager<br>
+	</li>
+	<li>
+		 T  โปรแกรม TeX และ LaTex2e 		    <br>
+	</li>
+		</ul>
+<br>
+		สำหรับ<WBR>แพก<WBR>เกจ<WBR>ใน<WBR>ชุด A นั้น<WBR>เป็น<WBR>ชุด<WBR>ที่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ติด<WBR>ตั้ง<WBR>ใน<WBR>ระบบ
+ที่<WBR>เหลือ<WBR>อาจ<WBR>จะ<WBR>ติด<WBR>ตั้ง<WBR>เพิ่ม<WBR>เติม<WBR>หรือ<WBR>ไม่<WBR>ก็<WBR>ได้ ถ้า<WBR>หาก<WBR>มี<WBR>เนื้อ<WBR>ที่<WBR>เพียง<WBR>พอ ควร<WBR>จะ
+ติด<WBR>ตั้ง<WBR>ใน<WBR>ชุด A, AP และ D  ถ้า<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ใช้<WBR>งาน<WBR>ระบบ X Windows
+ให้<WBR>ติด<WBR>ตั้ง<WBR>ชุด X ด้วย<br>
+<br>
+		ใน<WBR>ขั้น<WBR>แรก<WBR>เรา<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>เฉพาะ<WBR>ชุด A และ AP ให้ copy 
+ไดเ<WBR>รก<WBR>ทอ<WBR>รี A1, A2, A3, A4, AP1, AP2, AP3, AP4 และ AP5 
+ไป<WBR>ไว้<WBR>ใน<WBR>ฮาร์ดดิสก์ c:\slack เมื่อ<WBR>ใช้<WBR>คำ<WBR>สั่ง dir ควร<WBR>จะ<WBR>ได้<WBR>ผล<WBR>ลัพธ์<WBR>ที่
+คล้าย<WBR>กัน<WBR>นี้<br>
+	<br>
+<dir>
+	C:\>dir c:\slack<br>
+        Directory of C:\SLACK<br>
+        .               < DIR > 02-07-95        1:19p<br>
+        ..              < DIR >	02-07-95        1:19p<br>
+        A1              < DIR >	02-07-95        1:19p<br>
+        A2              < DIR >	02-07-95        1:19p<br>
+        A3              < DIR >	02-07-95        1:19p<br>
+        A4              < DIR >	02-07-95        1:19p<br>
+        AP1             < DIR >	02-07-95        1:19p<br>
+        AP2             < DIR >	02-07-95        1:19p<br>
+        AP3             < DIR >	02-07-95        1:19p<br>
+        AP4             < DIR >	02-07-95        1:19p<br>
+        AP5             < DIR >	02-07-95        1:19p<br>
+</dir>
+<br>
+เมื่อ<WBR>ทำ<WBR>การ copy เสร็จ<WBR>แล้ว<WBR>ให้บูต<WBR>เข้า<WBR>ระบบ<WBR>ลีนุกซ์ โดย<WBR>ใช้<WBR>แผ่น Boot
+และ<WBR>แผ่น root เข้า<WBR>ลอกอิน<WBR>ด้วย root แล้ว<WBR>พิมพ์<WBR>คำ<WBR>ว่า setup เพื่อ
+เริ่ม<WBR>ต้น<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ ใน<WBR>หัว<WBR>ข้อ source เรา<WBR>จะ<WBR>ทำ<WBR>การ<WBR>เลือก <br><br>
+	<dir> "1. Install from a hard drive partition" </dir>
+	<br><br>
+ถ้าดอส<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ของ<WBR>คุณ<WBR>เป็น<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>แรก<WBR>ให้<WBR>ใส่ '/dev/hda1' จาก<WBR>นั้น<WBR>โปรแกรม
+จะ<WBR>ถามไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>ใส่<WBR>ชุด<WBR>ของ slackware ไว้ ให้<WBR>เรา<WBR>ใส่ /slack
+จาก<WBR>นั้น<WBR>ให้<WBR>ข้าม<WBR>ไป<WBR>หัว<WBR>ข้อ<WBR>ต่อ<WBR>ไป เพื่อ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ต่อ<br>
+<br>
+	ถ้า<WBR>คุณ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ผ่าน CD-ROM ให้<WBR>เลือก<WBR>หัว<WBR>ข้อ <br><br>
+	<dir>"5. Install from CD-ROM"<br> </dir>
+	<br><br>
+	เลือก<WBR>ชนิด<WBR>ของ CD-ROM จาก<WBR>หัว<WBR>ข้อ<WBR>เลือก<WBR>ที่<WBR>โปรแกรม<WBR>แสดง<WBR>มา<WBR>ให้<br>
+หมาย<WBR>เหตุ คุณ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>วิธี<WBR>นี้<WBR>ได้<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>รู้<WBR>ว่า<WBR>ลีนุกซ์<WBR>สนับสนุน CD-ROM
+ของ<WBR>คุณ<WBR>ซึ่ง<WBR>สามารถ<WBR>ตรวจ<WBR>ดู<WBR>ได้<WBR>จาก Linux H/W Compatible Listing ด้าน<WBR>ล่าง<br>
+</li>
+<li>
+ขั้น<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง swap partition ซึ่ง<WBR>ลีนุกซ์<WBR>จะ<WBR>ใช้<WBR>เป็น<WBR>ที่<WBR>สำหรับ
+ทำ virtual memory เมื่อ<WBR>มัน<WBR>ได้<WBR>ใช้<WBR>หน่วย<WBR>ความ<WBR>จำ<WBR>หลัก<WBR>หมด<WBR>สิ้น<WBR>แล้ว
+ให้<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>หัว<WBR>ข้อ 'AddSwap' จาก<WBR>เมนู<br>
+	<ul>
+	<li>
+	ลีนุกซ์<WBR>จะ<WBR>ตรวจ<WBR>สอบ<WBR>หา swap partition ที่<WBR>คุณ<WBR>ได้<WBR>ทำ<WBR>ไว้<WBR>ก่อน<WBR>หน้า<WBR>นี้<WBR>แล้ว
+ และ<WBR>จะ<WBR>แสดง<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>นี้<WBR>ขึ้น<WBR>มา<WBR>เพื่อ<WBR>ให้<WBR>คุณ<WBR>ยืน<WBR>ยัน<WBR>ว่า<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ทำ<WBR>เป็น 
+ swap partition จริงๆ   เลือก 'yes' เพื่อ<WBR>ทำ<WBR>การ<WBR>ยืน<WBR>ยัน<br>
+	</li>
+	<li>
+	โปรแกรม<WBR>จะ<WBR>แสดง warning screen ขึ้น<WBR>มา เมื่อ<WBR>อ่าน<WBR>เสร็จ<WBR>แล้ว
+ ให้<WBR>ทำ<WBR>การ<WBR>กด enter เพื่อ<WBR>ดำ<WBR>เนิน<WBR>การ<WBR>ต่อ<WBR>ไป<br>
+	</li>
+	<li>
+	เลือก 'yes' เพื่อ<WBR>ทำ<WBR>การ<WBR>เปิด<WBR>ใช้<WBR>งาน swapping <br>
+	</li>
+	</ul>
+</li>
+<li>
+เป็น<WBR>ขั้น<WBR>ตอน<WBR>ใน<WBR>การ<WBR>เลือก<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>เป้า<WBR>หมาย<WBR>ที่<WBR>เรา<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ<br>
+	<ul>
+	<li>
+	เลือก<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>จาก<WBR>เมนู ซึ่ง<WBR>โปรแกรม<WBR>จะ<WBR>ทำ<WBR>การ
+	 แสดง<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ที่<WBR>มี system ID เป็น '83' (Linux native)
+	 ขึ้น<WBR>มา<WBR>ทั้ง<WBR>หมด ให้<WBR>เลือก<WBR>หนึ่ง<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>เพื่อ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง เป็น root
+	 พาร์<WBR>ติ<WBR>ชัน ใน<WBR>กรณี<WBR>ที่<WBR>มี<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>เดียว<WBR>ให้<WBR>เลือก<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>นั้น<WBR>เลย
+	 ตย. หาก<WBR>จะ<WBR>ใช้<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ที่<WBR>สอง<WBR>เป็น root ให้<WBR>ใส่ /dev/hda2<br>
+	</li>
+	<li>
+	เลือก ext2 filesystem (Linux Second Extended 
+ File System) จะ<WBR>เป็น<WBR>การ<WBR>เลือก<WBR>ระบบ<WBR>ไฟล์<WBR>ที่<WBR>ลีนุกซ์<WBR>ใช้<WBR>งาน<br>
+	</li>
+	<li>
+	ขั้น<WBR>ต่อ<WBR>มา<WBR>ให้<WBR>เลือก<WBR>ทำ<WBR>การฟอร์แมต<WBR>พาร์<WBR>ติ<WBR>ชัน ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง 
+	 ถ้า<WBR>ไม่<WBR>แน่<WBR>ใจ<WBR>ว่า<WBR>จะ<WBR>มี bad block หรือ<WBR>ไม่ ให้<WBR>เลือก 'Check'
+	 เพื่อ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ bad block ก่อน<WBR>ทำ<WBR>การฟอร์แมต
+	 ถ้า<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>นี้<WBR>ได้<WBR>ทำ<WBR>การฟอร์แมต<WBR>ด้วย<WBR>ระบบ ext2 file system
+	 แล้ว ให้<WBR>เลือก 'no' ถ้า<WBR>ไม่<WBR>ต้อง<WBR>การฟอร์แมต<WBR>ซ้ำ<WBR>อีก<br>
+	</li>
+	<li>
+	เลือก inode density ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>คุ้น<WBR>เคย<WBR>กับ<WBR>การ<WBR>ใช้<WBR>ลีนุกซ์
+	 ให้<WBR>เลือก<WBR>ตัว<WBR>เลือก<WBR>ดีฟอลท์ 4096<br>
+	</li>
+	<li>
+	ถ้า<WBR>คุณ<WBR>เลือก<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ลีนุกซ์<WBR>หลาย<WBR>อัน ให้<WBR>เลือก<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ที่<WBR>แตก<WBR>ต่าง
+	 กัน<WBR>สำหรับไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>แตก<WBR>ต่าง<WBR>กัน<br>
+	</li>
+	<li>
+	โปรแกรม<WBR>จะ<WBR>ถามไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ mount พาร์<WBR>ติ<WBR>ชัน<WBR>แต่<WBR>ละ<WBR>อัน
+	 เข้า<WBR>มา ให้<WBR>ใส่ '/' สำหรับ<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ที่<WBR>จะ<WBR>ต้อง<WBR>การ mount เข้า<WBR>มา
+	 เป็น root ไดเ<WBR>รก<WBR>ทอ<WBR>รี สำหรับ<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>อื่น<WBR>ให้ mount ไป<WBR>ที่ไดเ<WBR>รก
+	 ทอ<WBR>รี<WBR>อื่น เช่น /usr เป็น<WBR>ต้น<br>
+	 (หัว<WBR>ข้อ<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>การ<WBR>บอก<WBR>ให้<WBR>ลีนุกซ์ mount ตั้ง<WBR>แต่<WBR>ตอนบู<WBR>ตระบบ)<br>
+	</li>
+	</ul>
+</li>
+<li>
+ถ้า<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>ลีนุกซ์<WBR>เห็น<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ขอ<WBR>งดอส และ<WBR>ทำ<WBR>การ mount เข้า<WBR>มา<br>
+   ใน<WBR>ตอนบู<WBR>ตระบบ<WBR>ด้วย<WBR>ให้<WBR>ทำ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้<br>
+	<ul>
+	<li>
+	ใส่<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ขอ<WBR>งดอส เช่น /dev/hda1 <br>
+	</li>
+	<li>
+	ใส่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>จะ<WBR>ให้ mount พาร์<WBR>ติ<WBR>ชัน<WBR>นี้<WBR>เข้า<WBR>มา เช่น /docs<br>
+	</li>
+	</ul>
+   การ mount พาร์<WBR>ติ<WBR>ชัน<WBR>ขอ<WBR>งดอส<WBR>เข้า<WBR>มา<WBR>ใน<WBR>ระบบ<WBR>ไม่<WBR>ได้<WBR>หมาย<WBR>ความ<WBR>ว่า ระบบ
+   จะ<WBR>ทำ<WBR>การ<WBR>รัน<WBR>โปรแกรม<WBR>ขอ<WBR>งดอส<WBR>ได้ ระบบ<WBR>จะ<WBR>ทำ<WBR>ได้<WBR>เพียง<WBR>อ่าน<WBR>ไฟล์<WBR>ขอ<WBR>งดอส
+   เท่า<WBR>นั้น ถ้า<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>ระบบ<WBR>รัน<WBR>โปรแกรม<WBR>ขอ<WBR>งดอส<WBR>ได้ ลอง<WBR>ศึกษา<WBR>โปรแกรม
+   DosEmu (โปรแกรมดอส<WBR>อีมูเล<WBR>เตอร์) เพื่อ<WBR>ทำ<WBR>ตาม<WBR>จุด<WBR>ประสงค์<WBR>นี้<br>
+</li>
+<li>
+กด 'q' เพื่อ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ<WBR>ต่อ<WBR>ไป<br>
+</li>
+<li>
+ให้<WBR>คุณ<WBR>เลือก<WBR>ชุด<WBR>ของ<WBR>โปรแกรม<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง โดย<WBR>เลือก<WBR>หัว<WBR>ข้อ 'Install'
+   จาก<WBR>เมนู <br>
+	<ul>
+	<li>
+	 เลือก<WBR>ชุด<WBR>ของ<WBR>โปรแกรม<WBR>ที่<WBR>จะ<WBR>ติด<WBR>ตั้ง (ดัง<WBR>ที่<WBR>แสดง<WBR>ใน<WBR>ราย<WBR>การ<WBR>ของ 
+ 	  Slackware) โดย<WBR>สามารถ<WBR>จะ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>มา<WBR>โดย<WBR>ใช้
+	  ปุ่ม<WBR>ลูก<WBR>ศร<WBR>ได้ โดย<WBR>ใน<WBR>ช่วง<WBR>แรก<WBR>นี้ ควร<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ชุด<WBR>โปรแกรม
+	  ชุด<WBR>ที่<WBR>เป็น<WBR>ระบบ<WBR>พื้น<WBR>ฐาน คือ<WBR>ใน<WBR>ชุด A และ<WBR>ชุด AP ถ้า<WBR>หาก<WBR>คุณ<WBR>ต้อง
+	  การ<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>รี<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>ใหม่<WBR>ให้<WBR>ติด<WBR>ตั้ง<WBR>ชุด<WBR>พัฒนา<WBR>โปรแกรม
+	  ชุด D ด้วย  และ<WBR>ถ้า<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ใช้ CD-ROM หรือ<WBR>คาร์ด
+	  เนต<WBR>เวอร์ก<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>ติด<WBR>ตั้ง<WBR>ชุด Q ด้วย ซึ่ง<WBR>ใน<WBR>ชุด Q นี้ Slackware
+	  จะ<WBR>ให้<WBR>คุณ<WBR>สามารถ<WBR>เลือก<WBR>เคอร์เนล<WBR>หลาย<WBR>ตัว<WBR>ที่<WBR>สนับสนุน<WBR>อุปกรณ์<WBR>หลาก
+	  หลาย<WBR>ชนิด ซึ่ง<WBR>คุณ<WBR>จะ<WBR>สามารถ<WBR>เลือก<WBR>เคอร์เนล<WBR>ที่<WBR>จะ<WBR>สนับสนุน<WBR>อุปกรณ์
+	  ของ<WBR>คุณ<WBR>ได้<br>
+	</li>
+	<li>
+	 ขั้น<WBR>ต่อ<WBR>ไป<WBR>ก็<WBR>ให้<WBR>เลือก<WBR>หัว<WBR>ข้อ 'Install' ใน<WBR>ขั้น<WBR>ต้น<WBR>นี้<WBR>ถ้า<WBR>คุณ<WBR>เพิ่ง<WBR>เริ่ม
+	  ติด<WBR>ตั้ง<WBR>ลีนุกซ์<WBR>เป็น<WBR>ครั้ง<WBR>แรก ให้<WBR>คุณ<WBR>เลือก<WBR>ใช้ custom tag files
+	  แบบ 'Normal' เมื่อ<WBR>เลือก<WBR>เสร็จ<WBR>แล้ว<WBR>จะ<WBR>มี<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>บอก<WBR>เกี่ยว<WBR>กับ
+	  'Prompt Mode Selected'<br>
+	</li>
+	<li>
+	 ระบบ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>เริ่ม<WBR>ต้น<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ลีนุกซ์<WBR>ใน ฮาร์ดดิสก์<WBR>ของ<WBR>คุณ
+	  ใน<WBR>การ<WBR>ติด<WBR>ตั้ง Package แต่<WBR>ละ<WBR>ชิ้น จะ<WBR>มี<WBR>ข้อ<WBR>ความ<WBR>อธิบาย<WBR>อย่าง<WBR>คร่าวๆ
+	  ที่<WBR>เกี่ยว<WBR>กับ Package ชิ้น<WBR>นั้นๆ<WBR>มา<WBR>ให้ <br>
+	</li>
+	</ul>
+</li>
+</ol>
+เพื่อ<WBR>ความ<WBR>ประ<WBR>หยัด คุณ<WBR>ควร<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>เคอร์เนล<WBR>เพียง<WBR>แบบ<WBR>เดียว โดย<WBR>ถ้า<WBR>คุณ
+ต้อง<WBR>การ<WBR>เคอร์เน<WBR>ลมาตร<WBR>ฐาน<WBR>คุณ<WBR>สามารถ<WBR>เลือก<WBR>ได้<WBR>ทั้ง<WBR>ที่<WBR>สนับสนุน<WBR>อุปกรณ์<WBR>แบบ IDE
+หรือ IDE+SCSI แต่<WBR>ถ้า<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>อุปกรณ์<WBR>พิเศษ<WBR>อื่นๆ ให้<WBR>เลือก<WBR>เคอร์เนล<WBR>เพียง
+แบบ<WBR>เดียว<WBR>จาก<WBR>แพค<WBR>เกจ<WBR>ชุด Q <br>
+คุณ<WBR>สามารถ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>แพค<WBR>เก<WBR>จมาก<WBR>เท่า<WBR>ใด<WBR>ก็<WBR>ได้ Slackware จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง
+ให้<WBR>ทั้ง<WBR>หมด แต่<WBR>ถ้า<WBR>คุณ<WBR>เลือก<WBR>เคอร์เน<WBR>ลมา<WBR>กก<WBR>ว่า<WBR>หนึ่ง<WBR>แบบ เคอร์เนล<WBR>ที่<WBR>คุณ<WBR>ติด<WBR>ตั้ง<WBR>เป็น<WBR>ตัว
+สุด<WBR>ท้าย<WBR>จะ<WBR>เป็น<WBR>ตัว<WBR>ที่<WBR>ถูก<WBR>เลือก<WBR>ให้<WBR>ใช้ 
+ใน<WBR>กรณี<WBR>ของ X windows ก็<WBR>เช่น<WBR>เดียว<WBR>กัน เซอร์ฟ<WBR>เวอร์<WBR>ตัว<WBR>สุด<WBR>ท้าย<WBR>ที่<WBR>เลือก<WBR>ก็<WBR>จะ<WBR>เป็น
+ตัว<WBR>ที่<WBR>ใช้<WBR>งาน<WBR>เช่น<WBR>กัน<br>
+<br><br><br>
+<H4>ความ<WBR>ต้อง<WBR>การ<WBR>ทาง<WBR>ด้าน<WBR>ฮาร์ดแวร์ (HARDWARE COMPATABILITY) </H4>
+(Note: * means support is experimental and not assured) <br>
+SYSTEMS:<br>
+        386/486/Pentium PC Compatible with ISA,EISA,VESA
+        or PCI bus architectures. (Microchannel Unsupported).<br>
+<br>
+MEMORY:<br>
+        Minimum 2 Megabytes (4 Megabytes recommended. 8 or more when
+        using the X Window System).<br>
+<br>
+DISKS:<br>
+        IDE,Extended IDE, MFM,RLL,ESDI, 
+        SCSI (With one of the supported SCSI controllers listed below).<br>
+<br>
+TAPES:<br>
+        SCSI tape drives (with supported controller); <br>
+        QIC-80 'floppy' tape drives: Colorado, Archive, <br>
+        Insight, Identity, Connor, Summit, Wangtek, Iomega and AIWA.<br>
+        Irwin-80 drives such as IBM's tape drive kit are unsupported.<br>
+<br>
+CD-ROM:<br>
+        Sony CDU-31a, CDU-33a,531*,535*, <br>
+        Soundblaster CD-ROMS (including the Kotubuki, <br>
+        Matsushita and Panasonic CR-5xx driver), Mitsumi, <br>
+        Pro Audio Spectrum CD-ROMs, <br>
+        SCSI CD-ROMs ( with supported SCSI controller), <br>
+        NEC CDR-260*, wide variety of the common IDE style CDROM drives.<br>
+<br>
+SOUND:<br>
+        Roland MPU-401 MIDI interface; AdLib; <br>
+        SoundBlaster (version 1 and 2) and compatibles,
+        including ThunderBoard and ATI Stereo F/X;
+        SoundBlaster Pro (version 1 and 2); SoundBlaster 16;
+        ProAudioSpectrum 16 (and the compatible Logitech SoundMan 16); <br>
+        Advanced Gravis UltraSound (GUS); GUS MAX (2.9 driver and later); <br>
+        Microsoft Sound System (2.9 driver and later;disabled by default); <br>
+        Personal Sound System (2.9 driver and later;disabled by default).<br>
+<br>
+ACCELERATED VIDEO CHIPSETS:<br>
+        8514/A (and true clones);<br>
+        ATI Mach8, Mach32, Mach64;<br>
+        Cirrus CLGD5420, CLGD5422, CLGD5424, CLGD5426, CLGD5428,
+               CLGD5429, CLGD5430, CLGD5434, CLGD6205, CLGD6215, CLGD6225,
+               CLGD6235;<br>
+        S3 86C911, 86C924, 86C801, 86C805, 86C805i, 86C928, 86C864, 86C964;<br>
+        Western Digital WD90C31, WD90C33;<br>
+        Weitec P9000; IIT AGX-014, AGX-015, AGX-016;<br>
+        Tseng ET4000/W32, ET4000/W32i, ET4000/W32p<br>
+<br>
+SVGA CHIPSETS:<br>
+        Tseng ET3000, ET4000AX, ET4000/W32;<br>
+        Western Digital/Paradise PVGA1;<br>
+        Western Digital WD90C00, WD90C10, WD90C11, WD90C24,
+               WD90C30, WD90C31, WD90C33;<br>
+        Genoa GVGA; Trident TVGA8800CS, TVGA8900B, TVGA8900C,
+               TVGA8900CL, TVGA9000, TVGA9000i, TVGA9100B, TVGA9200CX,
+               TVGA9320, TVGA9400CX, TVGA9420; ATI 18800, 18800-1,
+               28800-2, 28800-4, 28800-5, 28800-6, 68800-3, 68800-6,
+               68800AX, 68800LX, 88800; NCR 77C22, 77C22E, 77C22E+;<br>
+        Cirrus Logic CLGD5420, CLGD5422, CLGD5424, CLGD5426,
+               CLGD5428, CLGD5429, CLGD5430, CLGD5434, CLGD6205,
+               CLGD6215, CLGD6225, CLGD6235, CLGD6420;<br>
+        Compaq AVGA;<br>
+        OAK OTI067, OTI077;<br>
+        Advance Logic AL2101;<br>
+        MX MX68000, MX680010;<br>
+        Video 7/Headland Technologies HT216-32;<br>
+        Diamond Viper cards are now supported.<br>
+<br>
+SCSI ADAPTERS:<br>
+        Adaptec 1520/1522/1542/1740, 274x/284x(*) ;<br>
+        Always IN2000(*), NCR 53c810/820, 53c710/720,
+               53c700, 53c700-66, 5380 series;<br>
+        Buslogic BT-542B, BT-545S, BT-545D, BT-445S, BT-640A,
+               BT-646S, BT-646D, BT-742A, BT-747S, BT-747D,
+               BT-757S, BT-757D, BT-946C;<br>
+        Future Domain TMC-1660/1680, TMC-1650/1670, TMC-3260,
+               TMC-885, TMC-950;<br>
+        Pro Audio Spectrum SCSI;<br>
+        Seagate ST01/ST02;<br>
+        Trantor T128/T128F/T228;<br>
+        UltraStor 14F, 24F, 34F;<br>
+        Western Digital WD7000, WD7000-FASST2, WD7000-ASC, WD7000-AX,
+               WD7000-MX, WD7000-EX; DPT PM2011(*), PM2012A(*), PM2021(*),
+               PM2022(*), PM2122(*), PM2322(*)<br>
+<br>
+PROTOCOLS:<br>
+        TCP/IP, SLIP, CSLIP, PPP, AX25, IPX<br>
+<br>
+ETHERNET CARDS:<br>
+        Western Digital WD80*3;<br>
+        SMC Ultra;<br>
+        3com 3c501, 3c503, 3c509, 3c579;<br>
+        AT1500 and NE2100 (LANCE and PCnet-ISA);<br>
+        Cabletron E21xx;<br>
+        DEPCA;<br>
+        HP PCLAN;<br>
+        NE2000;<br>
+        NE1000;<br>
+        SK_G16;<br>
+        Apricot Xen-II on board ethernet;<br>
+        D-Link DE600;<br>
+        D-Link DE620;<br>
+        AT-LAN-TEC/RealTek pocket adaptor;<br>
+        Zenith Z-Note;<br>
+        3com 3c505(*), 3c507(*);<br>
+        EtherExpress;<br>
+        AT1700(*), NI5210(*), NI6510(*);<br>
+        Ansel Communications EISA 3200(*).<br>
+<br>
+FILESYSTEMS:<br>
+        Minix, Linux Native (EXT2), XIAFS, MSDOS,
+        /proc, NFS, ISO9660, OS/2 HPFS (Read-only),
+        UMSDOS, System V and Coherent.<br>
+<br>
+ADDITIONAL:<br>
+        Parallel Printer,Logitech Busmouse,PS/2 Mouse,
+        C&T 82C710 mouse port ,Microsoft busmouse, ATIXL busmouse.<br>
+<br>
+ที่<WBR>ว่าง<WBR>บน<WBR>ฮาร์ดดิสก์<br>
+        ประมาณ 80-100 Mb สำหรับ<WBR>ระบบ<WBR>พื้น<WBR>ฐาน <WBR>และ Development package
+        มาก<WBR>กว่า 150 Mb สำหรับ Xwindows<br>
+        การ<WBR>ทำ<WBR>งาน<WBR>เป็น<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>ด้วย<WBR>ตน<WBR>เอง <WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ใช้ DOS
+        หรือ<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>อื่น<WBR>ใด<br>
+<br>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>

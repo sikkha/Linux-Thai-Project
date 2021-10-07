@@ -1,0 +1,505 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>IP Masquerade</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>IP Masquerade</H1> 
+<H1 ALIGN=CENTER>การ<WBR>นำเน็ต<WBR>เวอร์ก<WBR>ของ<WBR>องค์<WBR>กร<WBR>ขึ้น<WBR>สู่<WBR>ระบบอิน<WBR>เทอร์เน็ต</H1>
+
+อธิบาย<WBR>คำ<WBR>ศัพท์<WBR>ตาม<WBR>พจนานุกรม อังกฤษ-ไทย ของ สอ เสถ<WBR>บุตร<br>
+masquerade (มาซ-เคอะเ<WBR>รด-) n. a. การ<WBR>เต้น<WBR>รำ<WBR>สวม<WBR>หน้า<WBR>กาก, การ<WBR>เล่น<WBR>ตบ<WBR>ตา, การ<WBR>หลอก<WBR>ลวง, ปลอม<WBR>แปลง S. deception, mask
+<br><br>
+
+จาก<WBR>บท<WBR>ความ<WBR>ที่<WBR>แล้ว<WBR>เมื่อ<WBR>คุณ<WBR>สามารถ<WBR>เชื่อม<WBR>ต่อ<WBR>ลีนุกซ์<WBR>โดย<WBR>ใช้<WBR>วิธี PPP ได้<WBR>แล้ว ยัง<WBR>มี<WBR>ข้อ<WBR>จำกัด<WBR>อยู่<WBR>ประการ<WBR>หนึ่ง<WBR>สำหรับ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>กับอิน<WBR>เทอร์เน็ต นั่น<WBR>คือ<WBR>คอมพิวเตอร์<WBR>ของ<WBR>คุณ<WBR>ที่<WBR>เป็น<WBR>ลีนุกซ์<WBR>นั้น<WBR>สามารถ<WBR>เข้า<WBR>สู่อิน<WBR>เทอร์เน็ต<WBR>ได้<WBR>เพียง<WBR>เครื่อง<WBR>เดียว<WBR>เท่า<WBR>นั้น ส่วน<WBR>คอมพิวเตอร์<WBR>เครื่อง<WBR>อื่นๆ<WBR>ที่<WBR>อยู่<WBR>บน<WBR>เครือ<WBR>ข่าย<WBR>เดียว<WBR>กัน<WBR>และ<WBR>ใช้<WBR>ลีนุกซ์<WBR>ของ<WBR>คุณ<WBR>เป็น<WBR>เกตเวย์ หรือ<WBR>ทาง<WBR>ผ่าน<WBR>สู่อิน<WBR>เทอร์เน็ต<WBR>นั้น<WBR>ไม่<WBR>สามารถ<WBR>จะ<WBR>เข้า<WBR>ใช้อิน<WBR>เทอร์เน็ต<WBR>ได้ ปัญหา<WBR>แบบ<WBR>นี้<WBR>จะ<WBR>ไม่<WBR>เกิด<WBR>ขึ้น<WBR>กับ<WBR>การ<WBR>ต่ออิน<WBR>เทอร์เน็ต<WBR>แบบ slip จำลอง หรือ<WBR>โปรแกรม<WBR>ที่<WBR>เป็น<WBR>พวก<WBR>อีมูเล็ต slip เช่น<WBR>พวก slirp แต่<WBR>จะ<WBR>เป็น<WBR>ปัญหา<WBR>อย่าง<WBR>มาก<WBR>สำหรับ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>ใน<WBR>แบบ PPP โดย<WBR>เฉพาะ true PPP ทั้ง<WBR>ที่<WBR>เป็น dynamic และ static 
+<br><br>
+
+ใน<WBR>ปัจจุบัน<WBR>เริ่ม<WBR>มี<WBR>บริษัท<WBR>ผู้<WBR>ให้<WBR>บริการ<WBR>เชื่อม<WBR>ต่ออิน<WBR>เทอร์เน็ต (ISP) หลายๆ<WBR>แห่ง ที่<WBR>เริ่ม<WBR>เปลี่ยน<WBR>มา<WBR>ให้<WBR>บริการ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ true PPP ขึ้น<WBR>เรื่อยๆ ซึ่ง<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>คุณ<WBR>ไม่<WBR>สามารถ<WBR>ใช้<WBR>ลีนุกซ์<WBR>เป็น<WBR>เกตเวย์<WBR>แบบ<WBR>เดิม<WBR>ได้  ทั้ง<WBR>นี้<WBR>เนื่อง<WBR>จาก<WBR>การ<WBR>ให้<WBR>บริการ ISP ใน<WBR>แบบ<WBR>บุคคล<WBR>ทั่ว<WBR>ไป<WBR>นั้น<WBR>จะ<WBR>จำกัด<WBR>หมาย<WBR>เลข IP ให้<WBR>เพียง<WBR>หมาย<WBR>เลข<WBR>เดียว<WBR>เท่า<WBR>นั้น ซึ่ง<WBR>เครื่อง<WBR>ที่<WBR>ได้<WBR>รับ<WBR>ก็<WBR>คือ<WBR>เครื่อง<WBR>ลีนุกซ์<WBR>ของ<WBR>คุณ<WBR>ที่<WBR>ต่อ<WBR>เข้า<WBR>ไป<WBR>กับ<WBR>โฮสต์<WBR>ของ ISP นั่น<WBR>เอง เครื่อง<WBR>คอมพิวเตอร์<WBR>เครื่อง<WBR>อื่น<WBR>ใน<WBR>เครือ<WBR>ข่าย<WBR>ของ<WBR>คุณ<WBR>ถึง<WBR>แม้<WBR>ว่า<WBR>จะ<WBR>มี<WBR>หมาย<WBR>เลข IP ที่<WBR>คุณ<WBR>กำหนด<WBR>เอา<WBR>เอง แต่<WBR>ก็<WBR>ไม่<WBR>ได้<WBR>เป็น<WBR>ที่<WBR>รับ<WBR>รู้<WBR>ของ<WBR>โฮสต์<WBR>ของ ISP  ทั้ง<WBR>นี้<WBR>เนื่อง<WBR>จาก<WBR>เป็น IP ที่<WBR>ไม่<WBR>ได้<WBR>ถูก<WBR>จด<WBR>ทะเบียน<WBR>ไว้<WBR>อย่าง<WBR>เป็น<WBR>ทาง<WBR>การ 
+<br><br>
+
+แต่<WBR>ก็<WBR>ไม่<WBR>โชค<WBR>ร้าย<WBR>ไป<WBR>เสีย<WBR>ที<WBR>เดียว สำหรับ<WBR>องค์<WBR>กร<WBR>ที่<WBR>มี<WBR>งบ<WBR>ประมาณ<WBR>จำกัด<WBR>จะ<WBR>สามารถ<WBR>ใช้<WBR>คุณสมบัติ IP Masquerade ของ<WBR>ลีนุกซ์<WBR>เข้า<WBR>มา<WBR>แก้<WBR>ปัญหา<WBR>เรื่อง<WBR>นี้<WBR>ได้ โดย<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>ลูก<WBR>ข่าย<WBR>อื่นๆ<WBR>ของ<WBR>คุณ<WBR>ทำ<WBR>การ "ขี่" บน<WBR>ลีนุกซ์<WBR>เกตเวย์ ซึ่ง<WBR>เสมือน<WBR>ว่า<WBR>ได้<WBR>ใช้ IP เดียว<WBR>กัน<WBR>กับ<WBR>ลีนุกซ์<WBR>เกตเวย์<WBR>ของ<WBR>คุณ
+<br><br>
+
+เครื่อง<WBR>คอมพิวเตอร์<WBR>ลูก<WBR>ข่าย<WBR>ในเน็ต<WBR>เวอร์ก<WBR>ที่<WBR>จะ<WBR>สามารถ<WBR>ใช้<WBR>งานอิน<WBR>เทอร์เน็ต<WBR>โดย<WBR>ใช้<WBR>ลีนุกซ์<WBR>เป็น<WBR>เกตเวย์<WBR>ที่<WBR>มี<WBR>คุณสมบัติ<WBR>ของ IP Masquerade นี้<WBR>เป็น<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>ได้<WBR>ทุก<WBR>แบบ<WBR>ตั้ง<WBR>แต่ Unix, Windows 95, Windows NT, Windows for Workgroup (ที่<WBR>มีแพ็ค<WBR>เกจ TCP/IP ), OS/2, Macintosh System's OS ที่<WBR>ใช้ Mac TCP, Mac Open Transport, DOS ที่<WBR>รัน NCSA Telnet package, VAX, ลีนุกซ์<WBR>บน Alpha, และ<WBR>แม้<WBR>กระทั่ง Amiga ที่<WBR>มี AmiTCP หรือ AS225-stack
+<br><br>
+
+ข้อสัง<WBR>เกตุ : ใน<WBR>ขณะ<WBR>นี้ IP Masquerade ยัง<WBR>คง<WBR>อยู่<WBR>ใน<WBR>ช่วง<WBR>การ<WBR>ทด<WBR>ลอง แอพพ<WBR>ลิ<WBR>เคชั่<WBR>นบา<WBR>งอ<WBR>ย่าง<WBR>ที่<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>ได้<WBR>จาก<WBR>การ<WBR>ต่ออิน<WBR>เทอร์เน็ต<WBR>โดย<WBR>ตรง<WBR>กับ ISP อาจ<WBR>จะ<WBR>ยัง<WBR>ใช้<WBR>ไม่<WBR>ได้<WBR>กับ IP Masquerade แต่<WBR>อย่าง<WBR>ไร<WBR>ก็<WBR>ดี<WBR>โปร<WBR>โต<WBR>คอล<WBR>ที่<WBR>ได้<WBR>ทำ<WBR>การ<WBR>ทด<WBR>สอบ<WBR>บน IP Masquerade แล้ว ได้<WBR>แก่ http, smtp, telnet ส่วน irc, ftp และ realtime audio จะ<WBR>ต้อง<WBR>มี<WBR>การ<WBR>ติด<WBR>ตั้งโม<WBR>ดู<WBR>ลบาง<WBR>ตัว<WBR>เพิ่ม<WBR>เติม
+<br><br>
+
+<H3 ALIGN=CENTER>การ<WBR>ทำ<WBR>ให้<WBR>ลีนุกซ์<WBR>มี<WBR>ความ<WBR>สามารถ<WBR>ของ IP Masquerade</H3>
+
+สิ่ง<WBR>ที่<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>ใน<WBR>การ<WBR>ทำ IP Masquerade
+<ol>
+<li>Kernel ของ<WBR>ลีนุกซ์<WBR>ตั้ง<WBR>แต่<WBR>เวอร์ชั่น 2.0.0 ขึ้น<WBR>ไป  และ<WBR>ต้อง<WBR>สนับสนุน<WBR>การ<WBR>ทำโม<WBR>ดูล<WBR>เคอร์เนล<WBR>ด้วย</li>
+<li>ระบบ<WBR>เครือ<WBR>ข่าย<WBR>ของ<WBR>คุณ<WBR>เอง<WBR>ที่<WBR>ใช้<WBR>โปร<WBR>โต<WBR>คอล TCP/IP </li>
+<li>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>ลีนุกซ์<WBR>ของ<WBR>คุณ<WBR>เข้า<WBR>กับ ISP เรียบ<WBR>ร้อย<WBR>แล้ว<WBR>โดย<WBR>ผ่าน PPP</li>
+<li>การ<WBR>กำหนด<WBR>เรื่อง<WBR>ไฟร์<WBR>วอลล์ ซึ่ง<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>โปรแกรม Ipfwadm ตั้ง<WBR>แต่<WBR>เวอร์ชั่น 2.3 ขึ้น<WBR>ไป</li>
+</ol>
+
+<H3 ALIGN=CENTER>การ<WBR>คอมไพล์<WBR>เคอร์เนล</H3>
+คุณ<WBR>สามารถ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>คุณ<WBR>ลักษณ์<WBR>ของ<WBR>เคอร์เนล<WBR>ที่<WBR>คุณ<WBR>จะ<WBR>คอมไพล์<WBR>ออก<WBR>มา<WBR>ให้<WBR>สำเร็จ<WBR>ได้ โดย<WBR>การ
+ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<ul>
+<li>make xconfig สำหรับ<WBR>การ<WBR>กำหนด<WBR>โดย<WBR>ใช้ GUI บน X window</li>
+<li>make menuconfig สำหรับ<WBR>การ<WBR>กำหนด<WBR>โดย<WBR>ใช้<WBR>รูป<WBR>แบบ text base menu</li>
+<li>make config สำหรับ<WBR>การ<WBR>กำหนด<WBR>โดย<WBR>ใช้<WBR>การ<WBR>ถาม-ตอบ<WBR>แบบ<WBR>ธรรม<WBR>ดา</li>
+<li>แก้<WBR>ไข<WBR>ไฟล์ /usr/src/linux/.config โดย<WBR>ตรง</li>
+</ul>
+
+ใน<WBR>การ<WBR>กำหนด<WBR>คุณ<WBR>ลักษณ์<WBR>ของ<WBR>เคอร์เนล ไม่<WBR>ว่า<WBR>จะ<WBR>โดย<WBR>วิธี<WBR>ใด<WBR>ก็<WBR>ตาม<WBR>สำหรับ<WBR>เรื่อง<WBR>ของ IP Masquerade แล้ว คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ให้<WBR>กับ<WBR>เคอร์เนล<WBR>โดย<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>ตัว<WBR>เลือก<WBR>เป็น "Yes" สำหรับ<WBR>หัว<WBR>ข้อ<WBR>ต่อ<WBR>ไป<WBR>นี้
+<ul>
+<li>CONFIG_EXPERIMENTAL</li>
+<li>CONFIG_MODULES</li>
+<li>CONFIG_NET</li>
+<li>CONFIG_FIREWALL</li>
+<li>CONFIG_INET</li>
+<li>CONFIG_IP_FORWARD</li>
+<li>CONFIG_IP_FIREWALL</li>
+<li>CONFIG_IP_MASQUERADE</li>
+<li>CONFIG_IP_ALWAYS_DEFRAG</li>
+<li>CONFIG_DUMMY</li>
+</ul>
+
+เมื่อ<WBR>กำหนด<WBR>เสร็จ<WBR>เรียบ<WBR>ร้อย<WBR>แล้ว ให้<WBR>ทำ<WBR>การ<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ make zImage
+</pre>
+
+และ<WBR>คอมไพล์โม<WBR>ดูล รวม<WBR>ทั้ง<WBR>สั่ง<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้งโม<WBR>ดูล<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ make modules; make modules_install
+</pre>
+
+อย่า<WBR>ลืม<WBR>นำ<WBR>เอา<WBR>เคอร์เนล<WBR>ไป<WBR>ใส่<WBR>ไว้<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>ได้<WBR>กำหนด<WBR>ตอน<WBR>ทำ<WBR>การบูต<WBR>เครื่อง ให้<WBR>ดู<WBR>ราย<WBR>ละเอียด<WBR>ใน<WBR>ไฟล์ /etc/lilo.conf ของ<WBR>เครื่อง<WBR>คุณ (โดย<WBR>ปกติ<WBR>เคอร์เนล 2.0.0 ขึ้น<WBR>ไป<WBR>จะ<WBR>ถูก<WBR>ใส่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /boot) และ<WBR>ให้<WBR>ทำ<WBR>การ<WBR>สั่ง lilo ด้วย<WBR>เพื่อ<WBR>โปรแกรม<WBR>จะ<WBR>ได้<WBR>สามารถ<WBR>จด<WBR>จำ<WBR>เคอร์เนล
+ใหม่<WBR>ของ<WBR>เรา<WBR>ใน<WBR>ตอนบูต<WBR>ได้
+<br>
+
+จาก<WBR>นั้น<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>เพิ่ม<WBR>คำ<WBR>สั่ง<WBR>สำหรับ<WBR>ให้<WBR>ทำ<WBR>กา<WBR>รโห<WBR>ลดโม<WBR>ดูล<WBR>ที่<WBR>เกี่ยว<WBR>กับ IP Masquerade โดย<WBR>อัตโนมัติ<WBR>ใน<WBR>ตอน<WBR>เริ่มบูต<WBR>เครื่อง โดย<WBR>จะ<WBR>ต้อง<WBR>ไป<WBR>ทำ<WBR>การ<WBR>เพิ่ม<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>ใน<WBR>ไฟล์ /etc/rc.d/rc.local (หรือ<WBR>ไฟล์<WBR>ใด<WBR>ก็<WBR>ได้<WBR>ที่<WBR>ถูก<WBR>เรียก<WBR>ใช้<WBR>ตอนบูต<WBR>เครื่อง)
+<pre>
+
+          .
+          .
+          .
+  /sbin/depmod -a
+  /sbin/modprobe ip_masq_ftp
+  /sbin/modprobe ip_masq_raudio
+  /sbin/modprobe ip_masq_irc
+  (หรือ<WBR>อาจ<WBR>จะ<WBR>เป็นโม<WBR>ดูล<WBR>อื่นๆ<WBR>เช่น ip_masq_cuseeme, ip_masq_vdolive
+   หาก<WBR>คุณ<WBR>มี patch ของโม<WBR>ดูล<WBR>เหล่า<WBR>นี้<WBR>อยู่)
+          .
+          .
+          .
+</pre>
+
+หรือ<WBR>คุณ<WBR>อาจ<WBR>จะ<WBR>บังคับ<WBR>ให้<WBR>เคอร์เนล<WBR>ทำ<WBR>กา<WBR>รโห<WBR>ลดโม<WBR>ดูล<WBR>ข้าง<WBR>ต้น<WBR>ลง<WBR>ไป<WBR>ภาย<WBR>หลัง<WBR>ได้ โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง "insmod" กับโม<WBR>ดูล<WBR>แต่<WBR>ละ<WBR>ตัว<WBR>ตาม<WBR>ตัว<WBR>อย่าง<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ insmod ip_masq_ftp
+$ insmod ip_masq_raudio
+$ insmod ip_masq_irc
+</pre>
+
+คำ<WBR>สั่ง<WBR>ข้าง<WBR>ต้น<WBR>ทั้ง<WBR>หมด<WBR>คุณ<WBR>สามารถ<WBR>นำ<WBR>ไป<WBR>รวม<WBR>ไว้<WBR>เป็น<WBR>เชลล์สค<WBR>ริปต์<WBR>เพื่อ<WBR>ทำ<WBR>ให้<WBR>สะดวก<WBR>ต่อ<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>ได้
+
+<H3 ALIGN=CENTER>การ<WBR>กำหนด<WBR>ค่า<WBR>ของ IP ให้<WBR>กับ<WBR>เครื่อง<WBR>ในเน็ต<WBR>เวอร์ก</H3>
+ตาม<WBR>ข้อ<WBR>เสนอ RFC ที่ 1579 หน่วย<WBR>งาน<WBR>ที่<WBR>อนุมัติ<WBR>หมาย<WBR>เลข IP ประจำ<WBR>คอมพิวเตอร์ IANA (Internet Assigned Numbers Authority) ได้<WBR>มี<WBR>การ<WBR>สำรอง<WBR>กลุ่ม<WBR>หมาย<WBR>เลข IP สำหรับ<WBR>คอมพิวเตอร์<WBR>ที่<WBR>ไม่<WBR>ได้<WBR>ต่อ<WBR>กับอิน<WBR>เทอร์เน็ต<WBR>หรือเน็ต<WBR>เวอร์ก<WBR>ที่<WBR>ใช้<WBR>งาน<WBR>เป็น<WBR>ลักษณะ<WBR>ส่วน<WBR>ตัว โดย<WBR>จะ<WBR>มี<WBR>กลุ่ม<WBR>หมาย<WBR>เลข IP อยู่ 3  กลุ่ม<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<ul>
+<li>
+หมาย<WBR>เลข 10.0.0.0 - 10.255.255.255 เน็ต<WBR>เวอร์ก<WBR>ขนาด 24 bit ใช้<WBR>เป็นเน็ต<WBR>เวอร์ก<WBR>คลาส A หนึ่ง<WBR>กลุ่ม
+</li><li>
+หมาย<WBR>เลข 172.16.0.0 - 172.31.255.255 เน็ต<WBR>เวอร์ก<WBR>ขนาด 20 bit ใช้<WBR>เป็นเน็ต<WBR>เวอร์ก<WBR>คลาส B จำนวน 16 กลุ่ม
+</li><li>
+หมาย<WBR>เลข 192.168.0.0 - 192.168.255.255 เน็ต<WBR>เวอร์ก<WBR>ขนาด 16 bit ใช้<WBR>เป็นเน็ต<WBR>เวอร์ก<WBR>คลาส C จำนวน 255 กลุ่ม
+</li>
+</ul>
+
+หาก<WBR>คุณ<WBR>เลือก<WBR>ใช้เน็ต<WBR>เวอร์ก<WBR>คลาส C คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>หมาย<WBR>เลข IP ให้<WBR>กับ<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>ในเน็ต<WBR>เวอร์ก<WBR>ของ<WBR>คุณ<WBR>เป็น 192.168.1.1, 192.168.1.2, 192.168.1.3, ...  โดย<WBR>ปกติ<WBR>แล้ว<WBR>เครื่อง<WBR>ที่<WBR>ใช้<WBR>เป็น<WBR>ทาง<WBR>ผ่าน<WBR>หรือ<WBR>เกตเวย์ (gateway) ไป<WBR>สู่เน็ต<WBR>เวอร์ก<WBR>อื่น<WBR>จะ<WBR>กำหนด<WBR>ให้ IP เป็น 192.168.1.1 ซึ่ง<WBR>ลีนุกซ์<WBR>จะ<WBR>ถูก<WBR>ใช้<WBR>สำหรับ<WBR>ทำ<WBR>หน้า<WBR>ที่<WBR>เป็น<WBR>เกตเวย์<WBR>นี้ ส่วน<WBR>หมาย<WBR>เลข IP 192.168.1.0 และ 192.168.1.255 จะ<WBR>ถูก<WBR>สำรอง<WBR>ไว้ โดย<WBR>หมาย<WBR>เลข<WBR>แรก<WBR>จะ<WBR>ถูก<WBR>ใช้<WBR>เป็น หมาย<WBR>เลข<WBR>ประจำ<WBR>ของเน็ต<WBR>เวอร์ก<WBR>และ<WBR>หมาย<WBR>เลข<WBR>หลัง<WBR>จะ<WBR>ถูก<WBR>ใช้<WBR>เป็น<WBR>หมาย<WBR>เลข<WBR>สำหรับ<WBR>ทำ<WBR>กา<WBR>รบ<WBR>รอด<WBR>คาสท์  (Broadcast) ดัง<WBR>นั้น<WBR>จึง<WBR>ไม่<WBR>ควร<WBR>ใช้<WBR>หมาย<WBR>เลข<WBR>ทั้ง<WBR>สอง<WBR>นี้<WBR>กำหนด<WBR>ให้<WBR>กับ<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>อื่น<WBR>ของ<WBR>คุณ
+<br><br>
+
+<CENTER><P><IMG SRC="02_95ipmasq.gif"> </P></CENTER>
+<CENTER>รูป<WBR>แสดง<WBR>ลีนุกซ์<WBR>ที่<WBR>ใช้ IP Masquerade</CENTER>
+<br><br>
+
+<H3 ALIGN=CENTER>การ<WBR>กำหนด<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>อื่นๆ<WBR>ให้<WBR>สามารถ<WBR>ใช้อิน<WBR>เทอร์เน็ต<WBR>ผ่าน<WBR>เกตเวย์</H3>
+สำหรับ<WBR>คอมพิวเตอร์<WBR>เครื่อง<WBR>อื่น<WBR>ในเน็ต<WBR>เวอร์ก คุณ<WBR>จะ<WBR>ต้อง<WBR>กำหนด<WBR>ให้<WBR>หมาย<WBR>เลข IP ของ<WBR>เกตเวย์<WBR>เป็น<WBR>หมาย<WBR>เลข IP ของ<WBR>เครื่อง<WBR>ลีนุกซ์ (ใน<WBR>ที่<WBR>นี้<WBR>เป็น 192.168.1.1) หมาย<WBR>เลข DNS หรือ Domain Name Service ให้<WBR>กำหนด<WBR>ตาม<WBR>ที่ ISP ของ<WBR>คุณ<WBR>แจ้ง<WBR>มา<WBR>ให้ (กำหนด<WBR>ตาม<WBR>เครื่อง<WBR>ลีนุกซ์<WBR>ก็<WBR>ได้) ส่วน<WBR>หมาย<WBR>เลข IP ประจำ<WBR>ตัว<WBR>ของ<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>ก็<WBR>ให้<WBR>เลือก<WBR>จาก<WBR>ช่วง<WBR>ที่<WBR>คลอบ<WBR>คลุมเน็ต<WBR>เวอร์ก<WBR>ของ<WBR>คุณ (ตาม<WBR>ตัว<WBR>อย่าง<WBR>จะ<WBR>เลือก<WBR>ได้<WBR>ตั้ง<WBR>แต่ 192.168.1.2 จน<WBR>ถึง 192.168.1.254)
+<br><br>
+
+สำหรับ<WBR>เครื่อง<WBR>ที่<WBR>เป็น Win95
+<ol>
+<li>
+ค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม Start
+</li><li>
+เลือก Setting / Control Panel / Network
+</li><li>
+ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>มี<WBR>โปร<WBR>โต<WBR>คอล<WBR>แบบ TCP/IP ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>จาก<WBR>แผ่น<WBR>ติด<WBR>ตั้ง<WBR>ต้น<WBR>ฉบับ
+</li><li>
+ให้ค<WBR>ลิก<WBR>เมาส์<WBR>ไปไฮไลต์<WBR>ที่<WBR>โปร<WBR>โต<WBR>คอล TCP/IP แล้วค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม Properties  (หรือ<WBR>จะ<WBR>ดับเ<WBR>บิลค<WBR>ลิก<WBR>ก็<WBR>ได้)
+</li><li>
+ใน<WBR>ส่วน<WBR>ของ IP Address ให้<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ของ<WBR>หมาย<WBR>เลข IP ประจำ<WBR>เครื่อง (เลือก<WBR>ได้<WBR>ตั้ง<WBR>แต่ 192.168.1.2 - 192.168.1.254) พร้อม<WBR>กับ<WBR>กำหนด<WBR>ค่า Netmask เป็น 255.255.255.0
+</li><li>
+ใน<WBR>ส่วน<WBR>ของ<WBR>เกตเวย์ ให้<WBR>เลือก 192.168.1.1 (เครื่อง<WBR>ลีนุกซ์) เป็น<WBR>เกตเวย์<WBR>ของ<WBR>ระบบ
+</li><li>
+ใน<WBR>ส่วน<WBR>ของ DNS Configuration ให้<WBR>ใส่<WBR>หมาย<WBR>เลข IP ของ DNS ที่<WBR>ทาง ISP ของ<WBR>คุณ<WBR>ได้<WBR>กำหนด<WBR>มา<WBR>ให้
+</li><li>
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ใช้<WBR>งาน<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>ที่<WBR>อยู่<WBR>ในเน็ต<WBR>เวอร์ก<WBR>ของ<WBR>คุณ<WBR>เอง คุณ<WBR>จะ<WBR>ต้อง<WBR>กำหนด<WBR>ราย<WBR>ละเอียด<WBR>ของ IP ไว้<WBR>ใน<WBR>ไฟล์ HOSTS (ดู<WBR>ตัว<WBR>อย่าง<WBR>จาก HOSTS.SAM) 
+</li>
+</ol>
+
+สำหรับ<WBR>เครื่อง<WBR>ที่<WBR>เป็น Windows for workgroup 3.11
+<ol>
+<li>
+ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>ติด<WBR>ตั้ง<WBR>ส่วน<WBR>ของไดร<WBR>เวอร์<WBR>ของเน็ต<WBR>เวอร์<WBR>กการ์ด ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ให้<WBR>เสร็จ<WBR>เรียบ<WBR>ร้อย<WBR>เสีย<WBR>ก่อน
+</li><li>
+ติด<WBR>ตั้งแพ็ค<WBR>เก็จ TCP/IP 32bit (ดาวน์<WBR>โหลด<WBR>ได้<WBR>จากเวป<WBR>ไซต์<WBR>ของ<WBR>ไมโคร<WBR>ซอฟท์)
+</li><li>
+ใน Main / Windows setup / Network Setup ให้ค<WBR>ลิก<WBR>เมาส์<WBR>ไป<WBR>ที่ ไดร<WBR>เวอร์
+</li><li>
+ค<WBR>ลิก<WBR>เมาส์<WBR>ไปไฮไลต์<WBR>ที่ 'Microsoft TCP/IP-32 3.11b' ใน<WBR>ส่วน<WBR>ของ 'Network Driver Section' จาก<WBR>นั้นค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม 'Setup'
+</li><li>
+กำหนด<WBR>หมาย<WBR>เลข IP ประจำ<WBR>เครื่อง<WBR>โดย<WBR>เลือก<WBR>ได้<WBR>ตั้ง<WBR>แต่ 192.168.1.2 - 192.168.1.254 กำหนด subnet mask ให้<WBR>เป็น 255.255.255.0 กำหนด default gateway เป็น 192.168.1.1
+</li><li>
+อย่า<WBR>ทำ<WBR>การ<WBR>เปิด<WBR>คุณ<WBR>ลักษณ์ 'Automatic DHCP Configuration' ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>อยู่<WBR>ใน<WBR>ส่วน<WBR>ของ domain ของ Window NT และ<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ทราบ<WBR>ความ<WBR>หมาย<WBR>ดัง<WBR>กล่าว (อย่าง<WBR>ไร<WBR>ก็<WBR>ตาม<WBR>ลีนุกซ์<WBR>สามารถ<WBR>กำหนด<WBR>ให้<WBR>มี<WBR>ความ<WBR>สามารถ DHCP ได้ ดัง<WBR>จะ<WBR>ได้<WBR>อธิบาย<WBR>ใน<WBR>โอกาส<WBR>ถัด<WBR>ไป) 
+</li><li>
+ค<WBR>ลิก<WBR>ส่วน<WBR>ของ DNS และ<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>ดัง<WBR>ที่<WBR>ได้<WBR>แสดง<WBR>ไว้<WBR>ข้าง<WBR>ต้น
+</li><li>
+ค<WBR>ลิก<WBR>ส่วน<WBR>ของ Advanced และ<WBR>เช็ค<WBR>ช่อง 'Enable DNS for Windows Name Resolution' และ 'Enable LMHOSTS lookup' สำหรับ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>คอมพิวเตอร์<WBR>ที่<WBR>อยู่<WBR>ในเน็ต<WBR>เวอร์ก<WBR>ของ<WBR>คุณ<WBR>เอง
+</li><li>
+ค<WBR>ลิก<WBR>ปุ่ม OK ใน<WBR>ทุก<WBR>หน้า<WBR>ต่าง<WBR>และ<WBR>ให้<WBR>เริ่ม<WBR>ใช้<WBR>งาน Windows ใหม่
+</li><li>
+ทด<WBR>ลอง<WBR>ว่า<WBR>เครื่อง<WBR>ของ<WBR>คุณ<WBR>ใช้<WBR>งาน<WBR>ได้ โดย<WBR>ลอง<WBR>ทำ<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง 'ping 192.168.1.1' เพื่อ<WBR>ทด<WBR>ลอง<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>เครื่อง<WBR>ลีนุกซ์ (ยัง<WBR>ไม่<WBR>ได้<WBR>เป็น<WBR>การ<WBR>ต่อ<WBR>ออก<WBR>ไป<WBR>ยังอิน<WBR>เทอร์เน็ต)
+</li>
+</ol>
+
+สำหรับ<WBR>เครื่อง<WBR>ที่<WBR>เป็น UNIX (ใน<WBR>ที่<WBR>นี้<WBR>จะ<WBR>อ้าง<WBR>อิง<WBR>ถึง RedHat Linux)
+<ol>
+<li>
+ถ้า<WBR>เครื่อง<WBR>ของ<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้งไดร<WBR>เวอร์<WBR>ของเน็ต<WBR>เวอร์<WBR>กการ์ด<WBR>หรือ<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>ให้<WBR>ทำ<WBR>การ<WBR>สนับสนุนเน็ต<WBR>เวอร์<WBR>กการ์ด ให้<WBR>ทำ<WBR>งาน<WBR>ใน<WBR>ส่วน<WBR>นี้<WBR>ก่อน
+</li><li>
+ถ้า<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>ติด<WBR>ตั้ง<WBR>โปรแกรม<WBR>ส่วน<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ TCP/IP ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>เสีย<WBR>ก่อน
+</li><li>
+กำหนด<WBR>ค่า<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+   <ul>
+       <li>IPADDR เลือก<WBR>จาก 192.168.1.2 จน<WBR>ถึง 192.168.1.254</li>
+       <li>NETMASK 255.255.255.0</li>
+       <li>NETWORK 192.168.1.0</li>
+       <li>BROADCAST 192.168.1.255</li>
+       <li>GATEWAY 192.168.1.1</li>
+   </ul>
+ค่า<WBR>ดัง<WBR>กล่าว<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>โดย<WBR>อ้าง<WBR>อิง<WBR>คู่<WBR>มือ<WBR>ตาม<WBR>ระบบ<WBR>นั้นๆ ไม่<WBR>ว่า<WBR>จะ<WBR>เป็น SunOS, FreeBSD, BSDi, Slackware Linux, และ<WBR>อื่นๆ  โดย<WBR>แต่<WBR>ละ<WBR>ระบบ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ด้วย<WBR>วิธี<WBR>การ<WBR>ที่<WBR>ต่าง<WBR>กัน สำหรับ RedHat Linux 3.0+ สามารถ<WBR>กำหนด<WBR>ได้<WBR>ที่<WBR>ไฟล์ /etc/sysconfig/network-scripts/ifcfg-eth0
+</li><li>
+เพิ่ม<WBR>หมาย<WBR>เลข IP ของ Domain Name Service (DNS) และ<WBR>ลำ<WBR>ดับ<WBR>การ<WBR>ค้น<WBR>หา<WBR>ตาม<WBR>ที่<WBR>ทาง ISP ของ<WBR>คุณ<WBR>กำหนด<WBR>มา<WBR>ให้ ใน<WBR>ไฟล์ /etc/resolv.conf
+</li><li>
+คุณ<WBR>อาจ<WBR>ต้อง<WBR>แก้<WBR>ไข<WBR>ไฟล์ /etc/network ทั้ง<WBR>นี้<WBR>ขึ้น<WBR>อยู่<WBR>กับ<WBR>ระบบ<WBR>ที่<WBR>คุณ<WBR>ใช้<WBR>งาน<WBR>อยู่
+</li><li>
+ให้<WBR>ทำ<WBR>การ<WBR>เริ่ม<WBR>บริการ<WBR>ของเ<WBR>ดมอน<WBR>โพร<WBR>เซส<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>ใหม่ หรือ<WBR>ไม่<WBR>ก็<WBR>เริ่ม<WBR>ระบบ<WBR>ทั้ง<WBR>หมด<WBR>ใหม่
+</li><li>
+ทด<WBR>ลอง<WBR>ใช้<WBR>คำ<WBR>สั่ง ping กับ<WBR>เครื่อง<WBR>ลีนุกซ์<WBR>ที่<WBR>เป็น<WBR>เกตเวย์<WBR>เพื่อ<WBR>ทด<WBR>สอบ<WBR>ระบบ
+</li>
+</ol>
+
+สำหรับ<WBR>เครื่อง<WBR>ที่<WBR>เป็น<WBR>ระบบดอส<WBR>ที่<WBR>ใช้<WBR>งาน NCSA telnet<br>
+NCSA telnet เป็น<WBR>โปรแกรม<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>คุณ<WBR>สามารถ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>ยู<WBR>นิกซ์<WBR>ใน<WBR>ระบบ<WBR>ต่างๆ<WBR>ได้  โดย<WBR>จะ มี<WBR>โปรแกรม telnet, ftp, lpr, rsh  และ<WBR>อื่นๆ<WBR>รวม<WBR>อยู่<WBR>ในแพ็ค<WBR>เกจ ซึ่ง<WBR>ทาง NCSA เป็น<WBR>ผู้<WBR>จัด<WBR>ทำ<WBR>ขึ้น<WBR>มา คุณ<WBR>สามารถ<WBR>จะ<WBR>ดาวน์<WBR>โหลด<WBR>จากอิน<WBR>เทอร์เน็ต<WBR>จาก<WBR>ไซต์<WBR>ของ NCSA ได้<WBR>หรือ<WBR>ไม่<WBR>คุณ<WBR>ก็<WBR>อาจ<WBR>จะ<WBR>ซื้อ<WBR>แผ่น<WBR>ซี<WBR>ดี<WBR>ที่<WBR>ทำ<WBR>การ<WBR>รวบ<WBR>รวม shareware เช่น<WBR>แผ่น<WBR>ของ Walnut Creek หรือ Infomagic
+<ol>
+<li>
+ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>ติด<WBR>ตั้งเน็ต<WBR>เวอร์<WBR>กการ์ด ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>เสีย<WBR>ก่อน
+</li><li>
+ให้<WBR>ทำ<WBR>กา<WBR>รโห<WBR>ลดแพ็คเ<WBR>ก็ตไดร์<WBR>เวอร์<WBR>ที่<WBR>ใช้<WBR>กับเน็ต<WBR>เวอร์<WBR>กการ์ด<WBR>ของ<WBR>คุณ ดัง<WBR>ตัว<WBR>อย่าง<br>
+   สำหรับ<WBR>การ์ด NE2000 ที่<WBR>กำหนด IRQ เป็น 10 และ H/W address เป็น 0x300 ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+  	nwpd 0x60 10 0x300 
+</pre>
+   สำหรับ<WBR>การ์ด 3 COM รุ่น 3c509 ที่ H/W address เป็น 0x300 ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+        3c509 0x60 0x300
+</pre>
+</li><li>
+สร้างไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>และ<WBR>ทำ<WBR>การ<WBR>คลี่แพ็ค<WBR>เก็จ NCSA telnet ที่<WBR>คุณ<WBR>ได้<WBR>มา ลง<WBR>ไป<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>นั้น โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+	pkunzip tel2308b.zip
+</pre>
+</li><li>
+แก้<WBR>ไข<WBR>ไฟล์ config.tel 
+</li><li>
+กำหนด myip เป็น<WBR>ค่า IP ตั้ง<WBR>แต่ 192.168.1.2 ถึง 192.168.1.254 และ netmask เป็น 255.255.255.0
+</li><li>
+ใน<WBR>ตัว<WBR>อย่าง<WBR>นี้<WBR>กำหนด hardware=packet interrupt=10 และ ioaddr=60
+</li><li>
+คุณ<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>คอมพิวเตอร์<WBR>ที่<WBR>กำหนด<WBR>ไว้<WBR>เป็น<WBR>เกตเวย์<WBR>อย่าง<WBR>น้อย<WBR>หนึ่ง<WBR>เครื่อง ใน<WBR>ที่<WBR>นี้<WBR>เป็น<WBR>เครื่อง<WBR>ลีนุกซ์ และ<WBR>กำหนด<WBR>ค่า<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+       name=default
+       host=yourlinuxhostname
+       hostip=192.168.1.1
+       gateway=1
+</pre>
+</li><li>
+กำหนด<WBR>ค่า<WBR>ของ domain name service ตาม<WBR>รูป<WBR>แบบ<WBR>ดัง<WBR>นี้ (ให้<WBR>ใช้<WBR>ค่า<WBR>จาก ISP ของ<WBR>คุณ)
+<pre>
+       name=dns.domain.com ; hostip=123.123.123.123; nameserver=1
+</pre>
+</li><li>
+บัน<WBR>ทึก<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>แก้<WBR>ไข<WBR>ทั้ง<WBR>หมด<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ไฟล์ config.tel
+</li><li>
+ทด<WBR>ลอง<WBR>ใช้<WBR>คำ<WBR>สั่ง telnet ไป<WBR>ที่<WBR>เครื่อง<WBR>ลีนุกซ์<WBR>เพื่อ<WBR>ทด<WBR>สอบ<WBR>การ<WBR>ทำ<WBR>งาน<WBR>ทั้ง<WBR>หมด
+</li>
+</ol>
+
+สำหรับ<WBR>เครื่องแมคอิน<WBR>ทอช<WBR>ที่<WBR>ใช้ MacTCP
+<ol>
+<li>
+ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>ติด<WBR>ตั้งไดร<WBR>เวอร์<WBR>สำหรับ<WBR>เนต<WBR>เวอร์<WBR>กการ์ด<WBR>ของ<WBR>คุณ ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>เสีย<WBR>ก่อน
+</li><li>
+เปิด control panel ของ MacTCP เลือก Network driver ที่<WBR>ต้อง<WBR>การ โดย<WBR>ให้<WBR>เลือก Ethernet ไม่<WBR>ใช่ Ethertalk แล้วค<WBR>ลิ<WBR>กบน<WBR>ปุ่ม 'More...'
+</li><li>
+ใต้<WBR>ส่วน 'Obtain Address:' ให้ค<WBR>ลิก<WBR>ที่ 'Manually'
+</li><li>
+ใต้ 'IP Address:'  เลือก class C จาก popup menu ส่วน<WBR>อื่นๆ<WBR>ไม่<WBR>ต้อง<WBR>สน<WBR>ใจ
+</li><li>
+ให้<WBR>เติม<WBR>หมาย<WBR>เลข IP ของ DNS ใต้ 'Domain Name Server Information:'
+</li><li>
+ใต้ 'Gateway' ให้<WBR>ใส่ '192.168.1.1' 
+</li><li>
+ค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม 'OK' เพื่อ<WBR>บัน<WBR>ทึก<WBR>ข้อ<WBR>มูล<WBR>ทั้ง<WBR>หมด และ<WBR>ให้<WBR>ใส่<WBR>หมาย<WBR>เลข IP ประจำ<WBR>เครื่อง โดย<WBR>เลือก<WBR>จาก 192.168.1.2 จน<WBR>ถึง 192.168.1.254 ใน<WBR>ช่อง 'IP Address:'
+</li><li>
+ให้<WBR>ปิด control panel ของ MacTCP และ<WBR>เริ่ม<WBR>ระบบ<WBR>ใหม่
+</li><li>
+ลอง<WBR>ทด<WBR>สอบ<WBR>โดย<WBR>ทำ<WBR>การ ping ไป<WBR>ยัง<WBR>เครื่อง<WBR>ลีนุกซ์  อาจ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ทด<WBR>สอบ<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>โปรแกรม MacTCP watcher ซึ่ง<WBR>เป็น<WBR>โปรแกรม<WBR>แบบ freeware ให้<WBR>กด<WBR>ไป<WBR>ที่<WBR>ปุ่ม 'ping' และ<WBR>ใส่<WBR>หมาย<WBR>เลข<WBR>ของ<WBR>เครื่อง<WBR>ที่<WBR>ต้อง<WBR>การ (ใน<WBR>ที่<WBR>นี้<WBR>เป็น 192.168.1.1) ใน<WBR>ช่องไดอะ<WBR>ลอก<WBR>ที่<WBR>ปรากฏ<WBR>ขึ้น<WBR>มา
+</li><li>
+ถ้า<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>เครื่อง<WBR>ที่<WBR>อยู่<WBR>ภาย<WBR>ในเน็ต<WBR>เวอร์ก<WBR>ของ<WBR>คุณ<WBR>เอง ให้<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>ไฟล์ Hosts ใน System Folder (ปกติ<WBR>จะ<WBR>มี<WBR>ไฟล์<WBR>นี้<WBR>มา<WBR>ให้<WBR>อยู่<WBR>แล้ว<WBR>พร้อม<WBR>ทั้ง<WBR>ตัว<WBR>อย่าง<WBR>ที่<WBR>ถูก<WBR>คอมเ<WBR>มนท์<WBR>อยู่)
+</li>
+</ol>
+
+สำหรับ<WBR>เครื่องแมคอิน<WBR>ทอช<WBR>ที่<WBR>ใช้ Open Transport
+<ol>
+<li>
+ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>ติด<WBR>ตั้งไดร<WBR>เวอร์<WBR>สำหรับเน็ต<WBR>เวอร์<WBR>กการ์ด<WBR>ของ<WBR>คุณ ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้งไดร<WBR>เวอร์<WBR>เสีย<WBR>ก่อน
+</li><li>
+ให้<WBR>เปิด Control Panel ของ TCP/IP และ<WBR>ให้<WBR>เลือก 'User Mode ...' จาก<WBR>เมนู Edit ให้<WBR>กำหนด user mode เป็น 'Advanced' แล้ว<WBR>กด<WBR>ปุ่ม 'OK'
+</li><li>
+เลือก 'Configurations...' จาก<WBR>เมนู File เลือก 'Default' แล้ว<WBR>ให้ค<WBR>ลิก<WBR>ปุ่ม 'Duplicate...' ให้<WBR>ตั้ง<WBR>ชื่อ<WBR>ว่า 'IP Masq' หรือ<WBR>ชื่อ<WBR>ที่<WBR>อื่นๆ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>แล้ว<WBR>ให้ค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม 'OK' และปุ่ม 'Make Active' 
+</li><li>
+ให้<WBR>เลือก 'Eternet' ใน<WBR>ส่วน<WBR>ของ 'Connect via:' ที่<WBR>ปรากฏ<WBR>ขึ้น<WBR>มา
+</li><li>
+เลือก<WBR>ตัว<WBR>เลือก<WBR>จาก 'Configure:' ใน<WBR>ที่<WBR>นี่<WBR>เลือก 'Manually'
+</li><li>
+ใส่<WBR>หมาย<WBR>เลข IP (เลือก<WBR>ตั้ง<WBR>แต่ 192.168.1.2 จน<WBR>ถึง 192.168.1.254) ใน<WBR>ช่อง 'IP Address:'
+</li><li>
+ใน<WBR>ช่อง 'Subnet mask:' ให้<WBR>ใส่<WBR>หมาย<WBR>เลข 255.255.255.0
+</li><li>
+ใน<WBR>ช่อง 'Router address:' ให้<WBR>ใส่<WBR>หมาย<WBR>เลข<WBR>ของ<WBR>เครื่อง<WBR>ลีนุกซ์ 192.168.1.1
+</li><li>
+ให้<WBR>ใส่<WBR>หมาย<WBR>เลข ของ DNS ที่<WBR>ทาง ISP แจ้ง<WBR>มา<WBR>ให้<WBR>ใน<WBR>ช่อง<WBR>ของ 'Name server addr.:'
+</li><li>
+ให้<WBR>ใส่<WBR>ชื่อ<WBR>ของ Internet Domain ของ<WBR>คุณ (เช่น 'microsoft.com') ใน<WBR>ช่อง 'Starting domain name' ภาย<WBR>ใต้ 'Implicit Search Path:'
+</li>
+</ol>
+
+สำหรับแมคอิน<WBR>ทอช<WBR>ที่<WBR>ใช้ Open Transport ยัง<WBR>มี<WBR>หัว<WBR>ข้อ<WBR>ที่<WBR>ลง<WBR>ราย<WBR>ละเอียด<WBR>ที่<WBR>ลึก<WBR>กว่า<WBR>นี้ แต่<WBR>เนื่อง<WBR>จาก<WBR>การ<WBR>ใช้<WBR>งาน<WBR>เฉพาะ<WBR>ข้าง<WBR>ต้น<WBR>ก็<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>กับ Linux Masquerade Gateway ได้<WBR>แล้ว และ<WBR>ผู้<WBR>แปล<WBR>ยัง<WBR>ไม่<WBR>มี<WBR>ความ<WBR>ชำนาญ<WBR>เกี่ยว<WBR>กับ<WBR>เครื่องแมคอิน<WBR>ทอช<WBR>โดย<WBR>ตรง เกรง<WBR>จะ<WBR>ถ่าย<WBR>ทอด<WBR>ข้อ<WBR>มูล<WBR>ผิด<WBR>พลาด ขอ<WBR>ให้<WBR>ผู้<WBR>ที่<WBR>สน<WBR>ใจ<WBR>กรุณา<WBR>ศึกษา<WBR>ข้อ<WBR>มูล<WBR>เพิ่ม<WBR>เติม<WBR>จาก<WBR>เอก<WBR>สาร<WBR>อ้าง<WBR>อิง<WBR>ที่<WBR>อยู่<WBR>ท้าย<WBR>บท<WBR>ความ
+<br><br>
+
+สำหรับ<WBR>เครื่อง<WBR>ที่<WBR>ใช้<WBR>โนเวล (เน็ตแวร์ 3.1x และ 4.x)    
+<ol>
+<li>
+ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>ติด<WBR>ตั้งไดร<WBR>เวอร์<WBR>ที่<WBR>ใช้<WBR>กับ<WBR>การ์ด<WBR>ของ<WBR>คุณ ให้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>เสีย<WBR>ก่อน
+</li><li>
+ติด<WBR>ตั้ง<WBR>โปรแกรม tcpip16.exe (ดาวน์<WBR>โหลด<WBR>ได้<WBR>จาก<WBR>ไซต์<WBR>ของ<WBR>โน<WBR>เวลล์
+ftp://ftp.novell.com/pub/updates/unixconn/lwp5>
+</li><li>
+แก้<WBR>ไข<WBR>ไฟล์ c:\nwclient\startnet.bat ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+    SET NWLANGUAGE=ENGLISH
+    LH LSL.COM
+    LH KTC2000.COM
+    LH IPXODI.COM
+    LH tcpip
+    LH VLM.EXE
+    F:
+</pre>
+</li><li>
+แก้<WBR>ไข<WBR>ไฟล์ c:\nwclient\net.cfg ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+     Link Driver KTC2000
+             Protocol IPX 0 ETHERNET_802.3
+             Frame ETHERNET_802.3
+             Frame Ethernet_II
+             FRAME Ethernet_802.2
+
+     NetWare DOS Requester
+                FIRST NETWORK DRIVE = F
+                USE DEFAULTS = OFF
+                VLM = CONN.VLM
+                VLM = IPXNCP.VLM
+                VLM = TRAN.VLM
+                VLM = SECURITY.VLM
+                VLM = NDS.VLM
+                VLM = BIND.VLM
+                VLM = NWP.VLM
+                VLM = FIO.VLM
+                VLM = GENERAL.VLM
+                VLM = REDIR.VLM
+                VLM = PRINT.VLM
+                VLM = NETX.VLM
+
+     Link Support
+             Buffers 8 1500
+             MemPool 4096
+
+     Protocol TCPIP
+             PATH SCRIPT     C:\NET\SCRIPT
+             PATH PROFILE    C:\NET\PROFILE
+             PATH LWP_CFG    C:\NET\HSTACC
+             PATH TCP_CFG    C:\NET\TCP
+             ip_address      xxx.xxx.xxx.xxx
+             ip_router       xxx.xxx.xxx.xxx
+</pre>
+</li><li>
+แก้<WBR>ไข<WBR>ไฟล์ c:\bin\resolv.cfg โดย<WBR>ให้<WBR>ใส่<WBR>หมาย<WBR>เลข DNS ที่<WBR>ได้<WBR>จาก<WBR>ทาง ISP ของ<WBR>คุณ<WBR>ตาม<WBR>ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+     SEARCH DNS HOSTS SEQUENTIAL
+     NAMESERVER xxx.xxx.xxx.xxx
+     NAMESERVER xxx.xxx.xxx.xxx
+</pre>
+</li>
+</ol>
+
+<H3 ALIGN=CENTER>การ<WBR>กำหนด<WBR>หลัก<WBR>เกณฑ์<WBR>ของ IP forwarding</H3>
+ขั้น<WBR>ตอน<WBR>ที่<WBR>เหลือ<WBR>สุด<WBR>ท้าย เป็น<WBR>ขั้น<WBR>ตอน<WBR>ของ<WBR>การ<WBR>ใช้<WBR>โปรแกรม ipfwadm เพื่อ<WBR>ทำ<WBR>การ<WBR>กระจายแพ็คเ<WBR>ก็ต<WBR>แต่<WBR>ละ<WBR>ชิ้น<WBR>ไป<WBR>ยัง<WBR>เครื่อง<WBR>ตาม<WBR>ที่<WBR>กำหนด<WBR>ไว้ โดย<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+       ipfwadm -F -p deny
+       ipfwadm -F -a m -S yyy.yyy.yyy.yyy/x -D 0.0.0.0/0
+</pre>
+x เป็น<WBR>ตัว<WBR>เลข<WBR>ระบุ<WBR>จำนวน<WBR>บิต<WBR>ของเน็ต<WBR>เวอร์ก และ yyy.yyy.yyy.yyy เป็น<WBR>หมาย<WBR>เลข<WBR>ของเน็ต<WBR>เวอร์ก
+<table border>
+<tr>
+<td>netmask</td>
+<td>x</td>
+<td>Subnet</td>
+</tr><tr>
+<td>255.0.0.0</td>
+<td>8</td>
+<td>Class A</td>
+</tr><tr>
+<td>255.255.0.0</td>
+<td>16</td>
+<td>Class B</td>
+</tr><tr>
+<td>255.255.255.0</td>
+<td>24</td>
+<td>Class C</td>
+</tr><tr>
+<td>255.255.255.255</td>
+<td>32</td>
+<td>Point-to-point</td>
+</tr>
+</table>
+
+  ใน<WBR>ที่<WBR>นี้<WBR>เรา<WBR>กำหนด<WBR>ให้ 192.168.1.0 เป็น subnet class C ดัง<WBR>นั้น<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ตาม<WBR>ตัว<WBR>อย่าง<WBR>ดัง<WBR>นี้
+<pre>
+       ipfwadm -F -p deny
+       ipfwadm -F -a m -S 192.168.1.0/24 -D 0.0.0.0/0
+</pre>
+
+   คุณ<WBR>สามารถ<WBR>ใช้<WBR>ค่า<WBR>ของ netmask แทน<WBR>จำนวน<WBR>บิต<WBR>ของเน็ต<WBR>เวอร์ก<WBR>ได้ ดัง<WBR>ตัว<WBR>อย่าง
+<pre>
+       ipfwadm -F -a m -S 192.168.1.0/255.255.255.0 -D 0.0.0.0/0
+</pre>
+   
+   คุณ<WBR>อาจ<WBR>ใช้<WBR>คำ<WBR>สั่ง ipfwadm กับ<WBR>ออป<WBR>ชัน -V 192.168.1.1 และ -W eth0 เพิ่ม<WBR>เติม<WBR>เพื่อ<WBR>เจาะ<WBR>จง<WBR>ให้แพ็คเ<WBR>ก็ต masquerade วิ่ง<WBR>ผ่าน<WBR>ทาง<WBR>เกตเวย์<WBR>และอิน<WBR>เทอร์เฟส<WBR>ที่<WBR>ระบุ<WBR>ไว้ การ<WBR>กำหนด<WBR>ใน<WBR>ลักษณะ<WBR>นี้<WBR>อาจ<WBR>ไม่<WBR>จำ<WBR>เป็น ถ้า<WBR>คุณ<WBR>ไม่<WBR>ได้<WBR>เคร่ง<WBR>เครียด<WBR>เรื่อง<WBR>ระบบ<WBR>รักษา<WBR>ความ<WBR>ปลอด<WBR>ภัย<WBR>มาก<WBR>นัก
+<br><br>
+
+   สำหรับ client ที่<WBR>ใช้<WBR>งาน<WBR>ใน<WBR>ลักษณะ<WBR>ของ bootp (Bootstrap Protocol) เพื่อ<WBR>ให้<WBR>มี<WBR>ลักษณะ<WBR>เป็น Diskless client อ่าน<WBR>ราย<WBR>ละเอียด<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ของ bootp ได้<WBR>จาก 
+<ul>
+<li>
+       RFC951    Bootstrap Protocol
+</li><li>
+       RFC1532   Clarifications and Extensions for the  Bootstrap Protocol
+</li><li>
+       RFC1533   DHCP Options and BOOTP Vendor Extensions
+</li>
+</ul>
+
+จะ<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>เพื่อ<WBR>กำหนด<WBR>เรื่อง<WBR>ของ masquerade เพิ่ม<WBR>เติม<WBR>ดัง<WBR>นี้
+<pre>
+   ipfwadm -I -a accept -S 0/0 68 -D 0/0 67 -W bootp_clients_net_if_name -P udp
+</pre>
+
+   คุณ<WBR>สามารถ<WBR>กำหนด<WBR>เลือก<WBR>ได้<WBR>ว่า<WBR>จะ<WBR>ให้<WBR>เครื่อง client ใด<WBR>ในเน็ต<WBR>เวอร์ก<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>ผ่านอิน<WBR>เทอร์เน็ต<WBR>ได้ ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>การ<WBR>กำหนด<WBR>ให้ 192.168.1.2 และ 192.168.1.8 สามารถ<WBR>เข้า<WBR>สู่อิน<WBR>เทอร์เน็ต<WBR>ได้<WBR>เพียง<WBR>สอง<WBR>เครื่อง<WBR>นี้<WBR>เท่า<WBR>นั้น จะ<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+  ipfwadm -F -p deny
+  ipfwadm -F -a m -S 192.168.1.2/32 -D 0.0.0.0/0
+  ipfwadm -F -a m -S 192.168.1.8/32 -D 0.0.0.0/0
+</pre>
+
+   การ<WBR>กำหนด<WBR>หลัก<WBR>เกณฑ์<WBR>ให้<WBR>ทุก<WBR>เครื่อง<WBR>สามารถ<WBR>ใช้ masquerade ได้<WBR>เป็น<WBR>ค่า<WBR>โดย<WBR>ปริยาย (default) ตาม<WBR>คำ<WBR>สั่ง<WBR>ดัง<WBR>นี้
+<pre>
+  ipfwadm -F -p masquerade
+</pre>
+
+  เป็น<WBR>สิ่ง<WBR>ที่<WBR>ไม่<WBR>ควร<WBR>กระ<WBR>ทำ<WBR>ถึง<WBR>แม้<WBR>ว่า<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>สะดวก<WBR>ต่อ<WBR>การ<WBR>จัด<WBR>การ แต่<WBR>ควร<WBR>จะ<WBR>ทำ<WBR>การ<WBR>อนุญาต<WBR>ให้<WBR>เป็น<WBR>กลุ่มเน็ต<WBR>เวอร์ก หรือ<WBR>ระบุ<WBR>เครื่อง<WBR>จะ<WBR>ดี<WBR>กว่า
+<br><br>
+
+  คุณ<WBR>สามารถ<WBR>จะ<WBR>นำ<WBR>เอา<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>กำหนด<WBR>เรื่อง<WBR>ของ masquerade ข้าง<WBR>ต้น<WBR>ใส่<WBR>ไว้<WBR>เป็น<WBR>เชลล์สค<WBR>ริปต์ หรือ<WBR>อาจ<WBR>จะ<WBR>นำ<WBR>เอา<WBR>ไป<WBR>ใส่<WBR>ใน<WBR>ไฟล์ /etc/rc.local เพื่อ<WBR>จะ<WBR>ให้<WBR>ทำ<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>โดย<WBR>อัตโนมัติ<WBR>ตอนบูต<WBR>เครื่อง<WBR>ก็<WBR>ได้
+
+<H3 ALIGN=CENTER>ข้อ<WBR>มูล<WBR>เพิ่ม<WBR>เติม และ<WBR>บรรณานุกรม</H3>
+<ul>
+<li>
+Linux IP Masquerade mini HOWTO โดย Ambrose Au, achau@wwonline.com
+<a href="http://www.wwonline.com/~achau/ipmasq/ipmasq-HOWTO.html"> 
+http://www.wwonline.com/~achau/ipmasq/ipmasq-HOWTO.html</a>
+</li><li>
+
+IP Masquerade HOWTO for kernel 1.2.x
+<a href="http://www.wwonline.com/~achau/ipmasq/ipmasq-HOWTO-1.2.x.txt"> 
+http://www.wwonline.com/~achau/ipmasq/ipmasq-HOWTO-1.2.x.txt</a>
+</li><li>
+
+IP Masquerade Resource page
+<a href="http://www.wwonline.com/~achau/ipmasq/"> 
+http://www.wwonline.com/~achau/ipmasq/
+</a>
+และ
+<a href="http://www.hwy401.com/achau/ipmasq/">
+http://www.hwy401.com/achau/ipmasq/
+</a>
+</li><li>
+
+IP masquerade mailing list archive
+<a href="http://www.indyramp.com/masq/list/"> 
+http://www.indyramp.com/masq/list/
+</a>
+</li><li>
+
+IP masquerade FAQ 
+<a href="http://www.indyramp.com/masq/ip_masquerade.txt">
+http://www.indyramp.com/masq/ip_masquerade.txt
+</a>
+</li><li>
+
+X/OS Ipfwadm page 
+<a href="http://www.xos.nl/linux/ipfwadm/"> 
+http://www.xos.nl/linux/ipfwadm/ 
+</a>
+</li><li>
+
+Linux Firewalling and Proxy Server HOWTO 
+<a href="http://www.caldera.com/LDP/HOWTO/Firewall-HOWTO.html">
+http://www.caldera.com/LDP/HOWTO/Firewall-HOWTO.html
+</a>
+</li>
+</ul>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="02_94linuxnet4.html"><img src="PXleft.gif" ></a>
+<a href="02_9Zlinuxnetbib.html"><img src="PXright.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

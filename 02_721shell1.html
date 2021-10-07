@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์</H1>
+
+<p>
+การ<WBR>ศึกษา<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ของ<WBR>เชลล์<WBR>และ<WBR>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ จะ<WBR>ช่วย<WBR>ให้<WBR>คุณ<WBR>มี<WBR>ความ<WBR>เข้า<WBR>ใจ
+ขั้น<WBR>พื้น<WBR>ฐาน<WBR>ใน<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ของ<WBR>ยู<WBR>นิกซ์ คุณ<WBR>จะ<WBR>เข้า<WBR>ใจ<WBR>เรื่อง<WBR>ของ<WBR>ตัว<WBR>อักขระ<WBR>พิเศษ หรือ<WBR>รูป<WBR>แบบ
+การ<WBR>อ้าง<WBR>อิง<WBR>ของ<WBR>ไฟล์ ซึ่ง<WBR>จะ<WBR>มี<WBR>ความ<WBR>จำ<WBR>เป็น<WBR>เมื่อ<WBR>คุณ<WBR>ต้อง<WBR>ใช้<WBR>งาน<WBR>ยู<WBR>นิกซ์<WBR>ใน<WBR>ขั้น<WBR>สูง หรือ<WBR>เขียน
+โปรแกรม<WBR>โดย<WBR>ใช้<WBR>เครื่อง<WBR>มือ<WBR>อื่นๆ เช่น ภาษา<WBR>ซี, เพิร์ล, หรือ ทิคเคิ่ล/ที<WBR>เค เป็น<WBR>ต้น
+</p>
+
+<p>
+ใน<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>ระบบ ลีนุกซ์ / ยู<WBR>นิกซ์ นั้น<WBR>เรา<WBR>มัก<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>โดย<WBR>ผ่าน<WBR>โปรแกรม<WBR>เล็กๆ
+โปรแกรม<WBR>หนึ่ง ซึ่ง<WBR>จะ<WBR>ถูก<WBR>เรียก<WBR>ว่า Shell (เชลล์) เชลล์<WBR>จะ<WBR>เป็น<WBR>ชั้น<WBR>ของ<WBR>โปรแกรม<WBR>ประยุกต์
+ที่<WBR>จะ<WBR>คอย<WBR>ตี<WBR>ความ<WBR>คำ<WBR>สั่ง<WBR>จาก<WBR>ผู้<WBR>ใช้<WBR>และ<WBR>ส่ง<WBR>ต่อ<WBR>ไป<WBR>ให้<WBR>กับ<WBR>เคอร์เนล<WBR>ของ<WBR>ระบบ จาก<WBR>นั้น<WBR>ก็<WBR>จะ<WBR>แสดง<WBR>ผล
+ลัพธ์<WBR>ที่<WBR>ได้<WBR>จาก<WBR>เคอร์เนล<WBR>กลับ<WBR>มา<WBR>ให้<WBR>ผู้<WBR>ใช้<WBR>อีก<WBR>ที 
+</p>
+
+<br>
+
+<img src="P2_721shellmodel.gif"> <alt="[รูป<WBR>โครง<WBR>สร้าง<WBR>ของ<WBR>ระบบ UNIX]">
+
+<br<br>
+
+<p>
+และ<WBR>โดย<WBR>ที่<WBR>ส่วน<WBR>ใหญ่<WBR>เรา<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>ยู<WBR>นิกซ์<WBR>ผ่าน<WBR>ทาง<WBR>เชลล์<WBR>นี้<WBR>เอง ทำ<WBR>ให้<WBR>คน<WBR>ส่วน
+ใหญ่<WBR>เข้า<WBR>ใจ<WBR>ว่า<WBR>เชลล์<WBR>ที่<WBR>เห็น<WBR>นั้น<WBR>เป็น<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>นั่น<WBR>เอง ซึ่ง<WBR>อัน<WBR>ที่<WBR>จริง<WBR>แล้ว<WBR>เชลล์<WBR>ก็
+เป็น<WBR>เพียง<WBR>โปรแกรม<WBR>ประยุกต์<WBR>โปรแกรม<WBR>หนึ่ง<WBR>บน<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>เท่า<WBR>นั้น
+</p>
+
+<H3 ALIGN=CENTER> เชลล์<WBR>ทำ<WBR>อะไร<WBR>บ้าง </H3>
+
+สมมุติ<WBR>ว่า<WBR>เรา<WBR>ได้<WBR>ทำ<WBR>การ<WBR>ป้อน<WBR>คำ<WBR>สั่ง 
+
+<pre>
+$ sort -n phonelist > phonelist.sorted
+</pre>
+
+ให้<WBR>กับ<WBR>เชลล์ ซึ่ง<WBR>จะ<WBR>มี<WBR>ความ<WBR>หมาย<WBR>ว่า ให้<WBR>เรียง<WBR>ลำ<WBR>ดับ<WBR>ราย<WBR>การ<WBR>ใน<WBR>แต่<WBR>ละ<WBR>บรรทัด<WBR>ของ<WBR>ไฟล์
+phonelist (เรียง<WBR>ลำ<WBR>ดับ<WBR>ด้วย<WBR>ตัว<WBR>เลข) แล้ว<WBR>เก็บ<WBR>ผล<WBR>ลัพธ์<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ไฟล์<WBR>ใหม่<WBR>ชื่อ<WBR>ไฟล์
+phonelist.sorted ขั้น<WBR>ตอน<WBR>การ<WBR>ทำ<WBR>งาน<WBR>จะ<WBR>เป็น<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<ul>
+<li>
+แตก<WBR>คำ<WBR>แต่<WBR>ละ<WBR>คำ<WBR>ใน<WBR>บรรทัด<WBR>คำ<WBR>สั่ง ออก<WBR>เป็น sort, -n, phonelist, >, และ
+phonelist.sorted 
+</li>
+<li>
+แยก<WBR>และ<WBR>วิเคราะห์<WBR>หน้า<WBR>ที่<WBR>ของ<WBR>คำ<WBR>ทั้ง<WBR>หมด เช่น sort เป็น<WBR>คำ<WBR>สั่ง<WBR>ให้<WBR>ทำ<WBR>การ<WBR>จัด<WBR>ลำ<WBR>ดับ
+-n และ phonelist เป็น argument ที่<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>ให้<WBR>กับ<WBR>คำ<WBR>สั่ง ส่วน > และ 
+phonelist.sorted เป็น<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ของ การ<WBR>นำ ข้อ<WBR>มูล/ผล<WBR>ลัพธ์ 
+เข้า-ออก (I/O instruction)
+</li>
+<li>
+กำหนด<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>การ<WBR>นำ<WBR>ผล<WBR>ลัพธ์<WBR>ออก "> phonelist.sorted" ก็<WBR>คือ<WBR>การ<WBR>นำ
+ผล<WBR>ลัพธ์<WBR>จาก<WBR>อุปกรณ์<WBR>แสดง<WBR>ผล<WBR>มาตร<WBR>ฐาน (standard output) ไป<WBR>เก็บ<WBR>ไว้<WBR>ที่<WBR>ไฟล์
+ที่<WBR>ชื่อ phonelist.sorted
+</li>
+<li>
+หา<WBR>คำ<WBR>สั่ง sort (อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /usr/bin ) และ<WBR>เริ่ม<WBR>ทำ<WBR>งาน<WBR>โดย<WBR>ใช้ argument
+-n และ phonelist ด้วย
+</li>
+</ul>
+
+<H3 ALIGN=CENTER>ประวัติ<WBR>ของ<WBR>เชลล์</H3>
+
+<p>
+ใน<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>เรา<WBR>สามารถ<WBR>เลือก<WBR>ใช้<WBR>เชลล์<WBR>ได้<WBR>หลาย<WBR>แบบ ซึ่ง<WBR>ค่อน<WBR>ข้าง<WBR>จะ<WBR>แตก<WBR>ต่าง<WBR>จาก<WBR>ระบบ
+ปฏิบัติ<WBR>กา<WBR>รดอส<WBR>ที่<WBR>เรา<WBR>จะ<WBR>ต้อง<WBR>ถูก<WBR>จำกัด<WBR>ให้<WBR>ใช้<WBR>เชลล์<WBR>ที่<WBR>ติด<WBR>ตั้ง<WBR>มา<WBR>แล้ว<WBR>กับดอส (command.com)
+ได้<WBR>เพียง<WBR>โปรแกรม<WBR>เดียว
+</p>
+
+<p>
+สำหรับ<WBR>โปรแกรม<WBR>เชลล์<WBR>โปรแกรม<WBR>แรก<WBR>นั้น คือ<WBR>โปรแกรม โบน<WBR>เชลล์ (Bourne Shell) ซึ่ง
+ได้<WBR>ถูก<WBR>ตั้ง<WBR>ชื่อ<WBR>ตาม<WBR>ชื่อ<WBR>ของ<WBR>ผู้<WBR>คิด<WBR>ค้น<WBR>โปรแกรม<WBR>นี้<WBR>ขึ้น (ส<WBR>ตีเฟน โบน : Steven Bourne) โบน
+เชลล์<WBR>นี้<WBR>ได้<WBR>ถูก<WBR>แจก<WBR>จ่าย<WBR>ไป<WBR>พร้อม<WBR>กับ UNIX version 7 ซึ่ง<WBR>เป็น<WBR>เวอร์ชั่น<WBR>ที่<WBR>ได้<WBR>รับ<WBR>ความ
+นิยม<WBR>มาก<WBR>ที่<WBR>สุด<WBR>ตัว<WBR>หนึ่ง ใน<WBR>ปีคศ. 1979
+</p>
+ 
+<p>
+คน<WBR>ส่วน<WBR>ใหญ่<WBR>จะ<WBR>รู้<WBR>จัก<WBR>โบน<WBR>เชลล์<WBR>จาก<WBR>การ<WBR>เรียก<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>ระบบ<WBR>ว่า sh ถึง<WBR>แม้<WBR>ว่า<WBR>ใน<WBR>ปัจจุบัน<WBR>จะ<WBR>มี
+โปรแกรม<WBR>เชลล์<WBR>ออก<WBR>มา<WBR>มาก<WBR>มาย และ<WBR>ยู<WBR>นิกซ์<WBR>ใน<WBR>ปัจจุบัน<WBR>ก็<WBR>ได้<WBR>รับ<WBR>การ<WBR>พัฒนา<WBR>ไป<WBR>มาก<WBR>แล้ว โบน<WBR>เชลล์
+ก็<WBR>ยัง<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>โปรแกรม<WBR>สำคัญ<WBR>พื้น<WBR>ฐาน<WBR>โปรแกรม<WBR>หนึ่ง<WBR>ที่<WBR>ยู<WBR>นิกซ์<WBR>ทุก<WBR>ระบบ<WBR>จะ<WBR>ต้อง<WBR>มี รวม<WBR>ทั้ง
+โปรแกรม<WBR>เชลล์<WBR>ที่<WBR>ถูก<WBR>ทำ<WBR>การ<WBR>พัฒนา<WBR>ขึ้น<WBR>มา<WBR>ภาย<WBR>หลัง<WBR>ส่วน<WBR>ใหญ่<WBR>ก็<WBR>จะ<WBR>มี<WBR>ความ<WBR>เข้า<WBR>กัน<WBR>ได้<WBR>กับ<WBR>โบน<WBR>เชลล์
+</p>
+
+<p>
+โปรแกรม<WBR>เชลล์<WBR>ที่<WBR>ถูก<WBR>ทำ<WBR>การ<WBR>พัฒนา<WBR>ขึ้น<WBR>มา<WBR>ภาย<WBR>หลัง<WBR>และ<WBR>ได้<WBR>รับ<WBR>ความ<WBR>นิยม<WBR>อย่าง<WBR>สูง<WBR>ก็<WBR>คือ C shell
+หรือ csh ซึ่ง Bill Joy ซึ่ง (ใน<WBR>เวลา<WBR>นั้น) อยู่<WBR>ที่<WBR>มหาวิทยาลัย California at Berkeley
+ซึ่ง<WBR>เป็น<WBR>ส่วน<WBR>หนึ่ง<WBR>ของ ระบบ<WBR>ยู<WBR>นิกซ์<WBR>รุ่น<WBR>ของ Berkeley System Distribution (BSD) หรือ
+BSD Unix สาเหตุ<WBR>ที่<WBR>มี<WBR>การ<WBR>เรียก<WBR>เชลล์<WBR>นี้<WBR>ว่า C shell ก็<WBR>เนื่อง<WBR>จาก<WBR>ว่า มี<WBR>รูป<WBR>แบบ<WBR>ของ<WBR>คำ<WBR>สั่ง
+และ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ที่<WBR>คล้าย<WBR>กับ<WBR>โปรแกรม<WBR>ภาษา C ซึ่ง<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>ผู้<WBR>ใช้<WBR>ที่<WBR>เป็น<WBR>โปรแกรมเ<WBR>มอร์<WBR>มี<WBR>ความ
+คุ้น<WBR>เคย<WBR>กับ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>เชลล์<WBR>นี้<WBR>มาก
+</p>
+
+<p>
+โปรแกรม<WBR>เชลล์<WBR>อื่น<WBR>ที่<WBR>ถูก<WBR>ทำ<WBR>การ<WBR>พัฒนา<WBR>และ<WBR>ได้<WBR>รับ<WBR>ความ<WBR>นิยม<WBR>สูง<WBR>อีก<WBR>โปรแกรม<WBR>หนึ่ง<WBR>ก็<WBR>คือ Korn 
+Shell (คอร์น<WBR>เชลล์) หรือ ksh ถูก<WBR>พัฒนา<WBR>ขึ้น<WBR>มา<WBR>โดย David Korn จาก AT&T Bell Lab
+ใน<WBR>ราวๆ<WBR>กลาง<WBR>ทศ<WBR>วรรษ 1980 โปรแกรม<WBR>คอร์น<WBR>เชลล์<WBR>นี้<WBR>มี<WBR>ความ<WBR>เข้า<WBR>กัน<WBR>ได้<WBR>กับ<WBR>โบน<WBR>เชลล์ นั่น<WBR>หมาย
+ความ<WBR>ว่า<WBR>ผู้<WBR>ที่<WBR>เคย<WBR>ใช้<WBR>งาน<WBR>โบน<WBR>เชลล์<WBR>มา<WBR>ก่อน<WBR>สามารถ<WBR>จะ<WBR>ใช้<WBR>งาน คอร์น<WBR>เชลล์<WBR>ได้<WBR>โดย<WBR>ง่าย นอก<WBR>จาก
+นี้ คอร์น<WBR>เชลล์<WBR>ก็<WBR>ยัง<WBR>มี<WBR>รูป<WBR>แบบ<WBR>พิเศษ<WBR>บาง<WBR>อย่าง<WBR>ที่<WBR>ถูก<WBR>เพิ่ม<WBR>เติม<WBR>เข้า<WBR>มา<WBR>เพื่อ<WBR>ให้<WBR>ผู้<WBR>ใช้
+สามารถ<WBR>ใช้<WBR>งาน<WBR>ได้<WBR>สะดวก<WBR>ขึ้น<WBR>ด้วย หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ศึกษา<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ของ<WBR>การ<WBR>เขียน
+เชลล์<WBR>โปรแกรม<WBR>มิง<WBR>โดย<WBR>ละเอียด<WBR>แล้ว ขอ<WBR>แนะ<WBR>นำ<WBR>ให้<WBR>คุณ<WBR>ค้น<WBR>หา<WBR>หนังสือ<WBR>ที่<WBR>อธิบาย<WBR>เรื่อง<WBR>ของ คอร์น
+เชลล์ เนื่อง<WBR>จาก<WBR>ใน<WBR>ปัจจุบัน<WBR>จะ<WBR>ถือ<WBR>ว่า คอร์น<WBR>เชลล์ เป็น<WBR>โปรแกรม<WBR>เชลล์<WBR>มาตร<WBR>ฐาน<WBR>ของ<WBR>ระบบ
+ยู<WBR>นิกซ์ 
+</p>
+
+<H3 ALIGN=CENTER> โปรแกรม<WBR>เชลล์<WBR>อื่นๆ </H3>
+
+<p>
+นอก<WBR>จาก โบน<WBR>เชลล์ ซี<WBR>เชลล์ และ คอร์น<WBR>เชลล์<WBR>แล้ว ยัง<WBR>มี<WBR>ผู้<WBR>พัฒนา<WBR>โปรแกรม<WBR>เชลล์<WBR>อื่นๆ<WBR>ที่<WBR>มี
+คุณภาพ<WBR>สูง<WBR>ออก<WBR>มา<WBR>อีก<WBR>เช่น pdksh (Public Domain Korn shell) และ bash (Bourne
+again shell) เนื่อง<WBR>จาก<WBR>การ<WBR>ได้<WBR>รับ<WBR>ความ<WBR>นิยม<WBR>อย่าง<WBR>สูง<WBR>ของ<WBR>คอร์น<WBR>เชลล์ ทำ<WBR>ให้<WBR>มี<WBR>ผู้<WBR>ที่<WBR>พัฒนา
+โปรแกรม<WBR>เชลล์<WBR>จำนวน<WBR>มาก<WBR>ออก<WBR>มา<WBR>โดย<WBR>อ้าง<WBR>อิง<WBR>ถึง<WBR>คอร์น<WBR>เชลล์ แต่<WBR>ตัว<WBR>คอร์น<WBR>เชลล์<WBR>ไม่<WBR>ใช่<WBR>ของ<WBR>ที่<WBR>แจก
+จ่าย<WBR>โดย<WBR>อิสระ USL (UNIX System Laboratories) ซึ่ง<WBR>ปัจจุบัน<WBR>ได้<WBR>ถูก<WBR>โอน<WBR>ไป<WBR>อยู่<WBR>กับ<WBR>บริษัท
+SCO Unix เป็น<WBR>ผู้<WBR>ถือ<WBR>ลิขสิทธิ์<WBR>ของ คอร์น<WBR>เชลล์<WBR>อยู่ 
+</p>
+
+<p>
+pdksh จึง<WBR>ถูก<WBR>พัฒนา<WBR>ขึ้น<WBR>มา<WBR>โดย<WBR>มี<WBR>ความ<WBR>เข้า<WBR>กัน<WBR>ได้<WBR>กับ ksh ต้น<WBR>ฉบับ และ pdksh นี้<WBR>สามารถ<WBR>ทำ
+การ<WBR>แจก<WBR>จ่าย<WBR>ได้<WBR>ฟรี (public domain) ส่วน bash นั้น<WBR>ทาง FSF (Free Software Foundation) 
+ได้<WBR>เป็น<WBR>ผู้<WBR>ทำ<WBR>การ<WBR>พัฒนา<WBR>ขึ้น<WBR>มา ซึ่ง bash จะ<WBR>มี<WBR>ความ<WBR>เข้า<WBR>กัน<WBR>ได้<WBR>กับ ksh แต่<WBR>ก็<WBR>มี<WBR>ความ<WBR>สามารถ
+บาง<WBR>ส่วน<WBR>ของ csh ด้วย เรา<WBR>สามารถ<WBR>นำ<WBR>เอา<WBR>โปรแกรม<WBR>เชลล์<WBR>ที่<WBR>ถูก<WBR>เขียน<WBR>ขึ้น<WBR>เพื่อ<WBR>ใช้<WBR>กับ<WBR>คอร์น
+เชลล์ มา<WBR>ใช้<WBR>กับ bash ได้ bash สามารถ<WBR>ทำ<WBR>การ<WBR>แจก<WBR>จ่าย<WBR>ได้<WBR>ฟรี<WBR>เช่น<WBR>เดียว<WBR>กัน
+</p>
+
+<p>
+ใน<WBR>ระบบ<WBR>ลีนุกซ์<WBR>คุณ<WBR>อาจ<WBR>สามารถ<WBR>เลือก<WBR>ติด<WBR>ตั้ง<WBR>เชลล์<WBR>ได้<WBR>หลาย<WBR>แบบ เช่น ash, bash, csh, 
+tcsh, pdksh และ zsh คุณ<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>ได้<WBR>ว่า<WBR>ใน<WBR>ปัจจุบัน<WBR>คุณ<WBR>กำลัง<WBR>ใช้<WBR>เชลล์<WBR>อะไร<WBR>อยู่<WBR>โดย
+ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้
+</p>
+
+<pre>
+$ echo $SHELL 
+/bin/bash
+</pre>
+
+ใน<WBR>ตัว<WBR>อย่าง<WBR>นี้<WBR>แสดง<WBR>ว่า<WBR>กำลัง<WBR>ใช้ bash หรือ Bourne again shell อยู่
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>เปลี่ยน<WBR>หรือ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>เชลล์<WBR>ชนิด<WBR>อื่นๆ<WBR>ขึ้น<WBR>มา ก็<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>โดย
+ป้อน<WBR>ชื่อ<WBR>ของ<WBR>เชลล์<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ลง<WBR>ไป<WBR>ได้ เช่น
+<pre>
+$ bash (call Bourne again shell)
+$ csh  (call c shell)
+</pre>
+
+<p>
+หรือ<WBR>สามารถ<WBR>เปลี่ยน<WBR>แปลง<WBR>ดีฟอลท์<WBR>เชลล์ ที่<WBR>จะ<WBR>ถูก<WBR>เรียก<WBR>ขึ้น<WBR>มา<WBR>ทุก<WBR>ครั้ง<WBR>ที่<WBR>มี<WBR>การล็<WBR>อกอิน<WBR>เข้า
+ใช้<WBR>งาน<WBR>ระบบ ได้<WBR>จาก<WBR>แฟ้ม<WBR>ข้อ<WBR>มูล /etc/passwd 
+<br>
+ใน<WBR>การ<WBR>ศึกษา<WBR>เกี่ยว<WBR>กับ<WBR>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์<WBR>นี้ จะ<WBR>อ้าง<WBR>อิง<WBR>ถึง คอร์น<WBR>เชลล์<WBR>เป็น<WBR>หลัก
+คุณ<WBR>สามารถ<WBR>ใช้ bash หรือ Bourne again shell เป็น<WBR>เครื่อง<WBR>มือ<WBR>ใน<WBR>การ<WBR>ศึกษา<WBR>นี้<WBR>ได้
+เนื่อง<WBR>จาก<WBR>คำ<WBR>สั่ง<WBR>ส่วน<WBR>ใหญ่<WBR>ของ<WBR>คอร์น<WBR>เชลล์<WBR>สามารถ<WBR>นำ<WBR>ไป<WBR>ใช้<WBR>ใน bash ได้
+</p>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

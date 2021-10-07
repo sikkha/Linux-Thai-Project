@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Basic guide (VI)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H3 ALIGN=CENTER>VI</H3>
+ใน<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>ทั่ว<WBR>ไป<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>เครื่อง<WBR>มือ<WBR>สำหรับ<WBR>เอา<WBR>ไว้<WBR>ตก<WBR>แต่ง<WBR>แก้<WBR>ไข<WBR>ไฟล์<WBR>เอก<WBR>สาร<WBR>ประจำ<WBR>ไว้<WBR>อยู่<WBR>ตัว<WBR>หนึ่ง ซึ่ง<WBR>ก็<WBR>คือ vi (อ่าน<WBR>ว่า วี-ไอ) ใน<WBR>ตอน<WBR>เริ่ม<WBR>แรก<WBR>ของ<WBR>การ<WBR>ใช้<WBR>งาน vi
+แทบ<WBR>ทุก<WBR>คน<WBR>จะ<WBR>บอก<WBR>ว่า การ<WBR>ใช้<WBR>งาน<WBR>และ<WBR>การ<WBR>ทำ<WBR>ความ<WBR>เข้า<WBR>ใจ<WBR>นั้น<WBR>ยาก<WBR>กว่า เอดิ<WBR>เตอร์<WBR>ที่<WBR>เป็น<WBR>พวก
+pulldown menu driven บนดอส<WBR>เช่น<WBR>พวก จุฬา<WBR>เวิร์ด หรือ Q-Editor มาก 
+(ใน<WBR>ยู<WBR>นิกซ์<WBR>จะ<WBR>เป็น<WBR>พวก Emacs หรือ pico)<br><br>
+
+แต่<WBR>หาก<WBR>คุณ<WBR>พยายาม<WBR>ฝึก<WBR>ฝน<WBR>ใช้<WBR>งาน<WBR>ไป<WBR>สัก<WBR>พัก<WBR>หนึ่ง<WBR>แล้ว คุณ<WBR>จะ<WBR>รู้<WBR>สึก<WBR>ว่า vi เป็น<WBR>เอดิ<WBR>เตอร์<WBR>ที่<WBR>มี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ได้<WBR>อย่าง<WBR>มี<WBR>ประสิทธิภาพ<WBR>มาก<WBR>ที่<WBR>สุด<WBR>ตัว<WBR>หนึ่ง และ<WBR>คุณสมบัติ<WBR>ต่างๆ<WBR>ของ vi ที่<WBR>มี<WBR>มา<WBR>ให้<WBR>ก็<WBR>จะ<WBR>สามารถ<WBR>ทำ<WBR>ให้<WBR>คุณ<WBR>ใช้<WBR>งาน vi ได้<WBR>อย่าง<WBR>สะดวก<WBR>สบาย<WBR>มาก<WBR>ขึ้น 
+นอก<WBR>จาก<WBR>นี้<WBR>การ<WBR>ที่<WBR>คุณ<WBR>ใช้<WBR>งาน vi เป็น จะ<WBR>ทำ<WBR>ให้<WBR>คุณ<WBR>ได้<WBR>เปรียบ<WBR>กว่า<WBR>การ<WBR>ใช้<WBR>งาน editor ตัว
+อื่นๆ เพราะ vi เป็น editor พื้น<WBR>ฐาน<WBR>ที่<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>ประจำ<WBR>ไว้<WBR>กับ<WBR>ยู<WBR>นิกซ์<WBR>ทุก<WBR>ตัว<WBR>อยู่<WBR>แล้ว 
+ใน<WBR>ขณะ<WBR>ที่ editor ตัว<WBR>อื่นๆ<WBR>คุณ<WBR>อาจ<WBR>หา<WBR>ไม่<WBR>พบ<WBR>ใน ยู<WBR>นิกซ์<WBR>รุ่น<WBR>อื่นๆ<WBR>ก็<WBR>ได้<br>
+
+<H3 ALIGN=CENTER>วิธี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>อย่าง<WBR>คร่าวๆ</H3>
+vi จะ<WBR>มี<WBR>รูป<WBR>แบบ<WBR>การ<WBR>ใช้<WBR>งาน (mode) อยู่<WBR>สาม<WBR>แบบ<WBR>คือ 
+<ul>
+<li>command mode</li>
+<li>insert mode</li>
+<li>last line mode</li>
+</ul>
+command mode จะ<WBR>เป็น<WBR>โหมด<WBR>ปกติ<WBR>ตอน<WBR>เริ่ม<WBR>ต้น vi ใน<WBR>โหมด<WBR>นี้<WBR>คุณ<WBR>สามารถ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>เคลื่อน<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์ ลบ<WBR>ข้อ<WBR>ความ สำเนา<WBR>ข้อ<WBR>ความ และ<WBR>ทำ<WBR>งาน<WBR>อื่นๆ<WBR>ได้<br>
+<br>
+
+insert mode ใน<WBR>โหมด<WBR>นี้<WBR>เป็น<WBR>โหมด<WBR>ที่<WBR>ทำ<WBR>ให้<WBR>คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>ข้อ<WBR>ความ<WBR>หรือ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ลง<WBR>ไป<WBR>ได้ คุณ<WBR>สามารถ<WBR>เปลี่ยน<WBR>จาก command mode เข้า<WBR>มา<WBR>อยู่<WBR>ใน insert mode ได้<WBR>โดย<WBR>การ<WBR>กด<WBR>ปุ่ม "i" เป็น<WBR>ต้น และ<WBR>คุณ<WBR>ก็<WBR>จะ<WBR>สามารถ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ต่างๆ<WBR>ได้ และ<WBR>เมื่อ<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>กลับ<WBR>ไป<WBR>ยัง command mode อีก<WBR>ที คุณ<WBR>ก็<WBR>สามารถ<WBR>โดย<WBR>ทำ<WBR>การ<WBR>กด<WBR>ปุ่ม "Esc"<br>
+<br>
+
+โหมด<WBR>สุด<WBR>ท้าย<WBR>คือ last line mode จะ<WBR>เป็น<WBR>โหมด<WBR>ที่<WBR>อนุญาต<WBR>ให้<WBR>คุณ<WBR>สามารถ ใช้<WBR>คำ<WBR>สั่ง<WBR>เพิ่ม<WBR>เติม<WBR>ของ vi ได้ โดย<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>กด<WBR>ปุ่ม ":" ซึ่ง vi จะ<WBR>แสดง<WBR>เป็น<WBR>พร้อมต์<WBR>รอ<WBR>รับ<WBR>คำ<WBR>สั่ง<WBR>อยู่<WBR>ด้าน<WBR>ล่าง<WBR>สุด<WBR>ของ<WBR>จอ<WBR>ภาพ คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>โดย<WBR>การ<WBR>พิมพ์<WBR>คำ<WBR>ว่า "wq" แล้ว<WBR>กด Enter เพื่อ<WBR>ทำ<WBR>การ<WBR>บัน<WBR>ทึก<WBR>ข้อ<WBR>ความ<WBR>ลง<WBR>ไฟล์ แล้ว<WBR>ออก<WBR>จาก<WBR>โปรแกรม vi เป็น<WBR>ต้น<br>
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้<WBR>งาน vi</H3>
+คุณ<WBR>สามารถ<WBR>เริ่ม<WBR>ต้น<WBR>การ<WBR>ใช้<WBR>งาน vi ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+vi (filename)
+</pre>
+โดย<WBR>ที่ filename คือ<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>บัน<WBR>ทึก<WBR>ข้อ<WBR>ความ ตัว<WBR>อย่าง<WBR>เช่น
+<pre>
+vi myfirstfile
+</pre>
+จะ<WBR>เป็น<WBR>การ<WBR>สร้าง<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ myfirstfile ขึ้น<WBR>มา แต่<WBR>หาก<WBR>มี<WBR>ไฟล์<WBR>นี้<WBR>อยู่<WBR>แล้ว<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>อ่าน<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>มี<WBR>อยู่<WBR>ใน<WBR>ไฟล์<WBR>นี้<WBR>ขึ้น<WBR>มา ใน<WBR>ตัว<WBR>อย่าง<WBR>นี้<WBR>เรา<WBR>จะ<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>การ<WBR>สร้าง<WBR>ไฟล์<WBR>ใหม่<WBR>ขึ้น<WBR>มา<WBR>และ<WBR>เมื่อ vi เริ่ม<WBR>ต้น<WBR>ทำ<WBR>งาน<WBR>แล้ว คุณ<WBR>จะ<WBR>เห็น<WBR>จอ<WBR>ภาพ<WBR>ใน<WBR>ลักษณะ<WBR>ต่อ<WBR>ไป<WBR>นี้<br>
+<img src="P2_5Vstart.gif" alt=[รูปจอภาพ vi เมื่อเริ่มต้นทำงาน]"><br>
+คุณ<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>เคอร์<WBR>เซอร์<WBR>จะ<WBR>อยู่<WBR>บรรทัด<WBR>บน<WBR>สุด แสดง<WBR>ว่า<WBR>ยัง<WBR>ไม่<WBR>มี<WBR>ข้อ<WBR>ความ<WBR>ใดๆ<WBR>อยู่<WBR>ใน<WBR>ไฟล์<WBR>นี้ และ<WBR>บรรทัด<WBR>ถัด<WBR>ลง<WBR>มา<WBR>จะ<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย<WBR>ตัว<WBR>อักษร "~" ซึ่ง<WBR>หมาย<WBR>ความ<WBR>ว่า<WBR>เป็น<WBR>ตัว<WBR>สิ้น<WBR>สุด<WBR>ไฟล์
+(End of file)<br>
+ให้<WBR>คุณ<WBR>ทด<WBR>ลอง<WBR>เริ่ม<WBR>พิมพ์<WBR>ข้อ<WBR>ความ โดย<WBR>ให้<WBR>เปลี่ยน<WBR>ไป<WBR>อยู่<WBR>ใน insert mode โดย<WBR>ใช้<WBR>กด<WBR>ปุ่ม "i"
+แล้ว<WBR>ทด<WBR>ลอง<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ดู<br>
+<img src="P2_5Vfirstline.gif" alt="[รูปพิมพ์ข้อความแรก]"><br>
+ใน<WBR>ระหว่าง<WBR>การ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ คุณ<WBR>สามารถ<WBR>จะ<WBR>ใช้<WBR>ปุ่ม<WBR>ลูก<WBR>ศร<WBR>ทำ<WBR>การ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>มา<WBR>ระหว่าง<WBR>ข้อ<WBR>ความ<WBR>ได้ และ<WBR>หาก<WBR>คุณ<WBR>พิมพ์<WBR>ผิด<WBR>พลาด ก็<WBR>ให้<WBR>ใช้<WBR>ปุ่ม "Backspace" หรือ "Delete" ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>เหล่า<WBR>นั้น<WBR>ได้ ให้<WBR>คุณ<WBR>กลับ<WBR>คืน<WBR>สู่ command mode โดย<WBR>กด<WBR>ปุ่ม "Esc" <br>
+<br>
+
+ใน<WBR>กรณี<WBR>ที่<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>แทรก<WBR>ต่อ<WBR>ท้าย<WBR>ข้อ<WBR>ความ (append) ให้<WBR>คุณ<WBR>กด<WBR>ปุ่ม "a" โปรแกรม
+vi จะ<WBR>กลับ<WBR>ไป<WBR>อยู่<WBR>ใน insert mode อีก<WBR>ครั้ง แต่<WBR>จะ<WBR>มี<WBR>การ<WBR>แทรก<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ใน<WBR>ตำแหน่ง
+ที่<WBR>ถัด<WBR>จาก<WBR>เคอร์<WBR>เซอร์<WBR>ออก<WBR>ไป ซึ่ง<WBR>จะ<WBR>ต่าง<WBR>กับ "i" ที่<WBR>จะ<WBR>แทรก<WBR>ใน<WBR>ตำแหน่ง<WBR>ที่<WBR>เคอร์<WBR>เซอร์<WBR>อยู่<WBR>พอ<WBR>ดี<br>
+<br>
+
+และ<WBR>หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>แทรก<WBR>ข้อ<WBR>ความ<WBR>ใน<WBR>บรรทัด<WBR>ถัด<WBR>ไป คุณ<WBR>จะ<WBR>ต้อง<WBR>กด<WBR>ปุ่ม "o" โปรแกรม vi
+จะ<WBR>ทำ<WBR>การ<WBR>ขึ้น<WBR>บรรทัด<WBR>ใหม่<WBR>ให้ คุณ<WBR>สามารถ<WBR>จะ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ใน<WBR>บรรทัด<WBR>ใหม่<WBR>นั้น<WBR>ได้<br>
+<br>
+
+จาก<WBR>รูป<WBR>ใน<WBR>ตัว<WBR>อย่าง<WBR>ให้<WBR>คุณ<WBR>ทด<WBR>ลอง<WBR>แทรก<WBR>ข้อ<WBR>ความ "1234" ระหว่าง<WBR>ข้อ<WBR>ความ "This is"
+กับ "the first line" และ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ "end of line" ต่อ<WBR>ท้าย<WBR>บรรทัด<br>
+<img src="P2_5Vinsertline.gif" alt="[รูปแทรกข้อความ]"><br>
+จะ<WBR>เห็น<WBR>ว่า<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>อยู่<WBR>ใน command mode และ<WBR>ใช้<WBR>ปุ่ม<WBR>ลูก<WBR>ศร<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ตรง<WBR>กับ<WBR>ตัว<WBR>อักษร "s" ของ<WBR>ข้อ<WBR>ความ "This is" และ<WBR>กด<WBR>ปุ่ม "i" เพื่อ<WBR>ทำ<WBR>การ<WBR>แทรก<WBR>ข้อ<WBR>ความ แล้ว<WBR>จึง<WBR>พิมพ์ "1234" ตาม<WBR>ลง<WBR>ไป ส่วน<WBR>การ<WBR>พิมพ์<WBR>ต่อ<WBR>ท้าย<WBR>บรรทัด<WBR>นั้น ให้<WBR>คุณ<WBR>กลับ<WBR>มา<WBR>อยู่<WBR>ใน<WBR>คอม<WBR>มานด์<WBR>โหมด แล้ว<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ที่<WBR>ท้าย<WBR>บรรทัด จาก<WBR>นั้น<WBR>ก็<WBR>กด<WBR>ปุ่ม "a" เพื่อ<WBR>เริ่ม<WBR>ทำ<WBR>การ append และ<WBR>คุณ<WBR>ก็<WBR>สามารถ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ "end of line" ลง<WBR>ไป<WBR>ได้<br>
+<br>
+
+ใน<WBR>ตอน<WBR>แรกๆ<WBR>คุณ<WBR>อาจ<WBR>จะ<WBR>รู้<WBR>สึก<WBR>สับ<WBR>สน<WBR>กับ<WBR>การ<WBR>สลับ<WBR>โหมด<WBR>ระหว่าง command mode และ insert mode
+แต่<WBR>ขอ<WBR>ให้<WBR>คุณ<WBR>ทด<WBR>ลอง<WBR>ฝึก<WBR>ฝน<WBR>ไป<WBR>สัก<WBR>พัก<WBR>หนึ่ง โดย<WBR>อาจ<WBR>ทด<WBR>ลอง<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ลง<WBR>ไป และ<WBR>แก้<WBR>ไข<WBR>ดู 
+เมื่อ<WBR>คุณ<WBR>ฝึก<WBR>ไป<WBR>สัก<WBR>ระยะ<WBR>หนึ่ง<WBR>แล้ว คุณ<WBR>จะ<WBR>พบ<WBR>ว่า<WBR>คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>คุ้น<WBR>เคย<WBR>กับ<WBR>การ<WBR>สลับ<WBR>โหมด<WBR>ของ vi ได้<WBR>อย่าง<WBR>ไม่<WBR>ยาก<WBR>นัก<br>
+
+<H3 ALIGN=CENTER>การ<WBR>ลบ<WBR>ข้อ<WBR>ความ</H3>
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ลบ<WBR>ตัว<WBR>อักษร (character delete) ให้<WBR>คุณ<WBR>กลับ<WBR>คืน<WBR>สู่ command mode
+โดย<WBR>กด<WBR>ปุ่ม "Esc" แล้ว<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>โดย<WBR>ใช้<WBR>ปุ่ม<WBR>ลูก<WBR>ศร<WBR>ไป<WBR>อยู่<WBR>ใน<WBR>ตำแหน่ง<WBR>ของ<WBR>ตัว<WBR>อักษร 
+ที่<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ลบ<WBR>ออก<WBR>นั้น แล้ว<WBR>กด<WBR>ปุ่ม "x" โปรแกรม vi จะ<WBR>ทำ<WBR>การ<WBR>ลบ<WBR>ตัว<WBR>อักษร<WBR>ให้<WBR>หนึ่ง<WBR>ตัว<WBR>ใน<WBR>ตำแหน่ง<WBR>ที่<WBR>ตรง<WBR>กับ<WBR>เคอร์<WBR>เซอร์<WBR>นั้น เมื่อ<WBR>ลบ<WBR>ตัว<WBR>อักษร<WBR>แล้ว vi ก็<WBR>ยัง<WBR>อยู่<WBR>ใน command mode
+อยู่<WBR>เหมือน<WBR>เดิม หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ลบ<WBR>ตัว<WBR>อักษร<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>ตัว คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>กด<WBR>ปุ่ม "x"
+จำนวน<WBR>เท่า<WBR>กับ<WBR>ตัว<WBR>อักษร<WBR>ที่<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ลบ<WBR>นั้น เช่น<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>กด "x" 4 ครั้ง เพื่อ<WBR>จะ<WBR>ลบ<WBR>ข้อ<WBR>ความ "1234"  หรือ<WBR>คุณ<WBR>อาจ<WBR>จะ<WBR>ใช้ "4x" แทน<WBR>การ<WBR>กด "x" 4 ครั้ง<WBR>ก็<WBR>ได้<br>
+<br>
+
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ลบ<WBR>บรรทัด คุณ<WBR>จะ<WBR>ต้อง<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์ มา<WBR>อยู่<WBR>ใน<WBR>บรรทัด<WBR>ที่<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ลบ<WBR>แล้ว<WBR>กด<WBR>ปุ่ม "dd" (กด "d" สอง<WBR>ครั้ง<WBR>ติด<WBR>กัน) <br>
+
+<H3 ALIGN=CENTER>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ข้อ<WBR>ความ</H3>
+การ<WBR>เปลี่ยน<WBR>ข้อ<WBR>ความ<WBR>หนึ่ง<WBR>ตัว<WBR>อักษร สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>การ<WBR>กด<WBR>ปุ่ม "r" เมื่อ<WBR>เปลี่ยน<WBR>เสร็จ<WBR>แล้ว<WBR>คุณ<WBR>จะ<WBR>กลับ<WBR>สู่ command mode  ถ้า<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>เปลี่ยน<WBR>ข้อ<WBR>ความ<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>ตัว<WBR>อักษร<WBR>ให้<WBR>ทำ<WBR>การ<WBR>กด<WBR>ปุ่ม "R" คุณ<WBR>จะ<WBR>สามารถ<WBR>เปลี่ยน<WBR>ข้อ<WBR>ความ<WBR>ไป<WBR>เรื่อยๆ<WBR>ได้<WBR>จน<WBR>กว่า<WBR>จะ<WBR>กด<WBR>ปุ่ม "Esc" เพื่อ<WBR>กลับ<WBR>สู่ command mode<br>
+
+<H3 ALIGN=CENTER>การ<WBR>เคลื่อน<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์</H3>
+
+<br>
+เมื่อ<WBR>อยู่<WBR>ใน command mode นอก<WBR>จาก<WBR>การ<WBR>ใช้<WBR>ปุ่ม<WBR>ลูก<WBR>ศร<WBR>ทำ<WBR>การ<WBR>เคลื่อน<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์<WBR>แล้ว<WBR>คุณ<WBR>อาจ<WBR>จะ<WBR>ใช้<WBR>ปุ่ม "h", "j", "k", "l" ใน<WBR>การ<WBR>เคลื่อน<WBR>ย้าย<WBR>ได้<WBR>เช่น<WBR>กัน โดย<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ดัง<WBR>นี้<br>
+<ul>
+<li>
+ปุ่ม "h" สำหรับ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ทาง<WBR>ซ้าย
+</li><li>
+ปุ่ม "j" สำหรับ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ลง
+</li><li>
+ปุ่ม "k" สำหรับ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ขึ้น
+</li><li>
+ปุ่ม "l" สำหรับ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ทาง<WBR>ขวา
+</li>
+</ul>
+คุณ<WBR>อาจ<WBR>สงสัย<WBR>ว่า<WBR>ทำไม<WBR>ถึง<WBR>ต้อง<WBR>ใช้<WBR>ปุ่ม<WBR>เหล่า<WBR>นี้<WBR>ใน<WBR>การ<WBR>บังคับ<WBR>เคอร์<WBR>เซอร์ นอก<WBR>จาก<WBR>ปุ่ม<WBR>ลูก<WBR>ศร<WBR>ด้วย ถ้า<WBR>คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>ดีด<WBR>แบบ<WBR>สัมผัส<WBR>ได้ คุณ<WBR>จะ<WBR>สังเกต<WBR>เห็น<WBR>ว่า<WBR>ปุ่ม<WBR>เหล่า<WBR>นั้น<WBR>ถูก<WBR>วาง<WBR>อยู่<WBR>ตำแหน่ง<WBR>ที่<WBR>ประจำ<WBR>ของ<WBR>มือ<WBR>ขวา และ<WBR>ถ้า<WBR>คุณ<WBR>คุ้น<WBR>เคย<WBR>กับ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>แล้ว คุณ<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>การ<WBR>บังคับ<WBR>เคอร์<WBR>เซอร์<WBR>ด้วย<WBR>ปุ่ม<WBR>เหล่า<WBR>นั้น<WBR>จะ<WBR>สะดวก<WBR>รวด<WBR>เร็ว<WBR>กว่า<WBR>การ<WBR>ใช้<WBR>ปุ่ม<WBR>ลูก<WBR>ศร<WBR>มาก เนื่อง<WBR>จาก<WBR>คุณ<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>ต้อง<WBR>ย้าย<WBR>มือ<WBR>ไป<WBR>ที่<WBR>ปุ่ม<WBR>ลูก<WBR>ศร เมื่อ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>เปลี่ยน<WBR>ไป<WBR>ใช้<WBR>การ<WBR>บังคับ<WBR>เคอร์<WBR>เซอร์ 
+<br>
+<br>
+
+สำหรับ<WBR>การ<WBR>เลื่อน<WBR>หน้า<WBR>จอ<WBR>ที<WBR>ละ<WBR>หน้า<WBR>จอ<WBR>ภาพ คุณ<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>การ<WBR>กด<WBR>ปุ่ม<br>
+Ctrl-f เลื่อน<WBR>หน้า<WBR>จอ<WBR>ไป<WBR>ข้าง<WBR>หน้า (เลื่อน<WBR>ลง) ที<WBR>ละ<WBR>หน้า<br>
+Ctrl-b เลื่อน<WBR>หน้า<WBR>จอ<WBR>ถอย<WBR>หลัง (เลื่อน<WBR>ขึ้น) ที<WBR>ละ<WBR>หน้า<br>
+Ctrl-d เลื่อน<WBR>หน้า<WBR>จอ<WBR>ไป<WBR>ข้าง<WBR>หน้า (เลื่อน<WBR>ลง) ที<WBR>ละ<WBR>ครึ่ง<WBR>หน้า<WBR>จอ<br>
+Ctrl-u เลื่อน<WBR>หน้า<WBR>จอ<WBR>ถอย<WBR>หลัง (เลื่อน<WBR>ขึ้น) ที<WBR>ละ<WBR>ครึ่ง<WBR>หน้า<WBR>จอ<br>
+<br>
+หมาย<WBR>เหตุ : คุณ<WBR>จะสัง<WBR>เกตุ<WBR>เห็น<WBR>ว่า <br>
+	- Ctrl-f คือ forward = เลื่อน<WBR>ไป<WBR>ข้าง<WBR>หน้า<br>
+	- Ctrl-b คือ backward = เลื่อน<WBR>ถอย<WBR>หลัง<br>
+	- Ctrl-d คือ downward = เลื่อน<WBR>ลง<br>
+	- Ctrl-u คือ upward = เลื่อน<WBR>ขึ้น  <br>
+
+<H3 ALIGN=CENTER>การ<WBR>บัน<WBR>ทึก<WBR>ไฟล์<WBR>และ<WBR>การ<WBR>ออก<WBR>จาก vi</H3>
+เมื่อ<WBR>คุณ<WBR>อยู่<WBR>ใน command mode  ให้<WBR>กด<WBR>ปุ่ม ":" เพื่อ<WBR>สลับ<WBR>โปรแกรม<WBR>ให้<WBR>มา<WBR>อยู่<WBR>ใน
+last line mode คุณ<WBR>จะสัง<WBR>เกตุ<WBR>เห็น<WBR>ตัว<WBR>อักษร ":" ขึ้น<WBR>อยู่<WBR>ที่<WBR>ด้าน<WBR>ล่าง<WBR>ของ<WBR>จอ<WBR>ภาพ<WBR>และ<WBR>มี<WBR>เคอร์<WBR>เซอร์<WBR>รอ<WBR>อยู่ คุณ<WBR>สามารถ<WBR>จะ<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ต่าง<WBR>เพื่อ<WBR>ให้ vi ทำ<WBR>งาน<WBR>ตาม<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ได้ คำ<WBR>สั่ง<WBR>ต่างๆ มี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<ul>
+<li>
+	:q    ออก<WBR>จาก vi 
+</li><li>
+	:w 	คือ<WBR>สั่ง<WBR>บัน<WBR>ทึก (save) ไฟล์
+</li><li>
+	:wq   สั่ง<WBR>บัน<WBR>ทึก<WBR>และ<WBR>ออก<WBR>จาก vi
+</li><li>
+	:wq!  สั่ง<WBR>บัน<WBR>ทึก<WBR>และ<WBR>ออก<WBR>จาก vi พร้อม<WBR>ทั้ง<WBR>ยืน<WBR>ยัน<WBR>คำ<WBR>สั่ง (!)
+</li><li>
+	:q!   ออก<WBR>จาก vi โดย<WBR>ไม่<WBR>บัน<WBR>ทึก<WBR>ข้อ<WBR>มูล<WBR>ลง<WBR>ไฟล์
+</li><li>
+	:w <filename> สั่ง<WBR>บัน<WBR>ทึก (save as) ใน<WBR>ชื่อ<WBR>ของ <filename>
+</ul>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

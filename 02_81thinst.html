@@ -1,0 +1,161 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>FAQ</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>ติด<WBR>ตั้ง<WBR>ภาษา<WBR>ไทย<WBR>อย่าง<WBR>ง่ายๆ บน<WBR>ลีนุกซ์ </H1>
+
+ใน<WBR>ที่<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ภาษา<WBR>ไทย<WBR>บน<WBR>ระบบ X window <br>
+
+<H3 ALIGN=CENTER> ระบบ X window คือ<WBR>อะไร </H3>
+
+X window เป็น<WBR>โปรแกรม<WBR>ซึ่ง<WBR>ทำ<WBR>การ<WBR>สร้าง<WBR>ขึ้น<WBR>มา<WBR>ครอบ บน<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>อีก<WBR>ที โดย<WBR>ระบบ X window จะ<WBR>ทำ<WBR>ให้<WBR>เรา<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>คอมพิวเตอร์ โดย<WBR>ผ่าน<WBR>ทาง<WBR>รูป<WBR>ภาพ<WBR>แบบ กราฟฟิค และ<WBR>เมาส์<WBR>ได้ ซึ่ง<WBR>เป็น<WBR>ระบบอิน<WBR>เทอร์เฟส<WBR>ที่<WBR>เรา<WBR>เรียก<WBR>ว่า GUI (Graphical 
+User Interface) ระบบ X window จะ<WBR>ถูก<WBR>ใช้<WBR>งาน<WBR>กัน<WBR>มาก<WBR>ใน<WBR>คอมพิวเตอร์<WBR>ตระกูล<WBR>ยู<WBR>นิกซ์ แต่<WBR>จริงๆ<WBR>แล้ว X window มี<WBR>ใช้<WBR>งาน<WBR>กับ<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>เกือบ<WBR>ทุก<WBR>ตระกูล ซึ่ง<WBR>รวม<WBR>ทั้ง<WBR>ระบบ WINDOWS ของ<WBR>ไมโคร<WBR>ซอฟต์<WBR>ด้วย <br>
+
+<CENTER><P><IMG SRC="P2_81mydesktop.gif" > </P></CENTER>
+
+ระบบ X window ถูก<WBR>ออก<WBR>แบบ<WBR>มา<WBR>ให้<WBR>ทำ<WBR>งาน<WBR>แบบ Client-Server ซึ่ง<WBR>ระหว่าง<WBR>ตัว
+Client และ Server อาจ<WBR>จะ<WBR>อยู่<WBR>บน<WBR>เครื่อง<WBR>เดียว<WBR>กัน หรือ<WBR>อยู่<WBR>คน<WBR>ละ<WBR>เครื่อง<WBR>กัน<WBR>ก็<WBR>ได้<WBR>โดย<WBR>ที่<WBR>เครื่อง<WBR>เหล่า<WBR>นั้น<WBR>จะ<WBR>ต้อง<WBR>เชื่อม<WBR>ต่อ<WBR>กัน<WBR>เป็น<WBR>ระบบ<WBR>เครือ<WBR>ข่าย บน<WBR>โปร<WBR>โต<WBR>คอล<WBR>แบบ TCP/IP 
+นั่น<WBR>หมาย<WBR>ความ<WBR>ว่า<WBR>คุณ<WBR>อาจ<WBR>จะ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>รัน<WBR>แอพพ<WBR>ลิ<WBR>เคชั่น บน<WBR>เครื่อง<WBR>อื่นๆ และ<WBR>กำหนด<WBR>ให้<WBR>มา<WBR>แสดง<WBR>ผล<WBR>บน<WBR>เครื่อง<WBR>ของ<WBR>คุณ หรือ<WBR>ใน<WBR>ทาง<WBR>กลับ<WBR>กัน  <br><br>
+
+X window จะ<WBR>มี<WBR>ระบบ<WBR>จัด<WBR>กา<WBR>รวิน<WBR>โดว์ (window manager) หลาย<WBR>แบบ ซึ่ง<WBR>จะ<WBR>ไม่<WBR>ถูก<WBR>ยึด<WBR>ติด<WBR>กับ<WBR>ตัว X window นี่<WBR>จะ<WBR>เป็น<WBR>ข้อ<WBR>แตก<WBR>ต่าง<WBR>อย่าง<WBR>เห็น<WBR>ได้<WBR>ชัด<WBR>จาก<WBR>โปรแกรม MS WINDOWS
+หรือ WINDOW NT ซึ่ง<WBR>ระบบ<WBR>จัด<WBR>กา<WBR>รวิน<WBR>โดว์<WBR>จะ<WBR>ถูก<WBR>ผูก<WBR>ติด<WBR>อยู่<WBR>กับ ตัววิน<WBR>โดว์<WBR>อย่าง<WBR>แน่น<WBR>หนา 
+การ<WBR>ที่<WBR>เรา<WBR>สามารถ<WBR>เลือก<WBR>ระบบ<WBR>จัด<WBR>กา<WBR>รวิน<WBR>โดว์ ได้<WBR>หลาย<WBR>แบบ จะ<WBR>ทำ<WBR>ให้<WBR>เรา<WBR>ไม่<WBR>ถูก<WBR>จำกัด<WBR>กับ<WBR>รูป<WBR>แบบอิน<WBR>เทอร์เฟส<WBR>แบบ<WBR>ใด<WBR>แบบ<WBR>หนึ่ง ซึ่ง<WBR>จริงๆ<WBR>แล้ว<WBR>รูป<WBR>แบบอิน<WBR>เทอร์เฟส (หมาย<WBR>ถึง<WBR>รูป<WBR>แบบ<WBR>ของ<WBR>การค<WBR>ลิก<WBR>เมาส์ หรือ<WBR>รูป<WBR>แบบ<WBR>ของ<WBR>ส่วน<WBR>ไตเ<WBR>ติ<WBR>ลบาร์ หรือ<WBR>อื่นๆ) เหล่า<WBR>นี้<WBR>ก็<WBR>ยัง<WBR>สามารถ<WBR>ดัด<WBR>แปลง<WBR>แก้<WBR>ไข<WBR>ได้<WBR>ตาม<WBR>ความ<WBR>ชอบ<WBR>ของ<WBR>ผู้<WBR>ใช้<WBR>ได้<WBR>อีก<WBR>ด้วย <br><br>
+
+ปกติ<WBR>ระบบ<WBR>จัด<WBR>กา<WBR>รวิน<WBR>โดว์<WBR>ที่<WBR>นิยม<WBR>กัน<WBR>ใน<WBR>ปัจจุบัน จะ<WBR>เป็น<WBR>ของ Motif ซึ่ง<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>มาตร<WBR>ฐาน<WBR>ของ<WBR>ระบบ X window บน<WBR>ยู<WBR>นิกซ์ นอก<WBR>จาก<WBR>นี้<WBR>ก็<WBR>ยัง<WBR>มี NextStep ของ<WBR>บริษัท Next Computer
+ของ<WBR>คุณ ส<WBR>ตีฟ จอปส์ ซึ่ง<WBR>ปัจจุบัน<WBR>ได้<WBR>ถูก<WBR>รวม<WBR>เข้า<WBR>กับ<WBR>บริษัท<WBR>แอปเปิล บน<WBR>ลีนุกซ์<WBR>จะ<WBR>มี<WBR>ระบบ<WBR>จัด<WBR>กา<WBR>รวิน<WBR>โดว์<WBR>ที่<WBR>ขอ<WBR>ยืม<WBR>รูป<WBR>แบบ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>มา<WBR>จาก Windows95 ชื่อ fvwm95 ซึ่ง<WBR>จะ<WBR>มี launch bar
+และ<WBR>ปุ่ม start คล้าย<WBR>กับ<WBR>ใน Windows95 มาก <br><br>
+
+สามารถ<WBR>หา<WBR>ข้อ<WBR>มูล<WBR>เพิ่ม<WBR>เติม<WBR>ได้<WBR>ที่ <br>
+<a href="http://www.x.org"> X consortium </a> <br>
+<a href= "http://www.xfree86.org"> XFREE86 </a> <br>
+<br><br>
+
+การ<WBR>ใช้<WBR>งาน<WBR>ภาษา<WBR>ไทย<WBR>บน<WBR>คอมพิวเตอร์<WBR>นั้น โดย<WBR>พื้น<WBR>ฐาน<WBR>แล้ว<WBR>จะ<WBR>ต้อง<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>เป็น<WBR>ภาษา<WBR>ไทย<WBR>ได้ ขÛน<WBR>ตอน<WBR>นี้<WBR>สามารถ<WBR>ใช้<WBR>ฟอนต์<WBR>ไฟล์ ซึ่ง<WBR>เป็น<WBR>ไฟล์<WBR>ที่<WBR>เก็บ<WBR>ข้อ<WBR>มูล<WBR>ของ<WBR>รูป<WBR>แบบ<WBR>ตัว<WBR>อักษร<WBR>ที่<WBR>จะ<WBR>ใช้<WBR>แสดง<WBR>ผล  และ<WBR>จะ<WBR>ต้อง<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>รับ<WBR>ข้อ<WBR>มูล (input) 
+เป็น<WBR>ภาษา<WBR>ไทย<WBR>ได้ ซึ่ง<WBR>ใน<WBR>การ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>นั้น ระบบ X windows  อนุญาต<WBR>ให้<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข/ดัด<WBR>แปลง ค่า<WBR>สัญลักษณ์ (keysym) ของ<WBR>คีย์<WBR>บอร์ด<WBR>ได้  ซึ่ง<WBR>เรา<WBR>จะ<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>โปรแกรม xmodmap <br>
+
+<H3 ALIGN=CENTER> ขั้น<WBR>ตอน<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ฟอนต์<WBR>ภาษา<WBR>ไทย </H3>
+<ol>
+
+<li> ให้<WBR>คุณ<WBR>ดาวน์<WBR>โหลด<WBR>ฟอนต์<WBR>ไฟล์ และ<WBR>คีย์<WBR>บอร์ดแมป<WBR>ปิ้ง<WBR>ไฟล์<WBR>จาก
+<a href="thailinux.tar.gz"> ที่<WBR>นี่  </a>
+(กด<WBR>ปุ่ม Shift ค้าง<WBR>ไว้ พร้อม<WBR>กับคลิ๊ก<WBR>ปุ่ม<WBR>ซ้าย<WBR>ของ<WBR>เมาส์ ) </li>
+
+<li> ทำ<WBR>การ<WBR>คลี่<WBR>ไฟล์<WBR>ที่<WBR>ดาวน์<WBR>โหลด<WBR>ออก<WBR>มา ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ของ<WBR>คุณ<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง 
+	<ul>
+	<li> gunzip thailinux.tar.gz 
+		จะ<WBR>ได้<WBR>ไฟล์ thailinux.tar </li>
+	<li> tar -xvf thailinux.tar 
+	        จะ<WBR>ได้<WBR>ไฟล์<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ </li>
+<p>
+<pre>
+FontTastic.fm  thai6x14.bdf   thai8x13.pcf   thai9x13.pcf
+README         thai7x18.bdf   thai8x20.bdf   thaiXmap.v01
+fonts.dir      thai8x13.bdf   thai9x13.bdf
+</pre>
+</p>
+	</ul>
+
+</li> <br><br>
+
+ขั้น<WBR>ตอน<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>ให้<WBR>ทำ<WBR>ภาย<WBR>ใต้<WBR>ระบบ X window <br>
+
+<li> ให้<WBR>รัน<WBR>โปรแกรม mkfontdir ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>เก็บ<WBR>ไฟล์<WBR>ทั้ง<WBR>หมด<WBR>ที่<WBR>ได้<WBR>จาก<WBR>ข้อ<WBR>สอง
+   ซึ่ง<WBR>โปรแกรม<WBR>จะ<WBR>ทำ<WBR>การ<WBR>สร้าง<WBR>ไฟล์ fonts.dir มา<WBR>ให้<WBR>ใน<WBR>ไฟล์ fonts.dir จะ<WBR>มี<WBR>ข้อ<WBR>มูล<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ <br>
+
+<p>
+<pre>
+5 
+thai7x18.bdf -thai-fixed-medium-r-normal--14-100-100-100-m-70-tis620.2529-1 
+thai6x14.bdf -thai-fixed-medium-r-normal--10-100-75-75-c-60-tis620.2529-1 
+thai8x13.pcf thai8x13 
+thai8x20.bdf -thai-fixed-medium-r-normal--16-114-100-100-m-80-tis620.2529-1 
+thai9x13.pcf thai9x13 
+</pre>
+</p>
+
+ทาง<WBR>คอลัมน์<WBR>ซ้าย<WBR>มือ<WBR>จะ<WBR>เป็น<WBR>ชื่อ<WBR>ของ<WBR>ฟอนต์<WBR>ไฟล์ ส่วน<WBR>ทาง<WBR>คอลัมน์<WBR>ขวา<WBR>มือ<WBR>จะ<WBR>เป็น<WBR>ราย<WBR>ชื่อ<WBR>ของ
+ฟอนต์<WBR>ต่างๆ <br>
+</li>
+
+<li>ทำ<WBR>ให้<WBR>ระบบ X window รับ<WBR>รู้<WBR>ฟอนต์<WBR>เหล่า<WBR>นี้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง <br>
+   	<dir> xset +fp (ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>เก็บ<WBR>ฟอนต์<WBR>เหล่า<WBR>นี้) </dir><br>
+   สมมุติ<WBR>เก็บ<WBR>ฟอนต์<WBR>เหล่า<WBR>นี้<WBR>ไว้<WBR>ที่ /root/thaifont ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง <br>
+   	<dir> xset +fp /root/thaifont </dir><br>
+   ขั้น<WBR>ตอน<WBR>นี้<WBR>คุณ<WBR>สามารถ<WBR>นำ<WBR>ไป<WBR>ใส่<WBR>ไว้<WBR>ใน<WBR>ไฟล์ .xinitrc ซึ่ง<WBR>จะ<WBR>เป็น<WBR>คอน<WBR>ฟิก<WBR>ไฟล์ ที่<WBR>ระบบ 
+X window จะ<WBR>ทำ<WBR>การ<WBR>อ่าน<WBR>ตอน<WBR>เริ่ม<WBR>เข้า<WBR>ระบบ<WBR>ทุกครÛง <br>
+</li>
+
+<li> ให้<WBR>ตรวจ<WBR>สอบ<WBR>ว่า<WBR>ได้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ฟอนต์<WBR>เหล่า<WBR>นี้<WBR>ได้<WBR>สำเร็จ โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง <br>
+        <dir> xlsfonts | less </dir><br>
+   คุณ<WBR>จะ<WBR>เห็น<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ฟอนต์<WBR>ที่<WBR>คุณ<WBR>ติด<WBR>ตั้ง<WBR>อยู่  อาจ<WBR>จะ<WBR>ใช้<WBR>โปรแกรม xfontsel ก็<WBR>ได้ <br>
+
+	คุณเร<WBR>วัติ ได้<WBR>ช่วย<WBR>กรุณา<WBR>แนะ<WBR>นำ<WBR>มา<WBR>ว่า ควร<WBR>จะ<WBR>ใช้<WBR>คำ<WBR>สั่ง
+	<dir> xlsfonts | grep "thai" </dir><br>
+	แทน เพราะ<WBR>ฟอนต์<WBR>ภาษา<WBR>ไทย<WBR>ที่<WBR>ติด<WBR>ตั้ง<WBR>ส่วน<WBR>ใหญ่<WBR>จะ<WBR>มี<WBR>ชื่อ<WBR>เป็น thai ประกอบ<WBR>อยู่<WBR>ด้วย
+การ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>นี้ จะ<WBR>ช่วย<WBR>แสดง<WBR>เฉพาะ<WBR>ฟอนต์<WBR>ภาษา<WBR>ไทย<WBR>ที่<WBR>ติด<WBR>ตั้ง<WBR>เท่า<WBR>นั้น
+</li>
+
+<li> ให้<WBR>เปิด<WBR>หน้า<WBR>ต่าง<WBR>ของ<WBR>โปรแกรม xterm ใหม่<WBR>ด้วย<WBR>ฟอนต์<WBR>ภาษา<WBR>ไทย<WBR>เหล่า<WBR>นี้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง <br>
+	<dir> xterm -fn thai9x13 </dir> <br>
+   ให้<WBR>ทด<WBR>ลอง<WBR>ทำ<WBR>การ cat ไฟล์<WBR>ที่<WBR>เป็น<WBR>ภาษา<WBR>ไทย หรือ<WBR>ทด<WBR>ลอง<WBR>ใช้ vi ดู<WBR>ว่า<WBR>แสดง<WBR>ผล<WBR>ได้<WBR>ถูก 
+   ต้อง<WBR>หรือ<WBR>ไม่ <br>
+</li>
+</ol>
+
+<H3 ALIGN=CENTER> การ<WBR>แสดง<WBR>ผล<WBR>ภาษา<WBR>ไทย<WBR>บน<WBR>เนตส<WBR>เคป  </H3>
+คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ดาวน์<WBR>โหลด <a href="http://www.netscape.com">บ<WBR>ราว<WBR>เซอร์<WBR>เนตส<WBR>เคป </a>
+ซึ่ง<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>บน<WBR>ลีนุกซ์<WBR>มา<WBR>ได้ (เวอร์ชั่น<WBR>ล่า<WBR>สุด<WBR>ของ<WBR>เนตส<WBR>เคป<WBR>ชื่อ เนตส<WBR>เคป<WBR>คอม<WBR>มิว<WBR>นิ<WBR>เค<WBR>เตอร์) และ<WBR>ทำ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ภาษา<WBR>ไทย<WBR>โดย<WBR>ใช้<WBR>ฟอนต์<WBR>ที่<WBR>ได้<WBR>ติด<WBR>ตั้ง<WBR>ไป<WBR>แล้ว<WBR>นั้น สำหรับ<WBR>การ<WBR>คอน<WBR>ฟิก<WBR>เนตส<WBR>เคป<WBR>ให้<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ภาษา<WBR>ไทย<WBR>ได้    สำหรับ<WBR>เนตส<WBR>เค<WBR>ปนาวิ<WBR>เก<WBR>เตอร์<WBR>เวอร์ชั่น 3 ให้<WBR>เลือก<WBR>เมนู Option และ<WBR>เลือก<WBR>เมนู<WBR>ย่อย General Preference... และ<WBR>ให้<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>ตรง<WBR>ส่วน Tab ที่<WBR>เป็น Fonts ให้<WBR>เลือก<WBR>การ Encoding เป็น Western (iso-8859-1)
+และ<WBR>เลือก Use the Proportional Font เป็น Fixed (Thai) ดัง<WBR>แสดง<WBR>ใน<WBR>รูป <br>
+
+<CENTER><P><IMG SRC="P2_81netscape-cfg.gif" > </P></CENTER>
+
+
+ให้<WBR>ทำ<WBR>การค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม OK และ<WBR>ตรวจ<WBR>ดู<WBR>ว่า<WBR>เนตส<WBR>เคป<WBR>แสดง<WBR>ผล<WBR>ภาษา<WBR>ไทย<WBR>ได้<WBR>ถูก<WBR>ต้อง ฟอนต์<WBR>ภาษา<WBR>ไทย<WBR>ที่<WBR>แสดง<WBR>บน<WBR>เนตส<WBR>เค<WBR>ปนาวิ<WBR>เก<WBR>เตอร์<WBR>นี้ มี<WBR>ข้อ<WBR>เสีย<WBR>คือ<WBR>จะ<WBR>มี<WBR>ขนาด<WBR>เล็ก<WBR>ซึ่ง<WBR>มอง<WBR>เห็น<WBR>ไม่<WBR>ถนัด<br>
+
+<H3 ALIGN=CENTER> การ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>เป็น<WBR>ภาษา<WBR>ไทย </H3>
+เรา<WBR>สามารถ<WBR>ใช้<WBR>โปรแกรม xmodmap เพื่อ<WBR>ทำ<WBR>การ<WBR>ดัด<WBR>แปลง<WBR>คีย์<WBR>บอร์ด<WBR>ให้<WBR>สามารถ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>เป็น<WBR>คีย์<WBR>ภาษา<WBR>ไทย<WBR>ได้  จาก<WBR>ไฟล์<WBR>ที่<WBR>เรา<WBR>ได้<WBR>คลี่<WBR>ออก<WBR>มา<WBR>ใน<WBR>ข้อ 2 ของ<WBR>ขั้น<WBR>ตอน<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ฟอนต์<WBR>ภาษา<WBR>ไทย ให้<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>คำ<WBR>สั่ง <br>
+	<dir>xmodmap thaiXmap.v01 </dir>
+ไฟล์ thaiXmap นี้<WBR>เป็น xmodmap script file ที่<WBR>ได้<WBR>ปรับ<WBR>ปรุง<WBR>ขึ้น<WBR>ใหม่<WBR>จาก<WBR>เวอร์ชั่น<WBR>เก่า<WBR>โดย<WBR>คุณ วรวุธ วิสุทธิ์<WBR>เมธาง<WBR>กูร (wisutmet@cae.wisc.edu) ซึ่ง<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ดัด<WBR>แปลง<WBR>คีย์<WBR>บอร์ด<WBR>ให้<WBR>สามารถ<WBR>รับ<WBR>ภาษา<WBR>ไทย<WBR>ได้ ให้<WBR>ใช้<WBR>ปุ่ม ScrollLock เป็น<WBR>ปุ่ม<WBR>สำหรับ<WBR>สลับ<WBR>โหมด<WBR>การ<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>ภาษา<WBR>ไทย/อังกฤษ ทด<WBR>ลอง<WBR>ป้อน<WBR>ข้อ<WBR>มูล<WBR>เป็น<WBR>ภาษา<WBR>ไทย<WBR>บน xterm ที่<WBR>แสดง<WBR>ผล<WBR>เป็น<WBR>ภาษา<WBR>ไทย<WBR>ได้ (จาก<WBR>ข้อ 6 ของ<WBR>ขั้น<WBR>ตอน<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ฟอนต์<WBR>ภาษา<WBR>ไทย) <br> <br>
+
+ไฟล์ thaiXmap ถูก<WBR>ทำ<WBR>การ<WBR>ดัด<WBR>แปลง<WBR>เพิ่ม<WBR>เติม ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ <br>
+<ul>
+<li> ใช้ thaiXmap.v01 เพียง<WBR>ไฟล์<WBR>เดียว </li>
+<li> ดัด<WBR>แปลง<WBR>ตัว<WBR>เลข อาร<WBR>บิค ซึ่ง<WBR>ควร<WBR>จะ<WBR>เป็น<WBR>ตัว<WBR>เลข<WBR>ไทย เมื่อ<WBR>อยู่<WBR>ใน<WBR>โหมด<WBR>ภาษา<WBR>ไทย </li>
+<li> ใช้ Scroll Lock เป็น<WBR>ปุ่ม<WBR>เปลี่ยน (ภาษา<WBR>ไทย/อังกฤษ)</li>
+</ul>
+
+การ<WBR>ใช้<WBR>งาน xmodmap ยัง<WBR>มี<WBR>ปัญหา<WBR>บาง<WBR>ประการ  <br>
+<ol>
+    <li> ใน xterm การ<WBR>ลบ<WBR>ตัว<WBR>อักษร (พวก<WBR>สระ<WBR>ลอย<WBR>ต่างๆ เช่น Û ๊ ็ ้ ) ยัง<WBR>ทำ<WBR>ได้<WBR>ไม่<WBR>ถูก<WBR>ต้อง<WBR>สมบูรณ์ จะ<WBR>ต้อง<WBR>กด<WBR>ปุ่ม Ctrl-l เพื่อ<WBR>ทำ<WBR>ความ<WBR>สะอาด<WBR>หน้า<WBR>จอ<WBR>ใหม่<WBR>บ่อยๆ </li>
+    <li> การ<WBR>จัด<WBR>ลำ<WBR>ดับ<WBR>ของ<WBR>สระ (ซึ่ง<WBR>จะ<WBR>ขึ้น<WBR>อยู่<WBR>กับ<WBR>ฟอนต์ ด้วย) ยัง<WBR>ทำ<WBR>ไม่<WBR>ได้ </li>
+    <li> ทำ<WBR>การ<WBR>ใช้ Scroll Lock เป็น<WBR>ปุ่ม<WBR>สลับ<WBR>โหมด อาจ<WBR>ทำ<WBR>ให้<WBR>ใช้<WBR>งาน<WBR>ได้<WBR>ไม่<WBR>ถนัด<WBR>เท่า ใช้<WBR>ปุ่ม `/~ </li>
+</ol>
+
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>เทอร์<WBR>มิ<WBR>นอล<WBR>ที่<WBR>สามารถ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>เป็น<WBR>ภาษา<WBR>ไทย<WBR>ได้ ให้<WBR>ดาวน์<WBR>โหลด<WBR>โปรแกรม <a href="txterm.gz">thaiXterm </a> (ให้<WBR>กด<WBR>ปุ่ม Shift ค้าง<WBR>ไว้
+พร้อม<WBR>กับค<WBR>ลิก<WBR>ที่<WBR>ปุ่ม<WBR>ซ้าย<WBR>ของ<WBR>เมาส์) ซึ่ง<WBR>เทอร์<WBR>มิ<WBR>นอล<WBR>นี้<WBR>จะ<WBR>ใช้<WBR>ปุ่ม F1 เป็น<WBR>ตัว<WBR>สลับ<WBR>โหมด<WBR>ภาษา<WBR>ไทย/อังกฤษ <br><br>
+
+ข้อ<WBR>มูล<WBR>และ<WBR>ไฟล์<WBR>ส่วน<WBR>ใหญ่ ที่<WBR>เกี่ยว<WBR>กับ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ภาษา<WBR>ไทย<WBR>บน<WBR>ลีนุกซ์ ได้<WBR>มา<WBR>จากเวป<WBR>ไซต์ 
+<a href="http://www.ctrl.titech.ac.jp/~vuthi/thai/thai.doc/index.html">
+Note on Thai Computing</a>
+ซึ่ง<WBR>เป็นเวป<WBR>ไซต์<WBR>ของ<WBR>นัก<WBR>ศึกษา<WBR>คอมพิวเตอร์<WBR>คน<WBR>ไทย<WBR>ใน<WBR>ญี่ปุ่น 
+ข้อ<WBR>มูล<WBR>ในเวป<WBR>ไซต์<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ดัด<WBR>แปลง<WBR>และ<WBR>การ<WBR>เขียน<WBR>โปรแกรม<WBR>ให้<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>ภาษา<WBR>ไทย<WBR>บน<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>ได้ ซึ่ง<WBR>นอก<WBR>จาก<WBR>เรื่อง<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ฟอนต์<WBR>ภาษา<WBR>ไทย การ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>ภาษา<WBR>ไทย การ<WBR>ใช้<WBR>งาน xterm ที่<WBR>เป็น<WBR>ภาษา<WBR>ไทย ยัง<WBR>มี<WBR>เรื่อง<WBR>ของ<WBR>การ<WBR>รับ<WBR>ส่งเ<WBR>มลล์<WBR>ภาษา<WBR>ไทย การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>ประมวล<WBR>ผล<WBR>คำ (ลิขิต) และ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม TeX (โปรแกรม<WBR>เรียง<WBR>พิมพ์<WBR>บน<WBR>ยู<WBR>นิกซ์) เป็น<WBR>ภาษา<WBR>ไทย<WBR>ด้วย คุณ<WBR>สามารถ<WBR>หา<WBR>ข้อ<WBR>มูล<WBR>อื่นๆ<WBR>ที่<WBR>เป็น<WBR>ประ<WBR>โยชน์<WBR>มาก<WBR>มาย<WBR>ได้<WBR>จาก<WBR>ที่<WBR>นี่ <br>
+
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>

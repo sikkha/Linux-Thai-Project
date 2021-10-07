@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming (4)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ (4)</H1>
+
+<H3 ALIGN=CENTER>การ<WBR>เรียก<WBR>คำ<WBR>สั่ง<WBR>เชลล์<WBR>หลาย<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>หนึ่ง<WBR>บรรทัด</H3>
+<p>
+เรา<WBR>สามารถ<WBR>สั่ง<WBR>ให้<WBR>ลีนุกซ์<WBR>ทำ<WBR>งาน<WBR>หลาย<WBR>คำ<WBR>สั่ง<WBR>ได้<WBR>ภาย<WBR>ใน<WBR>หนึ่ง<WBR>บรรทัด โดย<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>แยก<WBR>แต่<WBR>ละ<WBR>คำ<WBR>สั่ง<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย semicolon ";" ดัง<WBR>ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้ คำ<WBR>สั่ง<WBR>สุด<WBR>ท้าย<WBR>ไม่<WBR>ต้อง<WBR>ใส่ ";"
+<pre>
+$ date; pwd; echo "Hello world"
+Wed Sep  3 00:36:35 GMT+7 1997
+/home/twg
+Hello world
+</pre>
+</p>
+
+<p>
+จะ<WBR>เห็น<WBR>ว่า<WBR>เชลล์<WBR>ทำ<WBR>งาน<WBR>และ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ตาม<WBR>ลำ<WBR>ดับ<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>เรา<WBR>พิมพ์<WBR>ไป<WBR>ข้าง<WBR>ต้น หาก<WBR>ต้อง<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>ผล<WBR>ลัพธ์<WBR>ของ<WBR>คำ<WBR>สั่ง<WBR>ทั้ง<WBR>หมด จะ<WBR>ต้อง<WBR>ครอบ<WBR>คำ<WBR>สั่ง<WBR>ทั้ง<WBR>หมด<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>ปีก<WBR>กา "{}" หรือ<WBR>ไม่<WBR>ก็<WBR>ครอบ<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>วง<WBR>เล็บ "()"  เพราะ<WBR>หาก<WBR>ไม่<WBR>ครอบ<WBR>ไว้<WBR>แล้ว<WBR>จะ<WBR>กลาย<WBR>เป็น<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>เฉพาะ<WBR>คำ<WBR>สั่ง<WBR>สุด<WBR>ท้าย<WBR>เท่า<WBR>นั้น
+<pre>
+$ { date; pwd; echo "Hello world" } > outfile
+</pre>
+หรือ
+<pre>
+$ ( date; pwd; echo "Hello world" ) > outfile
+</pre>
+</p>
+
+<p>
+การ<WBR>ครอบ<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>ทั้ง<WBR>สอง<WBR>แบบ<WBR>จะ<WBR>ให้<WBR>ผล<WBR>ลัพธ์<WBR>ใน<WBR>ลักษณะ<WBR>เดียว<WBR>กัน แต่<WBR>แบบ<WBR>ที่<WBR>สอง<WBR>หรือ<WBR>ที่<WBR>ครอบ<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>วง<WBR>เล็บ จะ<WBR>เป็น<WBR>การ<WBR>สร้าง<WBR>ซับ<WBR>เชลล์<WBR>ขึ้น<WBR>มา<WBR>ใหม่ สำหรับ<WBR>เรื่อง<WBR>ซับ<WBR>เชลล์<WBR>จะ<WBR>ได้<WBR>ทำ<WBR>การ<WBR>อธิบาย<WBR>ใน<WBR>หัว<WBR>ข้อ<WBR>ถัด<WBR>ไป
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>สร้าง<WBR>ฟังก์ชั่น<WBR>ของ<WBR>เชลล์</H3>
+<p>
+เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>นิยาม<WBR>ฟังก์ชั่น<WBR>ของ<WBR>เชลล์<WBR>ขึ้น<WBR>มา<WBR>ใหม่<WBR>ได้ โดย<WBR>ที่<WBR>ฟังก์ชั่น<WBR>นั้น<WBR>ก็<WBR>จะ<WBR>เป็น<WBR>การ<WBR>นำ<WBR>เอา<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>เชลล์<WBR>หลายๆ<WBR>คำ<WBR>สั่ง<WBR>เข้า<WBR>มา<WBR>รวม<WBR>ไว้<WBR>ด้วย<WBR>กัน และ<WBR>เรา<WBR>ก็<WBR>สามารถ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>ฟังก์ชั่น<WBR>นั้น<WBR>แทน<WBR>ได้ ตัว<WBR>อย่าง<WBR>ข้าง<WBR>ล่าง<WBR>จะ<WBR>แสดง<WBR>ถึง<WBR>การ<WBR>นิยาม<WBR>ฟังก์ชั่น
+<pre>
+$ newfunction() { date; pwd; echo "Hello world" } 
+</pre>
+</p>
+
+<p>
+ตัว<WBR>อย่าง<WBR>นี้<WBR>จะ<WBR>แสดง<WBR>ถึง<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>ฟังก์ชั่น จะ<WBR>เห็น<WBR>ว่า<WBR>เป็น<WBR>เพียง<WBR>การ<WBR>เรียก<WBR>ชื่อ<WBR>ฟังก์ชั่น
+<pre>
+$ newfunction
+Wed Sep  3 00:54:42 GMT+7 1997
+/home/twg
+Hello world
+</pre>
+</p>
+
+<p>
+เรา<WBR>สามารถ<WBR>ใช้<WBR>ประ<WBR>โยชน์<WBR>ของ<WBR>ฟังก์ชั่น ใน<WBR>ลักษณะ<WBR>ของ<WBR>การ<WBR>กำหนดโม<WBR>ดูล<WBR>ย่อย<WBR>ที่<WBR>ถูก
+เรียก<WBR>ใช้<WBR>ประจำ<WBR>จาก<WBR>โปรแกรม<WBR>เชลล์<WBR>อื่น หรือ<WBR>อาจ<WBR>ใช้<WBR>ทำ<WBR>การ<WBR>สร้าง<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ต้อง<WBR>การ
+ใช้<WBR>แตก<WBR>ต่าง<WBR>ไป<WBR>จาก<WBR>ปกติ<WBR>ก็<WBR>ได้ เช่น
+<pre>
+$ li() { ls -CF }
+$ li
+Mail/     News/     errfile   histfile  jj        lib/      mbox      myfile
+</pre>
+ต่อ<WBR>ไป<WBR>นี้<WBR>เรา<WBR>ก็<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง "li" แทน<WBR>การ<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ว่า "ls -CF" ได้
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้<WBR>งาน<WBR>ไปป์ (pipe)</H3>
+<p>
+การ<WBR>ใช้<WBR>งาน<WBR>ไปป์<WBR>เป็น<WBR>การ<WBR>นำ<WBR>เอา<WBR>ผล<WBR>ลัพธ์<WBR>จาก<WBR>คำ<WBR>สั่ง<WBR>หนึ่ง ไป<WBR>เป็น<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>ของ<WBR>อีก<WBR>คำ<WBR>สั่ง<WBR>หนึ่ง ซึ่ง<WBR>โปรแกรม<WBR>ที่<WBR>ใช้<WBR>งาน<WBR>ใน<WBR>ลักษณะ<WBR>นี้<WBR>จะ<WBR>ถูก<WBR>เรียก<WBR>ว่า "ตัว<WBR>กรอง<WBR>ข้อ<WBR>มูล" หรือ "ฟิล<WBR>เตอร์ (filter)" โปรแกรม<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>มี<WBR>ลักษณะ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>เป็น<WBR>แบบฟิล<WBR>เตอร์<br>
+cat, sort, more, grep, tee และ tr
+</p>
+
+<p>
+ตัว<WBR>อย่าง<WBR>ของ<WBR>การ<WBR>ใช้<WBR>ไปป์
+<pre>
+$ ls | grep file | sort 
+</pre>
+เป็น<WBR>การ<WBR>เรียง<WBR>ลำ<WBR>ดับ<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>ได้<WBR>จาก<WBR>การ<WBR>คัด<WBR>เลือก<WBR>ราย<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>ชื่อ "file" เป็น<WBR>ส่วน ประกอบ
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>เรียก<WBR>โปรแกรม<WBR>ให้<WBR>ทำ<WBR>งาน<WBR>แบบ<WBR>หลัง<WBR>ฉาก</H3>
+<p>
+ที่<WBR>ผ่าน<WBR>มา<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>เมื่อ<WBR>ทำ<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>หรือ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>โปรแกรม เรา<WBR>จะ<WBR>ต้อง<WBR>รอ<WBR>ให้<WBR>โปรแกรม<WBR>นั้น<WBR>ทำ<WBR>งาน<WBR>เสร็จ<WBR>สิ้น<WBR>เสีย<WBR>ก่อน<WBR>จึง<WBR>จะ<WBR>เรียก<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>อื่นๆ<WBR>ต่อ<WBR>ไป<WBR>ได้ เรา<WBR>มี<WBR>วิธี<WBR>ที่<WBR>จะ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>อื่น<WBR>ได้ โดย<WBR>ไม่<WBR>ต้อง<WBR>รอ<WBR>ให้<WBR>โปรแกรม<WBR>แรก<WBR>ทำ<WBR>งาน<WBR>เสร็จ<WBR>เสีย<WBR>ก่อน ซึ่ง<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>การ<WBR>ส่ง<WBR>โปรแกรม<WBR>แรก<WBR>ไป<WBR>ทำ<WBR>งาน<WBR>แบบ<WBR>หลัง<WBR>ฉาก (Background process) ด้วย<WBR>วิธี<WBR>นี้ ถึง<WBR>แม้<WBR>ว่า<WBR>โปรแกรม<WBR>แรก<WBR>จะ<WBR>ยัง<WBR>ทำ<WBR>งาน<WBR>ไม่<WBR>เสร็จ เรา<WBR>ก็<WBR>สามารถ<WBR>สั่ง<WBR>คำ<WBR>สั่ง<WBR>อื่นๆ<WBR>ได้ 
+<br>
+การ<WBR>เรียก<WBR>ใช้<WBR>โปรแกรม<WBR>แบบ<WBR>หลัง<WBR>ฉาก<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>การ<WBR>เพิ่ม "&" ต่อ<WBR>ท้าย<WBR>คำ<WBR>สั่ง
+</p>
+
+<p>
+ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>แสดง<WBR>ความ<WBR>แตก<WBR>ต่าง<WBR>ระหว่าง<WBR>การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>แบบ<WBR>ปกติ และ<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>แบบ<WBR>หลัง<WBR>ฉาก
+</p>
+
+<p>
+การ<WBR>เรียก<WBR>โปรแกรม<WBR>แบบ<WBR>ปกติ (ต้อง<WBR>รอ)
+<pre>
+$ sleep 10 		: การ<WBR>เรียก<WBR>ใช้<WBR>งาน "sleep" ตาม<WBR>ปกติ ต้อง<WBR>รอ<WBR>ถึง 10 วินาที
+			: ก่อน<WBR>ที่<WBR>จะ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง<WBR>อื่น<WBR>ได้
+$ date			: ใน<WBR>ที่<WBR>นี้<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง "date" ต่อ<WBR>จาก "sleep"
+Wed Sep  3 01:12:52 GMT+7 1997
+</pre>
+</p>
+
+<p>
+การ<WBR>เรียก<WBR>โปรแกรม<WBR>แบบ<WBR>หลัง<WBR>ฉาก (ไม่<WBR>ต้อง<WBR>รอ)
+<pre>
+$ sleep 10 & 		: เรียก<WBR>ใช้<WBR>งาน "sleep" แบบ<WBR>หลัง<WBR>ฉาก เชลล์<WBR>จะ<WBR>คืน<WBR>พร้อมพต์
+			: ให้<WBR>เรียก<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>ได้<WBR>ทัน<WBR>ที
+[1] 3121		: เชลล์<WBR>จะ<WBR>บอก<WBR>หมาย<WBR>เลข<WBR>โพร<WBR>เซส<WBR>ของ<WBR>โปรแกรม<WBR>หลัง<WBR>ฉาก<WBR>ให้
+$ date                  : ใน<WBR>ที่<WBR>นี้<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง "date" ต่อ<WBR>จาก "sleep"
+Wed Sep  3 01:12:52 GMT+7 1997
+$ ps			: เรียก<WBR>คำ<WBR>สั่ง "ps" เพื่อ<WBR>ดู<WBR>โพร<WBR>เซส<WBR>ของ<WBR>โปรแกรม "sleep"
+			: (หมาย<WBR>เลข 3121) ซึ่ง<WBR>ตอน<WBR>นี้<WBR>กำลัง<WBR>ทำ<WBR>งาน<WBR>แบบ<WBR>หลัง<WBR>ฉาก
+  PID TTY STAT  TIME COMMAND
+  962  p2 S    0:00 login -h localhost -p 
+  963  p2 S    0:00 -bash 
+ 3121  p2 S    0:00 sleep 10 
+ 3125  p2 R    0:00 ps 
+</pre>
+
+<p>
+ประ<WBR>โยชน์<WBR>ของ<WBR>การ<WBR>เรียก<WBR>โปรแกรม<WBR>แบบ<WBR>หลัง<WBR>ฉาก<WBR>นี้ จะ<WBR>ใช้<WBR>งาน<WBR>กับ<WBR>โปรแกรม<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>เวลา<WBR>ใน<WBR>การ<WBR>ทำ<WBR>งาน<WBR>มาก<WBR>และ<WBR>ไม่<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>ผู้<WBR>ใช้ เช่น<WBR>การ<WBR>ค้น<WBR>หา<WBR>ราย<WBR>ชื่อ<WBR>ไฟล์<WBR>ทั้ง<WBR>ระบบ ซึ่ง<WBR>จะ<WBR>ต้อง<WBR>กิน<WBR>เวลา<WBR>นาน<WBR>มาก การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>ให้<WBR>ทำ<WBR>งาน<WBR>แบบ<WBR>หลัง<WBR>ฉาก จะ<WBR>ช่วย<WBR>ทำ<WBR>ให้<WBR>ผู้<WBR>ใช้<WBR>ไม่<WBR>ต้อง<WBR>คอย<WBR>จน<WBR>กว่า<WBR>งาน<WBR>จะ<WBR>เสร็จ
+</p>
+
+<p>
+อย่าง<WBR>ไร<WBR>ก็<WBR>ตาม<WBR>การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>แบบ<WBR>หลัง<WBR>ฉาก<WBR>จะ<WBR>ไม่<WBR>สะดวก<WBR>กับ<WBR>โปรแกรม<WBR>ที่<WBR>ต้อง<WBR>มี<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>ผู้<WBR>ใช้<WBR>ผ่าน<WBR>ทาง<WBR>จอ<WBR>ภาพ<WBR>ปกติ ใน<WBR>ที่<WBR>นี้<WBR>เรา<WBR>อาจ<WBR>จะ<WBR>ต้อง<WBR>เปลี่ยน<WBR>ไป<WBR>ใช้แฟลก<WBR>ไฟล์ (flag file) เพื่อ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>โปรแกรม<WBR>แทน หรือ<WBR>อีก<WBR>วิธี<WBR>หนึ่ง<WBR>คือ<WBR>เปลี่ยน<WBR>ไป<WBR>ใช้<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>ผ่าน<WBR>ทาง<WBR>สัญญาณ<WBR>ของ<WBR>ระบบ (system signals) ซึ่ง<WBR>เรื่อง<WBR>สัญญาณ<WBR>นี้<WBR>จะ<WBR>ได้<WBR>ทำ<WBR>การ<WBR>อธิบาย<WBR>ต่อ<WBR>ไป<WBR>ภาย<WBR>หลัง
+</p>
+
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

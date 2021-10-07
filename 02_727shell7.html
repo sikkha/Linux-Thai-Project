@@ -1,0 +1,537 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming (7)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ (7)</H1>
+
+<p>
+เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>ใน<WBR>เชลล์<WBR>ได้ โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง "test" โดย<WBR>ที่<WBR>ถ้า<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>นั้น<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ถูก<WBR>ต้อง<WBR>โปรแกรม test จะ<WBR>ทำ<WBR>การ<WBR>ให้<WBR>ค่า
+return code เป็น 0 แต่<WBR>ถ้า<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ไม่<WBR>ถูก<WBR>ต้อง<WBR>จะ<WBR>ให้<WBR>ค่า<WBR>ที่<WBR>ไม่<WBR>เป็น 0 (โดย<WBR>ปกติ<WBR>จะ<WBR>เป็น<WBR>ค่า 1)
+</p>
+
+<p>
+การ<WBR>ตรวจ<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>เกี่ยว<WBR>กับ<WBR>ไฟล์
+<table>
+<tr>
+<td>-r pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>อนุญาต<WBR>ให้<WBR>สามารถ<WBR>อ่าน<WBR>ไฟล์<WBR>ได้ (readable)</td>
+</tr><tr>
+<td>-w pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>อนุญาต<WBR>ให้<WBR>สามารถ<WBR>เขียน<WBR>ไฟล์<WBR>ได้ (writable)</td>
+</tr><tr>
+<td>-x pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>อนุญาต<WBR>ให้<WBR>สามารถ<WBR>ทำ<WBR>งาน<WBR>ได้ (executable)</td>
+</tr><tr>
+<td>-f pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>ไฟล์<WBR>เป็น<WBR>แบบ<WBR>ไฟล์<WBR>ธรรม<WBR>ดา (ordinary)</td>
+</tr><tr>
+<td>-d pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>ไฟล์<WBR>เป็น<WBR>แบบไดเ<WBR>รก<WBR>ทอ<WBR>รี</td>
+</tr><tr>
+<td>-c pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>เป็น<WBR>ไฟล์<WBR>แบบ<WBR>ดี<WBR>ไวซ์<WBR>ชนิด character</td>
+</tr><tr>
+<td>-b pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>เป็น<WBR>ไฟล์<WBR>แบบ<WBR>ดี<WBR>ไวซ์<WBR>ชนิด binary</td>
+</tr><tr>
+<td>-p pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>เป็น<WBR>ไฟล์<WBR>ชนิด pipe</td>
+</tr><tr>
+<td>-u pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ setuid bit ถูกเซ็ต</td>
+</tr><tr>
+<td>-g pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ getgid bit ถูกเซ็ต</td>
+</tr><tr>
+<td>-k pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า sticky bit ถูกเซ็ต</td>
+</tr><tr>
+<td>-s pathname</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>และ<WBR>เป็น<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>ข้อ<WBR>มูล</td>
+</tr><tr>
+<td>-t channelno</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า<WBR>เป็น<WBR>ไฟล์<WBR>ที่<WBR>ติด<WBR>ต่อ<WBR>กับ terminal (tty)</td>
+</tr>
+</table>
+</p>
+
+<p>
+การ<WBR>ตรวจ<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>เกี่ยว<WBR>กับส<WBR>ตริง
+<table>
+<tr>
+<td>-z string</td><td>: ถูก<WBR>ต้อง<WBR>ถ้าส<WBR>ตริง<WBR>มี<WBR>ความ<WBR>ยาว<WBR>เป็น<WBR>ศูนย์</td>
+</tr><tr>
+<td>-n string</td><td>: ถูก<WBR>ต้อง<WBR>ถ้าส<WBR>ตริง<WBR>มี<WBR>ความ<WBR>ยาว<WBR>ไม่<WBR>เป็น<WBR>ศูนย์</td>
+</tr><tr>
+<td>str1 = str2</td><td>: ถูก<WBR>ต้อง<WBR>ถ้าส<WBR>ตริง<WBR>ทั้ง<WBR>สอง<WBR>เหมือน<WBR>กัน</td>
+</tr><tr>
+<td>str</td><td>: ถูก<WBR>ต้อง<WBR>ถ้าส<WBR>ตริง<WBR>มี<WBR>ข้อ<WBR>มูล<WBR>อยู่ (ไม่<WBR>เป็น null)</td>
+</tr>
+</table>
+</p>
+
+<p>
+การ<WBR>ตรวจ<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>เกี่ยว<WBR>กับ<WBR>ตัว<WBR>เลข
+<table>
+<tr>
+<td>n1 -eq n2</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า n1 เท่า<WBR>กับ n2</td>
+</tr><tr>
+<td>n1 -ne n2</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า n1 ไม่<WBR>เท่า<WBR>กับ n2</td>
+</tr><tr>
+<td>n1 -gt n2</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า n1 มาก<WBR>กว่า n2</td>
+</tr><tr>
+<td>n1 -lt n2</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า n1 น้อย<WBR>กว่า n2</td>
+</tr><tr>
+<td>n1 -ge n2</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า n1 มาก<WBR>กว่า<WBR>หรือ<WBR>เท่า<WBR>กับ n2</td>
+</tr><tr>
+<td>n1 -le n2</td><td>: ถูก<WBR>ต้อง<WBR>ถ้า n1 น้อย<WBR>กว่า<WBR>หรือ<WBR>เท่า<WBR>กับ n2</td>
+</tr>
+</table>
+</p>
+
+<p>
+การ<WBR>รวม<WBR>เงื่อน<WBR>ไข
+<table>
+<tr>
+<td>!</td><td>: เปลี่ยน<WBR>ผล<WBR>ลัพธ์<WBR>เงื่อน<WBR>ไข<WBR>เป็น<WBR>ตรง<WBR>กัน<WBR>ข้าม</td>
+</tr><tr>
+<td>-o</td><td>: เงื่อน<WBR>ไข<WBR>แบบ<WBR>หรือ (OR)</td>
+</tr><tr>
+<td>-a</td><td>: เงื่อน<WBR>ไข<WBR>แบบ<WBR>และ (AND)</td>
+</tr><tr>
+<td>(...)</td><td>: รวม<WBR>คำ<WBR>สั่ง test</td>
+</tr>
+</table>
+</p>
+
+<p>
+ตา<WBR>ราง<WBR>ผล<WBR>ลัพธ์<WBR>คณิต<WBR>ศาสตร์ลอ<WBR>จิก<WBR>ของ A กับ B
+<table border>
+<tr>
+<td>A</td><td>B</td><td>A and B</td><td>A or B</td>
+</tr><tr>
+<td>T</td><td>T</td><td>T</td><td>T</td>
+</tr><tr>
+<td>T</td><td>F</td><td>F</td><td>T</td>
+</tr><tr>
+<td>F</td><td>T</td><td>F</td><td>T</td>
+</tr><tr>
+<td>F</td><td>F</td><td>F</td><td>F</td>
+</tr>
+</table>
+</p>
+
+<p>
+ใน<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง test กับ<WBR>เงื่อน<WBR>ไข เมื่อ<WBR>คำ<WBR>สั่ง test ตรวจ<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>นั้น<WBR>ว่า<WBR>ถูก<WBR>ต้อง<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>คืน<WBR>ค่า exit code 0 ให้ จาก<WBR>หัว<WBR>ข้อ<WBR>ที่<WBR>แล้ว เรา<WBR>ได้<WBR>เรียน<WBR>รู้<WBR>ว่า<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ตรวจ<WBR>สอบ<WBR>ค่า exit code ของ<WBR>โปรแกรม<WBR>หรือ<WBR>เชลล์<WBR>เรา<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>จาก<WBR>ตัวแปร "$?"
+ได้ ซึ่ง<WBR>ใน<WBR>ที่<WBR>นี้<WBR>เรา<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>ค่า exit code นั้น<WBR>ออก<WBR>มา<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง echo
+</p>
+ตัว<WBR>อย่าง
+<p>
+ตัว<WBR>อย่าง<WBR>นี้<WBR>จะ<WBR>ทด<WBR>สอบ<WBR>ว่า "/bin" เป็นไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>หรือ<WBR>ไม่ ซึ่ง<WBR>ก็<WBR>จะ<WBR>ได้ exit code 
+จาก<WBR>คำ<WBR>สั่ง test เป็น 0 ซึ่ง<WBR>ก็<WBR>คือ "/bin" เป็นไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>จริง ส่วน<WBR>ตัว<WBR>อย่าง<WBR>ถัด<WBR>ไป<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ว่า "/bin" เป็น<WBR>ไฟล์<WBR>หรือ<WBR>ไม่ ซึ่ง<WBR>ผล<WBR>ลัพธ์<WBR>ที่<WBR>ได้<WBR>ก็<WBR>จะ<WBR>เป็น<WBR>เท็จ
+</p>
+<pre>
+$ test -d /bin; echo $?	
+0
+$ test -f /bin; echo $?
+1
+</pre>
+
+ตัว<WBR>อย่าง<WBR>ถัด<WBR>มา<WBR>จะ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>ก้าม<WBR>ปู "[...]" ทำ<WBR>การ<WBR>ครอบ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ทด<WBR>สอบ<WBR>ซึ่ง<WBR>ก็<WBR>จะ<WBR>ให้<WBR>ผล<WBR>ลัพธ์<WBR>แบบ<WBR>เดียว<WBR>กับ<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง test แต่<WBR>การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>ก้าม<WBR>ปู<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>บรรทัด<WBR>คำ<WBR>สั่ง<WBR>ดู<WBR>เป็น<WBR>ระเบียบ<WBR>และ<WBR>เข้า<WBR>ใจ<WBR>ง่าย<WBR>กว่า สำหรับ<WBR>ใน<WBR>คอร์น<WBR>เชลล์<WBR>จะ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>ก้าม<WBR>ปู<WBR>ซ้อน "[[...]]" การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>แบบ<WBR>นี้<WBR>ใน<WBR>การ<WBR>ทด<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>จะ<WBR>มี<WBR>รูป<WBR>แบบ<WBR>พิเศษ<WBR>ที่<WBR>เพิ่ม<WBR>เติม<WBR>ขึ้น<WBR>มา<WBR>จาก<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง test หรือ<WBR>การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>ก้าม<WBR>ปู<WBR>ธรรม<WBR>ดา 
+<pre>
+$ [ ! -f /bin ]; echo $?
+0
+</pre>
+
+ตัว<WBR>อย่าง<WBR>นี้<WBR>จะ<WBR>ใช้<WBR>นิ<WBR>พจน์<WBR>ทาง<WBR>ตรรกะ<WBR>เข้า<WBR>มา<WBR>ร่วม<WBR>ตรวจ<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>ด้วย คือ<WBR>เป็น<WBR>การ<WBR>ทด<WBR>สอบ<WBR>ว่า<WBR>ค่า<WBR>ตัว<WBR>เลข 1 มาก<WBR>กว่า 2 และ ค่า<WBR>ตัว<WBR>เลข 2 มาก<WBR>กว่า 3 หรือ<WBR>ไม่ พิจารณา<WBR>จาก<WBR>ตา<WBR>ราง<WBR>ทาง<WBR>ตรรกะ<WBR>ศาสตร์<WBR>แล้ว ก็<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>ผล<WBR>ลัพธ์<WBR>ของ "จริง" และ "เท็จ" (T AND F) ก็<WBR>จะ<WBR>ได้<WBR>ออก<WBR>มา<WBR>เป็น<WBR>เท็จ ซึ่ง<WBR>ก็<WBR>จะ<WBR>ตรง<WBR>กับ<WBR>ผล<WBR>ลัพธ์<WBR>ที่<WBR>เชลล์<WBR>พิมพ์<WBR>ออก<WBR>มา<WBR>ให้
+<pre>
+$ [ 1 -gt 2 -a 3 -gt 2 ]; echo $?
+1
+</pre>
+
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>การ<WBR>ทำ<WBR>งาน Flow control command</H3>
+<p>
+ผล<WBR>ลัพธ์<WBR>ที่<WBR>ได้<WBR>จาก<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง test ทำ<WBR>การ<WBR>ทด<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>นี้ เรา<WBR>สามารถ<WBR>นำ<WBR>มา<WBR>ใช้<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>ของ<WBR>การ<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>การ<WBR>ทำ<WBR>งาน<WBR>ของ<WBR>โปรแกรม<WBR>ได้ ซึ่ง<WBR>ก็<WBR>จะ<WBR>ขึ้น<WBR>อยู่<WBR>กับ<WBR>รูป<WBR>แบบ<WBR>ของ<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>ต่างๆ<WBR>ว่า<WBR>จะ<WBR>จัด<WBR>การ<WBR>กับ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>เป็น<WBR>จริง<WBR>อย่าง<WBR>ไร และ<WBR>จะ<WBR>จัด<WBR>การ<WBR>กับ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>เป็น<WBR>เท็จ<WBR>อย่าง<WBR>ไร
+</p>
+
+การ<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>การ<WBR>ทำ<WBR>งาน<WBR>ของ<WBR>โปรแกรม<WBR>โดย<WBR>ใช้<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>แบบ ถ้า...แล้ว (if...then)
+รูป<WBR>แบบ<WBR>ของ<WBR>คำ<WBR>สั่ง
+
+<ol>
+<li>
+<pre>
+if <condition>
+then
+	command list
+else
+	command list
+fi
+</pre>
+</li>
+<p>
+สำหรับ<WBR>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>แบบ ถ้า...แล้ว นี้<WBR>หาก<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ทด<WBR>สอบ<WBR>คืน<WBR>ค่า exit code
+ที่<WBR>เป็น<WBR>จริง (0) มา<WBR>ให้<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>คำ<WBR>สั่ง<WBR>หลัง "then" แต่<WBR>ถ้า<WBR>เป็น<WBR>เท็จ (ไม่ 0) ก็<WBR>จะ<WBR>ทำ<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>อยู่<WBR>หลัง "else" คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>แบบ ถ้า...แล้ว จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ปิด<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>ด้วย<WBR>คำ<WBR>สำคัญ "fi" (เป็น<WBR>ตัว<WBR>กลับ<WBR>หน้า-หลัง<WBR>กับ if)
+</p>
+
+ตัว<WBR>อย่าง
+<pre>
+if [ -d $1 ]
+then
+    echo $1 is a directory
+else
+    echo $1 is not a directory
+fi
+</pre>
+
+ให้<WBR>บัน<WBR>ทึก<WBR>ชื่อ<WBR>ไฟล์<WBR>เป็น "ex3" แล้ว<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>โหมด<WBR>เป็น<WBR>โหมด<WBR>ที่<WBR>สามารถ<WBR>สั่ง<WBR>ให้<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>จาก<WBR>นั้น<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>โปรแกรม<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ ex3 /bin
+/bin is a directory
+</pre>
+
+<li>
+<pre>
+if <condition>
+then
+	command list
+elif <condition>
+then
+	command list
+else
+	command list
+fi
+</pre>
+</li>
+<p>
+สำหรับ<WBR>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>แบบ ถ้า...แล้ว รูป<WBR>แบบ<WBR>ที่<WBR>สอง<WBR>นี้<WBR>จะ<WBR>คล้าย<WBR>กับ<WBR>แบบ<WBR>แรก เพียง<WBR>แต่<WBR>มี<WBR>การ<WBR>เพิ่ม<WBR>เติม<WBR>การ<WBR>ตรวจ<WBR>เงื่อน<WBR>ไข<WBR>เพิ่ม<WBR>ขึ้น<WBR>มา<WBR>อีก<WBR>เงื่อน<WBR>ไข<WBR>หนึ่ง ซึ่ง<WBR>เงื่อน<WBR>ไข<WBR>นี้<WBR>จะ<WBR>อยู่<WBR>ตาม<WBR>หลัง<WBR>คำ<WBR>บังคับ "elif" หาก<WBR>เงื่อน<WBR>ไข<WBR>ตรง<WBR>นี้<WBR>เป็น<WBR>จริง ก็<WBR>จะ<WBR>ทำ<WBR>งาน<WBR>ตาม<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>หลัง<WBR>คำ<WBR>บังคับ "then" ที่<WBR>ตาม<WBR>มา<WBR>ทัน<WBR>ที สำหรับ<WBR>เงื่อน<WBR>ไข<WBR>ของ<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>แบบ<WBR>นี้ สามารถ<WBR>จะ<WBR>เพิ่ม<WBR>เติม<WBR>เข้า<WBR>มา<WBR>ได้<WBR>ไม่<WBR>จำกัด<WBR>จำนวน ใน<WBR>กรณี<WBR>ที่<WBR>เงื่อน<WBR>ไข<WBR>เกิด<WBR>ถูก<WBR>ต้อง<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>เงื่อน<WBR>ไข ก็<WBR>จะ<WBR>เข้า<WBR>ไป<WBR>ทำ<WBR>งาน<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>แรก<WBR>ตาม<WBR>เงื่อน<WBR>ไข<WBR>แรก<WBR>สุด<WBR>ที่<WBR>พบ<WBR>ว่า<WBR>ตรง<WBR>กัน และ<WBR>จะ<WBR>ไม่<WBR>สน<WBR>ใจ<WBR>เงื่อน<WBR>ไข<WBR>อื่นๆ<WBR>ที่<WBR>ตรง<WBR>กัน<WBR>อีก หาก<WBR>เงื่อน<WBR>ไข<WBR>ทั้ง<WBR>หมด<WBR>ของ "if" และ "elif" ไม่<WBR>มี<WBR>เงื่อน<WBR>ไข<WBR>ใด<WBR>ที่<WBR>เป็น<WBR>จริง<WBR>เลย ก็<WBR>จะ<WBR>ไป<WBR>ทำ<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>หลัง<WBR>คำ<WBR>บังคับ "else" แทน
+</p>
+
+ตัว<WBR>อย่าง
+
+<pre>
+if [ "$1" = "JOHN" ]
+then
+    echo "Hello $1" 
+elif [ "$1" = "MARY" ]
+then
+    echo "Hello $1"
+else
+    echo "I don't know $1"
+fi
+</pre>
+
+ให้<WBR>บัน<WBR>ทึกสค<WBR>ริปต์<WBR>เป็น<WBR>ชื่อ ex4 แล้ว<WBR>ทด<WBR>ลอง<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ ex4 JOHN
+Hello JOHN
+$ ex4 MARY
+Hello MARY
+$ ex4 PETER
+I don't know PETER
+</pre>
+</ol>
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ทั่ว<WBR>ไป<WBR>บน<WBR>ลีนุกซ์<WBR>มา<WBR>เป็น<WBR>เงื่อน<WBR>ไข</H3>
+นอก<WBR>จาก<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ใช้<WBR>กับ<WBR>คำ<WBR>สั่ง "test" แล้ว<WBR>เรา<WBR>สามารถ<WBR>นำ<WBR>เอา<WBR>คำ<WBR>สั่ง<WBR>อื่นๆ หรือ<WBR>แม้<WBR>แต่<WBR>เชลล์สค<WBR>ริปต์<WBR>ที่<WBR>เรา<WBR>สร้าง<WBR>ขึ้น<WBR>มา<WBR>เอง มา<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>ของ<WBR>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>แบบ 
+"ถ้า...แล้ว" ก็<WBR>ได้ ซึ่ง<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>จาก exit code ของ<WBR>คำ<WBR>สั่ง<WBR>หรือ<WBR>เชลล์สค<WBR>ริปต์<WBR>นั้นๆ หาก exit code เป็น 0 ก็<WBR>จะ<WBR>ถือ<WBR>ว่า<WBR>เงื่อน<WBR>ไข<WBR>เป็น<WBR>จริง แต่<WBR>ถ้า<WBR>ไม่<WBR>เป็น 0 ก็<WBR>จะ<WBR>ถือ<WBR>ว่า<WBR>เงื่อน<WBR>ไข<WBR>เป็น<WBR>เท็จ เรา<WBR>อาจ<WBR>นำ<WBR>เอา<WBR>หลายๆ<WBR>คำ<WBR>สั่ง<WBR>เข้า<WBR>มา<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>ร่วม<WBR>กัน<WBR>ก็<WBR>ได้ แต่<WBR>วิธี<WBR>การ<WBR>รวม<WBR>ก็<WBR>จะ<WBR>แตก<WBR>ต่าง<WBR>กัน<WBR>ไป กล่าว<WBR>คือ<WBR>หาก<WBR>รวม<WBR>เงื่อน<WBR>ไข<WBR>แบบ "และ" ก็<WBR>จะ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย "&&"
+แต่<WBR>หาก<WBR>รวม<WBR>เงื่อน<WBR>ไข<WBR>แบบ "หรือ" ก็<WBR>จะ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย "||"
+
+<ol>
+<li>if statement1 || statement2</li>
+<br>ตัว<WBR>อย่าง
+
+<pre>
+filename=$1
+word1=$2
+word2=$3
+
+if grep $word1 $filename > /dev/null || grep $word2 $filename > /dev/null
+then
+    echo "$word1 or $word2 is in $filename."
+fi
+</pre>
+
+ให้<WBR>ทำ<WBR>การ<WBR>บัน<WBR>ทึก<WBR>เชลล์สค<WBR>ริปต์<WBR>นี้<WBR>เป็น<WBR>ไฟล์<WBR>ชื่อ ex5 และ<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ ex5 ex5 if case
+if or case is in ex5
+</pre>
+
+จาก<WBR>ตัว<WBR>อย่าง<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ตรวจ<WBR>หา<WBR>คำ<WBR>สอง<WBR>คำ<WBR>ใน<WBR>ไฟล์ หาก<WBR>หา<WBR>เจอ<WBR>คำ<WBR>ใด<WBR>คำ<WBR>หนึ่ง<WBR>หรือ<WBR>ทั้ง<WBR>คู่ ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แจ้ง<WBR>ให้<WBR>ทราบ<WBR>ว่า<WBR>หา<WBR>เจอ<WBR>คำ<WBR>ที่<WBR>หนึ่ง "หรือ" คำ<WBR>ที่<WBR>สอง จาก<WBR>ตัว<WBR>อย่าง<WBR>ก็<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ตรวจ<WBR>หา<WBR>คำ<WBR>ว่า 
+"if" กับ<WBR>คำ<WBR>ว่า "case" ใน<WBR>ไฟล์ ex5 ซึ่ง<WBR>เป็น<WBR>ตัว<WBR>เชลล์สค<WBR>ริปต์<WBR>เอง เรา<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>มี<WBR>คำ<WBR>ว่า
+"if" อยู่<WBR>ใน ex5 แต่<WBR>ไม่<WBR>มี<WBR>คำ<WBR>ว่า "case"  ซึ่ง<WBR>ก็<WBR>จะ<WBR>ตรง<WBR>กับ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ว่า<WBR>พบ<WBR>คำ<WBR>ใด<WBR>คำ<WBR>หนึ่ง<WBR>อยู่<WBR>ใน<WBR>ไฟล์ อนึ่ง<WBR>สำหรับ<WBR>คำ<WBR>สั่ง "grep" ซึ่ง<WBR>เป็น<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ใช้<WBR>ตรวจ<WBR>หา<WBR>คำ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ค้น<WBR>หา<WBR>จาก<WBR>ไฟล์<WBR>นั้น<WBR>จะ<WBR>ทำ<WBR>การ<WBR>คืน<WBR>ค่า exit code ที่<WBR>เป็น 0 มา<WBR>ให้<WBR>ใน<WBR>กรณี<WBR>ที่<WBR>หา<WBR>คำ<WBR>นั้นๆ<WBR>พบ แต่<WBR>หาก<WBR>หา<WBR>ไม่<WBR>พบ<WBR>ก็<WBR>จะ<WBR>คืน<WBR>ค่า<WBR>ที่<WBR>ไม่<WBR>เป็น 0 ออก<WBR>มา<WBR>ให้
+
+<li>if statement1 && statement2</li>
+<br>ตัว<WBR>อย่าง
+
+<pre>
+filename=$1
+word1=$2
+word2=$3
+
+if grep $word1 $filename > /dev/null && grep $word2 $filename > /dev/null
+then
+    echo "$word1 and $word2 are both in $filename."
+fi
+</pre>
+
+ให้<WBR>ทำ<WBR>การ<WBR>บัน<WBR>ทึก<WBR>เชลล์สค<WBR>ริปต์<WBR>นี้<WBR>เป็น<WBR>ไฟล์<WBR>ชื่อ ex6 และ<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ ex6 ex6 if then
+if and then are both in ex5
+</pre>
+
+สำหรับ<WBR>ตัว<WBR>อย่าง<WBR>นี้<WBR>จะ<WBR>ต้อง<WBR>ตรวจ<WBR>คำ<WBR>เจอ<WBR>ทั้ง<WBR>สอง<WBR>คำ (คือ "if" กับ "then") โปรแกรม<WBR>จึง<WBR>จะ<WBR>แจ้ง<WBR>ให้<WBR>ทราบ<WBR>ว่า<WBR>พบ<WBR>คำ<WBR>ทั้ง<WBR>สอง<WBR>อยู่<WBR>ใน<WBR>ไฟล์<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ค้น<WBR>หา<WBR>นั้น
+</ol>
+
+<H3 ALIGN=CENTER>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>แบบ case</H3>
+
+<img src="P2_727if-flow.gif" 
+alt="[Flow chart of if...then structure]">
+<br>
+รูปโฟลว์<WBR>ชาร์ต<WBR>ของ if...then และ<WBR>มี<WBR>ลักษณะ<WBR>โครง<WBR>สร้าง<WBR>แบบ<WBR>เดียว<WBR>กับ<WBR>โครง<WBR>สร้าง<WBR>ของ case ด้วย
+<br><br>
+
+โครง<WBR>สร้าง<WBR>ของ case จะ<WBR>มี<WBR>ลักษณะ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<pre>
+case STRING in
+    pattern-1)  command-list1 ;;
+    pattern-2)  command-list2 ;;
+    pattern-3)  command-list3 ;;
+            *)  cammand-list-else ;;
+esac
+</pre>
+
+หาก<WBR>มี<WBR>เงื่อน<WBR>ไข<WBR>แบบ "ถ้า...แล้ว" หรือ if-elif จำนวน<WBR>มาก เรา<WBR>จะ<WBR>มี<WBR>วิธี<WBR>ที่<WBR>ดี<WBR>กว่า<WBR>ใน<WBR>การ<WBR>จัด<WBR>การ<WBR>กับ<WBR>เงื่อน<WBR>ไข<WBR>เหล่า<WBR>นั้น นั่น<WBR>ก็<WBR>คือ<WBR>ใช้ case เข้า<WBR>มา<WBR>แทน<WBR>ที่ สำหรับ<WBR>โครง<WBR>สร้าง<WBR>ของ 
+case ตาม<WBR>ปกติ<WBR>จะ<WBR>ใช้<WBR>จับ<WBR>คู่ (matching) กับส<WBR>ตริง<WBR>ที่<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ลักษณะ (pattern) เหมือน<WBR>กัน<WBR>และ<WBR>จะ<WBR>ไม่<WBR>สามารถ<WBR>ใช้<WBR>ได้<WBR>กับ<WBR>รูป<WBR>แบบ<WBR>ของ<WBR>นิ<WBR>พจน์<WBR>ทาง<WBR>คณิต<WBR>ศาสตร์ สำหรับ<WBR>รูป<WBR>แบบ<WBR>ต่างๆ<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>เครื่อง<WBR>หมาย<WBR>วง<WBR>เล็บ<WBR>ปิด ")" ตาม<WBR>ท้าย  และ<WBR>หลัง<WBR>จาก<WBR>นั้น<WBR>ก็<WBR>จะ<WBR>เป็น<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>จะ<WBR>ให้<WBR>ทำ<WBR>งาน<WBR>จะ<WBR>ต้อง<WBR>ปิด<WBR>ท้าย<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย colon คู่ ";;" เรา<WBR>สามารถ<WBR>ใส่<WBR>รูป<WBR>แบบ<WBR>ได้<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>รูป<WBR>แบบ<WBR>ได้ สำหรับ<WBR>รูป<WBR>แบบ<WBR>ที่<WBR>ไม่<WBR>สามารถ<WBR>จับ<WBR>คู่<WBR>ได้<WBR>เลย จะ<WBR>ใช้<WBR>คำ<WBR>บังคับ "*" การ<WBR>ปิด<WBR>ท้าย<WBR>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม case จะ<WBR>ใช้<WBR>คำ<WBR>บังคับ "esac" (เป็น<WBR>คำ<WBR>กลับ<WBR>หน้า-หลัง<WBR>ของ "case")
+
+ตัว<WBR>อย่าง
+<pre>
+echo -n "entry (j/J/n/N/y/Y)"; read INPUT
+case "$INPUT" in
+    [yYjJ]) echo "entry is permitted" ;;
+      [nN]) echo "entry is also permitted" ;;
+         *) echo "entry is false"
+	    echo "the valid entry are (j/J/n/N/y/Y)" ;;
+esac
+</pre>
+
+ให้<WBR>บัน<WBR>ทึก<WBR>เชลล์สค<WBR>ริปต์<WBR>ข้าง<WBR>บน<WBR>ใน<WBR>ชื่อ ex7 แล้ว<WBR>ทำ<WBR>การ<WBR>เรียก<WBR>โปรแกรม<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ ex7
+entry (j/J/n/N/y/Y)j
+entry is permitted
+$ ex7
+entry (j/J/n/N/y/Y)e
+entry is false
+the valid entry are (j/J/n/N/y/Y)
+</pre>
+
+<p>
+สำหรับ<WBR>ตัว<WBR>อย่าง<WBR>การ<WBR>ใช้ case ข้าง<WBR>บน<WBR>จะ<WBR>เป็น<WBR>การ<WBR>แสดง<WBR>ถึง<WBR>การ<WBR>จับ<WBR>คู่<WBR>ของ<WBR>ตัว<WBR>อักษร ซึ่ง<WBR>เรา<WBR>จะ<WBR>อ่าน<WBR>เข้า<WBR>มา<WBR>เก็บ<WBR>ไว้<WBR>ใน<WBR>ตัวแปร<WBR>เชลล์<WBR>ชื่อ INPUT และ<WBR>จะ<WBR>นำ<WBR>เอา<WBR>ค่า<WBR>ใน<WBR>ตัวแปร INPUT ไป<WBR>เปรียบ<WBR>เทียบ<WBR>แบบส<WBR>ตริง<WBR>กับ<WBR>รูป<WBR>แบบ<WBR>ต่างๆ การ<WBR>ใช้<WBR>คำ<WBR>สั่ง echo -n  จะ<WBR>เป็น<WBR>การ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>ตาม<WBR>หลัง echo แบบ<WBR>ไม่<WBR>ขึ้น<WBR>บรรทัด<WBR>ใหม่ ดัง<WBR>นั้น<WBR>เมื่อ<WBR>ใช้<WBR>คำ<WBR>สั่ง read  ตาม<WBR>มา<WBR>ก็<WBR>จะ<WBR>เป็น<WBR>การ<WBR>รอ<WBR>รับ<WBR>การ<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>ต่อ<WBR>ท้าย<WBR>จาก<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>พิมพ์<WBR>ออก<WBR>มา<WBR>ทัน<WBR>ที (ไม่<WBR>ขึ้น<WBR>บรรทัด<WBR>ใหม่)
+</p>
+
+<p>
+จาก<WBR>ตัว<WBR>อย่าง<WBR>เรา<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>รูป<WBR>แบบ<WBR>ของส<WBR>ตริง<WBR>แต่<WBR>ละ<WBR>บรรทัด<WBR>สามารถ<WBR>กำหนด<WBR>ให้<WBR>จับ<WBR>คู่<WBR>กัน<WBR>ได้<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>แบบ ตัว<WBR>อย่าง<WBR>เช่น "[yYjJ]" ก็<WBR>จะ<WBR>เป็น<WBR>การ<WBR>เลือก<WBR>ได้<WBR>ว่า<WBR>จะ<WBR>จับ<WBR>คู่<WBR>กับ<WBR>ตัว<WBR>อักษร 
+"y", "Y", "j" หรือ "J" เนื่อง<WBR>จาก<WBR>อยู่<WBR>ใน<WBR>เครื่อง<WBR>หมาย<WBR>ก้าม<WBR>ปู ซึ่ง<WBR>มี<WBR>ความ<WBR>หมาย<WBR>ว่า<WBR>สามารถ<WBR>เลือก<WBR>เอา<WBR>ได้<WBR>หนึ่ง<WBR>อย่าง<WBR>จาก<WBR>ที่<WBR>อยู่<WBR>ใน<WBR>เครื่อง<WBR>หมาย<WBR>ก้าม<WBR>ปู<WBR>นั้น
+</p>
+
+<p>
+ส่วน<WBR>บรรทัด<WBR>สุด<WBR>ท้าย<WBR>เป็น<WBR>การ<WBR>จับ<WBR>คู่<WBR>กับส<WBR>ตริง<WBR>ที่<WBR>ไม่<WBR>เข้า<WBR>คู่<WBR>เลย<WBR>นั้น จะ<WBR>เห็น<WBR>ว่า<WBR>เรา<WBR>สามารถ<WBR>ใส่<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>เข้า<WBR>ไป<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>บรรทัด<WBR>ได้ แต่<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>สุด<WBR>ท้าย<WBR>จะ<WBR>ต้อง<WBR>ปิด<WBR>ท้าย<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย colon คู่ ";;"
+</p>
+
+<H3 ALIGN=CENTER>คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>แบบ<WBR>วน<WBR>รอบ (loop flow control)</H3>
+คำ<WBR>สั่ง<WBR>ควบ<WBR>คุม<WBR>ทิศ<WBR>ทาง<WBR>แบบ<WBR>วน<WBR>รอบ<WBR>หรือ<WBR>วน<WBR>ลูป<WBR>จะ<WBR>มี<WBR>อยู่<WBR>สาม<WBR>แบบ<WBR>คือ for, while และ until
+
+<H4 ALIGN=CENTER>for loop</H4>
+โครง<WBR>สร้าง
+<pre>
+for VAR in Arg-list
+do
+    command list
+done
+</pre>
+
+<p>
+คำ<WBR>สั่ง for นี้<WBR>จะ<WBR>ทำ<WBR>ทำ<WBR>งาน<WBR>วน<WBR>รอบ<WBR>จน<WBR>กระทั่ง<WBR>สมาชิก<WBR>ใน "Arg-list" ถูก<WBR>ใช้<WBR>หมด ชุด<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>ลูป for จะ<WBR>ต้อง<WBR>อยู่<WBR>ภาย<WBR>ใต้<WBR>คำ<WBR>บังคับ "do" และ "done" การ<WBR>ใช้ for ส่วน<WBR>ใหญ่<WBR>จะ<WBR>ใช้<WBR>กับ<WBR>ลูป<WBR>ที่<WBR>รู้<WBR>จำนวน<WBR>ของ<WBR>รอบ<WBR>ที่<WBR>ต้อง<WBR>ทำ<WBR>และ "Arg-list" ที่<WBR>แน่<WBR>นอน
+</p>
+ตัว<WBR>อย่าง
+
+<pre>
+SUM=0
+for i in 1 2 3 4 5 6 7 8 9
+do
+    SUM=`expr $SUM + $i`
+done
+echo "Sum is $SUM"
+</pre>
+
+ให้<WBR>บัน<WBR>ทึก<WBR>เชลล์สค<WBR>ริปต์<WBR>ข้าง<WBR>ต้น<WBR>เป็น<WBR>ไฟล์<WBR>ชื่อ ex8 แล้ว<WBR>สั่ง<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>ดัง<WBR>นี้
+<pre>
+$ ex8
+Sum is 45
+</pre>
+
+จาก<WBR>ตัว<WBR>อย่าง<WBR>จะ<WBR>เป็น<WBR>การ<WBR>รวม<WBR>ตัว<WBR>เลข<WBR>จำนวน<WBR>เต็ม<WBR>ตั้ง<WBR>แต่ 1 ถึง 9 เสร็จ<WBR>แล้ว<WBR>พิมพ์<WBR>ค่า<WBR>ที่ได้้<WBR>ออก<WBR>มา
+
+<H4 ALIGN=CENTER>while และ until</H4>
+<H5>โครง<WBR>สร้าง<WBR>ของ while</H5>
+<pre>
+while (true condition) 
+do
+    command list
+done
+</pre>
+
+คำ<WBR>สั่ง while จะ<WBR>ใช้<WBR>กับ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>เป็น<WBR>จริง
+<br>ตัว<WBR>อย่าง
+<pre>
+SUM=0
+i=1
+while [ $i -lt 10 ]
+do
+    SUM=`expr $SUM + $i`
+    i=`expr $i + 1`
+done
+echo "Sum is $SUM"
+</pre>
+
+โปรแกรม<WBR>ตัว<WBR>อย่าง<WBR>ข้าง<WBR>บน<WBR>จะ<WBR>ทำ<WBR>งาน<WBR>เหมือน<WBR>กับ ex8 แต่<WBR>ใน<WBR>ที่<WBR>นี้<WBR>ใช้<WBR>รูป<WBR>แบบ<WBR>ของ
+while loop โปรแกรม<WBR>จะ<WBR>ทำ<WBR>การ<WBR>บวก<WBR>ตัว<WBR>เลข "i" ไป<WBR>เรื่อยๆ<WBR>โดย<WBR>เริ่ม<WBR>ตั้ง<WBR>แต่ 1
+และ<WBR>เพิ่ม<WBR>ค่า i ขึ้น<WBR>ที<WBR>ละ<WBR>หนึ่ง ลูป<WBR>นี้<WBR>จะ<WBR>ทำ<WBR>งาน<WBR>ไป<WBR>เรื่อยๆ<WBR>ตราบ<WBR>ใด<WBR>ที่<WBR>ค่า i ยัง<WBR>น้อย<WBR>กว่า 10
+เมื่อ<WBR>ค่า i มาก<WBR>กว่า 10 แล้ว<WBR>ก็<WBR>จะ<WBR>ออก<WBR>จาก<WBR>ลูป<WBR>และ<WBR>พิมพ์<WBR>ผล<WBR>บวก<WBR>ที่<WBR>ได้<WBR>ทั้ง<WBR>หมด
+
+
+<H5>โครง<WBR>สร้าง<WBR>ของ until</H5>
+<pre>
+until (false condition)
+do
+    command list
+done
+</pre>
+
+คำ<WBR>สั่ง until จะ<WBR>ใช้<WBR>กับ<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>เป็น<WBR>เท็จ
+<br>ตัว<WBR>อย่าง
+
+<pre>
+SUM=0
+i=1
+until [ $i -eq 10 ]
+do
+    SUM=`expr $SUM + $i`
+    i=`expr $i + 1`
+done
+echo "Sum is $SUM"
+</pre>
+
+<p>
+โปรแกรม<WBR>ตัว<WBR>อย่าง<WBR>ข้าง<WBR>บน<WBR>ก็<WBR>เป็น<WBR>โปรแกรม<WBR>ที่<WBR>ให้<WBR>ผล<WBR>ลัพธ์<WBR>แบบ<WBR>เดียว<WBR>กับ<WBR>โปรแกรม<WBR>ที่<WBR>ใช้<WBR>โครง<WBR>สร้าง<WBR>ของ for-loop และ while-loop เช่น<WBR>เดียว<WBR>กัน จะ<WBR>เห็น<WBR>ว่า<WBR>โปรแกรม<WBR>มี<WBR>ลักษณะ<WBR>ที่<WBR>คล้าย<WBR>กับ<WBR>โปรแกรม<WBR>ที่<WBR>ใช้<WBR>โครง<WBR>สร้าง<WBR>แบบ while-loop มาก เพียง<WBR>แต่<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ใช้<WBR>ตรวจ<WBR>สอบ<WBR>จะ<WBR>เป็น<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>กลับ<WBR>กัน<WBR>เท่า<WBR>นั้น กล่าว<WBR>คือ<WBR>เงื่อน<WBR>ไข<WBR>นี้<WBR>จะ<WBR>ใช้<WBR>ตรวจ<WBR>สอบ<WBR>ว่า<WBR>ค่า<WBR>ของ<WBR>ตัวแปร i 
+เท่า<WBR>กับ 10 หรือ<WBR>ไม่ until-loop จะ<WBR>ทำ<WBR>การ<WBR>วน<WBR>ลูป<WBR>ทำ<WBR>งาน<WBR>ไป<WBR>เรื่อยๆ<WBR>ตราบ<WBR>ใด<WBR>ที่<WBR>เงื่อน<WBR>ไข<WBR>ที่<WBR>ตาม<WBR>หลัง until มา<WBR>นั้น<WBR>ยัง<WBR>คง<WBR>เป็น<WBR>เท็จ 
+</p>
+
+<p>
+ใน<WBR>การ<WBR>เขียน<WBR>โปรแกรม<WBR>นั้น<WBR>เรา<WBR>สามารถ<WBR>จะ<WBR>เลือก<WBR>ใช้<WBR>เฉพาะ while-loop หรือ until-loop
+ตัว<WBR>ใด<WBR>ตัว<WBR>หนึ่ง<WBR>เพียง<WBR>อย่าง<WBR>เดียว<WBR>ก็<WBR>ได้ เพราะ<WBR>เงื่อน<WBR>ไข<WBR>ของ<WBR>ลูป<WBR>ทั้ง<WBR>สอง<WBR>แบบ<WBR>เรา<WBR>สามารถ<WBR>ดัด<WBR>แปลง<WBR>ให้<WBR>ทด<WBR>แทน<WBR>กัน<WBR>ได้ ดัง<WBR>ที่<WBR>ได้<WBR>แสดง<WBR>ใน<WBR>โปรแกรม<WBR>ตัว<WBR>อย่าง แต่<WBR>หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ใช้<WBR>งาน<WBR>ลูป<WBR>ทั้ง<WBR>สอง<WBR>แบบ<WBR>ก็<WBR>ได้ ตรง<WBR>นี้<WBR>ก็<WBR>จะ<WBR>ขึ้น<WBR>อยู่<WBR>กับ<WBR>ความ<WBR>ถนัด<WBR>ของ<WBR>ผู้<WBR>เขียน<WBR>โปรแกรม<WBR>แต่<WBR>ละ<WBR>คน
+</p>
+
+<H4 ALIGN=CENTER>break และ continue</H4>
+<p>
+คำ<WBR>สั่ง break และ continue จะ<WBR>ทำ<WBR>การ<WBR>หยุด<WBR>การ<WBR>ทำ<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ตาม<WBR>หลัง break กับ
+continue และ<WBR>สำหรับ break เมื่อ<WBR>หยุด<WBR>แล้ว<WBR>ก็<WBR>จะ<WBR>กระ<WBR>โดด<WBR>ออก<WBR>ไป<WBR>นอก<WBR>ลูป ตรง<WBR>จุด<WBR>ที่<WBR>อยู่<WBR>ถัด<WBR>จาก<WBR>คำ<WBR>บังคับ "done" ส่วน continue จะ<WBR>กลับ<WBR>ไป<WBR>ทำ<WBR>งาน<WBR>ใน<WBR>ลูป<WBR>ต่อ ตรง<WBR>จุด<WBR>ที่<WBR>อยู่<WBR>ถัด<WBR>จาก<WBR>คำ<WBR>บังคับ "do"
+</p>
+
+<pre>
+SUM=0
+while [ true ]
+do
+    echo -n "Please enter number 1-9 , except 5 , (q-quit)"
+    read INPUT
+
+    if [ "$INPUT" = "q" ]
+    then
+        echo "Break loop now!"
+        break
+    elif [ $INPUT -eq 5 ]
+    then
+        echo "Please not input 5"
+        continue
+    elif [ $INPUT -lt 1 ]
+    then
+        echo "Please not input data < 1"
+        continue
+    elif [ $INPUT -gt 9 ]
+    then
+        echo "Please do not input data > 9"
+        continue
+    fi
+    SUM=`expr $SUM + $INPUT`
+done
+echo "SUM is $SUM"
+</pre>
+
+<p>
+ใน<WBR>ตัว<WBR>อย่าง<WBR>นี้<WBR>นอก<WBR>จาก<WBR>แสดง<WBR>ถึง<WBR>การ<WBR>ใช้ break กับ continue แล้ว ยัง<WBR>แสดง<WBR>ให้<WBR>เห็น<WBR>ถึง<WBR>การ<WBR>ใช้ while ที่<WBR>เป็น<WBR>ที่<WBR>นิยม<WBR>ใช้<WBR>อีก<WBR>แบบ<WBR>หนึ่ง นั่น<WBR>ก็<WBR>คือ<WBR>การ<WBR>ใช้<WBR>กับ<WBR>เงื่อน<WBR>ไข "true" วิธี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>แบบ<WBR>นี้ จะ<WBR>ทำ<WBR>ให้<WBR>โปรแกรม<WBR>วน<WBR>ลูป<WBR>แบบ<WBR>ไม่<WBR>รู้<WBR>จบ ซึ่ง<WBR>มัก<WBR>จะ<WBR>ใช้<WBR>กับ<WBR>การ<WBR>วน<WBR>ทำ<WBR>งาน<WBR>ที่<WBR>มี<WBR>การ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>ไป<WBR>ตาม<WBR>ตัว<WBR>อย่าง<WBR>ข้าง<WBR>ต้น จะ<WBR>มี<WBR>เงื่อน<WBR>ไข<WBR>ของ<WBR>การ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>บาง<WBR>รูป<WBR>แบบ<WBR>ที่<WBR>จะ<WBR>ใช้<WBR>กระ<WBR>โดด<WBR>ออก<WBR>จาก<WBR>ลูป<WBR>เพื่อ<WBR>จบ<WBR>การ<WBR>ทำ<WBR>งาน ซึ่ง<WBR>ใน<WBR>ที่<WBR>นี้<WBR>ก็<WBR>จะ<WBR>ใช้<WBR>คำ<WBR>สั่ง "break" เมื่อ<WBR>ผู้<WBR>ใช้<WBR>มี<WBR>การ<WBR>ป้อน<WBR>ตัว<WBR>อักษร "q" เข้า<WBR>มา เรา<WBR>อาจ<WBR>จะ<WBR>ใช้<WBR>คำ<WBR>สั่ง "exit" แทน<WBR>ก็<WBR>ได้ แต่<WBR>โปรแกรม<WBR>จะ<WBR>ไม่<WBR>ทำ<WBR>งาน<WBR>ส่วน<WBR>ที่<WBR>พิมพ์<WBR>ผล<WBR>ลัพธ์<WBR>ที่<WBR>อยู่<WBR>ท้าย<WBR>โปรแกรม
+</p>
+
+<p>
+สำหรับ<WBR>คำ<WBR>สั่ง "continue" จะ<WBR>ใช้<WBR>กับ<WBR>การ<WBR>ป้อน<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>เป็น<WBR>ตัว<WBR>เลข 5  ซึ่ง<WBR>ใน<WBR>ที่<WBR>นี้<WBR>ก็<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ข้าม<WBR>การ<WBR>บวก<WBR>เลข 5 ไป ตัว<WBR>เลข<WBR>ที่<WBR>ใส่<WBR>ได้<WBR>และ<WBR>โปรแกรม<WBR>จะ<WBR>ทำ<WBR>การ<WBR>บวก<WBR>เลข<WBR>ให้<WBR>จะ<WBR>มี<WBR>เฉพาะ<WBR>ตัว<WBR>เลข 1-4 และ 6-9 ส่วน<WBR>ตัว<WBR>เลข<WBR>ที่<WBR>น้อย<WBR>กว่า 1 และ<WBR>มาก<WBR>กว่า 9 ก็<WBR>จะ<WBR>ถูก<WBR>คำ<WBR>สั่ง
+"continue" ข้าม<WBR>ส่วน<WBR>ของ<WBR>โปรแกรม<WBR>ที่<WBR>เป็น<WBR>การ<WBR>คำนวณ<WBR>การ<WBR>บวก<WBR>เลข<WBR>ไป<WBR>เช่น<WBR>เดียว<WBR>กัน
+</p>
+
+<p>
+คำ<WBR>สั่ง continue และ break นี้<WBR>จะ<WBR>ทำ<WBR>การก<WBR>ระ<WBR>โดด<WBR>ออก<WBR>ไป<WBR>จาก<WBR>ลูป<WBR>ที่<WBR>โปรแกรม<WBR>กำลัง<WBR>ทำ<WBR>งาน<WBR>อยู่ แต่<WBR>เรา<WBR>สามารถ<WBR>ระบุ<WBR>ให้ continue และ break ทำ<WBR>การก<WBR>ระ<WBR>โดด<WBR>ออก<WBR>ไป<WBR>ยัง<WBR>ลูป<WBR>ที่<WBR>ชั้น<WBR>ใด<WBR>ก็<WBR>ได้ ใน<WBR>กรณี<WBR>ที่<WBR>ลูป<WBR>ของ<WBR>เรา<WBR>มี<WBR>การ<WBR>ครอบ<WBR>อยู่<WBR>หลาย<WBR>ชั้น วิธี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ก็<WBR>เพียง<WBR>แต่<WBR>เติม<WBR>ตัว<WBR>เลข<WBR>ตาม<WBR>ท้าย<WBR>คำ<WBR>สั่ง break และ continue เท่า<WBR>นั้น ตัว<WBR>อย่าง<WBR>เช่น "break 2" จะ<WBR>ทำ<WBR>การก<WBR>ระ<WBR>โดด<WBR>ออก<WBR>จาก<WBR>ลูป<WBR>ไป<WBR>สอง<WBR>ชั้น (ไป<WBR>อยู่<WBR>หลัง done ของ<WBR>ลูป<WBR>ที่<WBR>สอง)
+</p>
+ 
+<H3 ALIGN=CENTER>workshop : โปรแกรม<WBR>สำเนาไดเ<WBR>รก<WBR>ทอ<WBR>รี (copydir)</H3>
+<p>
+เรา<WBR>ได้<WBR>เรียน<WBR>รู้<WBR>วิธี<WBR>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์<WBR>มา<WBR>พอ<WBR>สม<WBR>ควร<WBR>แล้ว ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>โครง<WBR>งาน<WBR>สำหรับ<WBR>การ<WBR>เขียน<WBR>โปรแกรม<WBR>สำเนาไดเ<WBR>รก<WBR>ทอ<WBR>รี ใน<WBR>ระบบ<WBR>ลีนุกซ์<WBR>ไม่<WBR>มี<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ทำ<WBR>การ<WBR>สำเนาไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>โดย<WBR>ตรง แทน<WBR>ที่<WBR>เรา<WBR>จะ<WBR>ใช้<WBR>วิธี<WBR>สำเนา<WBR>ไฟล์<WBR>ที<WBR>ละ<WBR>ไฟล์<WBR>จากไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>หนึ่ง<WBR>ไป<WBR>ยัง<WBR>อีกไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>หนึ่ง ควร<WBR>จะ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์<WBR>ขึ้น<WBR>มา<WBR>เพื่อ<WBR>จะ<WBR>จัด<WBR>การ<WBR>กับ<WBR>ปัญหา<WBR>นี้<WBR>โดย<WBR>เฉพาะ
+</p>
+
+คำ<WBR>สั่ง<WBR>ที่<WBR>อาจ<WBR>เป็น<WBR>ประ<WBR>โยชน์<WBR>กับ<WBR>การ<WBR>เขียน<WBR>โปรแกรม
+<ul>
+<li>
+dirname จะ<WBR>แสดง<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ของ<WBR>โปรแกรม<WBR>ออก<WBR>มา (ใน<WBR>กรณี<WBR>ที่<WBR>ใส่<WBR>ชื่อ<WBR>แบบ<WBR>เต็ม)
+</li><li>
+basename จะ<WBR>แสดง<WBR>เฉพาะ<WBR>ชื่อ<WBR>ของ<WBR>โปรแกรม<WBR>ออก<WBR>มา (ใน<WBR>กรณี<WBR>ที่<WBR>ใส่<WBR>ชื่อ<WBR>แบบ<WBR>เต็ม)
+</li>
+</ul>
+
+ตัว<WBR>อย่าง<WBR>เช่น
+<pre>
+$ dirname /usr/bin/ls
+/usr/bin
+
+$ basename /usr/bin/ls
+ls
+</pre>
+
+ปกติ<WBR>ผู้<WBR>ใช้<WBR>ยู<WBR>นิกซ์<WBR>ใน<WBR>ระดับ<WBR>ผู้<WBR>เชี่ยว<WBR>ชาญ<WBR>จะ<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง find ควบ<WBR>คู่<WBR>ไป<WBR>กับ<WBR>คำ<WBR>สั่ง
+cpio เพื่อ<WBR>ช่วย<WBR>ใน<WBR>การ<WBR>สำเนาไดเ<WBR>รก<WBR>ทอ<WBR>รี โดย<WBR>จะ<WBR>ทำ<WBR>การ<WBR>สำเนา<WBR>ไฟล์<WBR>ทั้ง<WBR>หมด<WBR>และ<WBR>รวม<WBR>ทั้ง<WBR>ไฟล์<WBR>ใดไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ล่างๆ<WBR>ด้วย ไป<WBR>ไว้<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใหม่ โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ดัง<WBR>นี้
+
+<pre>
+$ find [src directory name] -print | cpio -pd [dest directory name]
+เช่น
+$ find /home/user1 -print | cpio -pd /home/user2
+</pre>
+
+<p>
+แต่<WBR>ใน<WBR>บาง<WBR>กรณี<WBR>เรา<WBR>อาจ<WBR>ไม่<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>สำเนาไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ไป<WBR>ไว้<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใหม่ (จาก<WBR>ตัว<WBR>อย่าง<WBR>คือ /home/user2) เพราะ<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใหม่<WBR>อาจ<WBR>มี<WBR>ไฟล์<WBR>อื่นๆ<WBR>อยู่<WBR>ก่อน<WBR>แล้ว หาก<WBR>นำ<WBR>ไป<WBR>ไว้<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใหม่<WBR>เลย<WBR>อาจ<WBR>เป็น<WBR>การ<WBR>สับ<WBR>สน<WBR>กับ<WBR>ของ<WBR>เดิม<WBR>ได้ โปรแกรม<WBR>เชลล์<WBR>ของ<WBR>เรา<WBR>ก็<WBR>ควร<WBR>จะ<WBR>มี<WBR>ความ<WBR>สามารถ<WBR>ใน<WBR>การ<WBR>ตรวจ<WBR>สอบไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง<WBR>ได้<WBR>ว่า มี<WBR>ไฟล์<WBR>อยู่<WBR>ก่อน<WBR>แล้ว<WBR>หรือ<WBR>ไม่ และ<WBR>ถ้า<WBR>มี<WBR>จะ<WBR>ให้<WBR>จัด<WBR>การ<WBR>ได้<WBR>อย่าง<WBR>ไร
+</p>
+
+<p>
+นอก<WBR>จาก<WBR>นี้<WBR>หาก<WBR>ผู้<WBR>ใช้<WBR>ระบุ<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง<WBR>ผิด แทน<WBR>ที่<WBR>จะ<WBR>เป็น<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>กลับ<WBR>เป็น<WBR>ชื่อ<WBR>ไฟล์<WBR>ไป โปรแกรม<WBR>ควร<WBR>จะ<WBR>จัด<WBR>การ<WBR>อย่าง<WBR>ไร หรือ<WBR>หาก<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง<WBR>ไม่<WBR>ปรากฏ<WBR>อยู่<WBR>โปรแกรม<WBR>ควร<WBR>จะ<WBR>จัด<WBR>การ<WBR>อย่าง<WBR>ไร
+</p>
+
+<p>
+นอก<WBR>จาก<WBR>ปัญหา<WBR>ข้าง<WBR>ต้น<WBR>เหล่า<WBR>นี้<WBR>ลอง<WBR>คิด<WBR>ถึง<WBR>ปัญหา<WBR>ที่<WBR>อาจ<WBR>เกิด<WBR>ขึ้น<WBR>อื่นๆ ลอง<WBR>ออก<WBR>แบบ<WBR>โปรแกรม<WBR>ที่<WBR>ช่วย<WBR>ให้<WBR>ผู้<WBR>ใช้<WBR>ที่<WBR>ไม่<WBR>เชี่ยว<WBR>ชาญ<WBR>ลีนุกซ์/ยู<WBR>นิกซ์ สามารถ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>ได้<WBR>ง่าย<WBR>เท่า<WBR>ที่<WBR>จะ<WBR>เป็น<WBR>ไป<WBR>ได้
+</p>
+
+ดู<WBR>ราย<WBR>ละเอียด<WBR>โปรแกรม<WBR>จาก<WBR>เอก<WBR>สาร<WBR>ตอน<WBR>ถัด<WBR>ไป (SHELL (8))
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

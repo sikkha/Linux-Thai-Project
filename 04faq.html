@@ -1,0 +1,125 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>FAQ</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>FAQ</H1>
+
+<ul>
+<li> <H4> ทำไมโฮมเพจนี้ถึงมี Underconstruction เยอะจัง</H4> </li>
+ตอบ : เราต้องขออภัยท่านที่ต้องการหาข้อมูลที่สนใจ แล้วเจอ Underconstruction แทน  เรากำลัง <br>
+รีบเร่งจัดทำข้อมูลหลายอย่างที่เป็นประโยชน์อยู่ครับ ขอเวลาอีกสักนิดแล้วเราจะทำโฮมเพจนี้ให้มีข้อมูล 
+<br>
+ของลีนุกซ์ที่น่าสนใจครับ
+<br><br><br> 
+<li> <H4> จะแก้ไขขั้นตอนการบูตลีนุกซ์ที่ใช้ lilo ต้องทำอย่างไร</H4> </li> 
+ตอบ : ให้คุณเข้าไปแก้ไขที่ไฟล์ lilo.conf ซึ่งจะอยู่ที่ไดเรกทอรี /etc ก่อนการ
+แก้ไขใดๆขอแนะนำ 
+<br>
+ให้ทำการแบคอัพไฟล์เหล่านี้ไว้ก่อน เมื่อแก้ไขเสร็จแล้วให้ใช้คำสั่ง /sbin/lilo 
+เพื่อทำการเขียนบูตพาร์ติชันใหม่ 
+<br><br>
+ตัวอย่างของไฟล์ /sbin/lilo  และคำอธิบาย<br>
+<hr>
+
+#lilo ทำการบูตจาก MBR (Master Boot Record) ของฮาร์ดดิสก์ตัวแรก <br>
+boot=/dev/hda <br><br>
+#แผนที่ที่ "บูตโหลดเดอร์" ใช้บอกตำแหน่งเคอร์เนล<br>
+map=/boot/map <br><br>
+#lilo ทำการเขียนไฟล์นี้ลงไปใน MBR<br>
+install=/boot/boot.b <br><br>
+#จำกัดเวลาที่ให้รอรับการเลือกบูต 50 วินาที ถ้าเกินนี้ ระบบจะบูตเข้าสู่โอเอสชุดแรก<br>
+#โดยอัตโนมัติ (ในที่นี้คือ linux) <br>
+prompt <br> 			       
+timeout=50 <br><br>
+#คำอธิบายการบูตส่วนลีนุกซ์ <br>
+image=/boot/vmlinuz    <br><br>
+#ชื่อที่จะต้องใส่ที่พร้อมพท์ของ lilo (สามารถกดปุ่ม tab เพื่อดูรายชื่อได้) <br>
+	label=linux <br><br>
+#บอกพาร์ติชันที่จะให้ลีนุกซ์ทำการเมาท์ขึ้นมาเป็น root พาร์ติชัน  <br>
+	root=/dev/hda2 <br>
+	initrd=/boot/initrd <br>
+	read-only <br><br>
+#ส่วนของดอสพาร์ติชัน <br>
+other=/dev/hda1 <br>
+	label=dos <br>
+	table=/dev/hda <br>
+<br><br><br> 
+
+<li><H4>จะทำอย่างไรเพื่อเพิ่มดิสก์ให้กับระบบลีนุกซ์</H4></li>
+ตอบ : เนื่องจากระบบลีนุกซ์มีการอ้างโครงสร้างของระบบไฟล์เป็นแบบไดเรกทอรีเดี่ยว<br>
+จะไม่มีลักษณะเป็นหลายๆไดรฟ์เหมือนในดอส การเพิ่มดิสก์ในลีนุกซ์จึงต้องใช้วิธีกำหนด<br>
+ควบคู่กับไดเรกทอรีในระบบ  ดังรูป<br>
+
+<pre>
+/---+ (/dev/hda1)
+    |
+    +--- usr
+    +--- home --+
+		+-- usr1
+		+-- usr2 (/dev/hdb2)
+</pre>
+
+
+จากรูปจะเห็นว่าเราไม่สามารถนำเอาเนื้อที่ของดิสก์มาเพิ่มเติมให้กับไดเรกทอรีที่มี<br>
+ไฟล์ในไดเรกทอรีนั้นอยู่แล้วได้ จะต้องเป็นไดเรกทอรีว่างๆเท่านั้น<br>
+สรุปวิธีการเพิ่มดิสก์<br>
+<ol>
+<li> 
+ทำการแบ่งพาร์ติชั่นและเปลี่ยนพาร์ติชั่น ID ให้เป็นของ ID ลีนุกซ์ โดยใช้ fsdisk
+</li>
+<li> 
+ฟอร์แมตพาร์ติชั่นที่แบ่งใหม่โดยใช้คำสั่ง mkfs<br>
+  /sbin/mkfs -t ext2 /dev/hdb2 [partition's size]
+</li>
+<li>
+สร้างไดเรกทอรีเตรียมไว้สำหรับการเมาท์ดิสก์เข้ามา ดังในรูปจะทำการเมาท์<br>
+มาไว้ใต้ /home/usr2
+</li>
+<li>
+เมาท์ดิสก์เข้ามาไว้ใต้ไดเรกทอรี<br>
+  /sbin/mount -t ext2 /dev/hdb2 /home/usr2
+</li>
+</ol>
+หลังจากทำการเมาท์เสร็จแล้ว คุณจะสามารถใช้พื้นที่ของพาร์ติชั่น /dev/hdb2 ได้ภาย<br>
+ใต้ไดเรกทอรีของ /home/usr2<br>
+หากต้องการจะให้ทำการเมาท์พาร์ติชั่นโดยอัตโนมัติตั้งแต่ตอนเริ่มบูตระบบ ให้คุณเข้า<br>
+ไปแก้ไขในไฟล์ /etc/fstab ตามรูปแบบนี้<br>
+<pre>
+[device] [mountpoint] [filesystemtype] [option] [dump] [fsckorder]
+</pre>
+เช่น<br>
+<pre>
+/dev/hdb2 /home/usr2 ext2 defaults 1 1
+</pre>
+
+<hr>
+
+<br><br><br> 
+
+
+</ul>
+
+<p>
+คุณสามารถส่งคำถามที่สงสัย ไม่ว่าจะเป็นเรื่องราวเกี่ยวกับลีนุกซ์ หรือเกี่ยวกับโครงการฯ หรือเกี่ยวกับโฮมเพจ <br>
+เราจะนำคำถามที่น่าสนใจและเป็นประโยชน์กับผู้อื่นมาลงที่ส่วน FAQ นี้ครับ
+</p>
+
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="index.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>

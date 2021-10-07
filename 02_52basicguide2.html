@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Basic guide (2)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>พื้น<WBR>ฐาน<WBR>เบื้อง<WBR>ต้น<WBR>ของ<WBR>ยู<WBR>นิกซ์<WBR>และ<WBR>ลีนุกซ์ (2)</H1>
+<H3 ALIGN=CENTER>การ<WBR>ใช้ wildcard</H3>
+ใน<WBR>บท<WBR>ที่<WBR>แล้ว<WBR>คุณ<WBR>ได้<WBR>เรียน<WBR>รู้<WBR>เรื่อง<WBR>ของ การ<WBR>จัด<WBR>การ<WBR>เกี่ยว<WBR>กับ<WBR>ไฟล์<WBR>บน<WBR>ลีนุกซ์<WBR>มา<WBR>แล้ว 
+ต่อ<WBR>ไป<WBR>นี้<WBR>เรา<WBR>จะ<WBR>เรียน<WBR>รู้<WBR>คำ<WBR>สั่ง<WBR>เพิ่ม<WBR>เติม<WBR>เพื่อ<WBR>ที่<WBR>จะ<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>เหล่า<WBR>นั้น<WBR>ให้<WBR>มี<WBR>ประสิทธิภาพ<WBR>ยิ่ง<WBR>ขึ้น<br><br>
+
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>ทำ<WBR>สำเนา<WBR>แฟ้ม<WBR>ข้อ<WBR>มูล<WBR>จากไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>ไป<WBR>ยังไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>อื่น ใน<WBR>จำนวน<WBR>หลาย<WBR>ไฟล์ คุณ<WBR>อาจ<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง "cp" และ<WBR>สั่ง<WBR>ซ้ำๆ<WBR>กัน<WBR>หลาย<WBR>ครั้ง<WBR>เพื่อ<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>สำเนา<WBR>ไฟล์<WBR>ให้<WBR>ครบ<WBR>ตาม<WBR>ความ<WBR>ต้อง<WBR>การ เรา<WBR>จะ<WBR>ใช้<WBR>ความ<WBR>สามารถ<WBR>ของ wildcard เข้า<WBR>มา<WBR>ช่วย<WBR>เพื่อ<WBR>ให้<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>เป็น<WBR>ไป<WBR>ได้<WBR>อย่าง<WBR>สะดวก<WBR>ขึ้น <br><br>
+
+ตัว<WBR>อย่าง : คุณ<WBR>ต้อง<WBR>การ<WBR>ทำ<WBR>การ<WBR>สำเนา<WBR>ไฟล์<WBR>ทั้ง<WBR>หมด<WBR>จากไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>ไป<WBR>ยังไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>ชื่อ<WBR>ว่า backup ให้<WBR>คุณ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+cp data* ~/backup
+</pre>
+เครื่อง<WBR>หมาย<WBR>ดอก<WBR>จัน (*) หมาย<WBR>ถึง<WBR>คุณ<WBR>สั่ง<WBR>ให้<WBR>ระบบ<WBR>ทำ<WBR>การ<WBR>สำเนา<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>ชื่อ<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย data ทั้ง<WBR>หมด<WBR>ไป<WBR>ไว้<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี ~/backup <br>
+<br>
+เรา<WBR>สามารถ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>ตัว<WBR>หนอน (~) เพื่อ<WBR>แทน<WBR>ความ<WBR>หมาย<WBR>ของ home directory ได้<WBR>ซึ่ง home directory ก็<WBR>คือไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ของ<WBR>เจ้า<WBR>ตัว<WBR>ผู้<WBR>ใช้<WBR>งาน<WBR>นั่น<WBR>เอง ซึ่ง<WBR>จะ<WBR>เป็นไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>แรก<WBR>ที่<WBR>เรา<WBR>ทำ<WBR>การล็<WBR>อกอิน<WBR>เข้า<WBR>มา<WBR>ใช้<WBR>งาน โดย<WBR>ปกติ home directory ของ super user จะ<WBR>เป็น
+/root สำหรับ<WBR>ตัว<WBR>อย่าง<WBR>ข้าง<WBR>บน หาก home directory ของ<WBR>เรา<WBR>เป็น /home/peter การ<WBR>อ้าง
+ถึง ~/backup จะ<WBR>หมาย<WBR>ความ<WBR>ถึง /home/peter/backup นั่น<WBR>เอง<br>
+<br>
+ให้<WBR>คุณ<WBR>ทด<WBR>ลอง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ดู<WBR>ว่า
+<pre>
+cp d*w ~/backup
+</pre>
+จะ<WBR>ทำ<WBR>งาน<WBR>อย่าง<WBR>ไร<br>
+<br>
+การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>อัศเจรีย์ (?)<br>
+การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย ? จะ<WBR>หมาย<WBR>ถึง<WBR>แทน<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้ จำนวน<WBR>เท่า<WBR>กับ<WBR>จำนวน<WBR>ของ<WBR>เครื่อง<WBR>หมาย ? นั้น ตัว<WBR>อย่าง<WBR>เช่น
+<pre>
+cp abc.d?? ~/backup
+</pre>
+จะ<WBR>หมาย<WBR>ถึง<WBR>ให้<WBR>ทำ<WBR>การ<WBR>สำเนา<WBR>ไฟล์ ที่<WBR>มี<WBR>ชื่อ<WBR>เป็น abc และ<WBR>มี<WBR>นามสกุล<WBR>ที่<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย d และ<WBR>ลง
+ท้าย<WBR>ด้วย<WBR>ตัว<WBR>อักษร<WBR>อะไร<WBR>ก็<WBR>ได้<WBR>สอง<WBR>ตัว ไป<WBR>ไว้<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี ~/backup<br>
+
+<H3 ALIGN=CENTER>UNIX concept</H3>
+
+<H4>standard input/output</H4>
+ยู<WBR>นิกซ์<WBR>จะ<WBR>เรียก<WBR>อุปกรณ์<WBR>ที่<WBR>นำ<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>ว่า standard input (stdin) ซึ่ง<WBR>โดย<WBR>ปกติ<WBR>จะ<WBR>เป็น
+keyboard และ<WBR>อุปกรณ์<WBR>ที่<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ออก<WBR>มา<WBR>ว่า standard output (stdout)ซึ่ง<WBR>โดย<WBR>ปกติ
+ก็<WBR>จะ<WBR>เป็น monitor หรือ<WBR>จอ<WBR>ภาพ<WBR>นั่น<WBR>เอง เหตุ<WBR>ที่<WBR>ไม่<WBR>ได้<WBR>กำหนด<WBR>ระบุ<WBR>ไป<WBR>อย่าง<WBR>ตาย<WBR>ตัว<WBR>ว่า<WBR>ต้อง<WBR>เป็น
+คีย์<WBR>บอร์ด<WBR>หรือ<WBR>จอ<WBR>ภาพ<WBR>เลย ก็<WBR>เนื่อง<WBR>จาก<WBR>ว่า อุปกรณ์<WBR>เหล่า<WBR>นี้<WBR>สามารถ<WBR>มี<WBR>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ให้<WBR>เป็น<WBR>อุปกรณ์<WBR>ชนิด<WBR>อื่นๆ<WBR>ได้<br>
+<br>
+ตัว<WBR>อย่าง<WBR>เช่น<WBR>ผล<WBR>ลัพธ์<WBR>จาก<WBR>คำ<WBR>สั่ง ls จะ<WBR>ถูก<WBR>แสดง<WBR>ออก<WBR>มา<WBR>ที่ standard output หรือ<WBR>จอ<WBR>ภาพ
+ใน<WBR>ขณะ<WBR>ที่<WBR>โปรแกรม<WBR>เช่น ยู<WBR>นิกซ์<WBR>เชลล์<WBR>ต่างๆ จะ<WBR>คอย<WBR>รับ<WBR>คำ<WBR>สั่ง<WBR>จาก<WBR>ผู้<WBR>ใช้<WBR>ผ่าน<WBR>ทาง standard 
+input นอก<WBR>จาก<WBR>อุปกรณ์<WBR>ทั้ง<WBR>สอง<WBR>อย่าง<WBR>นี้<WBR>แล้ว ยู<WBR>นิกซ์<WBR>ยัง<WBR>อาจ<WBR>แสดง<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>ออก<WBR>มา<WBR>ทาง
+standard error (stderr) ได้<WBR>อีก<WBR>ด้วย เรา<WBR>อาจ<WBR>สามารถ<WBR>กำหนด<WBR>ให้<WBR>อุปกรณ์<WBR>ของ standard
+error เป็น<WBR>อุปกรณ์<WBR>เดียว<WBR>กับ standard input (คือ<WBR>จอ<WBR>ภาพ) หรือ<WBR>ไม่<WBR>ก็ได
+<br>
+
+<H4>การ<WBR>ทำ redirection</H4>
+การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์ (output redirection) ซึ่ง<WBR>จะ<WBR>มี<WBR>ประ<WBR>โยชน์<WBR>ใน<WBR>การ<WBR>เก็บ
+ผล<WBR>ลัพธ์<WBR>ของ<WBR>คำ<WBR>สั่ง<WBR>ต่างๆ<WBR>นั้น<WBR>ลง<WBR>ไป<WBR>เก็บ<WBR>ไว้<WBR>ใน<WBR>ไฟล์ หรือ<WBR>นำ<WBR>ออก<WBR>ไป<WBR>พิมพ์<WBR>ผ่าน<WBR>ทาง<WBR>เครื่อง<WBR>พิมพ์
+แทน<WBR>ที่<WBR>จะ<WBR>พิมพ์<WBR>ออก ทาง<WBR>หน้า<WBR>จอ<WBR>ตาม<WBR>ปกติ เรา<WBR>สามารถ<WBR>สั่ง<WBR>ให้<WBR>ยู<WBR>นิกซ์<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ
+การ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>มาก<WBR>กว่า (>) ต่อ<WBR>ท้าย<WBR>คำ<WBR>สั่ง<WBR>เช่น
+<pre>
+ls -l > listing
+</pre>
+คำ<WBR>สั่ง<WBR>นี้<WBR>จะ<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>ออก<WBR>มา และ<WBR>นำ<WBR>ไป<WBR>เก็บ<WBR>ไว้<WBR>ใน<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ 
+listing หาก<WBR>ใช้<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>กับ<WBR>คำ<WBR>สั่ง cat ดัง<WBR>ตัว<WBR>อย่าง
+<pre>
+cat > myfile
+This is a cat in a file
+^D
+</pre>
+เมื่อ<WBR>เรา<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ต่างๆ<WBR>ลง<WBR>ไป และ<WBR>สิ้น<WBR>สุด<WBR>ด้วย<WBR>การ<WBR>กด Ctrl-d แล้ว<WBR>นั้น ระบบ<WBR>จะ<WBR>ไม่<WBR>นำ<WBR>เอา<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>เรา<WBR>พิมพ์<WBR>ลง<WBR>ไป<WBR>แสดง<WBR>ออก<WBR>มา<WBR>ที่<WBR>หน้า<WBR>จอ แต่<WBR>จะ<WBR>เก็บ<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ<WBR>ว่า
+myfile แทน คุณ<WBR>สามารถ<WBR>สั่ง<WBR>ให้<WBR>ระบบ<WBR>แสดง<WBR>ข้อ<WBR>ความ<WBR>ใน<WBR>ไฟล์<WBR>ออก<WBR>มา<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+cat myfile
+</pre>
+จะ<WBR>เห็น<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>ได้<WBR>พิมพ์<WBR>เก็บ<WBR>ไว้<WBR>ข้าง<WBR>ต้น เรา<WBR>สามารถ<WBR>ใช้<WBR>วิธี<WBR>นี้<WBR>ใน<WBR>การ<WBR>พิมพ์<WBR>ข้อ<WBR>มูล<WBR>เก็บ<WBR>ลง
+ไป<WBR>ใน<WBR>ไฟล์<WBR>อย่าง<WBR>ง่ายๆ<WBR>ได้ นอก<WBR>จาก<WBR>นี้<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์
+ให้<WBR>นำ<WBR>ไป<WBR>ต่อ<WBR>ท้าย<WBR>ได้ โดย<WBR>ใช้<WBR>เครื่อง<WBR>หมาย ">>" (nondestructive redirection)
+ตัว<WBR>อย่าง<WBR>เช่น
+<pre>
+ls >> myfile
+</pre>
+จะ<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน และ<WBR>นำ<WBR>ไป<WBR>ต่อ<WBR>ท้าย<WBR>ยัง<WBR>ไฟล์ myfile<br>
+<br>
+เรา<WBR>สามารถ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>ข้อ<WBR>มูล<WBR>เข้า (input redirection) ก็<WBR>ได้<WBR>เช่น<WBR>เดียว<WBR>กัน
+โดย<WBR>แทน<WBR>ที่<WBR>จะ<WBR>ให้<WBR>นำ<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>จาก<WBR>คีย์<WBR>บอร์ด เรา<WBR>อาจ<WBR>สามารถ<WBR>ให้<WBR>ระบบ<WBR>นำ<WBR>ข้อ<WBR>มูล<WBR>จาก<WBR>ไฟล์<WBR>มา<WBR>เป็น
+ข้อ<WBR>มูล<WBR>เข้า<WBR>แก่<WBR>คำ<WBR>สั่ง<WBR>ก็<WBR>ได้ ตัว<WBR>อย่าง<WBR>เช่น
+<pre>
+sort < listfile
+</pre>
+จะ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>จาก<WBR>ไฟล์ listfile ที่<WBR>เรียง<WBR>ลำ<WBR>ดับ<WBR>กัน ออก<WBR>มา<WBR>ให้<br>
+
+<H4>การ pipe</H4>
+คุณ<WBR>สามารถ<WBR>นำ<WBR>เอา<WBR>ผล<WBR>ลัพธ์<WBR>ที่<WBR>ได้<WBR>จาก<WBR>คำ<WBR>สั่ง<WBR>หนึ่ง นำ<WBR>ไป<WBR>ใส่<WBR>เป็น<WBR>ข้อ<WBR>มูล<WBR>ให้<WBR>กับ<WBR>อีก<WBR>คำ<WBR>สั่ง<WBR>หนึ่ง ได้ คุณ<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>เครื่อง<WBR>หมาย '|' เพื่อ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ผล<WBR>ลัพธ์<WBR>ไป<WBR>เป็น input ให้<WBR>กับ<br>
+คำ<WBR>สั่ง<WBR>อื่น<br>
+ตัว<WBR>อย่าง ต้อง<WBR>การ<WBR>ให้<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>โดย<WBR>เรียง<WBR>ลำ<WBR>ดับ<WBR>กัน<WBR>จาก<WBR>มาก
+ไป<WBR>หา<WBR>น้อย โดย<WBR>ปกติ<WBR>แล้ว<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ที<WBR>ละ<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้ <br>
+<ol>
+<li>สั่ง<WBR>ให้<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี และ<WBR>เก็บ<WBR>ผล<WBR>ลัพธ์<WBR>ลง<WBR>ไฟล์
+<pre>
+ls > listfile
+</pre>
+</li>
+<li>
+นำ<WBR>เอา<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>อยู่<WBR>ใน<WBR>ไฟล์ listfile มา<WBR>เป็น input ให้<WBR>กับ<WBR>คำ<WBR>สั่ง sort เพื่อ<WBR>เรียง<WBR>ลำ<WBR>ดับ<WBR>จาก<WBR>มาก<WBR>ไป<WBR>หา<WBR>น้อย โดย<WBR>จะ<WBR>ต้อง<WBR>ใช้ option -r
+<pre>
+sort -r < listfile
+</pre>
+หรือ 
+<pre>
+sort -r listfile
+</pre>
+แต่<WBR>แทน<WBR>ที่<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>สั่ง<WBR>ทั้ง<WBR>สอง<WBR>คำ<WBR>สั่ง<WBR>นี้ คุณ<WBR>สามารถ<WBR>จะ<WBR>ยุบ<WBR>รวม<WBR>คำ<WBR>สั่ง<WBR>ให้<WBR>เหลือ<WBR>คำ<WBR>สั่ง<WBR>เดียว<WBR>ได้ โดย<WBR>ใช้<WBR>ความ<WBR>สามารถ<WBR>ของ pipe เข้า<WBR>ช่วย<WBR>ดัง<WBR>นี้
+<pre>
+ls | sort -r
+</pre>
+</ol>
+
+<H3 ALIGN=CENTER>คำ<WBR>สั่ง<WBR>อื่นๆ</H3>
+มี<WBR>คำ<WBR>สั่ง<WBR>อื่นๆ<WBR>ที่<WBR>น่า<WBR>สน<WBR>ใจ ขอ<WBR>ให้<WBR>คุณ<WBR>ลอง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>เพื่อ<WBR>ทด<WBR>ลอง<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ต่างๆ คำ<WBR>สั่ง<WBR>เหล่า<WBR>นี้<WBR>นอก<WBR>จาก<WBR>เรา<WBR>จะ<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>โดย<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>นั้น<WBR>อย่าง<WBR>เดียว<WBR>แล้ว<WBR>เรา<WBR>ยัง<WBR>สามารถ<WBR>ใส่ option ระบุ<WBR>เพิ่ม<WBR>ลง<WBR>ไป<WBR>ด้วย คุณ<WBR>สามารถ<WBR>หา<WBR>ความ<WBR>หมาย<WBR>เพิ่ม<WBR>เติม<WBR>ของ option ได้<WBR>โดย<WBR>การ<WBR>ระบุ option --help ต่อ<WBR>ท้าย<WBR>คำ<WBR>สั่ง เพื่อ<WBR>ให้<WBR>ระบบ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>อธิบาย<WBR>ออก<WBR>มา หรือ<WBR>ใช้<WBR>คำ<WBR>สั่ง man เพื่อ<WBR>ขอ<WBR>ดู<WBR>วิธี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง<WBR>เหล่า<WBR>นี้<br>
+<ul>
+<li>date จะ<WBR>พิมพ์<WBR>วัน<WBR>ที่<WBR>ของ<WBR>ระบบ<WBR>ออก<WBR>มา</li>
+<li>who  จะ<WBR>พิมพ์<WBR>ราย<WBR>ชื่อ<WBR>ผู้<WBR>ใช้<WBR>งาน ที่<WBR>กำลัง<WBR>ใช้<WBR>งาน<WBR>ระบบ<WBR>ออก<WBR>มา</li>
+<li>finger เหมือน<WBR>กับ who แต่<WBR>จะ<WBR>มี<WBR>ราย<WBR>ละเอียด<WBR>อย่าง<WBR>อื่น<WBR>ออก<WBR>มา<WBR>ด้วย</li>
+<li>grep   เลือก<WBR>เอา<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>สอด<WBR>คล้อง<WBR>กับ<WBR>ที่<WBR>ระบุ<WBR>ไว้ (ต่อ<WBR>ท้าย<WBR>คำ<WBR>สั่ง)</li>
+<li>help ขอ<WBR>คำ<WBR>อธิบาย<WBR>เกี่ยว<WBR>กับ<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>ลีนุกซ์</li>
+</ul>
+<br>
+
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

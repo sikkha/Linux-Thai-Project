@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming (3)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ (3)</H1>
+
+<H3 ALIGN=CENTER>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>สื่อ<WBR>สาร I/O redirection</H3>
+
+<p>
+ใน<WBR>การ<WBR>สื่อ<WBR>สาร<WBR>ระหว่าง terminal กับ<WBR>ตัว host ของ<WBR>คอมพิวเตอร์<WBR>จะ<WBR>มี<WBR>ช่อง<WBR>ทาง<WBR>ที่<WBR>ใช้<WBR>กัน<WBR>อยู่ 3 ช่อง<WBR>ทาง<WBR>ซึ่ง<WBR>ก็<WBR>คือ STDIN (ช่อง<WBR>ทาง<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>มาตร<WBR>ฐาน), STDOUT (ช่อง<WBR>ทาง<WBR>แสดง<WBR>ผลลัพธ์<WBR>มาตร<WBR>ฐาน) และ STDERR (ช่อง<WBR>ทาง<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ที่<WBR>เป็น<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>มาตร<WBR>ฐาน)
+</p>
+
+<p>
+ที่<WBR>กล่าว<WBR>ว่า<WBR>เป็น<WBR>การ<WBR>สื่อ<WBR>สาร<WBR>ระหว่าง<WBR>เทอร์<WBR>มินัล<WBR>กับ<WBR>ตัว<WBR>โฮสต์<WBR>นั้น เนื่อง<WBR>จาก<WBR>ใน<WBR>สมัย<WBR>ก่อน<WBR>จาก<WBR>การ<WBR>ออก<WBR>แบบ<WBR>ยู<WBR>นิกซ์<WBR>ใน<WBR>สมัย<WBR>ที่<WBR>เครื่อง PDP-11 กำลัง<WBR>รุ่ง<WBR>เรือง การ<WBR>จะ<WBR>ใช้<WBR>งาน<WBR>คอมพิวเตอร์<WBR>แบบ<WBR>นี้<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>ผ่าน<WBR>เครื่อง teletype ซึ่ง<WBR>มี<WBR>ลักษณะ<WBR>คล้าย<WBR>เครื่อง
+พิมพ์<WBR>ดีด<WBR>ไฟฟ้า (หาก<WBR>ใคร<WBR>มี<WBR>หนังสือ Road Ahead ก็<WBR>สามารถ<WBR>เห็น<WBR>ภาพ<WBR>ของ<WBR>บิลล์ เกตส์ กับ พอลล์ อัลเลน กำลัง<WBR>เล่น<WBR>เครื่อง teletype ที่<WBR>ว่า<WBR>นี้<WBR>ได้) ตัว teletype นี้<WBR>เป็น<WBR>เครื่องมือ<WBR>ที่<WBR>เรียก<WBR>ว่า "เทอร์มินัล" แบบ<WBR>แรกๆ ดัง<WBR>นั้น<WBR>จึง<WBR>เป็น<WBR>ไป<WBR>ได้<WBR>ว่า<WBR>ช่อง<WBR>ทาง<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>มาตร<WBR>ฐาน<WBR>อาจ<WBR>ไม่<WBR>ใช่<WBR>คีย์<WBR>บอร์ด<WBR>ที่<WBR>ต่อ<WBR>อยู่<WBR>กับ<WBR>ตัว<WBR>ซี<WBR>พี<WBR>ยู หรือ<WBR>ช่อง<WBR>ทาง<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>มาตร<WBR>ฐาน<WBR>อาจ<WBR>ไม่<WBR>ใช่<WBR>มอนิเตอร์<WBR>ที่<WBR>ต่อ<WBR>อยู่<WBR>กับ<WBR>ตัว<WBR>ซี<WBR>พี<WBR>ยู<WBR>ดัง<WBR>ที่<WBR>คุณ<WBR>เห็น<WBR>อยู่<WBR>ทั่ว<WBR>ไป<WBR>จาก<WBR>เครื่อง<WBR>คอมพิวเตอร์<WBR>ใน<WBR>ปัจจุบัน และ<WBR>แน่<WBR>นอน<WBR>ว่า<WBR>ไม่<WBR>ได้<WBR>มี<WBR>การ<WBR>ต่อ<WBR>เทอร์<WBR>มินัล<WBR>เข้า<WBR>กับ<WBR>โฮสต์ เพียง<WBR>เครื่อง<WBR>เดียว<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>จะ<WBR>ต้อง<WBR>ถูก<WBR>ออก<WBR>แบบ<WBR>ให้<WBR>สามารถ<WBR>จัด<WBR>การ<WBR>กับ<WBR>เทอร์<WBR>มินัล<WBR>จำนวน<WBR>นับ<WBR>ร้อย<WBR>และ
+มี<WBR>รูป<WBR>แบบ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ที่<WBR>แตก<WBR>ต่าง<WBR>กัน<WBR>ได้ (เทอร์<WBR>มินัล<WBR>แต่<WBR>ละ<WBR>เครื่อง<WBR>อาจ<WBR>มี<WBR>รูป<WBR>แบบ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ที่<WBR>ต่าง<WBR>กัน ตาม<WBR>ยี่ห้อ<WBR>ของ<WBR>ผู้<WBR>ผลิต -- เช่น<WBR>ปุ่ม<WBR>ลบ<WBR>ตัว<WBR>อักษร อาจ<WBR>วาง<WBR>ไว้<WBR>ที่<WBR>ตำแหน่ง<WBR>ต่าง<WBR>กัน หรือ<WBR>เทอร์<WBR>มินั<WBR>ลบาง<WBR>เครื่อง<WBR>ก็<WBR>อาจ<WBR>ไม่<WBR>มี<WBR>ปุ่ม<WBR>ลบ<WBR>ตัว<WBR>อักษร<WBR>นี้<WBR>เลย<WBR>ก็<WBR>ได้ ต้อง<WBR>ใช้<WBR>ปุ่ม
+ฟังก์ชั่น<WBR>พิเศษ<WBR>แทน) การ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ออก<WBR>มา<WBR>อาจ<WBR>ไม่<WBR>ได้<WBR>แสดง<WBR>ผ่าน<WBR>ทาง<WBR>จอ<WBR>ภาพ แต่<WBR>เป็น
+กลาย<WBR>เป็น<WBR>การ<WBR>พิมพ์<WBR>ผล<WBR>ลัพธ์<WBR>ผ่าน<WBR>ทาง<WBR>เครื่อง<WBR>พิมพ์<WBR>ออก<WBR>มา<WBR>แทน นอก<WBR>จาก<WBR>นี้<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>สื่อสาร<WBR>ทั้ง<WBR>สาม<WBR>ช่อง<WBR>ทาง<WBR>จะ<WBR>ต้อง<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ได้<WBR>ตลอด<WBR>เวลา เช่น<WBR>ตาม<WBR>ปกติ
+อาจ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ทาง<WBR>จอ<WBR>ภาพ แต่<WBR>ก็<WBR>สามารถ<WBR>เปลี่ยน<WBR>ให้<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>เป็น<WBR>การ<WBR>พิมพ์
+ผล<WBR>ลัพธ์<WBR>ออก<WBR>มา<WBR>ทาง<WBR>เครื่อง<WBR>พิมพ์ หรือ<WBR>ไม่<WBR>ก็<WBR>เปลี่ยน<WBR>เป็น<WBR>การ<WBR>เก็บ<WBR>ผล<WBR>ลัพธ์<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ไฟล์<WBR>ก็<WBR>ได้
+</p>
+
+<p>
+ทั้ง<WBR>นี้<WBR>ความ<WBR>สามารถ<WBR>เรื่อง<WBR>ของ<WBR>การ<WBR>บริหาร<WBR>เรื่อง<WBR>ของ<WBR>เทอร์<WBR>มินัล<WBR>หรือ<WBR>เรื่อง<WBR>ของ<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>ช่อง<WBR>ทาง<WBR>สื่อ<WBR>สาร (I/O redirection) ไม่<WBR>ได้<WBR>เป็น<WBR>ความ<WBR>สามารถ<WBR>จาก<WBR>โปรแกรม<WBR>แอพพ<WBR>ลิ<WBR>เคชั่น แต่<WBR>เป็น<WBR>ความ<WBR>สามารถ<WBR>จาก<WBR>ตัว<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>เอง
+</p>
+
+<p>
+ลีนุกซ์<WBR>ได้<WBR>รับ<WBR>อิทธิ<WBR>พล<WBR>มา<WBR>จาก<WBR>ระบบ<WBR>ยู<WBR>นิกซ์ จึง<WBR>ยัง<WBR>คง<WBR>ความ<WBR>สามารถ<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ของ<WBR>การ<WBR>บริหาร<WBR>เทอร์<WBR>มินัล<WBR>และ<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>ช่อง<WBR>ทาง<WBR>สื่อ<WBR>สาร<WBR>ไว้<WBR>อย่าง<WBR>ครบ<WBR>ถ้วน เรา<WBR>สามารถ<WBR>สั่ง<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>สื่อ<WBR>สาร<WBR>เหล่า<WBR>นี้<WBR>ได้<WBR>จาก<WBR>เชลล์<WBR>ตลอด<WBR>เวลา
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ออก (standard output redirection)</H3>
+เรา<WBR>จะ<WBR>ศึกษา<WBR>จาก<WBR>การ<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง "cat" ซึ่ง<WBR>จะ<WBR>รอ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>จาก<WBR>คีย์<WBR>บอร์ด<WBR>แล้ว<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>กลับ<WBR>มา<WBR>ทาง<WBR>จอ<WBR>ภาพ ดัง<WBR>นั้น<WBR>ใน<WBR>ที่<WBR>นี้ STDIN คือ<WBR>คีย์<WBR>บอร์ด และ STDOUT คือ<WBR>จอ<WBR>ภาพ<WBR>หรือ<WBR>มอนิเตอร์
+
+<pre>
+$ cat
+This is first line 		: พิมพ์<WBR>ข้อ<WBR>ความ "This is first line"
+This is first line		: cat แสดง<WBR>ผล<WBR>ลัพธ์ คือ<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>พึ่ง<WBR>พิมพ์<WBR>ลง<WBR>ไป
+This is second line		: พิมพ์<WBR>ข้อ<WBR>ความ "This is second line"
+This is second line		: cat แสดง<WBR>ผล<WBR>ลัพธ์ คือ<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>พึ่ง<WBR>พิมพ์<WBR>ลง<WBR>ไป
+</pre>
+
+ต่อ<WBR>ไป<WBR>นี้<WBR>เรา<WBR>จะ<WBR>เปลี่ยน<WBR>ช่อง<WBR>ทาง<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ของ<WBR>โปรแกรม ซึ่ง<WBR>ปกติ<WBR>แสดง<WBR>ออก<WBR>มา<WBR>ที่<WBR>จอ<WBR>ภาพ<WBR>ให้<WBR>ไป<WBR>เก็บ<WBR>ลง<WBR>ไฟล์<WBR>แทน
+<pre>
+$ cat > myfile
+This is first line		: พิมพ์<WBR>ข้อ<WBR>ความ "This is first line"
+This is second line		: พิมพ์<WBR>ข้อ<WBR>ความ "This is second line"
+</pre>
+
+<p>
+จะ<WBR>เห็น<WBR>ว่า<WBR>คราว<WBR>นี้<WBR>โปรแกรม cat ไม่<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ออก<WBR>มา<WBR>ให้<WBR>เหมือน<WBR>ตัว<WBR>อย่าง<WBR>แรก ซึ่ง<WBR>เป็น
+เพราะ<WBR>ว่า<WBR>โปรแกรม cat ได้<WBR>ทำ<WBR>การ<WBR>เก็บ<WBR>ผล<WBR>ลัพธ์<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ "myfile" แทน นั่น<WBR>คือ
+ตอน<WBR>นี้ STDOUT ได้<WBR>ถูก<WBR>เปลี่ยน<WBR>เป็น<WBR>ไฟล์ "myfile" แล้ว  นั่น<WBR>คือ<WBR>เรา<WBR>สามารถ<WBR>ใช้<WBR>เครื่องหมาย<WBR>มาก<WBR>กว่า ">" ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>ได้ การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>มาก<WBR>กว่า ">" จะ<WBR>เป็น<WBR>การ<WBR>เขียน<WBR>ทับ<WBR>ไฟล์<WBR>ที่<WBR>ระบุ<WBR>ลง<WBR>ไป แต่<WBR>ถ้า<WBR>เรา<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>เขียน<WBR>ผล<WBR>ลัพธ์<WBR>ไป<WBR>ต่อ<WBR>ท้าย<WBR>ข้อ<WBR>มูล<WBR>เดิม<WBR>ที่<WBR>มี<WBR>อยู่<WBR>แล้ว<WBR>ใน<WBR>ไฟล์ ก็<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>มาก<WBR>กว่า<WBR>ซ้อน<WBR>กัน<WBR>สอง<WBR>ตัว ">>" ดัง<WBR>ตัว<WBR>อย่าง
+</p>
+<pre>
+$ cat >> myfile
+</pre>
+
+เรา<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>ว่า<WBR>โปรแกรม cat ได้<WBR>ทำ<WBR>การ<WBR>เก็บ<WBR>ผล<WBR>ลัพธ์<WBR>ไว้<WBR>ใน<WBR>ไฟล์ "myfile" จริง<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+$ cat
+This is first line
+This is second line
+
+<H3 ALIGN=CENTER>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>นำ<WBR>ข้อ<WBR>มูล<WBR>เข้า (standard input redirection)</H3>
+
+<p>
+เรา<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ศึกษา<WBR>จาก<WBR>การ<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง "sort" การ<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง sort โดย<WBR>ปกติ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>จาก<WBR>คีย์<WBR>บอร์ด<WBR>แล้ว<WBR>แสดง<WBR>ผล<WBR>ลัพธ์<WBR>กลับ<WBR>ออก<WBR>มา<WBR>ทาง<WBR>จอ<WBR>ภาพ ดัง<WBR>นั้น<WBR>ใน<WBR>ที่<WBR>นี้ STDIN ก็<WBR>คือ คีย์<WBR>บอร์ด<WBR>และ STDOUT ก็<WBR>คือ มอ<WBR>นิ<WBR>เตอร์
+</p>
+<pre>
+$ sort
+Peter				: พิมพ์ Peter
+Mary				: พิมพ์ Mary
+John				: พิมพ์ John เสร็จ<WBR>แล้ว<WBR>กด Ctrl-D 
+John				: Sort ทำ<WBR>การ<WBR>จัด<WBR>เรียง<WBR>ข้อ<WBR>มูล<WBR>ให้<WBR>ใหม่
+Mary
+Peter
+</pre>
+
+ให้<WBR>คุณ<WBR>ทำ<WBR>การ<WBR>สร้าง<WBR>ไฟล์<WBR>ชื่อ "namelist" เพื่อ<WBR>เตรียม<WBR>ไว้<WBR>ให้<WBR>กับ<WBR>โปรแกรม sort
+<pre>
+$ cat > namelist
+Peter				: พิมพ์ Peter
+Mary				: พิมพ์ Mary
+John				: พิมพ์ John เสร็จ<WBR>แล้ว<WBR>กด Ctrl-D
+</pre>
+
+คราว<WBR>นี้<WBR>คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>นำ<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>จาก คีย์<WBR>บอร์ด ไป<WBR>เป็น<WBR>นำ<WBR>ข้อ<WBR>มูล<WBR>เข้า<WBR>มา<WBR>จาก<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ "namelist" นี้<WBR>ได้ ตาม<WBR>ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ sort < namelist
+John
+Mary
+Peter
+</pre>
+
+<p>
+จะ<WBR>เห็น<WBR>ว่า<WBR>เรา<WBR>สามารถ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>น้อย<WBR>กว่า "<" เพื่อ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ช่อง<WBR>ทาง<WBR>การ<WBR>นำ
+ข้อ<WBR>มูล<WBR>เข้า<WBR>ได้ กรณี<WBR>นี้ STDIN จะ<WBR>เปลี่ยน<WBR>ไป<WBR>เป็น<WBR>ไฟล์<WBR>ที่<WBR>ชื่อ "namelist"
+</p>
+
+<p>
+พิเศษ : การ<WBR>เปลี่ยน<WBR>ทั้ง STDIN และ STDOUT พร้อม<WBR>กัน<BR>
+เรา<WBR>จะ<WBR>ศึกษา<WBR>เรื่อง<WBR>นี้ ได้<WBR>จาก<WBR>โปรแกรม sort ตาม<WBR>ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้
+</p>
+<pre>
+$ sort < namelist > sortlist
+</pre>
+
+<p>
+คำ<WBR>สั่ง<WBR>บรรทัด<WBR>นี้ โปรแกรม sort จะ<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>จาก<WBR>ไฟล์ "namelist" และ<WBR>เขียน<WBR>ผล<WBR>ลัพธ์<WBR>ไป<WBR>ใส่<WBR>ใน<WBR>ไฟล์ "sortlist" ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง cat ทำ<WBR>การ<WBR>ตรวจ<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>อยู่<WBR>ใน<WBR>ไฟล์ "sortlist"
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>ช่อง<WBR>ทาง<WBR>แสดง<WBR>ข้อ<WBR>ผิด<WBR>พลาด (standard error redirection)</H3>
+<p>
+เมื่อ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>ใน<WBR>ลีนุกซ์<WBR>แล้ว<WBR>เกิด<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>ขึ้น โปรแกรม<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แจ้ง<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>นั้น<WBR>ออก<WBR>มา<WBR>ที่<WBR>จอ<WBR>ภาพ<WBR>ตาม<WBR>ปกติ แต่<WBR>เรา<WBR>ก็<WBR>สามารถ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>การ<WBR>แสดง<WBR>ความ<WBR>ผิด<WBR>พลาด<WBR>นั้น<WBR>ได้<WBR>เช่น<WBR>กัน ดัง<WBR>ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้
+</p>
+<pre>
+$ ld
+ld: no input files
+</pre>
+
+<p>
+"ld" เป็น<WBR>โปรแกรม<WBR>ที่<WBR>ใช้<WBR>ทำ<WBR>การ<WBR>ลิงก์<WBR>ออปเจ็ค<WBR>ไฟล์ ซึ่ง<WBR>ตาม<WBR>ปกติ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ระบุ<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>จะ<WBR>ลิงก์<WBR>ลง<WBR>ไป<WBR>ด้วย ดัง<WBR>นั้น<WBR>เมื่อ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>เฉพาะ<WBR>โปรแกรม "ld" อย่าง<WBR>เดียว โปรแกรม
+จึง<WBR>แจ้ง<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>ว่า เรา<WBR>ไม่<WBR>ได้<WBR>ใส่<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>จะ<WBR>ลิงก์<WBR>ลง<WBR>ไป<WBR>ด้วย
+</p>
+
+<pre>
+$ ld > errfile			: การ<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>มาก<WBR>กว่า<WBR>เพื่อ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง STDOUT ไม่<WBR>มี<WBR>ผล<WBR>กับ<WBR>การ<WBR>แจ้ง<WBR>ความ<WBR>ผิด<WBR>พลาด
+ld: no input files		: 
+$ ld 2>errfile			: เปลี่ยน<WBR>ทิศ<WBR>ทาง STDERR โดย<WBR>ใช้ "2>"
+$ cat errfile			: แสดง<WBR>ข้อ<WBR>มูล<WBR>ใน<WBR>ไฟล์ "errfile"
+ld: no input files		: ข้อ<WBR>มูล<WBR>ใน<WBR>ไฟล์<WBR>เป็น<WBR>ข้อ<WBR>ความ<WBR>ผิด<WBR>พลาด<WBR>ที่<WBR>ได้<WBR>จาก "ld"
+</pre>
+
+<p>
+จะ<WBR>เห็น<WBR>ว่า<WBR>หาก<WBR>เรา<WBR>ต้อง<WBR>การ<WBR>เปลี่ยน<WBR>ทิศ<WBR>ทาง<WBR>ของ<WBR>การ<WBR>ข้อ<WBR>ความ<WBR>แสดง<WBR>ความ<WBR>ผิด<WBR>พลาด จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>พิมพ์ "2> [ชื่อ<WBR>ไฟล์]" ต่อ<WBR>ท้าย<WBR>คำ<WBR>สั่ง โดย<WBR>ให้<WBR>ระวัง<WBR>ว่า "2" กับ ">" จะ<WBR>ต้อง<WBR>พิมพ์<WBR>ติด<WBR>กัน
+</p>
+
+<H3 ALIGN=CENTER>สรุป</H3>
+<ul>
+<li>
+<pre>
+  Standard output redirection
+  command > file
+  หรือ
+  command >> file
+</pre>
+</li>
+
+<li>
+<pre>
+  Standard input redirection
+  command < file
+</pre>
+</li>
+
+<li>
+<pre>
+  Standard error redirection
+  command 2>file
+  หรือ
+  command 2>>file
+</pre>
+</li>
+</ul>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

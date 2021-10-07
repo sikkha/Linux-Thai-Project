@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>X WINDOW installation guide</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER> การ setup X window (xf86config)</H1>
+
+<p>
+ให้<WBR>เรียก<WBR>โปรแกรม xf86config ซึ่ง<WBR>โปรแกรม<WBR>นี้<WBR>จะ<WBR>ทำ<WBR>การ reconfig และ setup เกี่ยว<WBR>กับ<WBR>ข้อ<WBR>มูล<WBR>ที่<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>งาน<WBR>ของ<WBR>ระบบ X window.
+</p>
+
+<p>
+ใน<WBR>การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>จะ<WBR>สามารถ กด ctrl-C เพื่อ<WBR>ยก<WBR>เลิก<WBR>การ setup
+ได้<WBR>ตลอด<WBR>เวลา
+</p>
+
+เมื่อ<WBR>กด enter ผ่าน<WBR>มา<WBR>จน<WBR>โปรแกรม<WBR>ถาม<WBR>เกี่ยว<WBR>กับ<WBR>ชนิด<WBR>ของ mouse protocol
+<ol>
+<li>Microsoft compatible (2-button protocol)</li>
+<li>Mouse Systems (3-button protocol)</li>
+<li>Bus Mouse</li>
+<li>PS/2 Mouse</li>
+<li>Logitech Mouse (serial, old type, Logitech protocol)</li>
+<li>Logitech MouseMan (Microsoft compatible)</li>
+<li>MM Series</li>
+<li>MM HitTablet</li>
+</ol>
+
+<p>
+ให้<WBR>เลือก<WBR>ชนิด<WBR>ของ<WBR>เมาส์<WBR>ที่<WBR>มี<WBR>อยู่<WBR>ใน<WBR>ระบบ โดย<WBR>ที่<WBR>เมาส์<WBR>นั้น<WBR>จะ<WBR>ต้อง<WBR>ถูก<WBR>ยอม<WBR>รับ<WBR>โดย<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>ด้วย ให้<WBR>ตรวจ<WBR>ดู<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /dev ตย.เช่น ถ้า<WBR>เป็น PS/2 mouse จะ<WBR>มี IO ไฟล์<WBR>ชื่อ /dev/psaux แต่<WBR>ถ้า<WBR>เป็น serial จะ<WBR>เป็น /dev/ttyS0, /dev/ttyS1, /dev/ttyS2 และ /dev/ttyS3 ซึ่ง<WBR>ปรกติ<WBR>จะ<WBR>มี device พวก<WBR>นี้<WBR>อยู่<WBR>แล้ว<WBR>เนื่อง<WBR>จาก<WBR>เป็น device สำหรับ serial com port ปรกติ 
+</p>
+
+<p>
+	หาก<WBR>ตรวจ<WBR>ดู<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /dev แล้ว<WBR>พบ<WBR>ว่า<WBR>ไม่<WBR>มี<WBR>ชนิด<WBR>ของ<WBR>เมาส์  ที่<WBR>ต้อง<WBR>การ ให้<WBR>ใช้<WBR>โปรแกรม mouseconfig เพื่อ<WBR>ทำ<WBR>การ<WBR>เซตอัพ<WBR>เพิ่ม<WBR>ให้<WBR>ระบบ<WBR>รู้<WBR>จัก
+</p>
+
+<p>
+	เนื่อง<WBR>จาก<WBR>ระบบ X Window ถูก<WBR>ออก<WBR>แบบ<WBR>มา<WBR>สำหรับ workstation ของ Unix ซึ่ง<WBR>จะ<WBR>มี<WBR>การ<WBR>ใช้<WBR>เมาส์<WBR>ชนิด  3 ปุ่ม<WBR>ซึ่ง<WBR>จะ<WBR>มี<WBR>การ<WBR>ใช้<WBR>ฟังก์ชั่น<WBR>พิเศษ<WBR>ของ<WBR>ทั้ง<WBR>สาม<WBR>ปุ่ม เช่น<WBR>การ cut&paste เป็น<WBR>ต้น ดัง<WBR>นั้น<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>เมาส์  แบบ 3 ปุ่ม<WBR>ให้<WBR>ตอบ y สำหรับ<WBR>หัว<WBR>ข้อ<WBR>คำ<WBR>ถาม 'Do you want to enable Emulate3Buttons?"
+</p>
+
+<p>
+เมื่อ<WBR>ตอบ<WBR>คำ<WBR>ถาม<WBR>เสร็จ<WBR>แล้ว<WBR>โปรแกรม<WBR>จะ<WBR>ให้<WBR>ป้อน<WBR>ชื่อ device file ของ<WBR>เมาส์<WBR>ที่<WBR>ได้<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง ซึ่ง<WBR>ปกติ<WBR>เรา<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ใช้<WBR>ชื่อ<WBR>ลิงก์<WBR>ไฟล์<WBR>เป็น<WBR>ไฟล์<WBR>ตัว<WBR>แทน<WBR>สำหรับ<WBR>ทำ<WBR>การ<WBR>ชี้<WBR>ไป<WBR>หา device file ของ<WBR>เมาส์<WBR>จริงๆ ซึ่ง<WBR>ถ้า<WBR>ทำ<WBR>การ setup ด้วย<WBR>โปรแกรม mouseconfig ก็<WBR>จะ<WBR>มี<WBR>ลิงก์<WBR>ไฟล์<WBR>นี้<WBR>อยู่<WBR>แล้ว คือ /dev/mouse ถ้า<WBR>ไม่<WBR>มี<WBR>ให้<WBR>ทำ<WBR>การ<WBR>สร้าง<WBR>ขึ้น<WBR>มา<WBR>ใหม่ โดย<WBR>ลอกอิน<WBR>เข้า root แล้ว<WBR>เปลี่ยนไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ไป<WBR>ที่ /dev แล้ว<WBR>ใช้<WBR>คำ<WBR>สั่ง
+</p>
+<pre>
+	$ ln -s /dev/psaux /dev/mouse <enter>
+</pre>
+
+ใน<WBR>กรณี<WBR>ที่<WBR>เป็น<WBR>เมาส์<WBR>แบบ PS/2 mouse ให้<WBR>ลอง<WBR>ใช้<WBR>คำ<WBR>สั่ง ls ดู<WBR>จะ<WBR>เห็น<WBR>ผล<WBR>ลัพธ์<WBR>เป็น
+<pre>
+lrwxrwxrwx   1 root    root   10 Nov 12 19:10 /dev/mouse -> /dev/psaux
+</pre>
+
+<p>
+นั่น<WBR>คือ<WBR>เรา<WBR>จะ<WBR>ได้<WBR>ลิงก์<WBR>ไฟล์<WBR>ที่<WBR>ชี้<WBR>ไป<WBR>ยัง /dev/psaux เรียบ<WBR>ร้อย<WBR>แล้ว ต่อ<WBR>ไป<WBR>สามารถ<WBR>ใช้<WBR>ชื่อ /dev/mouse อ้าง<WBR>แทน<WBR>ชื่อ /dev/psaux ได้ 
+</p>
+
+ดัง<WBR>นั้น<WBR>ใน<WBR>หัว<WBR>ข้อ "Mouse device:" ให้<WBR>ป้อน<WBR>ชื่อ /dev/mouse ลง<WBR>ไป<br>
+
+<p>
+โปรแกรม<WBR>จะ<WBR>ถาม<WBR>ว่า<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>ใช้<WBR>ปุ่ม Alt  เป็น meta-key สำหรับ<WBR>ใช้<WBR>กับ<WBR>ตัว<WBR>อักษร<WBR>ที่<WBR>เป็น non-ASCII หรือ<WBR>ไม่ ซึ่ง<WBR>คุณ<WBR>ลักษณ์<WBR>นี้<WBR>จะ<WBR>ใช้<WBR>เมื่อ<WBR>ต้อง<WBR>การ<WBR>ป้อน<WBR>ตัว<WBR>อักขระ<WBR>ที่<WBR>ไม่<WBR>ใช่<WBR>ภาษา<WBR>อังกฤษ ใน<WBR>กรณี<WBR>นี้<WBR>ให้<WBR>ตอบ 'N' หาก<WBR>ไม่<WBR>ต้อง<WBR>การ
+</p>
+
+<p>
+ใน<WBR>ขั้น<WBR>ตอน<WBR>ต่อ<WBR>ไป<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ให้<WBR>ข้อ<WBR>มูล<WBR>เกี่ยว<WBR>กับ<WBR>มอ<WBR>นิ<WBR>เตอร์ ให้<WBR>ตรวจ<WBR>ดู<WBR>เอก<WBR>สาร
+ที่ /usr/X11R6/lib/X11/doc/Monitors หาก<WBR>มี<WBR>ชนิด<WBR>ของ<WBR>มอ<WBR>นิ<WBR>เตอร์<WBR>ที่<WBR>ใช้<WBR>อยู่
+เมื่อ<WBR>กด enter ผ่าน โปรแกรม<WBR>จะ<WBR>ให้<WBR>เลือก horizontal sinc rate (hsync)
+ของ<WBR>มอ<WBR>นิ<WBR>เตอร์ ให้<WBR>ตอบ<WBR>ตาม<WBR>ที่<WBR>ต้อง<WBR>การ อย่า<WBR>ใส่ hsync rate เกิน<WBR>กว่า<WBR>ที่<WBR>มอ<WBR>นิ<WBR>เตอร์
+จะ<WBR>รับ<WBR>ได้ โดย<WBR>มาตร<WBR>ฐาน<WBR>มอ<WBR>นิ<WBR>เตอร์<WBR>ทั่ว<WBR>ไป<WBR>จะ<WBR>สามารถ<WBR>ใช้ hsync rate ได้<WBR>ที่
+<pre>
+(ข้อ 5) 31.5-37.9; Extended Super VGA, 800x600 @ 60 Hz, 640x480 @ 72Hz
+</pre>
+</p>
+
+<p>
+ต่อ<WBR>ไป<WBR>ให้<WBR>ใส่ vertical sync range (vsync) ของ<WBR>มอ<WBR>นิ<WBR>เตอร์ โดย<WBR>ปกติ<WBR>จะ<WBR>สามารถ<WBR>ใช้ 50-90 Hz
+</p>
+
+
+<p>
+ต่อ<WBR>ไป<WBR>โปรแกรม<WBR>จะ<WBR>ให้<WBR>ป้อน<WBR>คำ<WBR>อธิบาย<WBR>ของ<WBR>มอ<WBR>นิ<WBR>เตอร์ ให้<WBR>ใส่<WBR>ได้<WBR>ตาม<WBR>อิสระ หาก<WBR>ไม่<WBR>ต้อง<WBR>การ<WBR>ป้อน<WBR>ให้ กด enter ผ่าน<WBR>ไป<WBR>ได้ ต่อ<WBR>มา<WBR>จะ<WBR>ถาม<WBR>ชื่อ<WBR>ผู้<WBR>ผลิต<WBR>มอ<WBR>นิ<WBR>เตอร์ ให้<WBR>กด enter ผ่าน<WBR>หาก<WBR>ไม่<WBR>ต้อง<WBR>การ ใส่<WBR>ข้อ<WBR>มูล ใส่<WBR>รุ่น<WBR>ของ<WBR>มอ<WBR>นิ<WBR>เตอร์<WBR>ที่<WBR>ใช้ กด enter ผ่าน
+</p>
+
+<p>
+ต่อ<WBR>มา<WBR>จะ<WBR>ให้<WBR>ทำ<WBR>การ<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>เกี่ยว<WBR>กับ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ที่<WBR>ใช้ หาก<WBR>ต้อง<WBR>การ<WBR>ดู<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>วี<WBR>ดี<WBR>โอ การ์ด ให้<WBR>ตอบ 'Y' โปรแกรม<WBR>จะ<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ออก<WBR>มา ให้<WBR>ใส่<WBR>หมาย<WBR>เลข<WBR>ตรง<WBR>กับ<WBR>การ์ด<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>เลือก หรือ<WBR>กด enter เพื่อ<WBR>ให้<WBR>โปรแกรม<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>การ์ด<WBR>ใน<WBR>หน้า<WBR>ถัด<WBR>ไป หรือ<WBR>กด q เพื่อ<WBR>ทำ<WBR>การ setup ต่อ<WBR>ไป
+</p>
+
+โปรแกรม<WBR>จะ<WBR>ให้<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>ชนิด<WBR>ของ X server ที่<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>งาน 
+<pre>
+1. The XF86_Mono server. This is a monochrome server that should work on any
+   VGA-compatible card, in 640x480 (more on some SVGA chipsets).
+2. The XF86_VGA16 server. This is a 16-color VGA server that should work 
+   on any VGA-compatible card.
+3. The XF86_SVGA server. This is a 256 color SVGA server that supports a number
+   of SVGA chipsets. It is accelerated on some Cirrus and WD chipsets;
+   It supports 16/32-bit color on cirtain Cirrus configurations.
+4. The accelerated servers. These include XF86_S3, XF86_Mach32, XF86_Mach8,
+   XF86_8514, XF86_P9000, XF86_AGX, XF86_W32 and XF86_Mach64.
+
+These four server types correspond to the four different "Screen" sections in
+XF86Config (vga2, vga16, svga, accel).
+
+5. Choose the server from the card definition, XF86_W32.
+</pre>
+
+<p>
+โดย<WBR>ทั่ว<WBR>ไป server ใน<WBR>ข้อ 1 จะ<WBR>มี<WBR>ความ<WBR>สามารถ<WBR>ต่ำ<WBR>ที่<WBR>สุด<WBR>ซึ่ง<WBR>เป็น<WBR>แบบโ<WBR>มโน<WBR>โครม และ<WBR>มี<WBR>ขนาด<WBR>เพียง  640x480 เท่า<WBR>นั้น 
+</p>
+
+<p>
+server ใน<WBR>ข้อ<WBR>สอง<WBR>จะ<WBR>เป็น<WBR>แบบ 16 สี<WBR>และ<WBR>จะ<WBR>สามารถ<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>กับ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ส่วน<WBR>ใหญ่
+</p>
+
+<p>
+server ใน<WBR>ข้อ<WBR>สาม<WBR>เป็น<WBR>แบบ SVGA 256 สี และ<WBR>ยัง<WBR>สามารถ<WBR>เร่ง<WBR>ความ<WBR>เร็ว<WBR>ของ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ได้<WBR>กับ<WBR>ชิป<WBR>เซต<WBR>บาง<WBR>แบบ<WBR>อีก<WBR>ด้วย โดย<WBR>ส่วน<WBR>ใหญ่<WBR>แล้ว<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ใน<WBR>ปัจจุบัน<WBR>สามารถ<WBR>ใช้<WBR>งาน server ใน<WBR>ข้อ<WBR>นี้<WBR>ได้
+</p>
+
+<p>
+server ใน<WBR>ข้อ<WBR>ที่<WBR>สี่<WBR>เป็น<WBR>แบบ<WBR>เร่ง<WBR>ความ<WBR>เร็ว<WBR>ของ<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ซึ่ง<WBR>จะ<WBR>ต้อง<WBR>เลือก<WBR>ชนิด<WBR>ของ server ให้<WBR>ตรง<WBR>กับ<WBR>ชนิด<WBR>ของ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด เช่น XF86_S3 จะ<WBR>ต้อง<WBR>ใช้<WBR>กับ<WBR>การ์ด<WBR>แสดง<WBR>ผล S3 เท่า<WBR>นั้น
+</p>
+
+<p>
+สามารถ<WBR>เลือก<WBR>ข้อ<WBR>ที่<WBR>ห้า<WBR>ได้ หาก<WBR>ไม่<WBR>ต้อง<WBR>การ<WBR>เลือก<WBR>ชนิด<WBR>ของ server เอง<WBR>โดย<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>จาก<WBR>ชนิด<WBR>ของ<WBR>การ์ด<WBR>ที่<WBR>เรา<WBR>ได้<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>เอา<WBR>ไว้<WBR>แล้ว<WBR>ให้
+</p>
+
+<p>
+หมาย<WBR>เหตุ : การ์ด<WBR>บาง<WBR>แบบ<WBR>ไม่<WBR>สามารถ<WBR>ใช้<WBR>การ<WBR>แสดง<WBR>ผล<WBR>ใน<WBR>ข้อ 4 ได้<WBR>เช่น ET4000/W32 ของ Tseng เป็น<WBR>ต้น ให้<WBR>เลือก<WBR>ชนิด<WBR>ของ server เป็น SVGA server ใน<WBR>ข้อ<WBR>สาม<WBR>แทน
+</p>
+
+<p>
+เมื่อ<WBR>เลือก<WBR>ชนิด<WBR>ของ server เสร็จ<WBR>แล้ว<WBR>โปรแกรม<WBR>จะ<WBR>ถาม<WBR>ว่า<WBR>ต้อง<WBR>การ<WBR>จะ set symbolic link (ลิงก์<WBR>ไฟล์) หรือ<WBR>ไม่ ให้<WBR>ตอบ 'y' เสร็จ<WBR>แล้ว<WBR>โปรแกรม<WBR>จะ<WBR>ให้<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>ของ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ต่อ<WBR>ไป
+</p>
+
+<p>
+ให้<WBR>ใส่<WBR>จำนวนเมมโม<WBR>รี<WBR>ที่<WBR>มี<WBR>อยู่<WBR>บน<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด 1024
+</p>
+
+
+<p>
+ให้<WBR>ใส่<WBR>คำ<WBR>อธิบาย<WBR>หรือ<WBR>ชื่อ<WBR>ของ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด กด enter ผ่าน<WBR>ได้
+<br>
+ใส่<WBR>ชื่อ<WBR>ผู้<WBR>ผลิต<WBR>ของ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด กด enter ผ่าน
+<br>
+ใส่<WBR>ชื่อ<WBR>รุ่น (บอร์ด) ของ<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด กด enter ผ่าน
+</p>
+
+<p>
+ต่อ<WBR>มา<WBR>จะ<WBR>ถาม<WBR>ชนิด<WBR>ของ clockship ที่<WBR>วี<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ใช้<WBR>อยู่ หาก<WBR>ไม่<WBR>รู้<WBR>ชนิด<WBR>ของ<WBR>ชิป<WBR>ที่<WBR>ใช้<WBR>ให้<WBR>เคาะ enter ผ่าน โปรแกรม<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ clock line ให้<WBR>โดย<WBR>อัตโนมัติ<WBR>ให้<WBR>ตอบ 'Y' เพื่อ<WBR>ให้<WBR>โปรแกรม<WBR>รัน "X -probeonly" เพื่อ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ clock line ให้ ใน<WBR>ช่วง<WBR>นี้<WBR>หน้า<WBR>จอ<WBR>จะ<WBR>หาย<WBR>ไป<WBR>ชั่ว<WBR>ขณะ ซึ่ง<WBR>แสดง<WBR>ว่า<WBR>โปรแกรม<WBR>กำลัง<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ clock line อยู่ เมื่อ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>สำเร็จ<WBR>แล้ว<WBR>โปรแกรม<WBR>จะ<WBR>แจ้ง<WBR>ผล<WBR>การ<WBR>ทด<WBR>สอบ<WBR>ให้
+</p>
+
+<p>
+ต่อ<WBR>ไป<WBR>โปรแกรม<WBR>จะ<WBR>ให้<WBR>ทำ<WBR>การ<WBR>เซตอัพ ความ<WBR>ละเอียด<WBR>ของ<WBR>จอ<WBR>ภาพ (resolution)
+<pre>
+"640x480" "800x600" "1024x760" for 8bpp (256 สี)
+"640x480" "800x600" for 16bpp (32K/64 K สี)
+"640x400 for 32 bpp (24-bit สี)
+</pre>
+ความ<WBR>ละเอียด<WBR>ของ<WBR>จอ<WBR>ภาพ จะ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ใน<WBR>ขณะ<WBR>กำลัง<WBR>ใช้<WBR>งาน X window อยู่<WBR>ได้<WBR>โดย<WBR>จะ<WBR>มี default เป็น<WBR>ราย<WBR>การ<WBR>แรก<WBR>ของ<WBR>การ<WBR>เซตอัพ<WBR>ความ<WBR>ละเอียด<WBR>แต่<WBR>ละ<WBR>ชนิด เช่น<WBR>สำหรับ 8bpp(256 สี) จะ<WBR>มี<WBR>ความ<WBR>ละเอียด<WBR>เป็น 640x480, 800x600 และ 1024x760 ตาม<WBR>ลำ<WBR>ดับ
+</p>
+
+หาก<WBR>ต้อง<WBR>การ<WBR>เปลี่ยน<WBR>ความ<WBR>ละเอียด<WBR>ของ<WBR>จอ<WBR>ภาพ<WBR>สำหรับ 8bpp ให้<WBR>เลือก<WBR>ข้อ
+<pre>
+1 Change the modes for 8bpp (256 colors) 
+</pre>
+
+<p>
+โปรแกรม<WBR>จะ<WBR>ให้<WBR>ราย<WBR>การ<WBR>ของ modes ที่<WBR>มี<WBR>มา ใน<WBR>ที่<WBR>นี้<WBR>จะ<WBR>ใส่ '32' สำหรับ 800x600 (default) และ 640x480 สำหรับ modes ถัด<WBR>ไป เมื่อเร่ิม X windows ก็<WBR>จะ<WBR>เข้า<WBR>ตาม mode default คือ 800x600 นั่น<WBR>เอง ให้<WBR>เลือก<WBR>และ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน mode ตาม<WBR>ความ<WBR>ต้อง<WBR>การ เมื่อ<WBR>เสร็จ<WBR>สิ้น<WBR>แล้ว
+ให้<WBR>เลือก ข้อ 4 เพื่อ<WBR>ทำ<WBR>การ set up ต่อ<WBR>ไป โปรแกรม<WBR>จะ<WBR>ถาม<WBR>ว่า จะ<WBR>ให้<WBR>เขียน<WBR>ข้อ<WBR>มูล<WBR>ทับ<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ไฟล์ XF86config หรือ<WBR>ไม่<WBR>ให้<WBR>ตอบ 'Y' ยืน<WBR>ยัน 
+</p>
+
+<p>
+เมื่อ<WBR>เสร็จ<WBR>การ setup X window ให้<WBR>ทด<WBR>ลอง<WBR>เรียก<WBR>โดย<WBR>พิมพ์<WBR>คำ<WBR>สั่ง 'startx' เพื่อ<WBR>ทด<WBR>สอบ<WBR>การ<WBR>ใช้<WBR>งาน โปรแกรม X window
+</p>
+ 
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

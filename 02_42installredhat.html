@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>RedHat Install Guide</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER> การ<WBR>ติด<WBR>ตั้ง RedHat Linux 4.0 (Colgate)</H1>
+
+
+<H3 ALIGN=CENTER>ความ<WBR>ต้อง<WBR>การ<WBR>ของ<WBR>ระบบ<WBR>ใน<WBR>การ<WBR>ติด<WBR>ตั้ง</H3>
+ความ<WBR>ต้อง<WBR>การ<WBR>ขั้น<WBR>ต่ำ
+<ul>
+	<li>ซี<WBR>พี<WBR>ยู<WBR>รุ่น 386sx หรือ<WBR>สูง<WBR>กว่า</li>
+        <li>เมโม<WBR>รี (RAM) ขนาด<WBR>อย่าง<WBR>น้อย 4 MB (8 MB ขึ้น<WBR>ไป<WBR>ถ้า<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>งาน<WBR>แบบ<WBR>กราฟฟิค<WBR>ด้วย)</li>
+        <li>ฮาร์ดดิสก์<WBR>ขนาด 40 MB (80 MB ขึ้น<WBR>ไป<WBR>ถ้า<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>งาน<WBR>แบบ<WBR>กราฟฟิค<WBR>ด้วย)</li>
+        <li>วิ<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>แบบ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ Hercules, CGA, VGA, SVGA หรือ<WBR>อื่นๆ</li>
+	<li>จะ<WBR>ต้อง<WBR>ใช้<WBR>เมาส์<WBR>ด้วย หาก<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>งาน<WBR>แบบ<WBR>กราฟฟิค</li>
+        <li>ซี<WBR>ดี<WBR>รอม</li>
+</ul>
+
+ระบบ<WBR>ที่<WBR>แนะ<WBR>นำ
+<ul>
+	<li>ซี<WBR>พี<WBR>ยู<WBR>รุ่น 486 DX หรือ<WBR>สูง<WBR>กว่า</li>
+	<li>เมมโม<WBR>รี<WBR>ขนาด 16 MB ขึ้น<WBR>ไป</li>
+	<li>ฮาร์ดดิสก์<WBR>ขนาด 300 MB ขึ้น<WBR>ไป</li>
+	<li>วิ<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ที่<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>กับ XFree86 ได้ (ดู<WBR>ด้าน<WBR>ล่าง)</li>
+        <li>เมาส์<WBR>ชนิด 3 ปุ่ม</li>
+        <li>ซี<WBR>ดี<WBR>รอม<WBR>ขนาด<WBR>ความ<WBR>เร็ว<WBR>สอง<WBR>เท่า<WBR>ขึ้น<WBR>ไป</li>
+</ul>
+
+วิ<WBR>ดี<WBR>โอ<WBR>การ์ด<WBR>ที่<WBR>สนับสนุน<WBR>ระบบ<WBR>กราฟฟิค<WBR>ของ XFree86
+<ul>
+	<li>การ์ด Diamond ส่วน<WBR>ใหญ่</li>
+	<li>การ์ด<WBR>ที่<WBR>เข้า<WBR>กัน<WBR>ได้<WBR>กับ S3</li>
+	<li>การ์ด<WBR>ที่<WBR>เข้า<WBR>กัน<WBR>ได้<WBR>กับ ET4000</li>
+	<li>การ์ด ATI</li> 
+	<li>การ์ด Cirrus Logic 542x และ 543x</li>
+	<li>การ์ด Trident 8900 และ 9400</li>
+</ul>
+
+ซี<WBR>ดี<WBR>รอม<WBR>ที่<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>ได้
+<ul>
+	<li>ซี<WBR>ดี<WBR>รอม<WBR>ที่<WBR>ใช้<WBR>มาตร<WBR>ฐาน<WBR>ของ IDE/ATAPI
+	<li>ซี<WBR>ดี<WBR>รอม<WBR>แบบ SCSI ที่<WBR>ติด<WBR>ตั้ง<WBR>กับ<WBR>คอน<WBR>โทรล<WBR>เลอร์<WBR>ที่<WBR>ระบบ<WBR>สนับสนุน<WBR>เช่น Adaptec AHA1542x</li>
+	<li>ซี<WBR>ดี<WBR>รอม<WBR>ที่<WBR>ใช้<WBR>ผ่านไดร์<WBR>เวอร์ sound blaster (Matsushita/Kotobuki/Panasonic)</li>
+	<li>ซี<WBR>ดี<WBR>รอม<WBR>ของ Mitsumi</li>
+	<li>ซี<WBR>ดี<WBR>รอม Sony 535, CDU 31, CDU 33</li>
+</ul>
+
+
+<H3 ALIGN=CENTER>RedHat Linux 4.0 Quick install guide.</H3>
+
+<ol>
+<li>การ<WBR>ติด<WBR>ตั้ง<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>สอง<WBR>วิธี<WBR>คือ ติด<WBR>ตั้ง<WBR>ผ่าน<WBR>แผ่นดิสก์ หรือ<WBR>ติด<WBR>ตั้ง<WBR>โดย<WBR>ใช้<WBR>ซี<WBR>ดี<WBR>รอม<WBR>อย่าง<WBR>เดียว
+<ol>
+	<li>การ<WBR>ติด<WBR>ตั้ง<WBR>โดย<WBR>ใช้<WBR>แผ่นดิสก์<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>แผ่นบูต<WBR>สำหรับ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ก่อน
+<ul>
+    		<li>ลอกอิมเมจ<WBR>ไฟล์<WBR>ของ<WBR>แผ่นบูต<WBR>ลง<WBR>แผ่น</li>
+    		<li>ใช้ rawrite.exe bootdisk.img</li>
+                <li>บู<WBR>ตระบบ<WBR>ใหม่ โดย<WBR>ใส่<WBR>แผ่นบูตดิสก์<WBR>ที่<WBR>ได้<WBR>ทำ<WBR>ไว้<WBR>ใน<WBR>ช่อง<WBR>อ่าน<WBR>แผ่นดิสก์ A คอมพิวเตอร์<WBR>จะ<WBR>เริ่ม<WBR>ทำ<WBR>การบู<WBR>ตระบบ<WBR>ลีนุกซ์</li>
+</ul>
+</li>
+	<li>ถ้า<WBR>ติด<WBR>ตั้ง<WBR>โดย<WBR>ใช้<WBR>ซี<WBR>ดี<WBR>รอม<WBR>อย่าง<WBR>เดียว ให้บู<WBR>ตระบบ<WBR>ด้วยดอส<WBR>และ<WBR>เมื่อ<WBR>ใช้<WBR>งาน<WBR>ซี<WBR>ดี<WBR>รอม<WBR>ได้ ให้<WBR>เข้า<WBR>ไป<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี dosutils และ<WBR>รัน<WBR>โปรแกรม autoboot ระบบ<WBR>จะ<WBR>เริ่ม<WBR>ทำ<WBR>การบูต<WBR>และ<WBR>เข้า<WBR>สู่<WBR>ระบบ<WBR>ลีนุกซ์ </li>
+</ol>
+</li>
+
+<li>ระบบ<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>เริ่ม<WBR>ทำ<WBR>งาน<WBR>และ<WBR>ถาม<WBR>คำ<WBR>ถาม ให้<WBR>ตอบ<WBR>คำ<WBR>ถาม<WBR>ต่างๆ</li>
+
+<li>เมื่อ<WBR>ติด<WBR>ตั้ง<WBR>เรียบ<WBR>ร้อย<WBR>ระบบ<WBR>จะ<WBR>เริ่มบูต<WBR>ใหม่ และ<WBR>เพื่อ<WBR>ทำ<WBR>การ<WBR>เริ่ม<WBR>ระบบ<WBR>ลีนุกซ์<WBR>ที่<WBR>เรา<WBR>ได้<WBR>ติด<WBR>ตั้ง<WBR>เสร็จ<WBR>แล้ว<WBR>นี้</li>
+
+<li>ให้<WBR>ลอกอิน<WBR>เข้า<WBR>ระบบ<WBR>โดย<WBR>ป้อน<WBR>ชื่อ<WBR>ผู้<WBR>ใช้<WBR>เป็น root และ<WBR>รหัส<WBR>ผ่าน<WBR>ตาม<WBR>ที่<WBR>เรา<WBR>ได้<WBR>ป้อน<WBR>ไว้<WBR>ใน<WBR>ข้อ 3. การ<WBR>ลอกอิน<WBR>เป็น root นี้<WBR>จะ<WBR>มี<WBR>สิทธิ์<WBR>เป็น<WBR>ผู้<WBR>ดู<WBR>แล<WBR>ระบบ super user ซึ่ง<WBR>เรา<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>และ<WBR>แก้<WBR>ไข<WBR>ระบบ<WBR>ได้<WBR>ทั้ง<WBR>หมด<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>สิทธิ์<WBR>สูง<WBR>สุด<WBR>ใน<WBR>ระบบ ทด<WBR>ลอง<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ต่างๆ เช่น ls, cd, pwd เป็น<WBR>ต้น หาก<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>ระบบ X windows ให้<WBR>พิมพ์<WBR>คำ<WBR>ว่า startx ระบบ<WBR>จะ<WBR>เริ่ม x windows ให้
+</li>
+</ol>
+
+
+<H3 ALIGN=CENTER>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ<WBR>โดย<WBR>ละเอียด</H3>
+
+การ<WBR>สร้าง<WBR>แผ่นบูต<WBR>ภาย<WBR>ใต้ดอส<br>
+สมมุติ<WBR>ว่า<WBR>ระบบ<WBR>มอง<WBR>เห็นไดรฟ์<WBR>ซี<WBR>ดี<WBR>รอม<WBR>เป็นไดรฟ์ d: ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้	
+<pre>
+	d:\dosutils\rawrite.exe	
+</pre>
+<p>
+     โปรแกรม<WBR>จะ<WBR>ถามอิมเมจ<WBR>ไฟล์<WBR>ที่<WBR>ต้อง<WBR>การ ให้<WBR>ใส่ d:\diskimage\bootdisk.img เมื่อ
+ใส่<WBR>ชื่อ<WBR>ไฟล์<WBR>แล้ว<WBR>โปรแกรม<WBR>จะ<WBR>ถามไดร์ฟ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>การ<WBR>สร้าง<WBR>แผ่นบูต ถ้า<WBR>หาก
+ดิสก์<WBR>อยู่<WBR>ในไดรฟ์ a: ให้<WBR>ตอบ<WBR>ชื่อไดรฟ์ A: โปรแกรม<WBR>จะ<WBR>เริ่ม<WBR>ต้น<WBR>คัด<WBR>ลอก<WBR>ไฟล์<WBR>เพื่อ<WBR>ทำ<WBR>การ
+สร้าง<WBR>แผ่นบูต การ<WBR>ติด<WBR>ตั้ง<WBR>นี้<WBR>จะ<WBR>ใช้<WBR>แผ่นบูต<WBR>นี้<WBR>เพียง<WBR>แผ่น<WBR>เดียว<WBR>เท่า<WBR>นั้น
+</p>
+
+การ<WBR>สร้าง<WBR>แผ่นบูต<WBR>ภาย<WBR>ใต้<WBR>ลีนุกซ์<br>
+ทำ<WBR>การ<WBR>เมาท์<WBR>ซี<WBR>ดี<WBR>รอม<WBR>ไป<WBR>ไว้<WBR>ใต้ path /mnt/cdrom แล้ว<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ cd /mnt/cdrom/images
+$ .mkfloppies.pl
+</pre>
+<p>
+      สค<WBR>ริปต์<WBR>นี้<WBR>จะ<WBR>ถาม<WBR>ข้อ<WBR>มูล<WBR>เกี่ยว<WBR>กับ<WBR>ระบบ<WBR>ฮาร์ดแวร์<WBR>และ<WBR>จะ<WBR>สร้าง<WBR>แผ่นบูต<WBR>ที่<WBR>ใช้<WBR>กับ<WBR>ระบบ
+ได้<WBR>ให้<WBR>โดย<WBR>อัตโนมัติ
+</p>
+	
+การ<WBR>ติด<WBR>ตั้ง<WBR>โดย<WBR>ไม่<WBR>ใช้<WBR>แผ่นบูต (ใช้<WBR>ซี<WBR>ดี<WBR>รอม<WBR>อย่าง<WBR>เดียว)<br>
+	ให้บู<WBR>ตระบบ<WBR>ด้วยดอส และ<WBR>เปลี่ยนไดรฟ์<WBR>เป็นไดรฟ์<WBR>ซี<WBR>ดี<WBR>รอม แล้ว<WBR>เปลี่ยน path
+เป็น d:\dosutils เรียก<WBR>โปรแกรม autoboot.bat
+
+<p>
+ระบบ<WBR>จะ<WBR>เริ่มบูต<WBR>เข้า<WBR>สู่<WBR>ลีนุกซ์ และ<WBR>เมื่อ<WBR>ระบบ<WBR>เข้า<WBR>สู่<WBR>การ<WBR>ติด<WBR>ตั้ง จะ<WBR>แสดง<WBR>เป็น<WBR>เมนู<WBR>และ
+ไดอะ<WBR>ลอก<WBR>สำหรับ<WBR>การ<WBR>ติด<WBR>ตั้ง
+</p>
+
+วิธี<WBR>การ<WBR>ใช้<WBR>งานไดอะ<WBR>ลอก<WBR>ของ<WBR>การ<WBR>ติด<WBR>ตั้ง:
+<ul>
+	<li>หาก<WBR>ต้อง<WBR>การ<WBR>สลับ<WBR>การ<WBR>ควบ<WBR>คุม<WBR>ปุ่ม<WBR>ควบ<WBR>คุม<WBR>ต่างๆ ในไดอะ<WBR>ลอก เช่น<WBR>เปลี่ยน<WBR>จาก<WBR>ปุ่ม OK เป็น CANCEL ให้<WBR>ใช้<WBR>ปุ่ม <TAB> หรือ <Alt-TAB></li>
+	<li>หาก<WBR>ต้อง<WBR>การ<WBR>ตก<WBR>ลง<WBR>เลือก<WBR>หัว<WBR>ข้อ<WBR>นั้น ให้<WBR>ใช้<WBR>ปุ่ม <SPACEBAR> หาก<WBR>หัว<WBR>ข้อ<WBR>ที่<WBR>เลือก<WBR>เป็น<WBR>ข้อ<WBR>เลือก<WBR>หลาย<WBR>ตัว เมื่อ<WBR>เลือก<WBR>โดย<WBR>ใช้<WBR>ปุ่ม <SPACEBAR> จะ<WBR>ปรากฎ<WBR>เป็น<WBR>รูป <*> ขึ้น<WBR>หน้า<WBR>หัว<WBR>ข้อ<WBR>ที่<WBR>เลือกดั<WBR>วก<WBR>ล่าว</li>
+	<li>หาก<WBR>ต้อง<WBR>การยีืน<WBR>ยัน<WBR>การ<WBR>เลือก ในไดอะ<WBR>ลอก<WBR>ที่<WBR>ใช้<WBR>อยู่<WBR>ให้ เลื่อน/สลับ การ<WBR>ควบ<WBR>คุม<WBR>มา<WBR>อยู่<WBR>ที่<WBR>ปุ่ม OK และ<WBR>กด <SPACEBAR> หรือ กด <ENTER></li>
+	<li>หาก<WBR>ต้อง<WBR>การ<WBR>เปลี่ยน<WBR>ไป<WBR>ใช้<WBR>หน้าไดอะ<WBR>ลอก<WBR>ถัด<WBR>ไป<WBR>ให้<WBR>กด<WBR>ปุ่ม <F12></li>
+</ul>
+
+การ<WBR>ติด<WBR>ตั้ง<WBR>อย่าง<WBR>ละเอียด
+
+<ol>
+<li>ไดอะ<WBR>ลอก<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>ให้<WBR>เลือก<WBR>ว่า<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>โดย<WBR>ใช้<WBR>จอ<WBR>สี<WBR>หรือ<WBR>ไม่ ให้<WBR>เลือก<WBR>แล้ว<WBR>กด Enter</li>
+<li>ขึ้น announcement ของ<WBR>การ<WBR>ติด<WBR>ตั้ง ให้<WBR>กด Enter ผ่าน<WBR>ไป</li>
+<li>ขึ้นไดอะ<WBR>ลอก<WBR>ถาม<WBR>ว่า<WBR>มี<WBR>อุปกรณ์<WBR>แบบ PCMCIA ให้<WBR>เลือก<WBR>แล้ว<WBR>กด Enter</li>
+<li>ถาม<WBR>แหล่ง<WBR>ต้น<WBR>ฉบับ<WBR>ที่<WBR>จะ<WBR>ใช้<WBR>ใน<WBR>การ<WBR>ติด<WBR>ตั้ง มี<WBR>หัว<WBR>ข้อ<WBR>เลือก<WBR>ดัง<WBR>นี้
+<ul>
+	<li>CD-ROM ถ้า<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ผ่าน<WBR>แผ่น<WBR>ซี<WBR>ดี<WBR>รอม</li>
+	<li>NFS    ถ้า<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ผ่าน<WBR>เซอร์ฟ<WBR>เวอร์ NFS </li>
+	<li>HD     ถ้า<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>จาก<WBR>ฮาร์ดดิสก์</li>
+	<li>FTP    ถ้า<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ผ่าน<WBR>เซอร์ฟ<WBR>เวอร์ FTP</li>
+</ul>
+   ให้<WBR>เลือก<WBR>แล้ว<WBR>กด Enter (ใน<WBR>ที่<WBR>นี้<WBR>จะ<WBR>เลือก<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ผ่าน CD-ROM)
+<li>จะ<WBR>ให้<WBR>เลือก<WBR>ชนิด<WBR>ของ CD-ROM มี<WBR>หัว<WBR>ข้อ<WBR>คือ SCSI, IDE (ATAPI), Other ให้<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>แล้ว<WBR>กด Enter</li>
+<li>โปรแกรม<WBR>ติดตัั้ง<WBR>จะ<WBR>ถาม<WBR>ชนิด<WBR>ของไดรว์<WBR>เวอร์<WBR>หรือ<WBR>การ์ด<WBR>ของ<WBR>ซี<WBR>ดี<WBR>รอม<WBR>ที่<WBR>เลือก<WBR>มา<WBR>แล้ว<WBR>และ<WBR>จะ<WBR>ทำ<WBR>การ autoprobe ให้<WBR>ตอบ OK เพื่อ<WBR>ให้<WBR>ระบบ<WBR>ติด<WBR>ตั้ง<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ชนิด<WBR>ของ<WBR>ซี<WBR>ดี<WBR>รอมไดร์ฟ<WBR>ให้</li>
+<li>เมื่อ<WBR>โปรแกรม<WBR>ติด<WBR>ตั้ง<WBR>ตรวจ<WBR>เจอ<WBR>ซี<WBR>ดี<WBR>รอม<WBR>แล้ว<WBR>จะ<WBR>ถาม<WBR>ว่า<WBR>จะ<WBR>ทำ<WBR>การ upgrade หรือ install ให้<WBR>เลือก<WBR>แล้ว<WBR>กด Enter</li>
+<li>จะ<WBR>เข้า<WBR>มา<WBR>สู่<WBR>หน้า<WBR>จอ<WBR>การ<WBR>ทำ<WBR>พาร์<WBR>ติชั่น หาก<WBR>ยัง<WBR>ไม่<WBR>ได้<WBR>แบ่ง<WBR>พาร์<WBR>ติชั่น<WBR>จากดอ<WBR>สมา<WBR>ก่อน สามารถ<WBR>ทำ<WBR>การ<WBR>แบ่ง<WBR>พาร์<WBR>ติชั่น<WBR>จาก<WBR>ใน<WBR>ลีนุกซ์<WBR>ได้ โดย<WBR>ปกติ<WBR>แล้ว<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>แบ่ง<WBR>เป็น Linux native partition และ Linux swap drive โดย<WBR>มี id ประจำ<WBR>ตัว<WBR>เป็น 82 และ 83 ตาม<WBR>ลำ<WBR>ดับ (ให้<WBR>แบ่ง swap มี<WBR>ขนาด<WBR>เป็น<WBR>สอง<WBR>เท่า<WBR>ของเมมโม<WBR>รี) </li>
+
+	ราย<WBR>ละเอียด<WBR>ของ<WBR>การ<WBR>ใช้<WBR>งาน fdisk<br>
+คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>จัด<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ใหม่<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+        fdisk <drive>
+</pre>
+โดย drive จะ<WBR>มี<WBR>ชื่อ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<ul>
+        <li>/dev/hda IDE ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง</li>
+        <li>/dev/hdb IDE ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>สอง</li>
+        <li>/dev/sda SCSI ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง</li>
+        <li>/dev/sdb SCSI ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>สอง</li>
+</ul>
+ด้ง<WBR>นั้น<WBR>คุณ<WBR>สามารถ<WBR>แทน<WBR>คำ<WBR>ว่า drive ด้วย<WBR>ราย<WBR>ชื่อ<WBR>ดัง<WBR>กล่าว<br>
+ตัว<WBR>อย่าง<WBR>เมื่อ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>จัด<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ของ IDE ฮาร์ดดิสก์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง (ที่<WBR>ระบบ
+ส่วน<WBR>ใหญ่<WBR>ใช้)
+<pre>
+        fdisk /dev/hda
+</pre>
+
+สำหรับ<WBR>การ<WBR>แบ่ง<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ของ<WBR>ฮาร์ดดิสก์<WBR>แต่<WBR>ละ<WBR>ตัว<WBR>นั้น จะ<WBR>มี<WBR>หมาย<WBR>เลข<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ต่อ<WBR>ท้าย
+ชื่อ<WBR>ของ<WBR>ฮาร์ดดิสก์ ตัว<WBR>อย่าง<WBR>เช่น
+<ul>
+        <li>/dev/hda1 พาร์<WBR>ติ<WBR>ชัน<WBR>แรก<WBR>ของ<WBR>ฮาร์ดดิสก์ IDE ตัว<WBR>ที่<WBR>หนึ่ง</li>
+        <li>/dev/hda2 พาร์<WBR>ติ<WBR>ชัน<WBR>ที่<WBR>สอง<WBR>ของ<WBR>ฮาร์ดดิสก์ IDE ตัว<WBR>ที่<WBR>หนึ่ง</li>
+        <li>...</li>
+</ul>
+
+<p>
+ใน<WBR>ตอน<WBR>แรก<WBR>คุณ<WBR>ควร<WBR>ตรวจ<WBR>ดู<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ใน<WBR>ฮาร์ดดิสก์<WBR>ของ<WBR>คุณ<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง 'p'
+(ใช้<WBR>คำ<WBR>สั่ง 'm' ถ้า<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>แสดง<WBR>ข้อ<WBR>ความ<WBR>ช่วย<WBR>เหลือ)
+ถ้า<WBR>ตอน<WBR>แรก<WBR>คุณ<WBR>แบ่ง<WBR>เป็น DOS/WINDOWS พาร์<WBR>ติ<WBR>ชัน<WBR>เดียว (ตาม<WBR>ข้าง<WBR>บน)
+โปรแกรม<WBR>ควร<WBR>จะ<WBR>แสดง<WBR>ข้อ<WBR>ความ<WBR>ออก<WBR>มา<WBR>ใน<WBR>ลักษณะ<WBR>นี้
+</p>
+
+<pre>
+Command (m for help):p
+Disk /dev/hd: 16 heads, 38 sectors, 683 cylinders
+Units=cylinders of 608*512 bytes
+    Device Boot Begin Start End Blocks ID System
+/dev/hda1   *    1       1  203 61693  6  DOS 16-bit>=32M
+
+Command (m for help):
+</pre>
+
+ให้<WBR>คุณ<WBR>ทำ<WBR>การ<WBR>สร้าง<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>สำหรับ<WBR>ระบบ<WBR>และสแวป เพิ่ม<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง 'n' ดัง<WBR>นี้
+
+<pre>
+Command (m for help):n
+Command action
+    e extended
+    p primary partition (1-4)
+p                                               <-- สั่ง p เพื่อ<WBR>เลือก
+                                                    primary
+Partition number(1-4): 2                        <-- partition ที่ 2
+First cylinder(204-683): 204                    <-- ใส่<WBR>หมาย<WBR>เลข cylinder
+Last cylinder or +size of +sizeM or +sizeK(204-683): +80M
+</pre>
+
+จาก<WBR>นั้น<WBR>ก็<WBR>สร้าง swap แบบ<WBR>เดียว<WBR>กัน แต่<WBR>เปลี่ยน<WBR>หมาย<WBR>เลข<WBR>ลำ<WBR>ดับ<WBR>ที่<WBR>ของ<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>เป็น 3
+เมื่อ<WBR>สั่ง 'p' ดู<WBR>พาร์<WBR>ติชั่น ควร<WBR>ได้<WBR>ข้อ<WBR>ความ<WBR>ดัง<WBR>นี้
+
+<pre>
+Command (m for help):p
+Disk /dev/hd: 16 heads, 38 sectors, 683 cylinders
+Units=cylinders of 608*512 bytes
+    Device Boot Begin Start End Blocks ID System
+/dev/hda1   *     1       1  203 61693  6  DOS 16-bit>=32M   <-- Partition แรก
+/dev/hda2       204     204  473 82080 83  Linux native      <-- Partition สอง
+/dev/hda3       474     474  507 10336 83  Linux native      <-- Partition สาม
+
+Command (m for help):
+</pre>
+
+คุณ<WBR>สามารถ<WBR>จะ<WBR>เปลี่ยน type ของ<WBR>พาร์<WBR>ติชั่น<WBR>ที่<WBR>สาม<WBR>ให้<WBR>เป็น swap ได้
+โดย<WBR>การ<WBR>สั่ง 't' ดัง<WBR>นี้
+
+<pre>
+Command (m for help):t
+Partition numer(1-4):3
+Hex code (type L to List codes):82
+</pre>
+
+พาร์<WBR>ติชั่น<WBR>ที่<WBR>สาม<WBR>จะ<WBR>ถูก<WBR>เปลี่ยน type เป็น swap
+<br>
+
+<p>
+สามารถ<WBR>สั่ง 'l' ถ้า<WBR>ต้อง<WBR>การ<WBR>ดู<WBR>รหัส<WBR>ของ<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>แบบ<WBR>อื่นๆ
+เช่น<WBR>รหัส db จะ<WBR>เป็น<WBR>รหัส<WBR>พาร์<WBR>ติ<WBR>ชัน<WBR>ของ CP/M, รหัส 64-65 จะ<WBR>เป็น<WBR>รหัส
+ของ Novell Netware
+เมื่อ<WBR>ทำ<WBR>การ<WBR>จัด<WBR>พาร์<WBR>ติชั่น<WBR>เสร็จ<WBR>แล้ว<WBR>ให้<WBR>สั่ง 'w' เพื่อ<WBR>ทำ<WBR>การ<WBR>บัน<WBR>ทึก
+ข้อ<WBR>มูล<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ฮาร์ดดิสก์<WBR>และ<WBR>ออก<WBR>จาก<WBR>โปรแกรม<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง 'q'
+</p>
+
+คำ<WBR>สั่ง<WBR>ข้าง<WBR>ล่าง<WBR>นี้<WBR>ใน<WBR>ช่วง<WBR>ติด<WBR>ตั้ง<WBR>ระบบ ยัง<WBR>ไม่<WBR>ต้อง<WBR>ทำ<WBR>โปรแกรม<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>โดย<WBR>อัตโนมัติ
+จาก<WBR>นั้น<WBR>คุณ<WBR>ก็<WBR>สามารถ<WBR>สั่ง<WBR>ให้<WBR>ลีนุกซ์<WBR>เตรียม<WBR>เนื้อ<WBR>ที่<WBR>สำหรับ swap โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+        mkswap -c <partition> <size>
+</pre>
+จาก<WBR>ตัว<WBR>อย่าง<WBR>ข้าง<WBR>บน <WBR>สามารถ<WBR>สั่ง<WBR>ได้<WBR>ดัง<WBR>นี้
+<pre>
+        mkswap -c /dev/hda3 10336
+</pre>
+จาก<WBR>นั้น<WBR>ก็<WBR>ทำ<WBR>ให้<WBR>ระบบ<WBR>สามารถ<WBR>ใช้เนื่อ<WBR>ที่ swap ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+        swapon <partition>
+</pre>
+ตัว<WBR>อย่าง 
+<pre>
+$ swapon /dev/hda3
+</pre>
+คราว<WBR>นี้<WBR>คุณ<WBR>ก็<WBR>สามารถ<WBR>ใช้<WBR>พื้น<WBR>ที่<WBR>มาก<WBR>กว่า 10 Mb เป็น<WBR>พื้น<WBR>ที่สแวป<WBR>ของ
+เวอร์<WBR>ชวลเมโม<WBR>รี<WBR>ได้<WBR>แล้ว
+
+<p>
+คุณ<WBR>อาจ<WBR>จะ<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ใช้สแวป<WBR>ก็<WBR>ได้<WBR>ถ้า<WBR>คุณ<WBR>มั่น<WBR>ใจ<WBR>ว่า เมมโม<WBR>รี<WBR>ของ<WBR>คุณ
+มาก<WBR>พอ<WBR>และ<WBR>ไม่<WBR>ใช้ X-windows
+<br>
+มา<WBR>ถึง<WBR>ตอน<WBR>นี้<WBR>คุณ<WBR>ก็<WBR>สามารถ<WBR>ที่<WBR>จะ<WBR>ติด<WBR>ตั้ง<WBR>แอพพ<WBR>ลิ<WBR>เคชั่น<WBR>อื่นๆ ที่<WBR>จำ<WBR>เป็น<WBR>ลง<WBR>ใน<WBR>ฮาร์ดดิสก์
+ได้<WBR>แล้ว
+</p>
+
+<li>ถาม<WBR>พาร์<WBR>ติชั่น<WBR>ที่<WBR>ใช้<WBR>เป็น swap ให้<WBR>กด<WBR>คีย์ spacebar เพื่อ<WBR>เลือก toggle พาร์<WBR>ติชั่น<WBR>ที่<WBR>ต้อง<WBR>การ แล้ว<WBR>กด Enter</li>
+<li>ถาม<WBR>พาร์<WBR>ติชั่น<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>เป็น root (พาร์<WBR>ติชั่น<WBR>หลัก) ให้<WBR>เลือก<WBR>แล้ว<WBR>กด Enter</li>
+<li>ถาม<WBR>พาร์<WBR>ติชั่น<WBR>อื่น<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ mount ขึ้น<WBR>มา<WBR>เพิ่ม<WBR>เติม (เช่น dosc) ให้<WBR>เลือก<WBR>แล้ว<WBR>กด Enter</li>
+<li>โปรแกรม<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>ถาม<WBR>และ<WBR>ให้<WBR>ทำ<WBR>การ<WBR>ยืน<WBR>ยัน<WBR>เพื่อ<WBR>ทำ<WBR>การฟอร์แมต<WBR>พาร์<WBR>ติชั่น กด<WBR>คีย์ spacebar เพื่อ<WBR>เลือก<WBR>พาร์<WBR>ติชั่น<WBR>ที่ต้้อ<WBR>งการ แล้ว<WBR>กด Enter</li>
+<li>เมื่อ<WBR>ทำ<WBR>การ<WBR>จัด<WBR>การ<WBR>แบ่ง<WBR>และฟอร์แมต<WBR>พาร์<WBR>ติชั่น<WBR>ต่างๆ<WBR>เสร็จ<WBR>เรียบ<WBR>ร้อย<WBR>แล้ว โปรแกรม<WBR>ติด<WBR>ตั้ง<WBR>จะ<WBR>ให้<WBR>เลือก component และ software ที่ต้้อ<WBR>งการ<WBR>จะ<WBR>ติด<WBR>ตั้ง<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ระบบ ถ้า<WBR>ต้อง<WBR>การ<WBR>เลือก<WBR>ราย<WBR>ละเอียด<WBR>ให้<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>หัว<WBR>ข้อ<WBR>ตาม<WBR>ต้อง<WBR>การ เมื่อ<WBR>เลือก<WBR>เสร็จ<WBR>แล้ว<WBR>ให้<WBR>กด Enter</li>
+<li>โปรแกรม<WBR>จะ<WBR>แจ้ง<WBR>ให้<WBR>ทราบ<WBR>ว่า<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แจ้ง component ที่<WBR>จะ<WBR>ติด<WBR>ตั้ง<WBR>ลง<WBR>ใน /tmp/install.log เพื่อ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ภาย<WBR>หลัง  หลัง<WBR>จาก<WBR>นี้<WBR>โปรแกรม<WBR>จะ<WBR>เริ่ม<WBR>ทำ<WBR>การฟอร์แมต<WBR>แต่<WBR>ละ<WBR>พาร์<WBR>ติชั่น (mkfs) และ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง component ของ package ต่างๆ<WBR>ลง<WBR>สู่<WBR>ระบบ</li>
+
+ขั้น<WBR>ตอน<WBR>ต่อ<WBR>ไป<WBR>เป็น<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>ระบบ X Window ด้วย<br>
+<li>ถาม<WBR>ชนิด<WBR>ของ mouse  (mouseconfig)</li>
+<li>เลือก video card และ<WBR>เลือก<WBR>ชนิด<WBR>ของ X server โดย<WBR>ปกติ<WBR>จะ<WBR>เป็น X server ที่<WBR>ใช้<WBR>กับ card ที่<WBR>เลือก<WBR>นี้ แต่<WBR>โดย<WBR>ปกติ<WBR>แล้ว X server ชนิด SVGA จะ<WBR>ใช้<WBR>ได้<WBR>กับ<WBR>การ์ด<WBR>ทุก<WBR>ชนิด</li>
+<li>เลือก<WBR>การ config lan</li>
+<li>ใส่ IP<br>
+   ตัว<WBR>อย่าง<WBR>การ<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>ของ<WBR>ค่า<WBR>ต่างๆ<WBR>สำหรับ<WBR>เนต<WBR>เวอร์ก
+<pre>
+
+   Parameter			Example
+   ------------------------------------------------
+   Hostname			daffy
+   Domain Name			kaiwal.com
+   FQDN				daffy.kaiwal.com
+   IP Address			125.105.25.2
+   Network Address		125.105.0.0
+   Network Mask			255.255.0.0
+   Broadcast Address		125.105.255.255
+   Default Gateway		125.105.25.1
+   Name Server			125.105.25.10
+</pre>
+</li>
+
+<li>เซตอั<WBR>พระบบ<WBR>เวลา (timeconfig)</li>
+<li>เซตอัพ<WBR>ชนิด<WBR>คีย์<WBR>บอร์ด (kbdconfig)</li>
+<li>ใส่<WBR>รหัส<WBR>ผ่าน<WBR>ของ root (super user)</li>
+<li>เซตอั<WBR>พกา<WBR>รติด<WBR>ตั้ง<WBR>ระบบ<WBR>การ<WBR>จัด<WBR>การ<WBR>การบูต<WBR>ของ<WBR>เครื่อง (loadlin)</li>
+
+รีบูต<WBR>เครื่อง เมื่อ<WBR>ระบบ<WBR>ทำ<WBR>การ<WBR>รีบูต<WBR>แล้ว จะ<WBR>เข้า<WBR>สู่ lilo prompt<br>
+<li>กด Enter เพื่อบู<WBR>ตระบบ<WBR>ที่<WBR>เป็น default (linux)</li>
+<li>กด tab เพื่อ<WBR>ขอ<WBR>ดู<WBR>ราย<WBR>ชื่อ<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>ที่<WBR>สามารถบูต<WBR>ได้</li>
+<li>ใส่<WBR>ชื่อ<WBR>ระบบ<WBR>ปฏิบัติ<WBR>การ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ให้<WBR>ทำ<WBR>การบูต (เช่น<WBR>พิมพ์ "dos" เพื่อ<WBR>ให้<WBR>ระบบบูต<WBR>เข้าสู่<WBR>ระบบดอส)</li>
+<li>เมื่อ<WBR>เข้าบูต<WBR>เข้า<WBR>สู่<WBR>ระบบ<WBR>ลีนุกซ์ ให้ login ด้วย root โดย<WBR>ใช้<WBR>รหัส<WBR>ผ่าน<WBR>ที่<WBR>ได้<WBR>ใส่<WBR>ไว้<WBR>ใน<WBR>ขั้น<WBR>ตอน<WBR>ที่ 21  แล้ว<WBR>ทด<WBR>ลอง<WBR>ใช้<WBR>งาน<WBR>ระบบ<WBR>ดู เช่น<WBR>ทด<WBR>ลอง<WBR>พิมพ์<WBR>คำ<WBR>สั่ง 'ls -l' ซึ่ง<WBR>จะ<WBR>เป็น<WBR>การ<WBR>แสดง<WBR>ราย<WBR>ละเอียด<WBR>ของ<WBR>ไฟล์<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน (คล้าย<WBR>กับ<WBR>คำ<WBR>สั่ง dir ของ DOS) ใน<WBR>ขั้น<WBR>ตอน<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>การ<WBR>ใช้<WBR>งาน ใน<WBR>ระบบ Text mode โดย<WBR>เรา<WBR>สามารถ<WBR>จะ<WBR>สลับ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>หน้า<WBR>จอ<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>หน้า<WBR>จอ<WBR>ได้ (ทด<WBR>ลอง<WBR>กด Alt-F1, Alt-F2 จน<WBR>ถึง Alt-F7 ดู)</li>
+</ol>
+
+
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

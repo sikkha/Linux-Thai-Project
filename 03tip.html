@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Linux Website Listing</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>Linux tips</H1>
+
+
+<ul>
+<li>
+การฟอร์แมตพาร์ติชั่นบนลีนุกซ์
+example : # /sbin/mkfs -t ext2 /dev/hdb2 357440 <enter> <br>
+ฟอร์แมตพาร์ติชั่น /dev/hdb2 (พาร์ติชั่นที่สองของฮาร์ดดิสก์ไดรฟ์ D) <br>
+</li>
+
+<li>
+การเมาท์พาร์ติชั่น<br>
+<ul>
+<li>
+การเมาท์พาร์ติชั่นของลีนุกซ์ (ext2)<br>
+$ mnt -text2 /dev/hdb2 /mnt/dosc <enter> <br>
+</li>
+<li>
+การเมาท์พาร์ติชั่นของระบบดอสและวินโดวส์ <img src="P0updated.gif"><br>
+(FAT)<br>
+$ mnt -tmsdos /dev/hdb2 /mnt/dosc <enter> <br>
+(VFAT)<br>
+$ mnt -tvfat /dev/hdb2 /mnt/dosc <enter> <br>
+หากต้องการจะเมาท์ระบบไฟล์ของดอสและวินโดวส์ผ่าน ระบบเน็ตเวอร์ก<br>
+จะต้องทำการเมาท์ผ่าน SMB protocol (ใช้ smbmount และ smbumount)<br>
+ขอบคุณอาจารย์ พฤษภ์ บุญมา คณะวิศวกรรมศาสตร์ ภาควิชาวิศวกรรมคอมพิวเตอร์ มช. <br>
+ที่ได้กรุณาแนะนำข้อมูลเพิ่มเติม
+</li>
+</ul>
+ระบบพาร์ติชั่นที่สนับสนุน : ext2, minix, msdos, iso9660 (cdrom), ... <br>
+</li>
+
+<li>
+การตรวจดูคีย์ที่ไม่สามารถแสดงเป็นตัวอักษรออกมาได้ เช่น Backspace ซึ่งโดยปกติจะ<br>
+ถูกกำหนดเป็น Ctrl-h เวลากดปุ่ม Backspace จะเห็นเป็นการลบตัวอักษรข้างหน้า<br>
+แต่ถ้าเราทำการกด Ctrl-v ก่อนเมื่อกดปุ่มพิเศษต่างๆก็จะเห็นเป็นตัวอักษรที่อ่านได้<br>
+ออกมา ซึ่งถ้าเป็น Backspace ก็จะเห็นเป็น ^H มักจะใช้กับคำสั่ง 'cat -v' เพื่อ<br>
+ทำการตรวจดูการ mapping ของฟังก์ชั่นพิเศษของปุ่มที่ต้องการ
+</li>
+
+<li>
+การตรวจดูดีไวซ์ที่เคอร์เนลตรวจติดตั้งไว้ และข่าวสารอื่นๆที่แสดงออกมาตอนบูตระบบ<br>
+	example : ksh$ dmesg <enter> <br>
+</li>
+
+<li> 
+Firewall setup ,for outside network or inside network permission. <br>
+	sample script: <br>
+	    ipfwadm -F -a m -s <ip> -p 0.0.0.0/0 <br>
+	    ipfwadm -A -a -S <ip> -p 0.0.0.0/0 <br>
+	------- <br>
+	    ipfwadm -F -f <br>
+	    ipfwadm -A -f <br>
+	    ipfwadm -F -p deny <br>
+</li>
+
+<li>
+Keyboard definition. <br>
+<ul>
+<li>
+	ตรวจความหมายของคีย์ทั้งหมด  : ksh$ stty -a <br>
+</li><li>
+        ตัวอย่างการเซ็ตเป็นปุ่ม interrupt :ksh$ stty intr ^C<br>
+</li><li>
+  	ตัวอย่างการเซ็ตเป็นปุ่ม ลบตัวอักษร  :ksh$ stty erase ^H<br>
+</li>
+</ul>
+</li>
+
+<li>
+การสร้าง device file <br>
+ตัวอย่างการสร้าง device ของ SCSI<br>
+	ksh# cd /dev <enter> <br>
+	ksh# ./MAKEDEV sg <enter>  <br>
+</li>
+
+<li>
+เมื่อคุณไม่สามารถใช้งานลีนุกซ์ได้ เช่นอาจเป็นเพราะลืมรหัสผ่านของซุปเปอร์ยูเซอร์ <br>
+(root) ให้พิมพ์คำว่า "linux single" ที่พร้อมพต์ของ lilo ตอนคุณบูตระบบ<br>
+คุณจะสามารถเข้าไปใช้งานลีนุกซ์ในแบบ single user ได้ 
+</li>
+
+<li>
+ตรวจสอบพื้นที่ว่าของพาร์ติชั่นบนลีนุกซ์ทั้งหมด <br>
+	example : ksh$ df -k <enter> <br>
+</li>
+
+<li>
+ใช้ยูทิลีตี giftrans ในการตกแต่งรูปภาพแบบ GIF
+</li>
+
+<li>
+การกำหนดขนาดของหน้าต่างใน X window<br>
+    edit file /etc/X11/XF86Config , section "Screen", subsection "Display", <br>
+    take a look at 'mode' and 'virtual'. <br>
+ใน X window เวอร์ชั่นใหม่ๆจะกำหนดที่ viewport
+</li>
+
+<li>
+การกำหนดขนาดของไฟล์ core dump<br>
+	bash : ulimit -c <corfilesize> --> /etc/profile <br>
+      (t)csh : limit coredmpsize <corefilesize>  --> /etc/csh.cshrc <br>
+	set corefilesize to 0 and you won't get core files. <br>
+</li>
+
+<li>
+หากต้องการให้เทอร์มินอลอื่นสามารถล็อกอินเข้ามาในฐานะ root ได้<br>
+ให้แก้ไฟล์ /etc/securetty <br>
+</li>
+
+<li>
+หากคุณต้องการจะเปลี่ยนโหมดในการบูต (ลีนุกซ์สามารถจะคอนฟิกระบบได้มากกว่าหนึ่งแบบ <br>
+ได้) และคุณสามารถจะสลับโหมดเหล่านั้นไปมาได้โดยใช้คำสั่ง telinit ซึ่งเหมือนกับ<br>
+ในระบบ UNIX ซึ่งต้องใช้คำสั่ง shutdown -i[โหมดที่ต้องการ] -g0 -y<br>
+	example : ksh# /sbin/telinit 3 <enter> <br>
+</li>
+
+<li>
+หากต้องการให้เชลล์ ksh หรือ bash มีคุณลักษณ์ของ 'vi' ให้ใช้คำสั่ง
+"set -o vi"
+</li>
+
+<li>
+ตรวจข้อมูลจากเคอร์เนลและระบบ<img src="P0updated.gif"><br>
+สามารถดูเวอร์ชั่นของเคอร์เนลและชนิดของโพรเซสเซอร์ ได้จากคำสั่ง<br>
+$ uname -a <enter> <br>
+หากต้องการดูข้อมูลอื่นๆของเคอร์เนลและระบบ สามารถตรวจดูได้จาก ไดเรกทอรี /proc <br>
+หรืออาจจะใช้คำสั่ง "top"<br>
+ขอบคุณอาจารย์ พฤษภ์ บุญมา คณะวิศวกรรมศาสตร์ ภาควิชาวิศวกรรมคอมพิวเตอร์ มช. <br>
+ที่ได้กรุณาแนะนำข้อมูลเพิ่มเติม
+</li>
+
+<li>
+To list module use lsmod, to insert use insmod, to remove use rmmod
+หากต้องการแสดงโมดูลที่เคอร์เนลใช้อยู่ในปัจจุบันให้ใช้คำสั่ง lsmod, หากจะเพิ่ม<br>
+โมดูลใช้คำสั่ง insmod และหากจะลบโมดูลออกใช้คำสั่ง rmmod
+</li>
+
+<li> 
+To mount MS file system (SMB protocol) insert smbfs module and
+    use smbmount
+</li>
+
+<li>
+หากคุณต้องการจะเปลี่ยนโหมดในการบูตของลีนุกซ์ (runlevel) ให้คุณไปแก้ในส่วนของ<br>
+initdefault ในไฟล์ /etc/inittab
+</li>
+
+</ul>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="index.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

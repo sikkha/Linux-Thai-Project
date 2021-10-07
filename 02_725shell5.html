@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming (5)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ (5)</H1>
+
+<H3 ALIGN=CENTER>ตัวแปร<WBR>เชลล์</H3>
+<p>
+ตัวแปร<WBR>เชลล์<WBR>จะ<WBR>มี<WBR>การ<WBR>เก็บ<WBR>ค่า<WBR>ไว้<WBR>ใน<WBR>ลักษณะ<WBR>ของส<WBR>ตริง ใน<WBR>กรณี<WBR>ที่<WBR>จะ<WBR>ใช้<WBR>งาน<WBR>เป็น<WBR>ลักษณะ<WBR>ของ<WBR>ตัว<WBR>เลข จะ<WBR>ต้อง<WBR>ใช้<WBR>โปรแกรม "expr" เข้า<WBR>มา<WBR>ช่วย การ<WBR>กำหนด<WBR>ค่า<WBR>ให้<WBR>กับ<WBR>ตัวแปร<WBR>จะ<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>การ<WBR>ประกาศ<WBR>ตัวแปร<WBR>ด้วย<WBR>ซึ่ง<WBR>จะ<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<br><br>
+ชื่อ<WBR>ตัวแปร=ค่า<WBR>ตัวแปร
+</p>
+
+<p>
+โดย<WBR>ห้าม<WBR>มี<WBR>ช่อง<WBR>ว่าง (space) คั่น<WBR>ระหว่าง<WBR>เครื่อง<WBR>หมาย<WBR>เท่า<WBR>กับ ตัว<WBR>อย่าง<WBR>เช่น
+<pre>
+NAME=KLAUSE
+</pre>
+</p>
+
+<p>
+หาก<WBR>มี<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ที่<WBR>เป็น<WBR>ประโยค<WBR>ข้อ<WBR>ความ<WBR>ยาวๆ<WBR>ที่<WBR>มี<WBR>ช่อง<WBR>ว่าง<WBR>อยู่<WBR>ใน<WBR>ประโยค<WBR>นั้น จะ<WBR>ต้อง<WBR>ใช้<WBR>เครื่อง<WBR>หมาย<WBR>เขา<WBR>คู่<WBR>ครอบ<WBR>ประโยค<WBR>นั้น<WBR>เช่น
+<pre>
+NAME="Peter Klause"
+</pre>
+</p>
+
+<p>
+การ<WBR>ตั้ง<WBR>ชื่อ<WBR>ของ<WBR>ตัวแปร<WBR>สามารถ<WBR>ใช้<WBR>ตัว<WBR>อักษร ตัว<WBR>เลข ตัว<WBR>ขีด<WBR>เส้น<WBR>ใต้ ห้าม<WBR>ใช้<WBR>ตัว<WBR>อักษร<WBR>พิเศษ<WBR>ต่างๆ<WBR>เช่น $, *, #, () และ<WBR>ห้าม<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย<WBR>ตัว<WBR>เลข ตัว<WBR>อย่าง<WBR>ชื่อ<WBR>ตัวแปร<WBR>เช่น VAR1, VAR_NAME, Variable แต่<WBR>โดย<WBR>ทั่ว<WBR>ไป<WBR>แล้ว<WBR>การ<WBR>ตั้ง<WBR>ชื่อ<WBR>ของ<WBR>ตัวแปร<WBR>มัก<WBR>จะ<WBR>ใช้<WBR>ตัว<WBR>อักษร<WBR>ตัว<WBR>ใหญ่<WBR>ใน<WBR>การ<WBR>ตั้ง<WBR>ชื่อ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ตัวแปร<WBR>เชลล์<WBR>หรือ<WBR>การ<WBR>อ้าง<WBR>ถึง<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>นั้น<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>เครื่อง<WBR>หมาย "$" นำ<WBR>หน้า<WBR>ตัวแปร<WBR>นั้น เช่น<WBR>ถ้า<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ echo $NAME
+</pre>
+</p>
+
+<p>
+ใน<WBR>กรณี<WBR>ที่<WBR>กำหนด<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>เป็น "Peter Klause" จะ<WBR>ได้<WBR>ผล<WBR>ลัพธ์<WBR>เป็น Peter Klause
+<br>
+แต่<WBR>ถ้า<WBR>ใช้<WBR>คำ<WBR>สั่ง
+$ echo NAME
+</p>
+
+<p>
+เนื่อง<WBR>จาก<WBR>ไม่<WBR>ได้<WBR>อ้าง<WBR>ถึง<WBR>ค่า<WBR>ของ<WBR>ตัวแปร ดัง<WBR>นั้น<WBR>จะ<WBR>ได้<WBR>ผล<WBR>ลัพธ์<WBR>เป็น
+<pre>
+NAME
+</pre>
+</p>
+
+<p>
+ใน<WBR>กรณี<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>เชลล์<WBR>สามารถ<WBR>แยก<WBR>ชื่อ<WBR>ของ<WBR>ตัวแปร<WBR>ออก<WBR>จาก<WBR>ค่า<WBR>อื่นๆ<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย
+ทำ<WBR>การ<WBR>ครอบ<WBR>ชื่อ<WBR>ของ<WBR>ตัวแปร<WBR>นั้น<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>ปีก<WBR>กา "{}"
+ดัง<WBR>ตัว<WBR>อย่าง
+<pre>
+$ MYDIR=/home/mary/
+$ cat ${MYDIR}myfile
+</pre>
+</p>
+
+<p>
+คำ<WBR>สั่ง<WBR>ข้าง<WBR>ต้น<WBR>เป็น<WBR>การ<WBR>สั่ง<WBR>ให้<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>ราย<WBR>ละเอียด<WBR>ของ<WBR>แฟ้ม<WBR>ที่<WBR>ชื่อ /home/mary/myfile
+(ซึ่ง<WBR>เป็น<WBR>การ<WBR>เอา<WBR>ค่า<WBR>ของ<WBR>ตัวแปร (/home/mary/) มา<WBR>ต่อ<WBR>กับ<WBR>ชื่อ<WBR>ไฟล์ (myfile) )
+ออก<WBR>มา<WBR>ให้ หาก<WBR>เรา<WBR>ไม่<WBR>ครอบ<WBR>ชื่อ<WBR>ของ<WBR>ตัวแปร<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย<WBR>ปีก<WBR>กา<WBR>แล้ว<WBR>เชลล์<WBR>จะ<WBR>มอง<WBR>ชื่อ<WBR>ตัวแปร
+เป็น $MYDIRmyfile (ซึ่ง<WBR>ไม่<WBR>มี<WBR>ค่า<WBR>อะไร<WBR>อยู่) ไม่<WBR>ใช่ $MYDIR ตาม<WBR>ที่<WBR>เรา<WBR>ต้อง<WBR>การ
+<br>
+การ<WBR>ยก<WBR>เลิก<WBR>ตัวแปร<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ unset ชื่อ<WBR>ตัวแปร
+</pre>
+</p>
+
+<H3 ALIGN=CENTER>ขอบ<WBR>เขต<WBR>ของ<WBR>ตัวแปร<WBR>เชลล์</H3>
+<p>
+ตัวแปร<WBR>เชลล์<WBR>ที่<WBR>ถูก<WBR>กำหนด<WBR>ขึ้น<WBR>มา<WBR>จะ<WBR>มี<WBR>ลักษณะ<WBR>เป็น ตัวแปร<WBR>ท้อง<WBR>ถิ่น ซึ่ง<WBR>จะ<WBR>รู้<WBR>จัก<WBR>แต่<WBR>เฉพาะ<WBR>ใน<WBR>เชลล์<WBR>ของ<WBR>ชั้น<WBR>ตน<WBR>เอง<WBR>เท่า<WBR>นั้น เชลล์<WBR>ใน<WBR>ชั้น<WBR>อื่นๆ<WBR>จะ<WBR>ไม่<WBR>รู้<WBR>จัก<WBR>ตัวแปร<WBR>ดัง<WBR>กล่าว<WBR>จน<WBR>กว่า<WBR>เรา<WBR>ได้<WBR>ทำ<WBR>การ<WBR>ประกาศ<WBR>ตัวแปร<WBR>ให้<WBR>เชลล์<WBR>ชั้น<WBR>อื่นๆ<WBR>ได้<WBR>รู้<WBR>จัก ซึ่ง<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง "export"
+</p>
+
+<p>
+การ<WBR>เรียก<WBR>เชลล์<WBR>ซ้อน<WBR>กัน<WBR>หลาย<WBR>ชั้น หรือ<WBR>ซับ<WBR>เชลล์ (sub shell) นั้น<WBR>หมาย<WBR>ถึง<WBR>เรา<WBR>พิมพ์<WBR>คำ<WBR>สั่ง "sh" หรือ "ksh" ซึ่ง<WBR>จะ<WBR>เป็น<WBR>การ<WBR>เรียก<WBR>โบน<WBR>เชลล์ และ<WBR>คอร์น<WBR>เชลล์<WBR>ซ้อน<WBR>ขึ้น<WBR>มา<WBR>จาก<WBR>เชลล์<WBR>ปัจจุบัน เมื่อ<WBR>เรียก<WBR>ขึ้น<WBR>มา<WBR>แล้ว<WBR>จะ<WBR>เห็น<WBR>เป็น<WBR>เครื่อง<WBR>หมาย<WBR>พร้อมพต์<WBR>ของ<WBR>ระบบ<WBR>ตาม<WBR>ปกติ  ซึ่ง<WBR>จะ<WBR>หมาย<WBR>ความ<WBR>ว่า<WBR>ซับ<WBR>เชลล์<WBR>ได้<WBR>ถูก<WBR>เรียก<WBR>ขึ้น<WBR>มา<WBR>ใหม่<WBR>แล้ว เรา<WBR>อาจ<WBR>ใช้<WBR>คำ<WBR>สั่ง "ps" เพื่อ<WBR>ตรวจ<WBR>ดู<WBR>ว่า<WBR>ซับ<WBR>เชลล์<WBR>ถูก<WBR>เรียก<WBR>ขึ้น<WBR>มา<WBR>หรือ<WBR>ไม่
+<pre>
+$ ps
+  PID TTY STAT  TIME COMMAND
+  962  p2 S    0:00 login -h localhost -p 
+  963  p2 S    0:00 -bash 
+  974  p2 R    0:00 ps 
+</pre>
+</p>
+
+
+<p>
+ตัว<WBR>อย่าง<WBR>เชลล์<WBR>แรก<WBR>ที่<WBR>ลีนุกซ์<WBR>กำหนด<WBR>ไว้<WBR>ให้<WBR>เมื่อ<WBR>ทำ<WBR>การล็<WBR>อกอิน<WBR>เข้า<WBR>มา<WBR>ใช้<WBR>ระบบ<WBR>ครั้ง<WBR>แรก<WBR>คือ bourn again shell (bash) ซึ่ง<WBR>เป็น<WBR>โพร<WBR>เซส<WBR>หมาย<WBR>เลข 963
+<pre>
+$ sh
+$ ps
+  PID TTY STAT  TIME COMMAND
+  962  p2 S    0:00 login -h localhost -p 
+  963  p2 S    0:00 -bash 
+  975  p2 S    0:00 sh 
+  976  p2 R    0:00 ps 
+</pre>
+
+เมื่อ<WBR>ทำ<WBR>การ<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>จะ<WBR>เห็น<WBR>โพร<WBR>เซส<WBR>หมาย<WBR>เลข 975 ซึ่ง<WBR>เป็น<WBR>โพร<WBR>เซส<WBR>ของ<WBR>โบน<WBR>เชลล์<WBR>ที่<WBR>เรา<WBR>ได้<WBR>ทำ<WBR>การ<WBR>เรียก<WBR>ด้วย<WBR>คำ<WBR>สั่ง "sh" ขึ้น<WBR>มา
+
+<pre>
+$ exit
+exit
+$ ps
+  PID TTY STAT  TIME COMMAND
+  962  p2 S    0:00 login -h localhost -p 
+  963  p2 S    0:00 -bash 
+  989  p2 R    0:00 ps 
+</pre>
+เรา<WBR>สามารถ<WBR>ออก<WBR>จาก<WBR>ซับ<WBR>เชลล์<WBR>ได้<WBR>โดย<WBR>การ<WBR>พิมพ์<WBR>คำ<WBR>สั่ง "exit" ตาม<WBR>ปกติ เมื่อ<WBR>ใช้<WBR>คำ<WBR>สั่ง exit เพื่อ<WBR>ออก<WBR>จาก<WBR>ซับ<WBR>เชลล์ จะ<WBR>เห็น<WBR>ว่า<WBR>โพร<WBR>เซส<WBR>ของ<WBR>โบน<WBR>เชลล์<WBR>จะ<WBR>หาย<WBR>ไป<WBR>เนื่อง<WBR>จาก<WBR>ถูก kill ด้วย<WBR>คำ<WBR>สั่ง exit ไป<WBR>แล้ว แสดง<WBR>ว่า<WBR>ตอน<WBR>นี้<WBR>เรา<WBR>ได้<WBR>กลับ<WBR>มา<WBR>อยู่<WBR>ที่<WBR>เชลล์<WBR>แรก<WBR>ซึ่ง<WBR>ก็<WBR>คือ bourn again shell (bash) อีก<WBR>ครั้ง (โพร<WBR>เซส<WBR>หมาย<WBR>เลข 963)
+</p>
+
+<p>
+ตัว<WBR>อย่าง<WBR>การ<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>และ<WBR>การ<WBR>ประกาศ<WBR>ตัวแปร<WBR>ให้<WBR>เชลล์<WBR>ชั้น<WBR>อื่นๆ<WBR>ได้<WBR>รู้<WBR>จัก
+<pre>
+$ NAME=KLAUSE		: ประกาศ<WBR>ตัวแปร NAME ใน<WBR>เชลล์<WBR>ชั้น<WBR>ปัจจุบัน
+$ sh			: เรียก<WBR>ซับ<WBR>เชลล์<WBR>ซ้อน<WBR>ขึ้น<WBR>มา
+$ echo $NAME		: ไม่<WBR>พิมพ์<WBR>ผล<WBR>ลัพธ์<WBR>ใดๆ<WBR>ออก<WBR>มา เนื่อง<WBR>จาก<WBR>ซับ<WBR>เชลล์<WBR>ไม่<WBR>รู้<WBR>จัก
+$ exit			: ออก<WBR>จาก<WBR>ซับ<WBR>เชลล์ กลับ<WBR>มา<WBR>สู่<WBR>เชลล์<WBR>ปัจจุบัน
+$ export NAME		: ประกาศ<WBR>ตัวแปร NAME ให้<WBR>กับ<WBR>เชลล์<WBR>ชั้น<WBR>อื่นๆ
+$ sh			: เรียก<WBR>ซับ<WBR>เชลล์<WBR>อีก<WBR>ครั้ง<WBR>หนึ่ง
+$ echo $NAME		: 
+KLAUSE			: คราว<WBR>นี้<WBR>ซับ<WBR>เชลล์<WBR>รับ<WBR>รู้<WBR>ตัวแปร NAME แล้ว จึง<WBR>พิมพ์<WBR>ผล<WBR>ลัพธ์
+			: ออก<WBR>มา<WBR>ให้
+$ readonly NAME		: คำ<WBR>สั่ง<WBR>นี้<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>ไม่<WBR>สามารถ<WBR>เปลี่ยน<WBR>แปลง<WBR>ค่า<WBR>ตัวแปร
+</pre>
+</p>
+ 
+<H3 ALIGN=CENTER>ตัวแปร<WBR>สงวน หรือ<WBR>ตัวแปร<WBR>ของ<WBR>ระบบ</H3>
+<p>
+ใน<WBR>ระบบ<WBR>ลีนุกซ์<WBR>และ<WBR>ยู<WBR>นิกซ์<WBR>จะ<WBR>มี<WBR>ตัวแปร<WBR>สงวน<WBR>ที่<WBR>ตัว<WBR>โอ<WBR>เอส<WBR>จะ<WBR>นำ<WBR>ไป<WBR>ใช้<WBR>ประ<WBR>โยชน์<WBR>โดย<WBR>เฉพาะ<WBR>เท่า<WBR>นั้น แต่<WBR>หาก<WBR>เรา<WBR>รู้<WBR>ความ<WBR>หมาย<WBR>ของ<WBR>ตัวแปร<WBR>เหล่า<WBR>นั้น<WBR>เรา<WBR>ก็<WBR>สามารถ<WBR>แก้<WBR>ไข<WBR>เปลี่ยน<WBR>แปลง<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>ดัง<WBR>กล่าว<WBR>ได้ เรา<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>ระบบ<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ set
+PPID=373
+PS1=$ 
+PS2=> 
+PS4=+ 
+PWD=/home/twg
+SHELL=/bin/bash
+SHLVL=1
+TERM=xterm
+UID=406
+USER=twg
+WINDOWID=37748749
+_=set
+i=/etc/profile.d/mh.sh
+</pre>
+</p>
+
+<p>
+เรา<WBR>จะ<WBR>เห็น<WBR>ระบบ<WBR>แสดง<WBR>ราย<WBR>ละเอียด<WBR>ของ<WBR>ชื่อ<WBR>และ<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>สงวน<WBR>ต่างๆ ออก<WBR>มาให้่<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>เป็น<WBR>คำ<WBR>อธิบาย<WBR>ของ<WBR>ตัวแปร<WBR>สงวน<WBR>บาง<WBR>ตัวแปร
+<pre>
+$HOME			: Home directory
+$PATH			: search patch เมื่อ<WBR>สั่ง<WBR>เรียก<WBR>โปรแกรม<WBR>ให้<WBR>ทำ<WBR>งาน
+			: ระบบ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>ตัว<WBR>โปรแกรม<WBR>นั้น<WBR>จาก<WBR>ราย<WBR>ชื่อ<WBR>ของ
+			: ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>ได้<WBR>กำหนด<WBR>ไว้<WBR>ใน<WBR>ตัวแปร<WBR>นี้
+$MAIL			: mailbox
+$PS1			: พร้อมพต์<WBR>ตัว<WBR>ที่ 1 ของ<WBR>เชลล์
+$PS2			: พร้อมพต์<WBR>ตัว<WBR>ที่ 2 ของ<WBR>เชลล์
+$LOGNAME		: ชื่อ<WBR>ทะเบียน<WBR>ผู้<WBR>ใช้<WBR>ระบบ (login name)
+$TERM			: ชนิด<WBR>ของ<WBR>จอ (ใน<WBR>ที่<WBR>นี้<WBR>เป็น xterm)
+</pre>
+</p>
+
+<p>
+นอก<WBR>จาก<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง "set" เพื่อ<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>และ<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>ต่างๆ<WBR>ออก<WBR>มา<WBR>แล้ว<WBR>เรา<WBR>ยัง<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง "echo <ชื่อ<WBR>ตัวแปร>" เพื่อ<WBR>แสดง<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>ดัง<WBR>กล่าว<WBR>ออก<WBR>มา<WBR>ก็<WBR>ได้<WBR>เช่น<WBR>กัน และ<WBR>การ<WBR>เปลี่ยน<WBR>หรือ<WBR>กำหนด<WBR>ค่า<WBR>ให้<WBR>กับ<WBR>ตัวแปร<WBR>ก็<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>เช่น<WBR>เดียว<WBR>กับ<WBR>ตัวแปร<WBR>เชลล์<WBR>ปกติ<WBR>ทั่ว<WBR>ไป ดัง<WBR>ตัว<WBR>อย่าง
+<pre>
+$ echo $PS1		: ให้<WBR>แสดง<WBR>ค่า<WBR>ของ<WBR>ตัวแปร PS1 (พร้อมพต์<WBR>ของ<WBR>ระบบ)
+$			: ระบบ<WBR>พิมพ์<WBR>ตัว<WBR>อักษร "$" ซึ่ง<WBR>ถูก<WBR>ใช้<WBR>เป็น<WBR>พร้อมพต์<WBR>ออก<WBR>มา<WBR>ให้
+$ PS1="Linux:> "	: กำหนด<WBR>ค่า<WBR>ของ<WBR>พร้อมพต์<WBR>ใหม่<WBR>เป็น "Linux:> "
+Linux:>			: พร้อมพต์<WBR>ของ<WBR>ระบบ<WBR>ถูก<WBR>เปลี่ยน<WBR>เป็น "Linux:> "
+</pre>
+</p>
+
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

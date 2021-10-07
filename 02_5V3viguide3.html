@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>VI (3)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>ใช้<WBR>งาน VI(3)</H1>
+
+<H3 ALIGN=CENTER>คำ<WBR>สั่ง set</H3>
+<p>
+เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>แปลง<WBR>คุณสมบัติ<WBR>บาง<WBR>อย่าง<WBR>ของ vi ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง set ซึ่ง<WBR>รูป<WBR>แบบ<WBR>ของ<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง set จะ<WBR>มี<WBR>อยู่<WBR>สอง<WBR>รูป<WBR>แบบ<WBR>คือ การ<WBR>เปิด<WBR>หรือ<WBR>ปิด option ซึ่ง option ดัง<WBR>กล่าว<WBR>อาจ<WBR>เป็น<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>แสดง<WBR>หมาย<WBR>เลข<WBR>ประจำ<WBR>บรรทัด หรือ<WBR>การ<WBR>กำหนด<WBR>คุณสมบัติ<WBR>อื่นๆ ส่วน<WBR>การ<WBR>กำหนด<WBR>ใน<WBR>อีก<WBR>รูป<WBR>แบบ<WBR>หนึ่ง<WBR>ก็<WBR>คือ<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>หรือ<WBR>ข้อ<WBR>มูล<WBR>ให้<WBR>กับ option เช่น<WBR>การ<WBR>กำหนด<WBR>ขนาด<WBR>ของ<WBR>หน้า<WBR>ต่าง<WBR>ของ vi เป็น<WBR>ต้น  ทั้ง<WBR>นี้<WBR>ค่า<WBR>เริ่ม<WBR>แรก (default) ของ option อาจ<WBR>เป็น<WBR>ได้<WBR>ทั้ง<WBR>การ<WBR>เปิด และ<WBR>การ<WBR>ปิด option ได้<WBR>ทั้ง<WBR>คู่
+</p>
+
+<p>
+รูป<WBR>แบบ<WBR>ของ<WBR>การ<WBR>เปิด<WBR>หรือ<WBR>ปิด option
+<pre>
+:set option 		เป็น<WBR>การ<WBR>เปิด option
+:set nooption		เป็น<WBR>การ<WBR>ปิด option
+</pre>
+</p>
+
+<p>
+ตัว<WBR>อย่าง<WBR>ของ<WBR>การ<WBR>เปิด<WBR>หรือ<WBR>ปิด option มี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<br>
+การ<WBR>กำหนด<WBR>ให้ vi ทำ<WBR>การ<WBR>แสดง<WBR>หมาย<WBR>เลข<WBR>ประจำ<WBR>บรรทัด (line number) ขึ้น<WBR>มา<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>ได้ โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง 
+<pre>
+:set number
+</pre>
+หรือ<WBR>อาจ<WBR>ย่อ<WBR>เป็น
+<pre>
+:set nu
+</pre>
+</p>
+
+<p>
+ถ้า<WBR>จะ<WBR>กำหนด<WBR>ไม่<WBR>ให้<WBR>แสดง<WBR>หมาย<WBR>เลข<WBR>ประจำ<WBR>บรรทัด (line number) ขึ้น<WBR>มา<WBR>ก็<WBR>ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+:set nonumber
+</pre>
+หรือ<WBR>อาจ<WBR>ย่อ<WBR>เป็น
+<pre>
+:set nonu
+</pre>
+</p>
+
+<p>
+กำหนด<WBR>ให้ vi ทำ<WBR>การ<WBR>แสดง<WBR>ค่า control code ของ<WBR>เอก<WBR>สาร<WBR>ที่<WBR>แก้<WBR>ไข เช่น<WBR>รหัส<WBR>ขึ้น<WBR>บรรทัด<WBR>ใหม่<WBR>จะ<WBR>แสดง<WBR>เป็น "$" , tab จะ<WBR>แสดง<WBR>เป็น "^I"
+<pre>
+:set list
+</pre>
+</p>
+
+<p>
+กำหนด<WBR>ไม่<WBR>ให้ vi แสดง<WBR>ค่า control code ของ<WBR>เอก<WBR>สาร 
+<pre>
+:set nolist
+</pre>
+</p>
+
+<p>
+การ<WBR>กำหนด<WBR>ขนาด<WBR>ของ<WBR>หน้า<WBR>ต่าง<WBR>ของ vi ที่<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข ตัว<WBR>อย่าง<WBR>ข้าง<WBR>ล่าง<WBR>กำหนด<WBR>ขนาด 20 บรรทัด
+<pre>
+:set window=20
+</pre>
+</p>
+
+<p>
+เรา<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>ค่า<WBR>ของ option ทั้ง<WBR>หมด<WBR>ที่<WBR>มี<WBR>อยู่<WBR>ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+:set all
+</pre>
+</p>
+
+<p>
+จะ<WBR>ได้<WBR>ผล<WBR>ลัพธ์<WBR>ลักษณะ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+--- Options ---
+noautoindent        noignorecase        noruler             notextmode
+noautowrite         noincsearch           scroll=11           textwidth=0
+  backspace=0       noinfercase           scrolljump=1      notildeop
+nobackup            noinsertmode          scrolloff=0         timeout
+</pre>
+</p>
+
+<p>
+นอก<WBR>จาก<WBR>นี้<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ค่า<WBR>ของ option ได้<WBR>โดย<WBR>การ<WBR>ระบุ<WBR>ถาม<WBR>ถึง option 
+ที่<WBR>ต้อง<WBR>การ<WBR>ก็<WBR>ได้
+<pre>
+:set option?
+</pre>
+เช่น
+<pre>
+:set list?
+</pre>
+สำหรับ<WBR>คำ<WBR>สั่ง<WBR>ข้าง<WBR>ล่าง<WBR>นี้<WBR>จะ<WBR>ทำ<WBR>การ<WBR>เฉพาะ<WBR>แสดง<WBR>ค่า option ที่<WBR>มี<WBR>การ<WBR>แก้<WBR>ไข<WBR>และ<WBR>ถูก<WBR>เปลี่ยน<WBR>แปลง
+<pre>
+:set
+</pre>
+</p>
+
+ตัว<WBR>อย่าง<WBR>ของ option และ<WBR>คำ<WBR>อธิบาย
+<pre>
+autoindent (ai)		เมื่อ<WBR>ทำ<WBR>การ<WBR>เปิด option ใน<WBR>การ<WBR>สลับ<WBR>ไป<WBR>สู่ insert mode
+			การ<WBR>ย่อ<WBR>หน้า<WBR>ของ<WBR>บรรทัด<WBR>ใหม่<WBR>จะ<WBR>ตรง<WBR>กัน<WBR>ย่อ<WBR>หน้า<WBR>บรรทัด<WBR>บน
+autowrite (aw)		จะ<WBR>ทำ<WBR>การ<WBR>บัน<WBR>ทึก<WBR>ไฟล์<WBR>ให้<WBR>โดย<WBR>อัตโนมัติ ก่อน<WBR>มี<WBR>การ<WBR>เปิด<WBR>ไฟล์<WBR>อื่น
+ignorecase (ic)		ไม่<WBR>สน<WBR>ใจ<WBR>ว่า<WBR>เป็น<WBR>ตัว<WBR>อักษร<WBR>ตัว<WBR>ใหญ่<WBR>หรือ<WBR>ตัว<WBR>เล็ก<WBR>ใน<WBR>การ<WBR>ค้น<WBR>หา
+list 			กำหนด<WBR>ให้ vi พิมพ์ control code ทั้ง<WBR>หมด<WBR>ออก<WBR>มา<WBR>ด้วย
+number (nu)		กำหนด<WBR>ให้<WBR>แสดง<WBR>หมาย<WBR>เลข<WBR>ประจำ<WBR>บรรทัด
+</pre>
+
+<p>
+เรา<WBR>สามารถ<WBR>กำหนด<WBR>คุณ<WBR>ลักษ<WBR>ณ<WBR>ให้ vi ตั้ง<WBR>แต่<WBR>แรก<WBR>โดย<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง "set" ก็<WBR>ได้ 
+โดย<WBR>ไป<WBR>ทำ<WBR>การ<WBR>กำหนด option ต่างๆ<WBR>ไว้<WBR>ใน<WBR>ไฟล์ ".exrc" แทน (ต้อง<WBR>ใส่<WBR>ไฟล์<WBR>นี้<WBR>ไว้<WBR>ใน
+home directory ด้วย) เมื่อ vi เริ่ม<WBR>ต้น<WBR>ทำ<WBR>งาน<WBR>ก็<WBR>จะ<WBR>อ่าน<WBR>การ<WBR>กำหนด option ต่างๆ
+จาก<WBR>ไฟล์<WBR>นี้<WBR>ขึ้น<WBR>มา<WBR>ด้วย เรา<WBR>สามารถ<WBR>ใส่ option ต่างๆ<WBR>ไว้<WBR>ได้<WBR>โดย<WBR>ไม่<WBR>ต้อง<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย colon ":"  ตัว<WBR>อย่าง<WBR>ของ<WBR>ไฟล์ .exrc
+<pre>
+set autoindent
+set autowrite
+aset number
+</pre>
+</p>
+
+
+<H3 ALIGN=CENTER>คำ<WBR>สั่ง<WBR>อื่นๆ<WBR>ที่<WBR>น่า<WBR>สน<WBR>ใจ<WBR>ของ vi</H3>
+<p>
+เรา<WBR>สามารถ<WBR>เลือก<WBR>เอา<WBR>บาง<WBR>ส่วน<WBR>ของ<WBR>เอก<WBR>สาร<WBR>ที่<WBR>เรา<WBR>กำลัง<WBR>แก้<WBR>ไข<WBR>อยู่<WBR>ไป<WBR>เขียน<WBR>เก็บ<WBR>ไว้<WBR>เป็น<WBR>ไฟล์<WBR>ใหม่<WBR>ได้ โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ดัง<WBR>นี้
+<pre>
+:3,4 w! /tmp/new.txt
+</pre>
+
+เรา<WBR>สามารถ<WBR>นำ<WBR>เอา<WBR>เอก<WBR>สาร<WBR>อื่นๆ<WBR>เข้า<WBR>มา<WBR>เป็น<WBR>ส่วน<WBR>หนึ่ง<WBR>ของ<WBR>เอก<WBR>สาร<WBR>ที่<WBR>เรา<WBR>กำลัง<WBR>แก้<WBR>ไข<WBR>ได้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ข้าง<WBR>ล่าง โดย<WBR>ที่<WBR>จะ<WBR>นำ<WBR>มา<WBR>ใส่<WBR>ตรง<WBR>ตำแหน่ง<WBR>ที่<WBR>เคอร์<WBR>เซอร์<WBR>ปรากฎ<WBR>อยู่
+<pre>
+:r /tmp/new.txt
+</pre>
+
+การ<WBR>เปิด<WBR>ไฟล์<WBR>อื่น<WBR>ขึ้น<WBR>มา<WBR>แก้<WBR>ไข ขณะ<WBR>ที่<WBR>ยัง<WBR>อยู่<WBR>ใน vi ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+:e [ชื่อ<WBR>ไฟล์]
+</pre>
+
+การ<WBR>สลับ<WBR>กลับ<WBR>ไป<WBR>สู่<WBR>เอก<WBR>สาร<WBR>เดิม (เอก<WBR>สาร<WBR>ก่อน<WBR>ที่<WBR>จะ<WBR>เรียก<WBR>เอก<WBR>สาร<WBR>ใหม่<WBR>ขึ้น<WBR>มา<WBR>แก้<WBR>ไข)
+<pre>
+:n#
+</pre>
+
+การ<WBR>แสดง<WBR>สถานะ<WBR>ของ<WBR>การ<WBR>แก้<WBR>ไข<WBR>เอก<WBR>สาร
+<pre>
+ปุ่ม "^G" 	(Ctrl-G)
+</pre>
+</p>
+
+การ<WBR>เปลี่ยน<WBR>ตัว<WBR>อักษร<WBR>ตัวเล็ก<WBR>ให้<WBR>เป็น<WBR>ตัว<WBR>อักษร<WBR>ตัวใหญ่ (ทำ ณ ตำแหน่ง<WBR>ที่<WBR>เคอร์เซอร์<WBR>ปรากฏ<WBR>อยู่)
+<pre>
+ปุ่ม "~" 	(ปุ่มตัวหนอน)
+</pre>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

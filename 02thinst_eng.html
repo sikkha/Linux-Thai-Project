@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>How to setup Thai on Linux</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>How to setup Thai on Linux</H1>
+<pre>
+HOWTO setup Thai on Linux.
+  Writer  : Kan Yuenyong (kaiwal@geocities.com)
+Co-writer : Worawut Wisutmethangoon (wisutmet@cae.wisc.edu)
+---------------------------------------------------------------------
+Thank you for Thai student from comp-gang at T.I.T in Japan
+for present their Thai information processing under X window based.
+
+Section 1: HOWTO install Thai fonts.
+   1. Download the file containing Thai fonts and keyboard mapping from 
+      http://www.geocities.com/SiliconValley/8302/thailinux.tar.gz
+      (save this file to your computer)
+
+   2. Uncompressed this file to your directory, using command :
+	- gunzip thailinux.tar.gz, you will get thailinux.tar
+	- tar -xvf thailinux.tar, you will get files :
+
+        FontTastic.fm     thai6x14.bdf      thai8x13.pcf      thai9x13.pcf
+        README            thai7x18.bdf      thai8x20.bdf      thaiXmap.v01
+        fonts.dir         thai8x13.bdf      thai9x13.bdf      
+
+Do the following steps under X window.
+   3. Use command "mkfontdir" at the directory, which keeping those font
+      files, the command will create "fonts.dir" file. This is an
+      index file.
+
+   4. Make X window accept these fonts by using
+         xset +fp <directory's name which keeping these fonts>
+      For example, if you keep these fonts at "/root/thaifont" use command
+         xset +fp /root/thaifont 
+  
+      You can put this step in ".xinitrc" file to keep it
+      automatically setup, everytime you enter X window system.
+
+   5. Please check, whether you can success setup the fonts
+      by using command :
+         xlsfonts | less 
+      or 
+	 xlsfonts | grep "thai"
+      you will see all the Thai fonts.
+
+   6. Try to use xterm to display files in Thai, by using 
+      command :
+         xterm -fn thai9x13 
+      Try to use vi or cat Thai text file under this xterm.
+
+Section 2: Netscape Thai display.
+    If you do not have Netscape, down load it from http://www.netscape.com. 
+These steps is howto setup Thai display in Netscape Navigator version 3.
+	- Open Menu "Options".
+	- In the Options menu, select submenu "General Preferences...".
+	- Choose "Fonts" Tab, from the Preference plate.
+	- Change Encoding into "Western (iso-8859-1)".
+	- Change the "Use the Proportional Font" into "Fixed (Thai)"
+	- Click OK, to save configuration.
+	- Surfing Thai web page to check your browser can display properly.
+
+Section 3: How To Input in Thai
+    This is a way to input in Thai on Xterm, by using xmodmap to map
+key in Thai style keyboard (kade-sa-ma-nee).
+    From the file you unzip (step 2 of installation Thai fonts),
+use command :
+	xmodmap thaiXmap.v01
+
+After you run this command, you can input Thai on the xterm
+(which is setup to display Thai). You can use Scroll Lock key as a
+Thai/English swiching mode key. 
+
+Note:
+    You may use Ctrl-l key to clear your screen since it
+may display Thai character not properly. 
+
+More information:
+    - You can get more information about Thai computing on UNIX
+from Note on Thai Computing Homepage 
+(http://www.ctrl.titech.ac.jp/~vuthi/thai/thai.doc/index.html).
+    - You can get information about Thai Linux Document and
+Linux Thai Project from http://www.geocities.com/SiliconValley/8302
+
+Section 4: Sample Thai Text:
+
+    "เป็นมนุษย์สุดประเสริฐเลิศคุณค่า		กว่าบรรดาฝูงสัตว์เดรัจฉาน
+     จงฝ่าฟันพัฒนาวิชาการ		อย่าล้างผลาญเข่นฆ่าบีฑาใคร
+     ไม่ถือโทษโกรธแช่งซัดฮึดฮัดด่า		หัดอภัยเหมือนกีฬาอัชฌาสัย
+     ปฏิบัติประพฤติกฎกำหนดใจ		พูดจาให้ จ๊ะๆ จ๋าๆ น่าฟังเอย"
+
+สำนวนมาตรฐานสำหรับตรวจสอบอักขระตัวพิมพ์ภาษาไทย
+สำนวนนี้เป็นลิขสิทธิ์ของสมาคมคอมพิวเตอร์แห่งประเทศไทย ในพระบรมราชูปถัมภ์
+ไม่สงวนสิทธิ์ในการนำไปใช้ แต่ต้องระบุว่าเป็นของสมาคมคอมพิวเตอร์แห่งประเทศไทย
+ในพระบรมราชูปถัมป์
+
+This is a standard text for testing Thai printing character.
+Copyright by Computer Association of Thailand Under The
+Royal Patronage of His Majesty The King.
+Permission is hereby granted with above copyright notice.
+</pre>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

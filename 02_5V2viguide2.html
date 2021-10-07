@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>VI (2)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>ใช้<WBR>งาน VI (2)</H1>
+
+vi ยัง<WBR>มี<WBR>ปุ่ม<WBR>และ<WBR>ความ<WBR>สามารถ<WBR>อื่นๆ ที่<WBR>จะ<WBR>ช่วย<WBR>ให้<WBR>การ<WBR>ใช้<WBR>งาน<WBR>เป็น<WBR>ไป<WBR>ได้<WBR>อย่าง<WBR>มี<WBR>ประสิทธิภาพ
+ขึ้น ความ<WBR>สามารถ<WBR>อื่นๆ<WBR>ได้<WBR>แก่
+
+<H3 ALIGN=CENTER>การ<WBR>คัด<WBR>ลอก<WBR>และ<WBR>ตัด<WBR>แปะ<WBR>บรรทัด</H3>
+<ul>
+<li>
+ทำ<WBR>การ<WBR>คัด<WBR>ลอก<WBR>บรรทัด<WBR>ข้อ<WBR>ความ<WBR>ลง<WBR>ใน<WBR>หน่วย<WBR>ความ<WBR>จำ<WBR>โดย<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ยัง<WBR>บรรทัด<WBR>ที่<WBR>ต้อง
+การ<WBR>แล้ว<WBR>กด<WBR>ปุ่ม 'yy' (กด<WBR>ปุ่ม 'y' สอง<WBR>ครั้ง<WBR>ติด<WBR>กัน)
+</li>
+<li>
+ทำ<WBR>การ<WBR>แปะ<WBR>ติด<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>ได้<WBR>คัด<WBR>ลอก<WBR>จาก<WBR>หน่วย<WBR>ความ<WBR>จำ<WBR>ลง<WBR>ไป<WBR>ยัง<WBR>เอก<WBR>สาร โดย<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์
+ไป<WBR>ยัง<WBR>บรรทัด<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>แล้ว<WBR>กด 'p' vi จะ<WBR>ทำ<WBR>การ<WBR>แปะ<WBR>ติด<WBR>ข้อ<WBR>ความ<WBR>ลง<WBR>ไป<WBR>ใน<WBR>เอก<WBR>สาร<WBR>ให้<WBR>ใน<WBR>บรรทัด
+ถัด<WBR>ไป หาก<WBR>ต้อง<WBR>การ<WBR>แปะ<WBR>ติด<WBR>ข้อ<WBR>ความ<WBR>ยัง<WBR>บรรทัด<WBR>ก่อน<WBR>หน้า<WBR>จะ<WBR>ต้อง<WBR>กด<WBR>ปุ่ม 'P' (กด shift พร้อม
+กับ 'p')
+</li>
+<li>
+เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>คัด<WBR>ลอก<WBR>ข้อ<WBR>ความ<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>บรรทัด<WBR>ได้ โดย<WBR>การ<WBR>พิมพ์<WBR>จำนวน<WBR>บรรทัด<WBR>ที่<WBR>ต้อง
+การ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>คัด<WBR>ลอก<WBR>ก่อน<WBR>หน้า<WBR>จะ<WBR>กด<WBR>ปุ่ม 'yy' ตัว<WBR>อย่าง<WBR>เช่น<WBR>จะ<WBR>ทำ<WBR>การ<WBR>คัด<WBR>ลอก<WBR>บรรทัด<WBR>จำนวน 10
+บรรทัด ให้<WBR>กด '10yy' vi จะ<WBR>ทำ<WBR>การ<WBR>คัด<WBR>ลอก<WBR>บรรทัด<WBR>จำนวน 10 บรรทัด<WBR>นับ<WBR>จาก<WBR>บรรทัด<WBR>ที่<WBR>ตรง<WBR>กับ
+ตำแหน่ง<WBR>เคอร์<WBR>เซอร์<WBR>เป็น<WBR>ต้น<WBR>ไป
+</li>
+<li>
+คุณ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ย้าย<WBR>ข้อ<WBR>ความ<WBR>ได้<WBR>เช่น<WBR>กัน  ให้<WBR>ทำ<WBR>การ<WBR>กด<WBR>ปุ่ม 'dd' ที่<WBR>บรรทัด<WBR>ตำแหน่ง<WBR>ที่
+คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ย้าย<WBR>ข้อ<WBR>ความ vi จะ<WBR>ทำ<WBR>การ<WBR>ลบ<WBR>บรรทัด<WBR>ให้ (แต่<WBR>ยัง<WBR>เก็บ<WBR>ไว้<WBR>ใน<WBR>หน่วย<WBR>ความ<WBR>จำ
+อยู่) แล้ว<WBR>ให้<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ยัง<WBR>ตำแหน่ง<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>นำ<WBR>ข้อ<WBR>ความ<WBR>ไป<WBR>ไว้<WBR>แล้ว<WBR>กด<WBR>ปุ่ม 'p' 
+vi จะ<WBR>นำ<WBR>บรรทัด<WBR>ที่<WBR>ได้<WBR>ลบ<WBR>ไป<WBR>นั้น<WBR>ย้าย<WBR>มา<WBR>ไว้<WBR>ให้
+</li>
+</ul>
+
+<H3 ALIGN=CENTER>การ<WBR>ยก<WBR>เลิก<WBR>คำ<WBR>สั่ง<WBR>หรือ<WBR>การ<WBR>ทำ undo</H3>
+<p>
+หาก<WBR>เรา<WBR>ทำ<WBR>การ<WBR>ลบ<WBR>หรือ<WBR>แก้<WBR>ไข<WBR>ข้อ<WBR>ความ<WBR>ผิด<WBR>พลาด และ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ยก<WBR>เลิก<WBR>การ<WBR>ลบ<WBR>หรือ<WBR>แก้<WBR>ไข<WBR>ข้อ<WBR>ความ<WBR>นั้น
+คุณ<WBR>สามารถ<WBR>จะ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>การ<WBR>กด<WBR>ปุ่ม 'u' เพื่อ<WBR>ทำ<WBR>การ<WBR>ยก<WBR>เลิก<WBR>การ<WBR>ทำ<WBR>งาน<WBR>ใน vi ครั้ง<WBR>ล่า<WBR>สุด 
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>ค้น<WBR>หา<WBR>และ<WBR>แทน<WBR>ที่<WBR>คำ<WBR>ใน<WBR>เอก<WBR>สาร </H3>
+<ul>
+<li>
+เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>คำ<WBR>ใน<WBR>เอก<WBR>สาร<WBR>ได้<WBR>โดย<WBR>การ<WBR>กด<WBR>ปุ่ม '/' ซึ่ง vi จะ<WBR>ทำ<WBR>การ<WBR>แสดง<WBR>เครื่อง
+หมาย '/' ที่<WBR>บรรทัด<WBR>ล่าง<WBR>สุด ซึ่ง<WBR>แสดง<WBR>ว่า vi กำลัง<WBR>รอ<WBR>รับ<WBR>คำ<WBR>ที่<WBR>เรา<WBR>ต้อง<WBR>การ<WBR>ค้น<WBR>หา ให้<WBR>ทำ<WBR>การ
+พิมพ์<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ค้น<WBR>หา<WBR>ลง<WBR>ไป แล้ว<WBR>กด<WBR>ปุ่ม Enter เพื่อ<WBR>เริ่ม<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>ข้อ<WBR>ความ หาก
+vi พบ<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>เรา<WBR>ต้อง<WBR>การ<WBR>หา เคอร์<WBR>เซอร์<WBR>จะ<WBR>ถูก<WBR>ย้าย<WBR>ไป<WBR>อยู่<WBR>ที่<WBR>ตำแหน่ง<WBR>ของ<WBR>คำ<WBR>ที่<WBR>หา<WBR>พบ<WBR>นั้น 
+แต่<WBR>ถ้า<WBR>หาก<WBR>หา<WBR>ไม่<WBR>พบ vi จะ<WBR>แจ้ง<WBR>ให้<WBR>ทราบ<WBR>ว่า<WBR>ไม่<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ได้
+(Pattern not found)
+เมื่อ<WBR>ค้น<WBR>หา<WBR>คำ<WBR>เจอ<WBR>แล้ว<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>คำ<WBR>เดิม<WBR>ซ้ำ<WBR>อีก ให้<WBR>ทำ<WBR>การ<WBR>กด<WBR>ปุ่ม 'n' vi จะ<WBR>ทำ
+การ<WBR>ค้น<WBR>หา<WBR>คำ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ต่อ<WBR>จาก<WBR>ตำแหน่ง<WBR>ที่<WBR>เจอ<WBR>ล่า<WBR>สุด และ<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>ค้น<WBR>หา<WBR>คำ<WBR>ใน<WBR>ตำแหน่ง<WBR>ย้อน
+กลับ ให้<WBR>ทำ<WBR>การ<WBR>กด<WBR>ปุ่ม 'N' (กด shift พร้อม<WBR>กับ<WBR>ปุ่ม 'n')
+</li>
+
+<li>
+การ<WBR>แทน<WBR>ที่<WBR>เอก<WBR>สาร<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>ใน<WBR>โหมด<WBR>คอม<WBR>มานด์ไลน์<WBR>ของ vi โดย<WBR>กด<WBR>ปุ่ม ':' เพื่อ<WBR>เข้า
+สู่<WBR>โหมด<WBR>คอม<WBR>มานด์ไลน์ จะสัง<WBR>เกตุ<WBR>เห็น<WBR>เครื่อง<WBR>หมาย ':' ถูก<WBR>แสดง<WBR>ที่<WBR>บรรทัด<WBR>ล่าง<WBR>สุด แล้ว
+พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>รูป<WBR>แบบ<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<pre>
+:s/oldtext/newtext/
+</pre>
+จาก<WBR>คำ<WBR>สั่ง<WBR>ข้าง<WBR>ต้น vi จะ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>คำ<WBR>ว่า 'oldtext' ใน<WBR>บรรทัด<WBR>ที่<WBR>ตำแหน่ง<WBR>เคอร์<WBR>เซอร์
+อยู่ เป็น<WBR>คำ<WBR>ว่า 'newtext'
+
+หาก<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>เปลี่ยน<WBR>มาก<WBR>กว่า 1 บรรทัด ให้<WBR>ทำ<WBR>การ<WBR>ระบุ<WBR>ตำแหน่ง<WBR>บรรทัด<WBR>ที่ ต้อง<WBR>การ<WBR>จะ
+เปลี่ยน โดย<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ดัง<WBR>นี้
+
+<pre>
+:50,100s/oldtext/newtext/g
+</pre>
+จะ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>คำ<WBR>ว่า 'oldtext' เป็น 'newtext' จาก<WBR>บรรทัด<WBR>ที่ 50 ถึง<WBR>บรรทัด<WBR>ที่ 100
+
+หาก<WBR>ต้อง<WBR>การ<WBR>เปลี่ยน<WBR>หมด<WBR>ทั้ง<WBR>ไฟล์<WBR>เอก<WBR>สาร คำ<WBR>สั่ง<WBR>ข้าง<WBR>ล่าง<WBR>จะ<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>คำ<WBR>ว่า 'oldtext'
+เป็น 'newtext' หมด<WBR>ทั้ง<WBR>ไฟล์<WBR>เอก<WBR>สาร
+<pre>
+:%s/oldtext/newtext/g
+</pre>
+</li>
+</ul>
+
+<H3 ALIGN=CENTER>การ<WBR>เคลื่อน<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์<WBR>ใน<WBR>บรรทัด </H3>
+
+<ul>
+<li>
+การ<WBR>เคลื่อน<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ใน<WBR>ตำแหน่ง<WBR>ต้น<WBR>บรรทัด ให้<WBR>กด<WBR>ปุ่ม '^' 
+ถ้า<WBR>ต้อง<WBR>การ<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ท้าย<WBR>บรรทัด ให้<WBR>กด<WBR>ปุ่ม '$'
+</li>
+<li>
+การ<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>มา<WBR>ระหว่าง<WBR>คำ ถ้า<WBR>หาก<WBR>เป็น<WBR>การ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>ข้าง<WBR>หน้า จะ<WBR>ให้
+ปุ่ม 'w' แต่<WBR>ถ้า<WBR>หาก<WBR>เป็น<WBR>การ<WBR>เลื่อน<WBR>เคอร์<WBR>เซอร์<WBR>ย้อน<WBR>กลับ<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>ปุ่ม 'b' วิธี<WBR>นี้<WBR>จะ<WBR>ทำ
+ให้<WBR>เคอร์<WBR>เซอร์<WBR>กระ<WBR>โดด<WBR>ข้าม<WBR>ไป<WBR>มา<WBR>ระหว่าง<WBR>คำ แต่<WBR>ถ้า<WBR>หาก<WBR>เจอ<WBR>อักษร<WBR>พิเศษ<WBR>เช่น วง<WBR>เล็บ '()'
+หรือ<WBR>เครื่อง<WBR>หมาย<WBR>เท่า<WBR>กับ  '=' ก็<WBR>จะ<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>คำ<WBR>ด้วย
+</li>
+<li>
+หาก<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ย้าย<WBR>เคอร์<WBR>เซอร์<WBR>ไป<WBR>มา<WBR>ระหว่าง<WBR>คำ โดย<WBR>ไม่<WBR>สน<WBR>ใจ<WBR>ว่า<WBR>ตัว<WBR>อักษร<WBR>พิเศษ<WBR>อื่นๆ<WBR>มี<WBR>รูป
+แบบ<WBR>เป็น<WBR>คำ<WBR>ด้วย จะ<WBR>ต้อง<WBR>ใช้ 'W' และ 'B' กล่าว<WBR>คือ<WBR>การ<WBR>แบ่ง<WBR>ว่า<WBR>เป็น<WBR>คำ<WBR>หรือ<WBR>ไม่<WBR>จะ<WBR>ดู<WBR>ว่า<WBR>มี
+ช่อง<WBR>ว่าง (blank) คั่น<WBR>อยู่<WBR>หรือ<WBR>ไม่<WBR>เท่า<WBR>นั้น
+</li>
+<li>
+การ<WBR>หา<WBR>คำ<WBR>ใน<WBR>บรรทัด สามารถ<WBR>ทำ<WBR>ได้<WBR>โดย<WBR>กด<WBR>ปุ่ม 'f' และ<WBR>พิมพ์<WBR>คำ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ค้น<WBR>หา<WBR>ใน<WBR>บรรทัด
+ถ้า<WBR>หาก<WBR>มี<WBR>คำ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>หา<WBR>อยู่<WBR>ใน<WBR>บรรทัด เคอร์<WBR>เซอร์<WBR>จะ<WBR>กระ<WBR>โดด<WBR>ไป<WBR>ตำแหน่ง<WBR>ที่<WBR>พบ<WBR>คำๆ<WBR>นั้น
+</li>
+</ul>
+
+<H3 ALIGN=CENTER>การ<WBR>เรียก<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์<WBR>จาก vi</H3>
+<p>
+หาก<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>เรียก<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์<WBR>จาก<WBR>ใน vi คุณ<WBR>จะ<WBR>ต้อง<WBR>เปลี่ยน<WBR>ไป<WBR>ใช้<WBR>คอม<WBR>มานด์
+โหมด<WBR>ด้วย<WBR>การ<WBR>กด<WBR>ปุ่ม ':' เสีย<WBR>ก่อน จาก<WBR>นั้น<WBR>ให้<WBR>พิมพ์<WBR>ตัว<WBR>อักษร '!' เพื่อ<WBR>บอก vi ว่า<WBR>กำลัง
+จะ<WBR>เรียก<WBR>ใช้ คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์ แล้ว<WBR>ให้<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์<WBR>ที่<WBR>คุณ<WBR>ต้อง<WBR>การ<WBR>ลง<WBR>ไป<WBR>แล้ว<WBR>กด
+ปุ่ม Enter vi จะ<WBR>สลับ<WBR>มา<WBR>ทำ<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์<WBR>ที่<WBR>คุณ<WBR>พิมพ์<WBR>เข้า<WBR>ไป<WBR>ให้ ตัว<WBR>อย่าง
+</p>
+
+<pre>
+:!ls
+</pre>
+จะ<WBR>ไป<WBR>ทำ<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์ 'ls' คือ<WBR>การ<WBR>แสดง<WBR>ราย<WBR>ชื่อ<WBR>ของ<WBR>ไฟล์<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>ออก<WBR>มา
+ดัง<WBR>นั้น<WBR>หาก<WBR>ต้อง<WBR>การ<WBR>ออก<WBR>ไป<WBR>ที่<WBR>เชลล์<WBR>ของ<WBR>ลีนุกซ์ ก็<WBR>สามารถ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ได้<WBR>ดัง<WBR>นี้
+
+<pre>
+:!bash
+</pre>
+จะ<WBR>ออก<WBR>ไป<WBR>ที่<WBR>เชลล์<WBR>และ<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์<WBR>อื่นๆ<WBR>ได้<WBR>ตาม<WBR>ปกติ หาก<WBR>ต้อง
+กลับ<WBR>เข้า<WBR>มา<WBR>ที่ vi ตาม<WBR>เดิม ให้<WBR>พิมพ์<WBR>คำ<WBR>สั่ง 'exit'
+
+<br>
+นอก<WBR>จาก<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์<WBR>แล้ว เรา<WBR>ยัง<WBR>สามารถ<WBR>นำ<WBR>เอา<WBR>ผล<WBR>ลัพธ์<WBR>ที่<WBR>ได้<WBR>จาก<WBR>คำ<WBR>สั่ง<WBR>ของ
+ลีนุกซ์<WBR>มา<WBR>เป็น<WBR>ส่วน<WBR>หนึ่ง<WBR>ของ<WBR>เอก<WBR>สาร<WBR>ได้ โดย<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>ตัว<WBR>อักษร '.' ก่อน<WBR>หน้า<WBR>อักษร
+'!' และ<WBR>ชุด<WBR>คำ<WBR>สั่ง<WBR>ของ<WBR>ลีนุกซ์ ตัว<WBR>อย่าง
+
+
+<pre>
+:.!pwd
+</pre>
+จะ<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>ชื่อ<WBR>ของไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน ที่<WBR>ตำแหน่ง<WBR>ของ<WBR>เคอร์<WBR>เซอร์<WBR>ออก<WBR>มา<WBR>ให้
+
+
+
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

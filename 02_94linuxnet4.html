@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>NETWORK 4 (PPP connection HOWTO)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การเชื่อมต่อแบบ PPP</H1>
+
+<H3 ALIGN=CENTER>การเซ็ตอัพ<WBR>ให้<WBR>ลีนุกซ์<WBR>เชื่อม<WBR>ต่อ<WBR>เครือ<WBR>ข่ายอิน<WBR>เทอร์<WBR>เนต<WBR>แบบ PPP</H3>
+
+<p>
+ใน<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>คอมพิวเตอร์<WBR>เข้า<WBR>กับ<WBR>เครือ<WBR>ข่าย<WBR>ของอิน<WBR>เทอร์<WBR>เนต<WBR>นั้น ทาง ISP จะ<WBR>ทำ<WBR>การ<WBR>กำหนด
+IP Numbers หรือ<WBR>หมาย<WBR>เลข<WBR>ประจำ<WBR>ตัว<WBR>ของ IP ให้<WBR>กับ<WBR>เครื่อง<WBR>ที่<WBR>ขอ<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>นั้น ใน<WBR>กรณี
+ที่<WBR>เป็น<WBR>การ<WBR>ขอ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ real PPP ซึ่ง<WBR>จะ<WBR>แตก<WBR>ต่าง<WBR>จาก slirp ที่<WBR>เป็น<WBR>ลักษณะ<WBR>ของ<WBR>การ
+จำลอง slip เท่า<WBR>นั้น นั่น<WBR>หมาย<WBR>ความ<WBR>ว่า<WBR>หาก<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>เข้า<WBR>กับอิน<WBR>เทอร์<WBR>เนต<WBR>แล้ว 
+ผู้<WBR>ใช้<WBR>จาก<WBR>ที่<WBR>อื่นๆ<WBR>ในอิน<WBR>เทอร์<WBR>เนต<WBR>จะ<WBR>สามารถ<WBR>เข้า<WBR>ใช้<WBR>บริการ<WBR>เครื่อง<WBR>ของ<WBR>คุณ<WBR>ได้ ตัว<WBR>อย่าง<WBR>เช่น
+ผู้<WBR>ใช้<WBR>คน<WBR>อื่นๆ<WBR>ในอิน<WBR>เทอร์<WBR>เนต<WBR>อาจ<WBR>จะ<WBR>ทำ<WBR>กา<WBR>รบ<WBR>ราวซ์<WBR>ดู<WBR>เอก<WBR>สาร HTML ของ<WBR>คุณ<WBR>ได้<WBR>ใน<WBR>กรณี 
+ที่<WBR>เครื่อง<WBR>ของ<WBR>คุณ<WBR>สามารถ<WBR>ให้<WBR>บริการ<WBR>แบบ HTML server
+ได้ 
+</p>
+
+<p>
+การ<WBR>กำหนด<WBR>หมาย<WBR>เลข IP ให้<WBR>กับ<WBR>คอมพิวเตอร์<WBR>นั้น<WBR>จะ<WBR>แบ่ง<WBR>ออก<WBR>เป็น<WBR>สอง<WBR>แบบ<WBR>คือ static ip
+กับ dynamic ip สำหรับ static ip นั้น<WBR>หมาย<WBR>ถึง<WBR>เลข IP ที่<WBR>ได้<WBR>จาก ISP จะ<WBR>เป็น<WBR>เลข IP
+เลข<WBR>เดิม<WBR>ตลอด ใน<WBR>ขณะ<WBR>ที่ dynamic ip จะ<WBR>มี<WBR>การ<WBR>เปลี่ยน<WBR>ค่า<WBR>เลข IP ที่<WBR>กำหนด<WBR>ให้<WBR>กับ<WBR>เครื่อง<WBR>ที่
+ติด<WBR>ต่อ<WBR>เข้า<WBR>ไป<WBR>หา<WBR>ทุก<WBR>ครั้ง นั่น<WBR>คือ<WBR>ใน<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ dynamic ip นั้น<WBR>จะ<WBR>ได้<WBR>ตัว<WBR>เลข<WBR>ที่<WBR>ไม่
+เหมือน<WBR>กัน<WBR>ทุก<WBR>ครั้ง โดย<WBR>ทั่ว<WBR>ไป<WBR>แล้ว ISP ส่วน<WBR>ใหญ่<WBR>จะ<WBR>กำหนด<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ dynamic ip
+ให้<WBR>กับ<WBR>ลูก<WBR>ค้า<WBR>ทั่วๆ<WBR>ไป (เท่า<WBR>ที่<WBR>ทด<WBR>ลอง<WBR>ติด<WBR>ต่อ real ppp กับ อิน<WBR>เทอร์<WBR>เนต<WBR>ไทย<WBR>แลนด์<WBR>และ
+สามารถ<WBR>ไซ<WBR>เบอร์<WBR>เนต<WBR>จะ<WBR>เป็น<WBR>ลักษณะ<WBR>ของ dynamic)
+</p>
+
+<p>
+โดย<WBR>ปกติ<WBR>แล้ว<WBR>เรา<WBR>สามารถ<WBR>ใช้<WBR>โปรแกรม dip เพื่อ<WBR>เข้า<WBR>ขอ<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>กับ<WBR>ทาง ISP ใน
+แบบ slip แต่<WBR>สำหรับ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>กับ ISP โดย<WBR>วิธี<WBR>แบบ ppp แล้ว มัก<WBR>จะ<WBR>นิยม<WBR>ใช้<WBR>โปรแกรม
+ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ ppp บน<WBR>ลีนุกซ์<WBR>ซึ่ง<WBR>ก็<WBR>คือ chat และ pppd
+</p>
+
+<p>
+สำหรับ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ ppp นั้น<WBR>เรา<WBR>สามารถ<WBR>กำหนด<WBR>ให้<WBR>เครื่อง<WBR>ลีนุกซ์<WBR>รับ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>เข้า<WBR>มา
+เป็น<WBR>แบบ ppp ซึ่ง<WBR>จะ<WBR>เรียก<WBR>ว่า ppp server หรือ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>ไป<WBR>หา<WBR>ยัง ISP เพื่อ<WBR>ขอ<WBR>รับ
+บริการ ppp ซึ่ง<WBR>จะ<WBR>เรียก<WBR>ว่า ppp client ก็<WBR>ได้ หรือ<WBR>แม้<WBR>แต่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>เครื่อง
+ลีนุกซ์<WBR>ทำ<WBR>งาน<WBR>พร้อม<WBR>กัน<WBR>ทั้ง<WBR>สอง<WBR>แบบ<WBR>ก็<WBR>ย่อม<WBR>ได้ สำหรับ<WBR>เอก<WBR>สาร<WBR>ฉบับ<WBR>นี้<WBR>จะ<WBR>อธิบาย<WBR>เฉพาะ<WBR>วิธี<WBR>การ
+กำหนด<WBR>ให้<WBR>ลีนุกซ์<WBR>ทำ<WBR>หน้า<WBR>ที่<WBR>แบบ ppp client
+</p>
+
+<p>
+ใน<WBR>การ<WBR>จะ<WBR>ใช้<WBR>งาน ppp คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>ของ<WBR>คุณ<WBR>ให้<WBR>สามารถ<WBR>ใช้<WBR>งาน
+ppp ได้<WBR>เสีย<WBR>ก่อน ให้<WBR>คุณ<WBR>เลือก option ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ protocol ppp ที่<WBR>เกี่ยว<WBR>ข้อง
+กับ<WBR>การ config kernel แล้ว<WBR>ทำ<WBR>การ<WBR>คอมไพล์<WBR>ใหม่ อย่าง<WBR>ไร<WBR>ก็<WBR>ดี<WBR>เคอร์เนล<WBR>ที่<WBR>คุณ<WBR>ได้<WBR>รับ
+มา<WBR>จากดิส<WBR>ตริ<WBR>บิว<WBR>เตอร์<WBR>ส่วน<WBR>ใหญ่<WBR>ก็<WBR>ติด<WBR>ตั้ง<WBR>เคอร์เนล<WBR>ที่<WBR>ใช้<WBR>งาน ppp ได้ มา<WBR>ให้<WBR>อยู่<WBR>แล้ว 
+</p>
+
+สิ่ง<WBR>ที่<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>ทราบ<WBR>ก่อน<WBR>การ<WBR>ปรับ<WBR>แต่ง<WBR>ให้<WBR>เครื่อง<WBR>ลีนุกซ์<WBR>ของ<WBR>คุณ<WBR>ใช้ ppp 
+<ul>
+<li>
+หมาย<WBR>เลข<WBR>โทรศัพท์<WBR>ของ ISP
+</li>
+<li>
+ISP ให้<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ static ip หรือ dynamic ip
+</li>
+<li>
+ใช้ PAP/CHAP หรือ<WBR>ไม่ สำหรับ PAP/CHAP จะ<WBR>เป็น<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>การ<WBR>มี<WBR>สิทธิ์<WBR>เข้า
+  ใช้<WBR>งาน HOST ของ ISP  แต่<WBR>จะ<WBR>มี<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ว่า<WBR>ชื่อ<WBR>เครื่อง (machine name) ที่<WBR>มี
+  สิทธิ์<WBR>ได้<WBR>ใช้<WBR>งาน<WBR>แทน<WBR>ที่<WBR>จะ<WBR>เป็น ชื่อ<WBR>ของ<WBR>ผู้<WBR>ใช้<WBR>งาน (user name) แต่<WBR>โดย<WBR>ทั่ว<WBR>ไป<WBR>แล้ว ISP 
+  จะ<WBR>เปิด<WBR>ให้<WBR>ใช้<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>แบบ<WBR>ปกติ<WBR>คือ<WBR>ตรวจ<WBR>สอบ<WBR>ชื่อ<WBR>ผู้<WBR>ใช้<WBR>งาน (ไม่<WBR>ได้<WBR>ใช้ PAP/CHAP)
+</li>
+<li>
+DNS ของ ISP คุณ<WBR>คือ<WBR>อะไร
+</li>
+</ul>
+
+ไฟล์<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ<WBR>การ<WBR>เชื่อม<WBR>ต่อ ppp มี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ หาก<WBR>คุณ<WBR>ไม่<WBR>พบสค<WBR>ริปต์<WBR>ทั้ง<WBR>สอง<WBR>ข้าง<WBR>ล่าง<WBR>นี้ คุณ<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>เขียน<WBR>ขึ้น<WBR>มา<WBR>ใหม่ ซึ่ง<WBR>ก็<WBR>จะ<WBR>มี<WBR>ตัว<WBR>อย่าง<WBR>ไว้<WBR>ให้<WBR>แล้ว และ<WBR>อย่า<WBR>ลืม<WBR>เปลี่ยน mode ของ<WBR>ไฟล์<WBR>ให้<WBR>เป็น execute mode ด้วย<WBR>คำ<WBR>สั่ง chmod +x [ชื่อสค<WBR>ริปต์]
+<br>
+
+เนื่อง<WBR>จาก<WBR>การ<WBR>ใช้<WBR>งาน<WBR>หลายๆ<WBR>อย่าง<WBR>ต้อง<WBR>อาศัย root priveledge ดัง<WBR>นั้น<WBR>ก่อน<WBR>การ
+แก้<WBR>ไข<WBR>หรือ<WBR>ใช้<WBR>งาน pppd ขอ<WBR>ให้<WBR>คุณ<WBR>เข้า<WBR>ทำ<WBR>การล็<WBR>อกอิน<WBR>เป็น super user (root) 
+เสีย<WBR>ก่อน
+
+<ul>
+<li>
+/usr/sbin/pppd	ซอฟท์แวร์<WBR>สำหรับ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ ppp
+</li>
+<li>
+/usr/sbin/ppp-on	สค<WBR>ริปต์<WBR>สำหรับ<WBR>เริ่ม<WBR>การ<WBR>เชื่อม<WBR>ต่อ (จะ<WBR>ไป<WBR>เรียก pppd)
+</li>
+<li>
+/usr/sbin/ppp-off	สค<WBR>ริปต์<WBR>สำหรับ<WBR>ตัด<WBR>การ<WBR>เชื่อม<WBR>ต่อ
+</li>
+<li>
+/etc/ppp/options	เป็น<WBR>ไฟล์ option ที่ pppd จะ<WBR>ทำ<WBR>การ<WBR>อ่าน<WBR>เมื่อ<WBR>เริ่ม<WBR>ต้น<WBR>ทำ<WBR>งาน
+</li>
+</ul>
+
+ตัว<WBR>อย่าง<WBR>ของ /etc/ppp/options
+<hr>
+<pre>
+# /etc/ppp/options (NO PAP/CHAP)
+#
+# Prevent pppd from forking into the background
+-detach
+# If you are using a STATIC IP number, edit the 0.0.0.0 part of the
+# following line to your static IP number.
+0.0.0.0:
+#
+# use the modem control lines
+modem
+# use uucp style locks to ensure exclusive access to the serial device
+lock
+# use hardware flow control
+crtscts
+# create a default route for this connection in the routing table
+defaultroute
+# do NOT set up any "escaped" control sequences
+asyncmap 0
+# use a maximum transmission packet size of 552 bytes
+mtu 552
+# use a maximum receive packet size of 552 bytes
+mru 552
+#
+#-------END OF SAMPLE /etc/ppp/options (no PAP/CHAP)
+</pre>
+<hr>
+
+
+
+<H3 ALIGN=CENTER> การ<WBR>เรียก<WBR>ใช้ ppp โดย<WBR>การ<WBR>ลง<WBR>มือ<WBR>ทำ<WBR>เอง (manual) </H3>
+
+<p>
+ให้<WBR>ทำ<WBR>การ<WBR>หมุน<WBR>โทรศัพท์<WBR>เข้า<WBR>ไป<WBR>ที่ ISP หรือ Host ที่<WBR>อนุญาต ให้<WBR>เชื่อม<WBR>ต่อ<WBR>ไป<WBR>ยัง
+อิน<WBR>เทอร์<WBR>เนต ด้วย<WBR>การ<WBR>ใช้ minicom ก่อน<WBR>โดย<WBR>ทำ<WBR>การ<WBR>เรียก minicom ที่<WBR>คอม<WBR>มานด์ไลน์ 
+วิธี<WBR>การ<WBR>ใช้ minicom จะ<WBR>คล้าย<WBR>กับ<WBR>การ<WBR>ใช้ telix ให้<WBR>กด Ctrl-A-Z เพื่อ<WBR>แสดง<WBR>คำ<WBR>สั่ง
+ของ minicom ทั้ง<WBR>หมด<WBR>ขึ้น<WBR>มา
+</p>
+
+<p>
+เมื่อ<WBR>เชื่อม<WBR>ต่อ<WBR>ได้<WBR>แล้ว<WBR>ให้<WBR>กด Ctrl-A-Q เพื่อ<WBR>ออก<WBR>จาก minicom ซึ่ง minicom
+ก็<WBR>จะ<WBR>ถาม<WBR>ว่า<WBR>ต้อง<WBR>การ<WBR>ออก<WBR>แบบ<WBR>ไม่ reset modem ใช่<WBR>หรือ<WBR>ไม่ ให้<WBR>ตอบ "OK" ไป
+เพื่อ<WBR>ยืน<WBR>ยัน<WBR>ว่า<WBR>ไม่<WBR>ต้อง<WBR>การ reset modem เนื่อง<WBR>จาก<WBR>เรา<WBR>จะ<WBR>ให้ ppp ใช้<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>นี้
+</p>
+
+<p>
+จาก<WBR>นั้น<WBR>จึง<WBR>สั่ง /usr/sbin/pppd -d -detach /dev/ttyS0
+(ttyS0 สำหรับ com1 แต่<WBR>ถ้า<WBR>เป็น com2 จะ<WBR>เป็น /dev/ttyS1)
+pppd จะ<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ ppp ให้
+</p>
+
+<br>
+ให้<WBR>ใช้ ifconfig ตรวจ<WBR>ดู การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ ppp --> ppp0  หาก<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ
+ได้<WBR>สำเร็จ<WBR>จะ<WBR>เห็น<WBR>ผล<WBR>ลัพธ์<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<hr>
+<pre>
+  ppp0     Link encap:Point-Point Protocol
+           inet addr:10.144.153.104  P-t-P:10.144.153.51 Mask:255.255.255.0
+           UP POINTOPOINT RUNNING  MTU:552  Metric:1
+           RX packets:0 errors:0 dropped:0 overruns:0
+           TX packets:0 errors:0 dropped:0 overruns:0
+</pre>
+<hr>
+
+ลอง<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับอิน<WBR>เทอร์<WBR>เนต<WBR>ดู เช่น บ<WBR>ราว<WBR>เซอร์, ftp, telnet, ping 
+เป็น<WBR>ต้น หาก<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ตัด<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง ps เพื่อ<WBR>แสดง PID (Process id) แล้ว
+kill PID ของ<WBR>โปรแกรม pppd ทิ้ง
+
+<pre>
+# ps -ax | grep pppd
+ 1228  p0 S    0:00 grep pppd
+ 1139  p1 S    0:00 pppd
+# kill -9 1139
+</pre>
+
+จะ<WBR>เห็น<WBR>ว่า<WBR>หมาย<WBR>เลข PID ของ<WBR>โปรแกรม pppd ก็<WBR>คือ 1139 (ไม่<WBR>ใช่ 1228 เพราะ<WBR>เกิด<WBR>จาก<WBR>คำ<WBR>สั่ง
+grep) ให้<WBR>ทำ<WBR>การ kill โปรแกรม pppd ตาม<WBR>ตัว<WBR>อย่าง
+
+<H3 ALIGN=CENTER>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ<WBR>อัตโนมัติ (Automatic) </H3>
+
+จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไขสค<WBR>ริปต์ /etc/ppp/ppp-on ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<hr>
+<pre>
+#!/bin/sh
+#
+# Script to initiate a PPP connection. This is the first part of the
+# pair of scripts. This is not a secure pair of scripts as the codes
+# are visible with the 'ps' command.  However, it is simple.
+#
+# These are the parameters. Change as needed.
+TELEPHONE=0,,1601       # The telephone number for the connection
+ACCOUNT=username        # The account name for logon (as in 'username')
+PASSWORD=passwd         # The password for this account (and 'passwd')
+LOCAL_IP=0.0.0.0        # Local IP address if known. Dynamic = 0.0.0.0
+REMOTE_IP=0.0.0.0       # Remote IP address if desired. Normally 0.0.0.0
+NETMASK=255.255.255.0   # The proper netmask if needed
+#
+# Export them so that they will be available to 'ppp-on-dialer'
+export TELEPHONE ACCOUNT PASSWORD
+#
+# This is the location of the script which dials the phone and logs
+# in.  Please use the absolute file name as the $PATH variable is not
+# used on the connect option.  (To do so on a 'root' account would be
+# a security hole so don't ask.)
+#
+DIALER_SCRIPT=/etc/ppp/ppp-on-dialer
+#
+# Initiate the connection
+#
+#
+
+/bin/setserial /dev/cua1 spd_vhi
+
+exec /usr/sbin/pppd debug /dev/ttyS1 115200  \
+        $LOCAL_IP:$REMOTE_IP \
+        connect $DIALER_SCRIPT &
+
+echo $! > /var/run/ppp-on.pid
+
+</pre>
+<hr>
+
+ใน<WBR>การ<WBR>ใช้<WBR>งานสค<WBR>ริปต์<WBR>ข้าง<WBR>ต้น<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>ข้อ<WBR>มูล<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>เสีย<WBR>ก่อน
+<ul>
+<li>
+จะ<WBR>ต้อง<WBR>แก้<WBR>หมาย<WBR>เลข<WBR>โทรศัพท์
+</li>
+<li>
+จะ<WBR>ต้อง<WBR>แก้<WBR>ชื่อ<WBR>ผู้<WBR>ใช้<WBR>ที่<WBR>จะ<WBR>ขอล็<WBR>อกอิน<WBR>เข้า<WBR>ไป<WBR>ใช้<WBR>งาน<WBR>ที่ ISP HOST
+</li>
+<li>
+จะ<WBR>ต้อง<WBR>แก้<WBR>รหัส<WBR>ผ่าน<WBR>ที่<WBR>จะ<WBR>ใช้ล็<WBR>อกอิน
+</li>
+<li>
+ถ้า<WBR>เป็น static ให้<WBR>ใส่<WBR>หมาย<WBR>เลข IP ที่<WBR>ได้<WBR>รับ<WBR>มา<WBR>จาก ISP ที่ LOCAL IP ADDRESS
+  แต่<WBR>ถ้า<WBR>เป็น dynamic ให้<WBR>ใส่ 0.0.0.0:ที่ LOCAL IP ADDRESS
+</li>
+</ul>
+
+สำหรับสค<WBR>ริปต์<WBR>ที่<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับ ISP HOST เพื่อ<WBR>ส่ง<WBR>ชื่อ<WBR>ผู้<WBR>ใช้<WBR>และ<WBR>รหัส<WBR>ผ่าน<WBR>นั้น<WBR>จะ<WBR>อยู่
+ใน /etc/ppp/ppp-on-dialer
+
+<hr>
+<pre>
+#!/bin/sh
+#
+# This is part 2 of the ppp-on script. It will perform the connection
+# protocol for the desired connection.
+#
+/usr/sbin/chat -v                               \
+'ABORT' 'BUSY' 					\
+'ABORT' 'ERROR' 				\
+'ABORT' 'NO CARRIER' 			        \
+'ABORT' 'NO DIALTONE' 			        \
+'ABORT' 'Invalid Login' 			\
+'ABORT' 'Login incorrect' 			\
+'' 'ATZ' 					\
+'OK' ATDT$TELEPHONE 				\
+'CONNECT' '' 					\
+'ogin:--ogin:' $ACCOUNT  			\
+'ord:' $PASSWORD 				\
+'>' 'ppp' 					
+</pre>
+<hr>
+
+<p>
+สค<WBR>ริปต์ ppp-on-dialer จะ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>ส่ง<WBR>ชื่อ<WBR>ผู้<WBR>ใช้ รหัส<WBR>ผ่าน และ<WBR>เรียก<WBR>โปรแกรม ppp 
+ที่<WBR>ฝั่ง<WBR>ของ ISP Host แบบ<WBR>อัตโนมัติ<WBR>โดย<WBR>ที่<WBR>เรา<WBR>ไม่<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>เหมือน<WBR>ตอน<WBR>ต่อ<WBR>แบบ 
+manual เลย
+</p>
+
+ให้<WBR>แก้สค<WBR>ริปต์<WBR>ที่<WBR>สำหรับ<WBR>ดัก<WBR>หรือ<WBR>รอ<WBR>รับ ข้อ<WBR>มูล<WBR>ที่ ISP HOST ส่ง<WBR>มา<WBR>ให้ สำหรับ<WBR>ใน<WBR>ตัว<WBR>อย่าง<WBR>นี้
+เมื่อโมเด็ม<WBR>สามารถ<WBR>ติด<WBR>ต่อ<WBR>กับ<WBR>ฝั่ง ISP ได้<WBR>แล้ว ส่วน terminal ของ ISP จะ<WBR>แสดง<WBR>ข้อ<WBR>ความ
+ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<pre>
+Login: username			<--- Login section
+Password: passwd		<--- Password section
+
+ISP> ppp			<--- System prompt
+</pre>
+
+หาก HOST หรือ terminal ของ ISP ของ<WBR>คุณ<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ที่<WBR>แตก<WBR>ต่าง<WBR>ออก<WBR>ไป<WBR>ก็<WBR>ให้<WBR>แก้<WBR>ไข
+สคริปต์<WBR>ที่<WBR>ดัก<WBR>รอ<WBR>ตาม<WBR>ลำ<WBR>ดับ<WBR>ข้าง<WBR>ต้น เช่น ส่วน<WBR>ใส่<WBR>ชื่อ<WBR>ทะเบียน<WBR>ผู้<WBR>ใช้ อาจ<WBR>แสดง<WBR>เป็น
+
+<pre>
+Username : 
+</pre>
+
+ก็<WBR>จะ<WBR>ต้อง<WBR>แก้<WBR>ส่วนล็<WBR>อกอิ<WBR>นพร้<WBR>อมพต์<WBR>เป็น 
+
+<pre>
+'ername:--ername:' $ACCOUNT  			\
+</pre>
+
+ส่วน<WBR>ที่<WBR>ต้อง<WBR>พิจารณา<WBR>ที่<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>อื่นๆ<WBR>มี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<ul>
+<li>
+ล็<WBR>อกอิ<WBR>นพร้<WBR>อมพต์( 'ogin:--ogin:')	--> ใส่<WBR>ชื่อ<WBR>ทะเบียน<WBR>ผู้<WBR>ใช้
+</li>
+<li>
+พาส<WBR>เวอร์ด<WBR>พร้อมพต์ ('ord:')	       --> ใส่<WBR>รหัส<WBR>ผ่าน
+</li>
+<li>
+พร้อมพต์<WBR>ของ<WBR>ระบบ ('>')	      	      --> เรียก<WBR>โปรแกรม ppp ที่<WBR>ฝั่ง<WBR>เซอร์ฟ<WBR>เวอร์<WBR>ทำ<WBR>งาน (ppp)
+</li>
+</ul>
+
+การ<WBR>ตัด<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>แบบ automatic จะ<WBR>ต้อง<WBR>ใช้สค<WBR>ริปต์ ppp-off สำหรับ<WBR>ตัว<WBR>อย่างสค<WBR>ริปต์ ppp-off  มี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<hr>
+<pre>
+#!/bin/sh
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+if [ -f /var/run/ppp-on.pid ] ; then
+  daemonpid=`cat /var/run/ppp-on.pid`
+  if [ -n "$daemonpid" ] ; then
+    kill $daemonpid > /dev/null 2>&1
+  fi
+  rm /var/run/ppp-on.pid
+fi
+</pre>
+<hr>
+
+pppd จะ<WBR>ทำ<WBR>การ<WBR>บัน<WBR>ทึก log file ไว้<WBR>ที่ /var/log/messages ให้<WBR>ลอง<WBR>ตรวจ<WBR>สอบ
+ข้อ<WBR>มูล<WBR>จาก<WBR>ที่<WBR>ไฟล์<WBR>นี้<WBR>โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง 
+
+<pre>
+# tail -f /var/log/messages 
+</pre>
+
+จาก<WBR>ตัว<WBR>อย่าง<WBR>ให้สัง<WBR>เกตุ<WBR>การ<WBR>ดัก<WBR>รอ<WBR>ส่วน<WBR>ตรวจ<WBR>สอบ<WBR>ชื่อ<WBR>ทะเบียน<WBR>ผู้<WBR>ใช้, รหัส<WBR>ผ่าน และ พร้อมพต์<WBR>ของ<WBR>ระบบ
+
+<hr>
+<pre>
+Jul 10 16:08:04 daffy chat[1396]: Login: -- got it 
+Jul 10 16:08:04 daffy chat[1396]: send (username^M) 
+Jul 10 16:08:04 daffy chat[1396]: expect (ord:) 
+Jul 10 16:08:04 daffy chat[1396]:  username^M 
+Jul 10 16:08:04 daffy chat[1396]: Password: -- got it 
+Jul 10 16:08:04 daffy chat[1396]: send (passwd^M) 
+Jul 10 16:08:05 daffy chat[1396]: expect (>) 
+Jul 10 16:08:05 daffy chat[1396]:  ^M 
+Jul 10 16:08:05 daffy chat[1396]: PYT_ITS> -- got it 
+Jul 10 16:08:05 daffy chat[1396]: send (ppp^M) 
+Jul 10 16:08:05 daffy pppd[1390]: Serial connection established.
+Jul 10 16:08:06 daffy pppd[1390]: Using interface ppp0
+Jul 10 16:08:06 daffy pppd[1390]: Connect: ppp0 <--> /dev/ttyS1
+Jul 10 16:08:07 daffy pppd[1390]: local  IP address 203.151.5.109
+Jul 10 16:08:07 daffy pppd[1390]: remote IP address 203.151.5.2
+Jul 10 16:08:33 daffy kernel: Appletalk 0.17 for Linux NET3.035
+</pre>
+<hr>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="02_93linuxnet3.html"><img src="PXleft.gif" ></a>
+<a href="02_95linuxnet5.html"><img src="PXright.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+
+</BODY>
+</HTML>
+

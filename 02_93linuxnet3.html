@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Linux and Networking</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>Linux and Networking</H1>
+
+<H3 ALIGN=CENTER>การ<WBR>พัฒนา<WBR>เนต<WBR>เวอร์<WBR>กบน<WBR>ลีนุกซ์</H3>
+เนื่อง<WBR>จาก<WBR>ลีนุกซ์<WBR>เป็น<WBR>โอ<WBR>เอส<WBR>ที่<WBR>เกิด<WBR>มา<WBR>จาก<WBR>เนต<WBR>เวอร์<WBR>กระ<WBR>หว่าง<WBR>ประเทศ ดัง<WBR>นั้น<WBR>จึง<WBR>ไม่<WBR>น่า<WBR>เป็น<WBR>ที่<WBR>แปลก<WBR>ใจ<WBR>ที่<WBR>จะ<WBR>มี<WBR>การ<WBR>นำ<WBR>เอา<WBR>ความ<WBR>สามารถ<WBR>ทาง<WBR>ด้าน<WBR>เนต<WBR>เวอร์ก<WBR>ไป<WBR>ใส่ ให้<WBR>กับ<WBR>ลีนุกซ์<WBR>ตั้ง<WBR>แต่<WBR>ช่วง<WBR>เริ่ม<WBR>แรก<WBR>ของ<WBR>การ<WBR>พัฒนา ใน<WBR>ช่วง<WBR>แรก<WBR>จะ<WBR>เป็น<WBR>การ<WBR>พัฒนา UUCP และ<WBR>ต่อ<WBR>มา<WBR>ก็<WBR>เริ่ม<WBR>มี<WBR>การ<WBR>พัฒนา TCP/IP ใน<WBR>ช่วง<WBR>ฤดู<WBR>ใบ<WBR>ไม้<WBR>ร่วง<WBR>ของ<WBR>ปี 1992 โดย Ross Biro และ<WBR>ทีม<WBR>งาน ซึ่ง<WBR>จะ<WBR>รู้<WBR>จัก<WBR>กัน<WBR>ใน<WBR>นาม<WBR>ของ Net-1<br><br>
+
+ต่อ<WBR>มา<WBR>เมื่อ Ross ได้<WBR>ถอน<WBR>ตัว<WBR>จาก<WBR>การ<WBR>พัฒนา<WBR>เมื่อ<WBR>เดือน<WBR>พฤษภาคม 1993 , Fred van 
+Kempen ก็<WBR>ได้<WBR>ทำ<WBR>การ<WBR>เริ่ม<WBR>เขียน<WBR>โค้ด<WBR>ขึ้น<WBR>มา<WBR>ใหม่ (Net-2) สำหรับ<WBR>การ<WBR>เผย<WBR>แพร่<WBR>สู่<WBR>สาธารณะ<WBR>ครั้ง<WBR>แรก<WBR>ใน<WBR>ชื่อ<WBR>ของ Net-2d อยู่<WBR>ใน<WBR>ราว<WBR>ช่วง<WBR>ฤดู<WBR>ร้อน<WBR>ปี 1993 (เผย<WBR>แพร่<WBR>ไป<WBR>พร้อม<WBR>กับ 
+kernel เวอร์ชั่น 0.99.10)  และ<WBR>หลัง<WBR>จาก<WBR>นั้น<WBR>ก็<WBR>ได้<WBR>มี<WBR>การ<WBR>ร่วม<WBR>ทำ<WBR>การ<WBR>พัฒนา<WBR>จาก<WBR>นัก
+พัฒนา<WBR>อีก<WBR>หลายๆ<WBR>คน ที่<WBR>สำคัญ<WBR>คือ<WBR>โดย Alan Cox ได้<WBR>ทำ Net-2Debugged <br><br>
+
+หลัง<WBR>จาก<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>อย่าง<WBR>หนัก รวม<WBR>ทั้ง<WBR>การ<WBR>ปรับ<WBR>ปรุง<WBR>โค้ด<WBR>จำนวน<WBR>มาก ก็<WBR>ได้<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ชื่อ<WBR>เป็น Net-3 ภาย<WBR>หลัง<WBR>ที่ Linux 1.0 ได้<WBR>ถูก<WBR>เผย<WBR>แพร่<WBR>ออก<WBR>ไป 
+Net-3 เป็น<WBR>โค้ด<WBR>ที่<WBR>ใช้<WBR>งาน<WBR>อยู่<WBR>กับ<WBR>เคอร์เนล<WBR>ที่<WBR>เผย<WBR>แพร่<WBR>อย่าง<WBR>เป็น<WBR>ทาง<WBR>การ<WBR>ใน<WBR>ปัจจุบัน<br><br>
+
+Net-3 มี device driver ที่<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>ได้<WBR>กับ<WBR>บอร์ด<WBR>แบบ Ethernet หลาย<WBR>ชนิด<WBR>นอก<WBR>จาก<WBR>นั้น<WBR>ก็<WBR>ยัง<WBR>สามารถ<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>กับ SLIP (สำหรับ<WBR>ส่ง<WBR>ข้อ<WBR>มูล<WBR>ของ<WBR>เนต<WBR>เวอร์ก<WBR>ผ่าน<WBR>ทาง
+Serial line) และ PLIP (สำหรับ Parallel line) 
+Net-3 สามารถ<WBR>ใช้<WBR>งาน<WBR>ได้<WBR>ดี<WBR>กับ Local Area Network ซึ่ง<WBR>แสดง<WBR>ให้<WBR>เห็น<WBR>ว่า ประสิทธิภาพ<WBR>ของ<WBR>มัน<WBR>สามารถ<WBR>เอา<WBR>ชนะ ยู<WBR>นิกซ์<WBR>บน<WBR>พี<WBR>ซี<WBR>เชิง<WBR>พาณิชย์<WBR>บาง<WBR>ตัว<WBR>ได้ การ<WBR>พัฒนา<WBR>ใน<WBR>ปัจจุบัน<WBR>ได้<WBR>ให้<WBR>ความ<WBR>สำคัญ<WBR>กับ<WBR>เสถียร<WBR>ภาพ เพื่อ<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>มัน<WBR>เป็น Internet host ได้<WBR>อย่าง<WBR>น่า<WBR>เชื่อ<WBR>ถือ<br><br>
+
+นอก<WBR>จาก features เหล่า<WBR>นี้<WBR>ก็<WBR>ได้<WBR>มี<WBR>โครง<WBR>การ<WBR>หลาย<WBR>โครง<WBR>การ ที่<WBR>จะ<WBR>เพิ่ม<WBR>ความ<WBR>หลาก<WBR>หลาย<WBR>ให้<WBR>กับ<WBR>ความ<WBR>สามารถ<WBR>ทาง<WBR>ด้าน<WBR>เนต<WBR>เวอร์ก<WBR>ของ<WBR>ลีนุกซ์ ตัว<WBR>อย่าง<WBR>เช่น driver สำหรับ PPP
+(the point-to-point protocol, วิธี<WBR>การ<WBR>ส่ง<WBR>ข้อ<WBR>มูล<WBR>ของ<WBR>เนต<WBR>เวอร์ก<WBR>ผ่าน<WBR>ทาง
+Serial line อีก<WBR>วิธี<WBR>หนึ่ง<WBR>นอก<WBR>เหนือ<WBR>จาก Slip) และ AX.25 ซึ่ง<WBR>เป็น driver สำหรับ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ทาง<WBR>ด้าน ham radio (เครือ<WBR>ข่าย<WBR>เนต<WBR>เวอร์ก<WBR>แบบ<WBR>วิทยุ)
+Alan Cox ยัง<WBR>ทำ<WBR>การ<WBR>พัฒนา driver สำหรับ Novell's IPX protocol ด้วย 
+นอก<WBR>จาก<WBR>นี้<WBR>ก็<WBR>ยัง<WBR>มี samba ซึ่ง<WBR>เป็น server NetBIOS ฟรี<WBR>บน<WBR>ระบบ<WBR>ยู<WBR>นิกซ์ ซึ่ง<WBR>ถูก<WBR>ทำ<WBR>การ<WBR>พัฒนา<WBR>โดย Andrew Tridgell (NetBIOS เป็น protocol ที่<WBR>ใช้<WBR>งาน<WBR>กับ application
+จำพวก lanmanager และ<WBR>ตระกูล Windows for Workgroup)<br><br>
+
+ปัจจุบัน<WBR>โครง<WBR>การ<WBR>เหล่า<WBR>นี้<WBR>ได้<WBR>ถูก<WBR>ทำ<WBR>การ<WBR>พัฒนา<WBR>ให้<WBR>ใช้<WBR>งาน<WBR>ได้ และ<WBR>ทำ<WBR>การ<WBR>เผย<WBR>แพร่<WBR>สู่<WBR>สาธารณะ
+เรียบ<WBR>ร้อย<WBR>แล้ว : ผู้<WBR>เรียบ<WBR>เรียง<br>
+
+<H3 ALIGN=CENTER>การ<WBR>ติด<WBR>ตั้ง เนต<WBR>เวอร์ก<WBR>ฮาร์ดแวร์</H3>
+การ<WBR>ใช้<WBR>งาน<WBR>เนต<WBR>เวอร์ก คุณ<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ติด<WBR>ตั้ง<WBR>ฮาร์ดแวร์ ใน<WBR>การ<WBR>ใช้<WBR>งาน<WBR>เนต<WBR>เวอร์<WBR>กระ<WBR>ดับ
+LAN ทั่ว<WBR>ไป<WBR>มัก<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>พวก Ethernet board คุณ<WBR>จะ<WBR>ต้อง<WBR>ติด<WBR>ตั้ง<WBR>การ์ด<WBR>พวก<WBR>นี้<WBR>ลง<WBR>ไป<WBR>ใน<WBR>เครื่อง<WBR>ของ<WBR>คุณ ตัว<WBR>อย่าง<WBR>การ์ด<WBR>หลักๆ<WBR>ที่<WBR>ลีนุกซ์<WBR>สนับสนุน<WBR>ก็<WBR>คือ<br>
+<pre>
+        Western Digital WD80*3;
+        SMC Ultra;
+        3com 3c501, 3c503, 3c509, 3c579;
+        AT1500 and NE2100 (LANCE and PCnet-ISA);
+        Cabletron E21xx;
+        DEPCA;
+        HP PCLAN;
+        NE2000;
+        NE1000;
+        SK_G16;
+        Apricot Xen-II on board ethernet;
+        D-Link DE600;
+        D-Link DE620;
+        AT-LAN-TEC/RealTek pocket adaptor;
+        Zenith Z-Note;
+        3com 3c505(*), 3c507(*);
+        EtherExpress;
+        AT1700(*), NI5210(*), NI6510(*);
+        Ansel Communications EISA 3200(*).
+</pre>
+ให้<WBR>พิจารณา<WBR>ดู<WBR>ด้วย<WBR>ว่า<WBR>การ์ด<WBR>ของ<WBR>คุณ<WBR>เป็น<WBR>การ์ด<WBR>ชนิด EISA หรือ<WBR>แบบ PCI เมื่อ<WBR>ตรวจ<WBR>สอบ<WBR>เรียบ<WBR>ร้อย<WBR>แล้ว ก็<WBR>ให้<WBR>เสียบ<WBR>การ์ด<WBR>ของ<WBR>คุณ<WBR>ลง<WBR>ใน<WBR>ช่อง<WBR>ของ EISA หรือ PCI ที่<WBR>ว่าง<WBR>นั้น อย่า<WBR>ลืม<WBR>เสียบ<WBR>การ์ด<WBR>ให้<WBR>ตรง<WBR>ชนิด<WBR>กับ<WBR>ช่อง<WBR>ที่<WBR>คุณ<WBR>จะ<WBR>ใส่<WBR>ลง<WBR>ไป<WBR>ด้วย โดย<WBR>ปกติ<WBR>ช่อง<WBR>แบบ EISA จะ<WBR>มี<WBR>ความ<WBR>ยาว<WBR>ที่<WBR>มาก<WBR>กว่า<WBR>ช่อง<WBR>แบบ PCI  และ<WBR>มัก<WBR>จะ<WBR>เป็น<WBR>สี<WBR>ดำ ใน<WBR>ขณะ<WBR>ที่ PCI มัก<WBR>จะ<WBR>เป็น<WBR>สี<WBR>ขาว <br><br>
+
+โดย<WBR>ปกติ<WBR>การ์ด<WBR>เหล่า<WBR>นี้<WBR>จะ<WBR>ให้<WBR>มา<WBR>พร้อม<WBR>กับไดร์<WBR>เวอร์ และ<WBR>โปรแกรม<WBR>สำหรับ<WBR>คอน<WBR>ฟิก<WBR>การ์ด<WBR>ใน<WBR>กรณี<WBR>ที่<WBR>เป็น<WBR>การ<WBR>คอน<WBR>ฟิก<WBR>ผ่าน<WBR>ซอฟต์แวร์<WBR>ไม่<WBR>ได้<WBR>เป็น<WBR>แบบ<WBR>ใช้จัม<WBR>เปอร์ ซึ่ง<WBR>ซอฟต์แวร์<WBR>เหล่า<WBR>นั้น<WBR>มัก<WBR>จะ<WBR>ต้อง<WBR>รัน<WBR>บน DOS  ให้<WBR>ลอง<WBR>ทด<WBR>สอบ<WBR>การ์ด<WBR>ของ<WBR>คุณ<WBR>ผ่าน<WBR>ซอฟต์แวร์<WBR>เหล่า<WBR>นั้น<WBR>ดู และ<WBR>คุณ<WBR>อาจ<WBR>จะ<WBR>ต้อง<WBR>พึ่ง<WBR>ซอฟต์แวร์<WBR>เหล่า<WBR>นั้น<WBR>ใน<WBR>กรณี<WBR>ที่<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>การ<WBR>ปรับ<WBR>แต่ง<WBR>คอน<WBR>ฟิก<WBR>ของ<WBR>การ์ด แต่<WBR>หาก<WBR>การ์ด<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>คอน<WBR>ฟิก<WBR>โดย<WBR>การ<WBR>ใช้จัม<WBR>เปอร์ คุณ<WBR>จะ<WBR>ต้อง<WBR>พึ่ง<WBR>คู่<WBR>มือ<WBR>ของ<WBR>คุณ<WBR>ใน<WBR>การ<WBR>ที่<WBR>จะ<WBR>ปรับ<WBR>แต่ง<WBR>ใดๆ<br><br>
+
+ใน<WBR>เครื่อง PC เวลา<WBR>มี<WBR>การ<WBR>ส่ง<WBR>ผ่าน<WBR>การ<WBR>สื่อ<WBR>สาร<WBR>ข้อ<WBR>มูล มัก<WBR>จะ<WBR>กระ<WBR>ทำ<WBR>ผ่าน<WBR>เนื้อ<WBR>ที่<WBR>หน่วย<WBR>ความ<WBR>จำ<WBR>ใน<WBR>ส่วน<WBR>ของ I/O ซึ่ง<WBR>จะ<WBR>ถูก map เข้า<WBR>กับ รีจิส<WBR>เตอร์<WBR>บน<WBR>บอร์ด หรือ<WBR>อื่นๆ<WBR>ที่<WBR>คล้าย<WBR>กัน 
+เคอร์เนล<WBR>ของ<WBR>ลีนุกซ์ ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>ข้อ<WBR>มูล<WBR>ผ่าน<WBR>ทาง<WBR>รีจิส<WBR>เตอร์<WBR>เหล่า<WBR>นี้  เนื้อ<WBR>ที่<WBR>หน่วย<WBR>ความ<WBR>จำ<WBR>ใน<WBR>ส่วน I/O (base address) ที่<WBR>มัก<WBR>จะ<WBR>ใช้<WBR>กัน<WBR>ใน<WBR>การ์ด Ethernet เหล่า<WBR>นี้ 
+มัก<WBR>จะ<WBR>เป็น 0x300 หรือ 0x600 โดย<WBR>ปกติ<WBR>คุณ<WBR>ไม่<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ไป<WBR>ใส่<WBR>ใจ<WBR>กับ base address เหล่า<WBR>นี้ เพราะ<WBR>เคอร์เนล<WBR>ของ<WBR>ลีนุกซ์<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ base address เหล่า<WBR>นี้<WBR>เอง<WBR>โดย<WBR>อัตโนมัติ ซึ่ง<WBR>จะ<WBR>เรียก<WBR>ว่า<WBR>การ<WBR>ทำ autoprobing<br><br>
+
+นอก<WBR>จาก base address แล้ว<WBR>ยัง<WBR>มี<WBR>สิ่ง<WBR>ที่<WBR>ต้อง<WBR>สน<WBR>ใจ<WBR>อีก<WBR>เรื่อง<WBR>หนึ่ง ซึ่ง<WBR>ก็<WBR>คือ interrupt
+request channel ซึ่ง<WBR>ฮาร์ดแวร์<WBR>จะ<WBR>ใช้<WBR>ช่อง<WBR>ทาง<WBR>เหล่า<WBR>นี้<WBR>ใน<WBR>การ<WBR>ทำ<WBR>การ "ขัด<WBR>จังหวะ"
+เคอร์เนล เมื่อ<WBR>มัน<WBR>ต้อง<WBR>การ<WBR>บริการ<WBR>จาก<WBR>เคอร์เนล ตัว<WBR>อย่าง<WBR>เช่น เมื่อ<WBR>มี<WBR>ข้อ<WBR>มูล<WBR>มา<WBR>ถึง หรือ<WBR>มี<WBR>เหตุ<WBR>การณ์<WBR>พิเศษ<WBR>บาง<WBR>อย่าง<WBR>เกิด<WBR>ขึ้น  ฮาร์ดแวร์<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ขัด<WBR>จังหวะ ผ่าน<WBR>ช่อง<WBR>ทาง<WBR>ของ 
+interrupt channel หมาย<WBR>เลข 0, 1 และ 3 จน<WBR>ถึง 15 ซึ่ง<WBR>ช่อง<WBR>ทาง<WBR>เหล่า<WBR>นี้
+จะ<WBR>เรียก<WBR>ว่า interrupt request number หรือ IRQ<br><br>
+
+เคอร์เนล<WBR>จะ<WBR>รู้<WBR>จัก<WBR>การ์ด<WBR>เหล่า<WBR>นี้<WBR>ผ่าน<WBR>ทาง ชื่อ<WBR>ที่<WBR>กำหนด<WBR>ไว้<WBR>ภาย<WBR>ใน<WBR>เคอร์เนล และ<WBR>ไม่<WBR>ได้<WBR>อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /dev ปกติ<WBR>ถ้า<WBR>เป็น การ์ด Ethernet จะ<WBR>มี<WBR>ชื่อ<WBR>เป็น eth0, eth1, ...
+eth0 จะ<WBR>เป็น<WBR>การ์ด<WBR>ตัว<WBR>แรก , eth1 จะ<WBR>เป็น<WBR>การ์ด<WBR>ตัว<WBR>ถัด<WBR>ไป และ<WBR>ต่อ<WBR>ไป<WBR>เรื่อยๆ<br><br>
+
+เมื่อ<WBR>ทำ<WBR>การบูต<WBR>แล้ว<WBR>หาก<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ตั้ง<WBR>เนต<WBR>เวอร์<WBR>กการ์ด ได้<WBR>ถูก<WBR>ต้อง<WBR>ลีนุกซ์<WBR>จะ<WBR>แสดง<WBR>ข้อ<WBR>มูล<WBR>ของ<WBR>เนต<WBR>เวอร์ก<WBR>โปร<WBR>โต<WBR>คอล และ<WBR>เนต<WBR>เวอร์<WBR>กการ์ด<WBR>ขึ้น<WBR>มา<WBR>ให้ ถ้า<WBR>หาก<WBR>ดู<WBR>ไม่<WBR>ทัน<WBR>ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง dmesg เพื่อ<WBR>แสดง<WBR>ข้อ<WBR>มูล<WBR>เหล่า<WBR>นี้<WBR>ออก<WBR>มา<WBR>ภาย<WBR>หลัง<br>
+ตัว<WBR>อย่าง<br>
+
+<pre>
+Swansea University Computer Society NET3.035 for Linux 2.0
+NET3: Unix domain sockets 0.13 for Linux NET3.035.
+Swansea University Computer Society TCP/IP for NET3.034
+IP Protocols: ICMP, UDP, TCP
+
+.
+.
+.
+
+IPX Portions Copyright (c) 1995 Caldera, Inc.
+Appletalk 0.17 for Linux NET3.035
+3c503.c: Presently autoprobing (not recommended) for a single card.
+loading device 'eth0'...
+3c503.c:v1.10 9/23/93  Donald Becker (becker@cesdis.gsfc.nasa.gov)
+eth0: 3c503 at i/o base 0x300, node  02 60 8c af 87 18, using internal xcvr.
+eth0: 3c503/16 - 16kB RAM, 8kB shared mem window at 0xd8000-0xd9fff.
+</pre>
+
+<H3 ALIGN=CENTER> การ<WBR>คอมไพล์<WBR>เคอร์เนล ให้<WBR>สนับสนุน<WBR>เรื่อง<WBR>ของ<WBR>เนต<WBR>เวอร์ก </H3>
+คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>เซตอัพ<WBR>เคอร์เนล<WBR>ของ<WBR>คุณ ให้<WBR>ทำ<WBR>การ<WBR>สนับสนุน<WBR>บอร์ด<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>รวม<WBR>ทั้ง<WBR>ประเภท<WBR>เนต<WBR>เวอร์ก<WBR>ชนิด<WBR>ต่างๆ<WBR>ด้วย โดย<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>ใหม่
+่<WBR>สำหรับ<WBR>การ<WBR>ทำ<WBR>การ<WBR>เซตอัพ<WBR>เคอร์เนล<WBR>ใน<WBR>เวอร์ชั่น<WBR>ตั้ง<WBR>แต่ 2.0 ขึ้น<WBR>ไป จะ<WBR>มี<WBR>รูป<WBR>แบบ<WBR>ที่<WBR>ง่าย<WBR>ขึ้น<WBR>โดย<WBR>มี<WBR>เมนู<WBR>มา<WBR>ให้<WBR>เลือก การ<WBR>เซตอัพ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ของ<WBR>เนต<WBR>เวอร์ก คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>เซตอัพ<WBR>สอง<WBR>หัว<WBR>ข้อ คือ<WBR>เรื่อง<WBR>ของ<WBR>การ์ด<WBR>ที่<WBR>สนับสนุน และ<WBR>เรื่อง<WBR>ของ<WBR>ชนิด<WBR>ของ<WBR>เนต<WBR>เวอร์ก<WBR>ที่<WBR>ทำ<WBR>การ<WBR>สนับสนุน ซึ่ง<WBR>ถ้า<WBR>หาก<WBR>เลือก TCP/IP จะ<WBR>มี<WBR>หัว<WBR>ข้อ<WBR>ย่อย เช่น<WBR>เรื่อง<WBR>ของ IP Masquerate, IP forwarding เป็น<WBR>ต้น (หาก<WBR>จะ<WBR>เซตอัพ<WBR>ให้<WBR>ลีนุกซ์<WBR>เป็น<WBR>เกตเวย์ จะ<WBR>ต้อง<WBR>เลือก<WBR>หัว<WBR>ข้อ IP forwarding)<br>
+
+ให้<WBR>เข้า<WBR>ไป<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /usr/src/linux แล้ว<WBR>เรียก make xconfig (สำหรับ Linux
+version ที่<WBR>ต่ำ<WBR>กว่า 2.0 ให้<WBR>เรียก make config แล้ว<WBR>เลือก<WBR>ตอบ<WBR>ตาม<WBR>หัว<WBR>ข้อ<WBR>ต่างๆ)<br>
+
+<br><br>
+<center><img src="P2_93netsetup1.gif"></center>
+<center> รูป<WBR>แสดง<WBR>การ<WBR>เลือก<WBR>เซตอัพ<WBR>ส่วน<WBR>ของ<WBR>เนต<WBR>เวอร์ก</center>
+<br><br>
+<center><img src="P2_93netsetup2.gif"></center>
+<center> รูป<WBR>แสดง<WBR>การ<WBR>เลือก<WBR>เซตอัพ<WBR>ส่วน<WBR>ของ<WBR>ฮาร์ดแวร์</center>
+<br><br>
+
+
+ใน<WBR>กรณี<WBR>นี้<WBR>หาก<WBR>ยัง<WBR>ไม่<WBR>เข้า<WBR>ใจ<WBR>เรื่อง<WBR>ของ<WBR>การ<WBR>ทำ<WBR>เคอร์เนล<WBR>แบบโม<WBR>ดูล [m] ให้<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>รวม<WBR>ส่วน<WBR>เหล่า<WBR>นั้น<WBR>เข้า<WBR>ไป<WBR>ใน<WBR>เคอร์เนล<WBR>เลย [y]  จะ<WBR>อธิบาย<WBR>เกี่ยว<WBR>กับ<WBR>เรื่อง<WBR>ของ<WBR>เคอร์เนล<WBR>โดย<WBR>ละเอียด<WBR>ใน<WBR>เอก<WBR>สาร<WBR>อื่น<WBR>อีก<WBR>ครั้ง<br><br>
+
+หลัง<WBR>จาก<WBR>ทำ<WBR>การ<WBR>เลือก<WBR>เสร็จ<WBR>เรียบ<WBR>ร้อย<WBR>แล้ว<WBR>ให้ ทำ<WBR>การ save และ<WBR>ออก<WBR>จาก<WBR>โปรแกรม และ<WBR>ทำ<WBR>การ<WBR>สั่ง<br>
+<dir>
+	make dep; make clean 
+</dir>
+เพื่อ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ไฟล์<WBR>ที่<WBR>จะ<WBR>ให้<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>ต่างๆ รอ<WBR>สัก<WBR>พัก<WBR>เมื่อ<WBR>ระบบ<WBR>จัด<WBR>เตรียม<WBR>เรียบ<WBR>ร้อย<WBR>แล้ว ให้<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>เริ่ม<WBR>ต้น<WBR>คอมไพล์<WBR>เคอร์เนล<br>
+<dir>
+	make zImage
+</dir>
+ขั้น<WBR>ตอน<WBR>นี้<WBR>จะ<WBR>เริ่ม<WBR>ทำ<WBR>การ<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>ใหม่<WBR>ทั้ง<WBR>หมด<WBR>ซึ่ง<WBR>อาจ<WBR>จะ<WBR>ต้อง<WBR>รอ<WBR>นาน<WBR>สัก<WBR>นิด ช่วง<WBR>นี้
+คุณ<WBR>อาจ<WBR>จะ<WBR>ลุก<WBR>ไป<WBR>ชง<WBR>กาแฟ ทาน<WBR>สัก<WBR>พัก<WBR>ก็<WBR>ได้ เมื่อ<WBR>คอมไพล์<WBR>เคอร์เนล<WBR>เสร็จ<WBR>เรียบ<WBR>ร้อย<WBR>แล้ว โปรแกรม make จะ<WBR>บอก<WBR>ว่า ตัว<WBR>ของ zImage จะ<WBR>อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /usr/src/linux/arch/i386/boot ให้<WBR>นำ<WBR>เอา zImage จากไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>นี้<WBR>ไป<WBR>ใส่<WBR>ไว้<WBR>ใน /boot (เวอร์ชั่น<WBR>เก่า<WBR>จะ<WBR>ใส่<WBR>ไว้<WBR>ที่ root / ) จาก<WBR>นั้น<WBR>ก็<WBR>อาจ<WBR>จะ<WBR>เปลี่ยน<WBR>ชื่อ<WBR>เป็น vmlinuz หรือ<WBR>ตาม<WBR>ชื่อ<WBR>ที่<WBR>อยู่<WBR>ใน /etc/lilo.conf (อย่า<WBR>ลืม<WBR>เก็บ<WBR>เคอร์เนล<WBR>ตัว<WBR>เก่า<WBR>ของ<WBR>คุณ<WBR>ไว้<WBR>ด้วย) แล้ว<WBR>ใช้<WBR>คำ<WBR>สั่ง /sbin/lilo เพื่อ<WBR>ให้บูต<WBR>โหลดเดอร์<WBR>อ่าน<WBR>คอน<WBR>ฟิก<WBR>ใหม่<WBR>ของ<WBR>เรา เมื่อ<WBR>เสร็จ<WBR>สิ้น<WBR>ขั้น<WBR>ตอน<WBR>ทุก<WBR>อย่าง<WBR>แล้ว ให้บูต<WBR>เครื่อง<WBR>ใหม่<WBR>พร้อม<WBR>ทั้ง<WBR>ตรวจ<WBR>สอบ<WBR>ดู<WBR>ว่า<WBR>ลีนุกซ์<WBR>รับ<WBR>รู้<WBR>เนต<WBR>เวอร์<WBR>กการ์ด<WBR>ใหม่<WBR>ของ<WBR>เรา รวม<WBR>ทั้ง<WBR>ชนิด<WBR>ของ<WBR>เนต<WBR>เวอร์ก<WBR>ที่<WBR>ต้อง<WBR>การ<br>
+ทด<WBR>ลอง<WBR>ใช้<WBR>คำ<WBR>สั่ง<br>
+<dir>
+	netstat -rn
+</dir>
+เครื่อง<WBR>จะ<WBR>แสดง<WBR>ผล<WBR>เกี่ยว<WBR>กับ<WBR>ค่า<WBR>ของ<WBR>เนต<WBR>เวอร์<WBR>กอ<WBR>อก<WBR>มา ให้<WBR>สังเกต<WBR>ส่วน<WBR>คอลัมน์ Iface
+จะ<WBR>เห็น<WBR>ว่า มี<WBR>ดี<WBR>ไวซ์ eth0 แสดง<WBR>ว่า<WBR>ลีนุกซ์<WBR>รับ<WBR>รู้<WBR>เนต<WBR>เวอร์<WBR>กการ์ด<WBR>แล้ว</br>
+
+<p>
+<pre>
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+129.103.0.0     0.0.0.0         255.255.0.0     U      1500 0          0 eth0
+127.0.0.0       0.0.0.0         255.0.0.0       U      3584 0          0 lo
+</pre>
+</p>
+
+<H3 ALIGN=CENTER>สาย<WBR>สัญญาณ<WBR>ที่<WBR>ใช้<WBR>ใน<WBR>การ<WBR>ส่ง<WBR>ข้อ<WBR>มูล</H3>
+<ol>
+<li> สาย<WBR>คู่<WBR>ตี<WBR>เกลียว (twisted pair)</li>
+สาย<WBR>คู่<WBR>ตี<WBR>เกลียว<WBR>เป็น สาย<WBR>ที่<WBR>มี<WBR>ฉนวน 2 เส้น<WBR>นำ<WBR>มา<WBR>ทำ<WBR>การ<WBR>ตี<WBR>เกลียว<WBR>อย่าง<WBR>สม่ำเสมอ<WBR>ตลอด<WBR>ระยะ<WBR>ทาง<WBR>ของ<WBR>สาย ปกติ<WBR>จะ<WBR>ใช้<WBR>กัน<WBR>มาก<WBR>ใน<WBR>ระบบ<WBR>โทรศัพท์ สาย<WBR>ที่<WBR>ลาก<WBR>จาก<WBR>ชุม<WBR>สาย<WBR>มา<WBR>ยัง<WBR>บ้าน<WBR>จะ<WBR>เป็น<WBR>สาย<WBR>คู่<WBR>ตี<WBR>เกลียว สาย<WBR>แบบ<WBR>นี้<WBR>สามารถ<WBR>นำ<WBR>สัญญาณ<WBR>ได้<WBR>หลาย<WBR>กิโลเมตร โดย<WBR>ไม่<WBR>ต้อง<WBR>มี<WBR>การ<WBR>ขยาย<WBR>สัญญาณ แต่<WBR>ถ้า<WBR>ยาว<WBR>กว่า<WBR>นี้<WBR>มากๆ<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>การ<WBR>ขยาย<WBR>สัญญาณ สาย<WBR>คู่<WBR>แบบ<WBR>มี<WBR>เกลียว<WBR>สามารถ<WBR>เดิน<WBR>ไป<WBR>ด้วย<WBR>กัน<WBR>หลายๆ<WBR>คู่<WBR>เป็น<WBR>มัดๆ<WBR>ได้<WBR>แล้ว<WBR>หุ้ม<WBR>ด้วย<WBR>ฉนวน<WBR>ภาย<WBR>นอก<WBR>อีก<WBR>ชั้น<WBR>หนึ่ง การ<WBR>ตี<WBR>เกลียว<WBR>จะ<WBR>ช่วย<WBR>ลด<WBR>สัญญาณ<WBR>รบ<WBR>กวน<WBR>ระหว่าง<WBR>คู่<WBR>ที่<WBR>เกิด<WBR>ขึ้น<WBR>สาย<WBR>คู่<WBR>แบบ<WBR>ตี<WBR>เกลียว<WBR>สามารถ<WBR>ใช้<WBR>ได้<WBR>กับ<WBR>ทั้ง<WBR>ระบบอ<WBR>นาล็<WBR>อก และดิ<WBR>จิตอล ขึ้น<WBR>อยู่<WBR>กับ<WBR>ขนาด<WBR>และ<WBR>ความ<WBR>ยาว ความ<WBR>หนา<WBR>ของ<WBR>สาย ขนาด<WBR>ความ<WBR>เร็ว<WBR>ใน<WBR>ระดับเม<WBR>กกะ<WBR>บิท<WBR>ต่อ<WBR>วินาที<WBR>ก็<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>แต่<WBR>เป็น<WBR>ใน<WBR>ระยะ<WBR>ทาง<WBR>สั้นๆ<WBR>เท่า<WBR>นั้น เนื่อง<WBR>จาก<WBR>มี<WBR>ราคา<WBR>ถูก<WBR>และ<WBR>ประสิทธิภาพ<WBR>พอ<WBR>ใช้<WBR>จึง<WBR>ทำ<WBR>ให้<WBR>มี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>อย่าง<WBR>แพร่<WBR>หลาย<WBR>มาก สาย<WBR>สัญญาณ<WBR>แบบ<WBR>นี้<WBR>รู้<WBR>จัก<WBR>กัน<WBR>อีก<WBR>ชื่อ<WBR>หนึ่ง<WBR>ว่า 10base-T
+<br>
+
+<li>สาย<WBR>โค<WBR>แอกเ<WBR>ซี<WBR>ยล (Coaxial Cable)</li>
+สาย<WBR>โค<WBR>แอกเ<WBR>ซี<WBR>ยล หรือ<WBR>เรียก<WBR>สั้นๆ<WBR>ว่า<WBR>สาย<WBR>โค<WBR>แอก แบ่ง<WBR>ออก<WBR>เป็น 2 ชนิด<WBR>ตาม<WBR>ที่<WBR>มี<WBR>การ<WBR>ใช้<WBR>กัน<WBR>อย่าง
+แพร่<WBR>หลาย<WBR>คือ<WBR>สาย<WBR>แบบ<WBR>หนา (Thick Ethernet) และ<WBR>สาย<WBR>แบบ<WBR>บาง (Thin Ethernet)
+สาย<WBR>โค<WBR>แอก<WBR>จะ<WBR>ประกอบ<WBR>ด้วย<WBR>ลวด<WBR>ทอง<WBR>แดง<WBR>อยู่<WBR>ตรง<WBR>กลาง<WBR>หุ้ม<WBR>ด้วย<WBR>ฉนวน<WBR>พลาสติก 1 ชิ้น แล้ว<WBR>จึง<WBR>หุ้ม
+ด้วย<WBR>ทอง<WBR>แดง<WBR>ที่<WBR>ถัก<WBR>เป็น<WBR>ผืน แล้ว<WBR>หุ้ม<WBR>ภาย<WBR>นอก<WBR>อีก<WBR>ชั้น<WBR>หนึ่ง<WBR>ด้วย<WBR>ฉนวน<WBR>โครง<WBR>สร้าง<WBR>ของ<WBR>สาย<WBR>โค<WBR>แอก สามารถ<WBR>ทำ<WBR>ให้<WBR>ส่ง<WBR>ข้อ<WBR>มูล<WBR>มี<WBR>ความ<WBR>เร็ว<WBR>ได้<WBR>ถึง 10 Mbps ระยะ<WBR>ทาง<WBR>สูง<WBR>สุด<WBR>คือ 200 และ 500 เมตร<WBR>และ<WBR>มัก<WBR>จะ<WBR>เรียก<WBR>กัน<WBR>อีก<WBR>ชื่อ<WBR>ว่า 10base-2  และ 10base-5<br>
+
+วิธี<WBR>การ<WBR>ต่อ<WBR>สาย<WBR>โค<WBR>แอก<WBR>สามารถ<WBR>ทำ<WBR>ได้ 2 แบบ<WBR>คือ<WBR>ใช้<WBR>ที<WBR>จังชั่น (T-juction)  และ<WBR>แวม<WBR>ไพร์แทป
+(vampire tap) วิธี<WBR>ที<WBR>จังชั่น<WBR>คือ<WBR>ตัด<WBR>สาย<WBR>ออก<WBR>ใส่<WBR>คอนเนค<WBR>เตอร์<WBR>ชนิด BNC ที่<WBR>ปลาย<WBR>สาย<WBR>แล้ว<WBR>นำ<WBR>มา
+สวม<WBR>กับ<WBR>ที<WBR>จังชั่น<WBR>นำ<WBR>สัญญาณ<WBR>ไป<WBR>ใช้<WBR>ทาง<WBR>ด้าน<WBR>ที่<WBR>สาม<WBR>วิธี<WBR>นี้<WBR>มัก<WBR>จะ<WBR>ใช้<WBR>กับ Thin Ethernet แต่<WBR>ถ้า<WBR>ใช้<WBR>วิธี<WBR>แวม<WBR>ไพร์แทป จะ<WBR>ต้อง<WBR>ไม่<WBR>ตัด<WBR>สาย<WBR>เพียง<WBR>แต่<WBR>เจาะ<WBR>รู<WBR>ตรง<WBR>กลาง<WBR>และ<WBR>ใส่<WBR>คอนเนค<WBR>เตอร์<WBR>แบบ<WBR>พิเศษ
+ที่<WBR>เรียก<WBR>ว่า<WBR>แวม<WBR>ไพร์แทป<WBR>เข้า<WBR>ไป ซึ่ง<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>หน้า<WBR>ที่<WBR>คล้าย<WBR>กับ<WBR>ที<WBR>จังชั่น เพียง<WBR>แต่<WBR>ไม่<WBR>ต้อง<WBR>ตัด<WBR>สาย<WBR>ออก<WBR>เป็น<WBR>สอง<WBR>เส้น วิธี<WBR>นี้<WBR>มัก<WBR>จะ<WBR>ใช้<WBR>กับ<WBR>สาย<WBR>แบบ Thick Ethernet<br>
+</ol>
+
+นอก<WBR>จาก<WBR>สาย<WBR>สัญญาณ<WBR>ทั้ง<WBR>สอง<WBR>แบบ<WBR>นี้<WBR>แล้ว ยัง<WBR>มี<WBR>สาย<WBR>สัญญาณ<WBR>ประเภท<WBR>อื่น<WBR>อีก เส้น<WBR>ใย<WBR>แก้ว<WBR>นำ<WBR>แสง
+(Fiber obtics) เป็น<WBR>ต้น โดย<WBR>ปกติ<WBR>แล้ว<WBR>ใน<WBR>ระบบ LAN ทั่ว<WBR>ไป<WBR>ใช้<WBR>สาย<WBR>สัญญาณ<WBR>สอง<WBR>แบบ<WBR>ข้าง<WBR>ต้น<WBR>ดัง<WBR>กล่าว<WBR>ก็<WBR>ถือ<WBR>ว่า<WBR>เพียง<WBR>พอ<WBR>แล้ว<br>
+
+ถ้า<WBR>หาก<WBR>คุณ<WBR>ใช้<WBR>สาย<WBR>แบบ<WBR>สาย<WBR>คู่<WBR>ตี<WBR>เกลียว คุณ<WBR>อาจ<WBR>จะ<WBR>ซื้อ<WBR>สาย<WBR>ที่<WBR>มี<WBR>การ<WBR>เข้า<WBR>หัว<WBR>ต่อ<WBR>ให้<WBR>เรียบ<WBR>ร้อย<WBR>แล้ว<WBR>หรือ<WBR>อาจ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>เข้า<WBR>หัว<WBR>ต่อ<WBR>เอง<WBR>ก็<WBR>ได้ ซึ่ง<WBR>จะ<WBR>ต้อง<WBR>มี<WBR>เครื่อง<WBR>สำหรับ<WBR>การ<WBR>เข้า<WBR>หัว<WBR>ต่อ<WBR>โดย<WBR>เฉพาะ โดย<WBR>ปกติ<WBR>สาย<WBR>แบบ<WBR>นี้<WBR>มัก<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>คู่<WBR>กับฮัป (HUP)  แต่<WBR>ถ้า<WBR>คุณ<WBR>ใช้<WBR>สาย<WBR>แบบ<WBR>สาย<WBR>โค<WBR>แอก นอก<WBR>จาก
+คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ต่อ<WBR>แบบ<WBR>ที<WBR>จังชั่น<WBR>แล้ว<WBR>คุณ<WBR>ยัง<WBR>จะ<WBR>ต้อง<WBR>หา ตัว<WBR>กลืน<WBR>สัญญาณ (Terminator) มา<WBR>ปิด<WBR>ระหว่าง<WBR>หัว<WBR>ท้าย<WBR>ของ<WBR>สาย<WBR>สัญญาณ<WBR>เส้น<WBR>นั้น<WBR>ด้วย เพื่อ<WBR>ไม่<WBR>ให้<WBR>เกิด<WBR>การ<WBR>สะท้อน<WBR>ของ<WBR>สัญญาณ<WBR>ขึ้น
+หาก<WBR>คุณ<WBR>ใช้<WBR>สาย<WBR>สัญญาณ<WBR>แบบ<WBR>นี้<WBR>คุณ<WBR>อาจ<WBR>จะ<WBR>ใช้ฮัป<WBR>หรือ<WBR>ไม่<WBR>ก็<WBR>ได้<br><br>
+
+หาก<WBR>คุณ<WBR>มี<WBR>รูป<WBR>ของ อีเทอร์<WBR>เนต<WBR>การ์ด, สาย<WBR>แบบ<WBR>สาย<WBR>คู่<WBR>ตี<WBR>เกลียว, สาย<WBR>แบบ<WBR>โค<WBR>แอก, ฮัป
+ที่<WBR>แสดง<WBR>ถึง<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>ของ<WBR>คอนเ<WBR>นก<WBR>เตอร์ หรือ<WBR>อุปกรณ์<WBR>ต่างๆ ที่ส<WBR>แกน<WBR>ลง<WBR>ใน<WBR>คอมพิวเตอร์<WBR>แล้ว หาก<WBR>ต้อง<WBR>การ<WBR>เผย<WBR>แพร่<WBR>ให้<WBR>ผู้<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ศึกษา<WBR>เรื่อง<WBR>นี้ กรุณา<WBR>ส่ง<WBR>รูป<WBR>มา<WBR>ได้
+<a href="mailto:kaiwal@geocities.com">ที่<WBR>นี่</a><br>
+เรา<WBR>จะ<WBR>นำ<WBR>รูป<WBR>ของ<WBR>คุณ<WBR>มา<WBR>ประกอบ<WBR>บท<WBR>ความ<WBR>นี้ เพื่อ<WBR>ให้<WBR>เกิด<WBR>ความ<WBR>เข้า<WBR>ใจ<WBR>ยิ่ง<WBR>ขึ้น<br>
+
+
+<H3 ALIGN=CENTER>การ<WBR>เชื่อม<WBR>ต่อ<WBR>ลีนุกซ์<WBR>เข้า<WBR>กับ<WBR>โฮสต์<WBR>ของ ISP โดย<WBR>ผ่าน<WBR>สาย<WBR>โทรศัพท์</H3></CENTER>
+protocol แบบ serial line มี<WBR>อยู่<WBR>สอง<WBR>แบบ<WBR>คือ SLIP และ PPP  ซึ่ง<WBR>จะ<WBR>ช่วย<WBR>ให้<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่ออิน<WBR>เทอร์<WBR>เนต ผ่านโมเด็ม<WBR>และ<WBR>สาย<WBR>โทรศัพท์<WBR>ได้<WBR>เมื่อ<WBR>คุณ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ใช้ SLIP หรือ PPP คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>เซตอัพ<WBR>ข้อ<WBR>มูล<WBR>บาง<WBR>อย่าง<WBR>ซึ่ง<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ใช้<WBR>เพื่อ<WBR>การ<WBR>ติด<WBR>ต่อ<WBR>กับอิน<WBR>เทอร์<WBR>เนต<WBR>เสีย<WBR>ก่อน  อย่าง<WBR>แรก<WBR>คือ<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>การ<WBR>หมาย<WBR>เลข<WBR>ของ DNS เพื่อ<WBR>ที่<WBR>จะ<WBR>ใช้<WBR>แปลง<WBR>ค่า<WBR>จาก<WBR>ชื่อ<WBR>ที่<WBR>เป็น<WBR>ตัว<WBR>อักษร<WBR>ให้<WBR>เป็น<WBR>ตัว<WBR>เลข ให้<WBR>ใส่<WBR>ค่า<WBR>หมาย<WBR>เลข<WBR>ของ DNS ไว้<WBR>ที่<WBR>ไฟล์ /etc/resolv.conf ตัว<WBR>อย่าง<br>
+<dir>
+	nameserver 202.6.100.1
+</dir>
+เมื่อ<WBR>พิมพ์<WBR>บรรทัด<WBR>นี้<WBR>เข้า<WBR>ไป<WBR>ใน<WBR>ไฟล์ resolv.conf ลีนุกซ์<WBR>จะ<WBR>รับ<WBR>รู้ DNS จาก KSC internet
+คุณ<WBR>สามารถ<WBR>ใส่<WBR>หมาย<WBR>เลข<WBR>ของ DNS เข้า<WBR>ไป<WBR>มาก<WBR>กว่า<WBR>หนึ่ง<WBR>หมาย<WBR>เลข<WBR>ได้<br><br>
+
+การ<WBR>ใช้<WBR>งาน SLIP ที่<WBR>ง่าย<WBR>ที่<WBR>สุด<WBR>คือ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ผ่าน<WBR>ทาง<WBR>โปรแกรม dip โปรแกรม dip นี้
+เรา<WBR>สามารถ<WBR>สั่ง<WBR>ผ่าน<WBR>ทาง command line ได้ (สำหรับ<WBR>ลีนุกซ์<WBR>บาง distribution 
+อาจ<WBR>จะ<WBR>ต้อง<WBR>ใช้ permission ของ root เสีย<WBR>ก่อน)<br>
+
+<br>
+<center><img src="P2_93dipscreen.gif"></center>
+<br>
+
+คุณ<WBR>สามารถ<WBR>จะ<WBR>ใช้ dip ทำ<WBR>การ<WBR>หมุนโมเด็ม<WBR>เพื่อ<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ไป<WBR>ที่ ISP ได้ และ<WBR>เมื่อ<WBR>ติด<WBR>ต่อ<WBR>ได้<WBR>แล้ว คุณ<WBR>จะ<WBR>สามารถ<WBR>ทำ<WBR>การ login เข้า<WBR>โฮสต์<WBR>ของ ISP ได้<WBR>ตาม<WBR>ปกติ ให้<WBR>ใส่ username
+และ<WBR>รหัส<WBR>ผ่าน จาก<WBR>นั้น<WBR>ให้<WBR>เรียก<WBR>โปรแกรม slirp หรือ slip เพื่อ<WBR>เริ่ม<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ
+<dir>
+	slirp -b 115200
+</dir>
+เมื่อ<WBR>เรียก<WBR>เสร็จ<WBR>แล้ว โปรแกรม slip จะ<WBR>ทำ<WBR>การ<WBR>แจ้ง<WBR>ค่า local IP address ให้ 
+คุณ<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ เก็บ<WBR>ค่า<WBR>ของ local IP address นี้<WBR>ไว้ และ<WBR>ค่า IP ของ<WBR>โฮสต์<WBR>ด้วย<WBR>จาก<WBR>นั้น<WBR>ให้<WBR>ทำ<WBR>การ<WBR>การก<WBR>ลับ<WBR>สู่ โปรแกรม dip โดย<WBR>กด<WBR>ปุ่ม Ctrl-] (หรือ<WBR>ปุ่ม<WBR>อื่นๆ<WBR>ที่<WBR>ทาง ISP
+ได้<WBR>แจ้ง<WBR>มา) เมื่อ<WBR>กลับ<WBR>สู่<WBR>โปรแกรม dip แล้ว<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>แจ้ง<WBR>ค่า IP ทั้ง<WBR>สอง<WBR>ค่า<WBR>เพื่อ<WBR>เริ่ม<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<br><br>
+<dir>
+	get $rmtip 202.44.144.1         แจ้ง<WBR>ค่า IP ของ<WBR>โฮสต์<br>
+	get $locip 10.0.2.15            แจ้ง<WBR>ค่า local IP ที่<WBR>โฮสต์<WBR>กำหนด<WBR>มา<WBR>ให้<br>
+</dir>
+
+นอก<WBR>จาก<WBR>สอง<WBR>ค่า<WBR>นี้<WBR>แล้ว<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>แจ้ง<WBR>ค่า<WBR>ของ netmask และ<WBR>ค่า<WBR>ของ mtu จาก<WBR>นั้น<WBR>ก็<WBR>ใช้
+คำ<WBR>สั่ง exit ออก<WBR>จาก<WBR>โปรแกรม dip ได้  ให้<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ว่า<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>โดย<WBR>ใช้ SLIP ทำ<WBR>ได้<WBR>อย่าง<WBR>ถูก<WBR>ต้อง โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง netstat -rn จะ<WBR>เห็น device ของ sl0
+และ<WBR>เกตเวย์<WBR>เป็น<WBR>หมาย<WBR>เลข<WBR>ของ<WBR>โฮสต์<WBR>ของ ISP 
+คุณ<WBR>สามารถ<WBR>หา<WBR>คำ<WBR>สั่ง<WBR>ของ dip ที่<WBR>ต้อง<WBR>การ<WBR>ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง<br>
+<dir>
+	man dip
+</dir>
+
+คุณ<WBR>สามารถ<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ใช้สค<WBR>ริปต์ ช่วย<WBR>ให้<WBR>การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม DIP ของ<WBR>คุณ<WBR>เป็น<WBR>ไป<WBR>ได้<WBR>อย่าง<WBR>สะดวก<WBR>ขึ้น ให้<WBR>ดาวน์<WBR>โหลดสค<WBR>ริปต์<WBR>ตัว<WBR>อย่าง<WBR>จาก 
+<a href="sampscrp.gz">ที่<WBR>นี่ (กด<WBR>ปุ่ม Shift พร้อม<WBR>กับค<WBR>ลิก<WBR>เมาส์<WBR>ปุ่ม<WBR>ซ้าย)</a>
+เมื่อ<WBR>คุณ<WBR>คลี่<WBR>ไฟล์<WBR>ออก<WBR>มา<WBR>แล้ว<WBR>ให้<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ค่า<WBR>ของ หมาย<WBR>เลข<WBR>โทรศัพท์, DNS (Domain Name Server), rmtip (Remote-IP), และ<WBR>ค่า<WBR>ของ locip (Local-IP) ในสค<WBR>ริปต์ (ค่า DNS ต้อง<WBR>ไป<WBR>เปลี่ยน<WBR>ที่ /etc/resolv.conf) ตาม<WBR>ที่<WBR>ได้<WBR>รับ<WBR>แจ้ง<WBR>จาก<WBR>ทาง<WBR>คู่<WBR>มือ<WBR>หรือ<WBR>เจ้า<WBR>หน้า<WBR>ที่<WBR>ของ ISP แล้ว<WBR>ทำ<WBR>การ<WBR>ใช้<WBR>งานสค<WBR>ริปต์<WBR>โดย<WBR>สั่ง<br>
+<dir>
+	/sbin/dip <ชื่อ<WBR>ของสค<WBR>ริปต์>
+</dir>
+ตัว<WBR>อย่าง<br>
+<dir>
+	/sbin/dip ksc.dip
+</dir>
+
+หาก<WBR>ต้อง<WBR>การ<WBR>ยก<WBR>เลิก<WBR>การ<WBR>ติด<WBR>ต่อ จะ<WBR>ต้อง<WBR>ทำ<WBR>การ kill โปรแกรม DIP โดย<WBR>ใช้<WBR>คำ<WBR>สั่ง<br>
+<dir>
+	/sbin/dip -k
+</dir>
+
+
+เมื่อ<WBR>คุณ<WBR>ทำ<WBR>การ<WBR>เชื่อม<WBR>ต่อ<WBR>ลีนุกซ์<WBR>เข้า<WBR>กับ โฮสต์<WBR>ของ ISP แล้ว  คุณ<WBR>สามารถ<WBR>จะ<WBR>ใช้<WBR>งานอิน<WBR>เทอร์<WBR>เนต<WBR>ผ่าน<WBR>ทาง<WBR>เครื่อง<WBR>ของ<WBR>คุณ<WBR>ได้ ไม่<WBR>ว่า<WBR>จะ<WBR>ใช้ tin, lynx, telnet หรือ ftp
+และ<WBR>ถ้า<WBR>คุณ<WBR>มี<WBR>ระบบ X window อยู่ คุณ<WBR>อาจ<WBR>จะ<WBR>ใช้ Netscape หรือ Arena ทำ<WBR>กา<WBR>รบ<WBR>ราวซ์
+โฮม<WBR>เพจ<WBR>ดู<WBR>ก็<WBR>ได้ <br>
+
+หาก<WBR>ลีนุกซ์<WBR>ของ<WBR>คุณ<WBR>เชื่อม<WBR>ต่อ<WBR>กับ เครื่อง<WBR>อื่นๆ<WBR>ใน<WBR>ระบบ LAN อยู่ คุณ<WBR>สามารถ<WBR>ทำ<WBR>ให้<WBR>เครื่อง<WBR>อื่นๆ<WBR>ใน<WBR>ระบบ สามารถ<WBR>ใช้<WBR>ลีนุกซ์<WBR>ตัว<WBR>นี้<WBR>ใน<WBR>ฐานะ<WBR>ของ<WBR>เกตเวย์ เพื่อ<WBR>ทำ<WBR>การ<WBR>ติด<WBR>ต่ออิน<WBR>เทอร์<WBR>เนต<WBR>ได้<WBR>ด้วย แต่<WBR>คุณ<WBR>จะ<WBR>ต้อง<WBR>เซตอัพ<WBR>เคอร์เนล<WBR>ของ<WBR>คุณ<WBR>ให้<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ใช้ IP FORWARDING ได
+้<WBR>เสีย<WBR>ก่อน<br>
+
+<center><img src="P2_93gateway.gif"></center>
+
+หาก<WBR>เครื่อง<WBR>อื่นๆ<WBR>ใน<WBR>เครือ<WBR>ข่าย<WBR>ของ<WBR>คุณ<WBR>เป็น WINDOWS ให้<WBR>เซตอัพ<WBR>ค่า DNS ตาม<WBR>ค่า<WBR>ของ ISP
+และ<WBR>ค่า GATEWAY เป็น<WBR>หมาย<WBR>เลข<WBR>ของ<WBR>ลีนุกซ์ (ใน<WBR>ที่<WBR>นี้<WBR>ตาม<WBR>รูป<WBR>จะ<WBR>เป็น<WBR>หมาย<WBR>เลข 128.100.10.254) เครื่อง<WBR>อื่นๆ<WBR>ใน<WBR>เครือ<WBR>ข่าย<WBR>คุณ<WBR>จะ<WBR>ใช้<WBR>งานอิน<WBR>เทอร์<WBR>เนต<WBR>ได้<br>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif"  align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="02_92linuxnet2.html"><img src="PXleft.gif" ></a>
+<a href="02_94linuxnet4.html"><img src="PXright.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

@@ -1,0 +1,578 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming (6)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ (6)</H1>
+
+<H3 ALIGN=CENTER>การ<WBR>สร้าง<WBR>เชลล์สค<WBR>ริปต์</H3>
+
+จาก<WBR>ที่<WBR>เรา<WBR>ได้<WBR>ทด<WBR>ลอง<WBR>สร้าง<WBR>เชลล์สค<WBR>ริปต์<WBR>มา<WBR>บ้าง<WBR>แล้ว<WBR>ใน SHELL (2) จะ<WBR>เห็น<WBR>ว่า<WBR>การ<WBR>ทำ<WBR>เชลล์สค<WBR>ริปต์<WBR>จริงๆ<WBR>แล้ว<WBR>ก็<WBR>เป็น<WBR>การ<WBR>นำ<WBR>เอา<WBR>คำ<WBR>สั่ง<WBR>ต่างๆ<WBR>ใน<WBR>ลีนุกซ์<WBR>มา<WBR>ประกอบ<WBR>กัน<WBR>เข้า<WBR>เป็น<WBR>ไฟล์ๆ<WBR>หนึ่ง<WBR>นั่น<WBR>เอง
+<br>จาก<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<pre>
+$ sh			#call subshell
+$ echo "Hello world"	#print "Hello world"
+$ date			#print date information
+$ pwd			#print current directory
+$ exit			#exit from subshell
+</pre>
+
+ชุด<WBR>คำ<WBR>สั่ง<WBR>ข้าง<WBR>บน<WBR>ทั้ง<WBR>หมด<WBR>เรา<WBR>สามารถ<WBR>นำ<WBR>มา<WBR>ใส่<WBR>ไว้<WBR>ใน<WBR>ไฟล์ เพื่อ<WBR>นำ<WBR>มา<WBR>จัด<WBR>ทำ<WBR>เป็น<WBR>เชลล์สค<WBR>ริปต์<WBR>ได้ ให้<WBR>คุณ<WBR>สร้าง<WBR>ไฟล์<WBR>ชื่อ "ex1" โดย<WBR>ให้<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>ลง<WBR>ไป<WBR>ไว้<WBR>ใน<WBR>ไฟล์ สามารถ<WBR>ใช้<WBR>เอดิ<WBR>เตอร์ "vi" หรือ "pico" ก็<WBR>ได้<WBR>ตาม<WBR>ความ<WBR>ชอบ<WBR>และ<WBR>ความ<WBR>ถนัด ถ้า<WBR>คุณ<WBR>ยัง<WBR>ไม่<WBR>เข้า<WBR>ใจ<WBR>วิธี<WBR>การ<WBR>ใช้<WBR>งาน "vi" และ "pico" ก็<WBR>ขอ<WBR>ให้<WBR>อ่าน<WBR>ได้<WBR>จาก<WBR>เอก<WBR>สาร<WBR>ที่<WBR>อธิบาย<WBR>การ<WBR>ใช้<WBR>งาน<WBR>เอดิ<WBR>เตอร์<WBR>ทั้ง<WBR>สอง<WBR>เสีย<WBR>ก่อน
+
+<pre>
+echo "Hello world"
+date
+pwd
+</pre>
+
+เมื่อ<WBR>ทำ<WBR>การ<WBR>บัน<WBR>ทึก<WBR>ข้อ<WBR>มูล<WBR>เก็บ<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ไฟล์<WBR>ชื่อ "ex1" แล้ว เรา<WBR>สามารถ<WBR>จะ<WBR>สั่ง<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>สอง<WBR>วิธี<WBR>คือ
+<ol>
+<li>
+สั่ง<WBR>ผ่าน<WBR>เชลล์ ให้<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ดัง<WBR>นี้
+</li>
+<pre>
+$ sh ex1
+</pre>
+วิธี<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>แบบ<WBR>นี้ "ex1" จะ<WBR>ต้อง<WBR>อนุญาต<WBR>ให้<WBR>สามารถ<WBR>อ่าน<WBR>ไฟล์<WBR>ได้ 
+(readable) ไม่<WBR>เช่น<WBR>นั้น<WBR>เชลล์<WBR>จะ<WBR>ไม่<WBR>สามารถ<WBR>ทำ<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>ได้
+
+<li>
+สั่ง<WBR>โดย<WBR>ตรง<WBR>จาก<WBR>ชื่อ<WBR>โปรแกรม ให้<WBR>พิมพ์<WBR>คำ<WBR>สั่ง
+</li>
+<pre>
+$ ex1
+</pre>
+สำหรับ<WBR>วิธี<WBR>นี้<WBR>โปรแกรม "ex1" จะ<WBR>ต้อง<WBR>อนุญาต<WBR>ให้<WBR>สามารถ<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้ (executable)
+ไม่<WBR>เช่น<WBR>นั้น<WBR>เชลล์<WBR>จะ<WBR>ปฏิเสธ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม (Permission denied) เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>ไฟล์<WBR>อนุญาต<WBR>ให้<WBR>มี<WBR>การ<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ chmod u+x ex1		: อนุญาต<WBR>ให้<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>ใน<WBR>ระดับ<WBR>ผู้<WBR>ใช้
+$ chmod g+x ex1		: อนุญาต<WBR>ให้<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>ใน<WBR>ระดับ<WBR>กลุ่ม
+$ chmod o+x ex1		: อนุญาต<WBR>ให้<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>ใน<WBR>ระดับ<WBR>บุคคล<WBR>อื่นๆ
+$ chmod +x ex1 
+และ
+$ chmod a+x ex1		: เป็น<WBR>การ<WBR>เปิด<WBR>ให้<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>ใน<WBR>ทุก<WBR>ระดับ<WBR>ชั้น
+</pre>
+</ol>
+
+หาก<WBR>กำหนด<WBR>ให้<WBR>ไฟล์<WBR>อนุญาต<WBR>ให้<WBR>มี<WBR>การ<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้<WBR>แล้ว และ<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>ชื่อ<WBR>โปรแกรม<WBR>เพื่อ<WBR>สั่ง<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>งาน ปรากฏ<WBR>ว่า<WBR>เชลล์<WBR>ยัง<WBR>คง<WBR>ปฏิเสธ<WBR>การ<WBR>สั่ง<WBR>งาน (ex1: command not found)
+แสดง<WBR>ว่า<WBR>เชลล์<WBR>ไม่<WBR>ทราบ<WBR>ว่า จะ<WBR>ค้น<WBR>หา<WBR>ชื่อ<WBR>โปรแกรม<WBR>ที่<WBR>เรา<WBR>พิมพ์<WBR>ลง<WBR>ไป<WBR>ได้<WBR>จาก<WBR>ที่<WBR>ไหน ดัง<WBR>นั้น<WBR>เรา จึง<WBR>จำ<WBR>เป็น<WBR>จะ<WBR>ต้อง<WBR>ระบุ<WBR>ชื่อ<WBR>ที่<WBR>อ้าง<WBR>อิง<WBR>กับไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ด้วย เชลล์<WBR>จึง<WBR>จะ<WBR>ทราบ<WBR>ว่า<WBR>จะ<WBR>ต้อง<WBR>ไป<WBR>ค้น<WBR>หา<WBR>โปรแกรม<WBR>ได้<WBR>จาก<WBR>ที่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใด  วิธี<WBR>การ<WBR>ระบุ<WBR>ชื่อ<WBR>ที่<WBR>อ้าง<WBR>อิง<WBR>กับไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ก็<WBR>ทำ<WBR>ได้<WBR>สอง<WBR>วิธี
+<ol>
+
+<li>
+Reletive Pathname วิธี<WBR>ระบุ<WBR>โดย<WBR>อ้าง<WBR>อิง<WBR>จากไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน
+<pre>
+$ ./ex1
+</pre>
+</li>
+
+<li>
+Full Pathname ระบุ<WBR>แบบ<WBR>อ้าง<WBR>ชื่อ<WBR>เต็ม ใน<WBR>กรณี<WBR>นี้<WBR>สมมุติ<WBR>ว่า<WBR>ไฟล์<WBR>อยู่<WBR>ใน
+ไดเ<WBR>รก<WBR>ทอ<WBR>รี /home/user1
+<pre>
+$ /home/user1/ex1
+</pre>
+</li>
+</ol>
+
+แต่<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>การ<WBR>งาน<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>โดย<WBR>ต้อง<WBR>ระบุ<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี ค่อน<WBR>ข้าง<WBR>จะ<WBR>เป็น<WBR>เรื่อง<WBR>ยุ่ง<WBR>ยาก และ<WBR>หาก<WBR>เรา<WBR>เก็บ<WBR>โปรแกรม<WBR>ไว้<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>เฉพาะ<WBR>ที่<WBR>ต้อง<WBR>เรียก<WBR>ใช้<WBR>บ่อยๆ<WBR>เช่น /home/user1/shell สำหรับ<WBR>เก็บ<WBR>โปรแกรม<WBR>เชลล์<WBR>ที่<WBR>เรียก<WBR>ใช้<WBR>บ่อยๆ หาก<WBR>ไม่<WBR>ได้<WBR>อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>นั้น ก็<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>การ<WBR>อ้าง<WBR>อิง<WBR>ถึง<WBR>โปรแกรม<WBR>เป็น<WBR>เรื่อง<WBR>ยุ่ง<WBR>ยาก ใน<WBR>ระบบ<WBR>ลีนุกซ์<WBR>จะ<WBR>มี<WBR>วิธี<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>เชลล์<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>โปรแกรม<WBR>ที่<WBR>สามารถ<WBR>สั่ง<WBR>ให้<WBR>ทำ<WBR>งาน<WBR>ได้ จากไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>กลุ่ม<WBR>หนึ่ง<WBR>ที่<WBR>ระบุ<WBR>ไว้ ซึ่งไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>เหล่า<WBR>นั้น<WBR>จะ<WBR>ถูก<WBR>ระบุ<WBR>ไว้<WBR>ใน<WBR>ตัวแปร<WBR>สงวน<WBR>ของ<WBR>ระบบ<WBR>ชื่อ PATH 
+(เรียก<WBR>ว่า search path) เรา<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>เชลล์<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>เมื่อ<WBR>มี<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>โดย<WBR>ไม่<WBR>ระบุ<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง
+<pre>
+$ echo $PATH
+/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin
+</pre>
+
+จาก<WBR>ผล<WBR>ลัพธ์<WBR>ข้าง<WBR>ต้น หาก<WBR>มี<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>โดย<WBR>ไม่<WBR>ระบุ<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ดัง<WBR>กรณี<WBR>ข้าง<WBR>ต้น
+เชลล์<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ค้น<WBR>หา<WBR>โปรแกรม<WBR>จากไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ทั้ง<WBR>สี่<WBR>ที่<WBR>ระบุ<WBR>ไว้<WBR>ใน<WBR>ตัวแปร PATH คือ
+/usr/local/bin, /bin, usr/bin และ /usr/X11R6/bin ซึ่ง<WBR>แต่<WBR>ละไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>จะ<WBR>ถูก<WBR>คั่น<WBR>ด้วย<WBR>เครื่อง<WBR>หมาย colon ":"  และ<WBR>โดย<WBR>ปรกติ<WBR>ตัวแปร PATH ก็<WBR>จะ<WBR>ถูก<WBR>กำหนด<WBR>ให้<WBR>บรรจุไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>เหล่า<WBR>นี้<WBR>ไว้ เพื่อ<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>ที่<WBR>ใช้<WBR>บ่อยๆ (เช่น "ls" อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี "/bin" และ "ftp" อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี "/usr/bin" เป็น<WBR>ต้น)
+สำหรับ<WBR>โปรแกรม ex1 ของ<WBR>เรา<WBR>เนื่อง<WBR>จาก<WBR>อยู่ ในไดเ<WBR>รก<WBR>ทอ<WBR>รี /home/user1 ดัง<WBR>นั้น<WBR>เชลล์<WBR>จึง<WBR>ไม่<WBR>สามารถ<WBR>ค้น<WBR>หา<WBR>เจอ เรา<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>เพิ่มไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>นี้<WBR>ลง<WBR>ไป<WBR>ใน<WBR>ตัวแปร PATH  
+<br>วิธี<WBR>การ<WBR>เพิ่มไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>จะ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้ 
+<pre>
+$ PATH=$PATH:/home/user1
+$ export PATH
+</pre>
+
+สำหรับ<WBR>คำ<WBR>สั่ง<WBR>แรก<WBR>จะ<WBR>เป็น<WBR>การ<WBR>นำ<WBR>เอา<WBR>ชื่อ<WBR>ของ<WBR>กลุ่มไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>เดิม ($PATH) มา<WBR>ต่อ<WBR>เข้า<WBR>กับไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใหม่ (:/home/user1) หาก<WBR>ไม่<WBR>ระบุ<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>เดิม ($PATH) ก็<WBR>จะ<WBR>กลาย<WBR>เป็น<WBR>การ<WBR>แทน<WBR>ที่<WBR>ของ<WBR>เดิม<WBR>ด้วย<WBR>ของ<WBR>ใหม่<WBR>ไป ซึ่ง<WBR>ถ้า<WBR>เป็น<WBR>เช่น<WBR>นั้น<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>ไม่<WBR>สามารถ<WBR>เรียก<WBR>ใช้<WBR>โปรแกรม<WBR>ที่<WBR>เคย<WBR>ใช้<WBR>ได้ (เช่น<WBR>โปรแกรม ls) 
+
+หาก<WBR>ต้อง<WBR>การ<WBR>ให้<WBR>มี<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>ที่<WBR>อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน (current directory) 
+ด้วย จะ<WBR>ต้อง<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ PATH=$PATH:.
+$ export PATH
+</pre>
+
+คำ<WBR>สั่ง<WBR>ข้าง<WBR>ต้น<WBR>จะ<WBR>เป็น<WBR>การ<WBR>เพิ่มไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน (:.) ลง<WBR>ไป<WBR>ใน<WBR>ตัวแปร PATH ด้วย<WBR>เนื่อง<WBR>จาก จุด (dot) "." จะ<WBR>เป็น<WBR>การ<WBR>แทน<WBR>ความ<WBR>หมาย<WBR>ของไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน ให้<WBR>ใช้<WBR>คำ<WBR>สั่ง
+"echo" เพื่อ<WBR>ตรวจ<WBR>ดู<WBR>ว่า<WBR>เรา<WBR>ได้<WBR>ทำ<WBR>การ<WBR>เพิ่มไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>เข้า<WBR>ไป<WBR>ใน<WBR>ตัวแปร PATH เรียบ<WBR>ร้อย
+<pre>
+$ echo $PATH
+/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/home/user1:.
+</pre>
+
+<p>
+สำหรับ<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>เพิ่มไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน (:.) ลง<WBR>ไป<WBR>ใน<WBR>ตัวแปร PATH ถ้า<WBR>คำนึง<WBR>ถึง<WBR>เรื่อง<WBR>ของ<WBR>ระบบ<WBR>การ<WBR>รักษา<WBR>ความ<WBR>ปลอด<WBR>ภัย<WBR>แล้ว<WBR>เป็น<WBR>เรื่อง<WBR>ที่<WBR>ไม่<WBR>ควร<WBR>ทำ<WBR>อย่าง<WBR>ยิ่ง ปกติ<WBR>ระบบ<WBR>ยู<WBR>นิกซ์<WBR>ส่วน<WBR>ใหญ่<WBR>จะ<WBR>ไม่<WBR>นิยม<WBR>ให้<WBR>ผู้<WBR>ใช้<WBR>ใน<WBR>ระดับ wheel และ root ซึ่ง<WBR>เป็น<WBR>กลุ่ม<WBR>ที่<WBR>อยู่<WBR>ใน<WBR>ระดับ<WBR>การ<WBR>ดู<WBR>แล<WBR>รักษา<WBR>ระบบ มีไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน (:.) อยู่<WBR>ใน<WBR>ตัวแปร PATH
+</p>
+
+<p>
+เมื่อ<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>โปรแกรม<WBR>อนุญาต<WBR>ให้<WBR>สั่ง<WBR>ทำ<WBR>งาน<WBR>ได้ และ<WBR>กำหนด serch path 
+เรียบ<WBR>ร้อย<WBR>แล้ว<WBR>ควร<WBR>จะ<WBR>สามารถ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>โดย<WBR>ไม่<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ระบุ<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ได้
+</p>
+
+<p>
+จะ<WBR>เห็น<WBR>ว่า<WBR>จะ<WBR>ได้<WBR>ผล<WBR>ลัพธ์<WBR>จาก<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม<WBR>ใน<WBR>รูป<WBR>แบบ<WBR>เดียว<WBR>กัน<WBR>กับ<WBR>ที่<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ที<WBR>ละ<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>โปรแกรม<WBR>ข้าง<WBR>ต้น<WBR>นั่น<WBR>คือ<WBR>โดย<WBR>ปกติ<WBR>แล้ว เมื่อ<WBR>เรา<WBR>เรียก<WBR>เชลล์สค<WBR>ริปต์<WBR>ให้<WBR>เริ่ม<WBR>ทำ<WBR>งาน จะ<WBR>หมาย<WBR>ถึง<WBR>การ<WBR>เริ่ม<WBR>ต้น<WBR>ทำ<WBR>คำ<WBR>สั่ง<WBR>ในสค<WBR>ริปต์<WBR>ที<WBR>ละ<WBR>คำ<WBR>สั่ง<WBR>ตาม<WBR>ลำ<WBR>ดับ และ<WBR>ก่อน<WBR>การ<WBR>ทำ<WBR>คำ<WBR>สั่ง<WBR>ในสค<WBR>ริปต์<WBR>ก็<WBR>จะ<WBR>มี<WBR>การ<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>ด้วย และ<WBR>หลัง<WBR>จาก<WBR>ทำ<WBR>คำ<WBR>สั่ง<WBR>ทุก<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>เชลล์สค<WBR>ริปต์<WBR>เสร็จ<WBR>สิ้น<WBR>แล้ว<WBR>ก็<WBR>จะ<WBR>ต้อง<WBR>ออก<WBR>จาก<WBR>ซับ<WBR>เชลล์<WBR>ด้วย<WBR>คำ<WBR>สั่ง "exit"
+</p>
+
+<p>
+ถึง<WBR>แม้<WBR>ว่า<WBR>เรา<WBR>ไม่<WBR>ได้<WBR>ใส่<WBR>คำ<WBR>สั่ง exit ไว้<WBR>ใน<WBR>เชลล์สค<WBR>ริปต์ แต่<WBR>ก็<WBR>เปรียบ<WBR>เสมือน<WBR>ว่า<WBR>มี<WBR>คำ<WBR>สั่ง
+exit อยู่<WBR>ท้าย<WBR>เชลล์สค<WBR>ริปต์<WBR>ด้วย และ<WBR>โดย<WBR>ทั่ว<WBR>ไป<WBR>หาก<WBR>เป็น<WBR>การ<WBR>จบ<WBR>การ<WBR>ทำ<WBR>งาน<WBR>แบบ<WBR>ปรกติ<WBR>ไม่<WBR>มี<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>เกิด<WBR>ขึ้น ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>รหัส<WBR>ค่า "0" (return code 0) ออก<WBR>มา<WBR>ให้ 
+(คำ<WBR>สั่ง exit ที่<WBR>ไม่<WBR>มี<WBR>ตัว<WBR>เลข<WBR>ตาม<WBR>ท้าย<WBR>จะ<WBR>ถือ<WBR>ว่า<WBR>ส่ง return code 0) แต่<WBR>ถ้า<WBR>เป็น<WBR>การ<WBR>จบ<WBR>การ<WBR>ทำ<WBR>งาน<WBR>แบบ<WBR>ไม่<WBR>ปรกติ ซึ่ง<WBR>อาจ<WBR>มี<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>เกิด<WBR>ขึ้น<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>รหัส<WBR>ค่า<WBR>ที่<WBR>ไม่<WBR>เป็น 
+"0" ออก<WBR>มา<WBR>ให้ (ปรกติ<WBR>จะ<WBR>เป็น<WBR>รหัส<WBR>ค่า "1") สำหรับ return code 
+ดัง<WBR>กล่าว<WBR>จะ<WBR>นำ<WBR>ไป<WBR>ใช้<WBR>ทด<WBR>สอบ<WBR>เงื่อน<WBR>ไข<WBR>ร่วม<WBR>กับ<WBR>คำ<WBR>สั่ง<WBR>อื่นๆ<WBR>ใน<WBR>เชลล์<WBR>ต่อ<WBR>ไป
+</p>
+
+<p>
+ทั้ง<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>การ<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>และ<WBR>คำ<WBR>สั่ง<WBR>ที่<WBR>ออก<WBR>จาก<WBR>ซับ<WBR>เชลล์<WBR>เรา<WBR>ไม่<WBR>ได้<WBR>ใส่<WBR>ลง<WBR>ไป<WBR>ใน<WBR>เชลล์สค<WBR>ริปต์ แต่<WBR>ว่า<WBR>เมื่อ<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>ให้<WBR>เชลล์สค<WBR>ริปต์<WBR>ทำ<WBR>งาน<WBR>แล้ว โปรแกรม<WBR>เชลล์<WBR>จะ<WBR>เติม<WBR>คำ<WBR>สั่ง<WBR>ทั้ง<WBR>สอง<WBR>ลง<WBR>ไป<WBR>ให้<WBR>โดย<WBR>อัตโนมัติ นั่น<WBR>หมาย<WBR>ความ<WBR>ว่า<WBR>โดย<WBR>ปกติ<WBR>แล้ว<WBR>คำ<WBR>สั่ง<WBR>ทุก<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>เชลล์สค<WBR>ริปต์<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>งาน<WBR>ภาย<WBR>ใต้<WBR>ซับ<WBR>เชลล์ ซึ่ง<WBR>การ<WBR>ทำ<WBR>งาน<WBR>ภาย<WBR>ใต้<WBR>ซับ<WBR>เชลล์<WBR>ก็<WBR>จะ<WBR>มี<WBR>ข้อ<WBR>จำกัด<WBR>ดัง<WBR>ที่<WBR>อธิบาย<WBR>ใน<WBR>ตอน<WBR>ที่<WBR>แล้ว (SHELL (5)) นั่น<WBR>คือ<WBR>ภาย<WBR>ใน<WBR>ซับ<WBR>เชลล์<WBR>จะ<WBR>ไม่<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ตัวแปร<WBR>จาก<WBR>เชลล์<WBR>ชั้น<WBR>บน<WBR>ได้ หาก<WBR>ไม่<WBR>ได้<WBR>ทำ<WBR>การ export ตัวแปร<WBR>นั้นๆ<WBR>เสีย<WBR>ก่อน<WBR>แต่<WBR>อย่าง<WBR>ไร<WBR>ก็<WBR>ตาม<WBR>เรา<WBR>ก็<WBR>มี<WBR>วิธี<WBR>ที่<WBR>จะ<WBR>บังคับ<WBR>ให้<WBR>เชลล์สค<WBR>ริปต์<WBR>ทำ<WBR>งาน<WBR>ใน<WBR>เชลล์<WBR>ชั้น<WBR>ปัจจุบัน<WBR>โดย<WBR>ไม่<WBR>ไป<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>ได้ ดัง<WBR>จะ<WBR>ได้<WBR>อธิบาย<WBR>ต่อ<WBR>ไป
+</p>
+
+<H3 ALIGN=CENTER>วิธี<WBR>การ<WBR>สั่ง<WBR>ให้<WBR>เชลล์สค<WBR>ริปต์<WBR>ทำ<WBR>งาน<WBR>ใน<WBR>แบบ<WBR>ต่างๆ</H3>
+
+รูป<WBR>แบบ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>เชลล์สค<WBR>ริปต์ มี<WBR>ได้ 4 แบบ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<ol>
+<li>
+$ script-name   สค<WBR>ริปต์<WBR>ต้อง<WBR>การ execute permission และ<WBR>วิ่ง<WBR>ที่ subshell
+</li>
+<li>
+$ sh script-name   สค<WBR>ริปต์<WBR>ต้อง<WBR>การ read permission และ<WBR>วิ่ง<WBR>ที่ subshell
+</li>
+<li>
+$ .script-name   สค<WBR>ริปต์<WBR>จะ<WBR>วิ่ง<WBR>ที่ current shell
+</li>
+<li>
+$ exec scriptname   สค<WBR>ริปต์<WBR>จะ<WBR>วิ่ง<WBR>ที่ current shell โดย<WBR>จะ<WBR>ทับ<WBR>เชลล์<WBR>ชั้น<WBR>ปัจจุบัน
+</li>
+</ol>
+
+<p>
+ก่อน<WBR>ที่<WBR>จะ<WBR>อธิบาย<WBR>รูป<WBR>แบบ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>ใน<WBR>เชลล์สค<WBR>ริปต์ ขอ<WBR>ให้<WBR>กลับ<WBR>ไป<WBR>ทบ<WBR>ทวน<WBR>เรื่อง<WBR>ของ<WBR>โพร<WBR>เซส<WBR>ของ<WBR>เชลล์ ใน<WBR>หัว<WBR>ข้อ "ขอบ<WBR>เขต<WBR>ของ<WBR>ตัวแปร<WBR>เชลล์" ใน SHELL (5) ก่อน เนื่อง<WBR>จาก<WBR>จะ<WBR>อธิบาย<WBR>อ้าง<WBR>อิง<WBR>ถึง<WBR>เรื่อง<WBR>โพร<WBR>เซ<WBR>สบาง<WBR>ส่วน<WBR>จาก<WBR>หัว<WBR>ข้อดั<WBR>วก<WBR>ล่าว จะ<WBR>ช่วย<WBR>ทำ<WBR>ให้<WBR>เข้า<WBR>ใจ<WBR>เรื่อง<WBR>ของ<WBR>โพร<WBR>เซส<WBR>ได้<WBR>มาก<WBR>ขึ้น
+</p>
+
+<img src="P2_726shellprocess.gif" alt="[Shell Process]">
+<br>ภาพ<WBR>ของ<WBR>การ<WBR>แตก<WBR>โพร<WBR>เซส<WBR>ใน<WBR>ลีนุกซ์
+
+<p>
+สำหรับ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>เชลล์สค<WBR>ริปต์<WBR>ใน<WBR>แบบ<WBR>ข้อ 1 และ ข้อ 2 จะ<WBR>สามารถ<WBR>อธิบาย<WBR>ได้<WBR>ดัง<WBR>ใน<WBR>รูป (A)
+นั่น<WBR>คือ<WBR>เมื่อ<WBR>ทำ<WBR>การล็<WBR>อกอิน<WBR>เข้า<WBR>มา จะ<WBR>ได้<WBR>เชลล์<WBR>ใช้<WBR>งาน (ซึ่ง<WBR>ปกติ<WBR>ใน<WBR>ลีนุกซ์<WBR>จะ<WBR>เป็น bash) 
+ใน<WBR>ที่<WBR>นี้<WBR>จะ<WBR>เรียก<WBR>ว่า Parent Shell หรือ<WBR>เชลล์<WBR>เริ่ม<WBR>ต้น เมื่อ<WBR>มี<WBR>การ<WBR>สั่ง<WBR>ให้<WBR>เชลล์สค<WBR>ริปต์ ทำ<WBR>งาน<WBR>ตาม<WBR>รูป<WBR>แบบ<WBR>ใน<WBR>ข้อ 1-2 ก็<WBR>จะ<WBR>เปรียบ<WBR>เสมือน<WBR>มี<WBR>การ<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>เกิด<WBR>ขึ้น (คำ<WBR>สั่ง sh)
+เมื่อ<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>แล้ว<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>งาน<WBR>ตาม<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>เชลล์สค<WBR>ริปต์<WBR>ที<WBR>ละ<WBR>คำ<WBR>สั่ง<WBR>จน<WBR>จบ<WBR>ก็<WBR>จะ<WBR>กลับ<WBR>ไป<WBR>สู่ Parent Shell (คำ<WBR>สั่ง exit) ใน<WBR>กรณี<WBR>นี้<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>หาก<WBR>เชลล์สค<WBR>ริปต์<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ใช้<WBR>งาน<WBR>ตัวแปร<WBR>เชลล์<WBR>ใน Parent Shell จะ<WBR>ต้อง<WBR>มี<WBR>การ<WBR>ทำ<WBR>การ export ตัวแปร<WBR>นั้นๆ<WBR>มา<WBR>จาก Parent Shell เสีย<WBR>ก่อน
+</p>
+
+<p>
+สำหรับ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>ใน<WBR>แบบ<WBR>ข้อ 3  จะ<WBR>สามารถ<WBR>อธิบาย<WBR>ได้<WBR>ดัง<WBR>ใน<WBR>รูป (B) วิธี<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>เชลล์สค<WBR>ริปต์<WBR>แบบ<WBR>นี้ จะ<WBR>ทำ<WBR>ให้<WBR>เชลล์สค<WBR>ริปต์<WBR>ทำ<WBR>งาน<WBR>ใน<WBR>เชลล์<WBR>ชั้น<WBR>ปัจจุบัน<WBR>ทัน<WBR>ที (ใน<WBR>ที่<WBR>นี้<WBR>คือ 
+Parent Shell)  และ<WBR>จะ<WBR>ทำ<WBR>งาน<WBR>ตาม<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>เชลล์สค<WBR>ริปต์<WBR>ที<WBR>ละ<WBR>คำ<WBR>สั่ง<WBR>จน<WBR>จบ จะ<WBR>เห็น<WBR>ว่า<WBR>ไม่<WBR>มี<WBR>การ<WBR>เรียก<WBR>ซับ<WBR>เชลล์<WBR>ขึ้น<WBR>มา ทำ<WBR>ให้<WBR>เรา<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>ตัวแปร<WBR>เชลล์<WBR>ใน Parent Shell
+ได้<WBR>ทัน<WBR>ที ไม่<WBR>ต้อง<WBR>ทำ<WBR>การ export ตัวแปร<WBR>มา<WBR>ก่อน
+</p>
+
+<p>
+สำหรับ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>ใน<WBR>แบบ<WBR>ข้อ 4 จะ<WBR>สามารถ<WBR>อธิบาย<WBR>ได้<WBR>ดัง<WBR>ใน<WBR>รูป (C) วิธี<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>แบบ<WBR>นี้
+Parent Shell จะ<WBR>ถูก<WBR>ทำลาย<WBR>ไป<WBR>และ<WBR>ระบบ<WBR>จะ<WBR>นำ<WBR>เอา<WBR>เชลล์สค<WBR>ริปต์  มา<WBR>แทน<WBR>ที่<WBR>โพร<WBR>เซส<WBR>ของ
+Parent Shell ที่<WBR>ถูก<WBR>ทำลาย<WBR>ไป  ดัง<WBR>นั้น<WBR>เมื่อ<WBR>เชลล์สค<WBR>ริปต์<WBR>ได้<WBR>ทำ<WBR>งาน<WBR>ที<WBR>ละ<WBR>คำ<WBR>สั่ง<WBR>จน<WBR>จบ<WBR>แล้ว<WBR>ก็<WBR>จะ<WBR>กลับ<WBR>ไป<WBR>สู่ล็<WBR>อกอิน<WBR>โดย<WBR>อัตโนมัติ 
+</p>
+ 
+<p>
+ให้<WBR>ทด<WBR>ลอง<WBR>สั่ง<WBR>งาน<WBR>เชลล์สค<WBR>ริปต์ "ex1" โดย<WBR>ใช้<WBR>อีก<WBR>สอง<WBR>วิธี<WBR>ที่<WBR>เหลือ และ<WBR>ลอง<WBR>ตรวจ<WBR>สอบ<WBR>ผล<WBR>ลัพธ์ ที่<WBR>ได้
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้<WBR>ตัวแปร<WBR>ระบุ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ของ<WBR>เชลล์ และ<WBR>ตัวแปร<WBR>อื่นๆ</H3>
+
+ใน<WBR>การ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>หรือ<WBR>ยูทิ<WBR>ลิตี้<WBR>ใน<WBR>ยู<WBR>นิกซ์ ส่วน<WBR>ใหญ่<WBR>จะ<WBR>มี<WBR>การ<WBR>ระบุ<WBR>ออปชั่น<WBR>และ<WBR>พา<WBR>รา<WBR>มิเตอร์<WBR>อื่นๆ<WBR>ให้<WBR>กับ<WBR>โปรแกรม<WBR>หรือ<WBR>ยูทิ<WBR>ลิตี้<WBR>นั้นๆ ผ่าน<WBR>ทาง<WBR>คอม<WBR>มานด์ไลน์<WBR>ได้<WBR>ด้วย<WBR>ซึ่ง<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>สามารถ<WBR>ใช้<WBR>งาน<WBR>โปรแกรม<WBR>หรือ<WBR>ยูทิ<WBR>ลิตี้<WBR>นั้นๆ<WBR>ได้<WBR>หลาย<WBR>รูป<WBR>แบบ<WBR>ตาม<WBR>ความ<WBR>ต้อง<WBR>การ ทั้ง<WBR>ออปชั่น<WBR>และ<WBR>พา<WBR>รา<WBR>มิเตอร์<WBR>ถือ<WBR>ว่า<WBR>เป็น<WBR>อาร์กิวเ<WBR>มนต์<WBR>ของ<WBR>โปรแกรม<WBR>ทั้ง<WBR>สิ้น เพียง<WBR>แต่<WBR>ข้อ<WBR>แตก<WBR>ต่าง<WBR>กัน<WBR>ก็<WBR>คือ ออปชั่น<WBR>จะ<WBR>เป็น<WBR>อาร์กิวเ<WBR>มนต์<WBR>ที่<WBR>มี<WBR>เครื่อง<WBR>หมาย<WBR>ลบ หรือ dash "-" นำ<WBR>หน้า ส่วน<WBR>พา<WBR>รา<WBR>มิเตอร์<WBR>จะ<WBR>ไม่
+มี<WBR>เครื่อง<WBR>หมาย<WBR>ลบ<WBR>นำ<WBR>หน้า
+
+<br>ตัว<WBR>อย่าง<WBR>ของ<WBR>อาร์กิวเ<WBR>มนต์ เช่น
+<pre>
+$ ls -al /usr/bin 
+</pre>
+
+ใน<WBR>ที่<WBR>นี้<WBR>คำ<WBR>สั่ง<WBR>หรือ<WBR>โปรแกรม "ls" จะ<WBR>มี<WBR>อาร์กิวเ<WBR>มนต์<WBR>อยู่<WBR>สอง<WBR>ตัว<WBR>คือ "-al" และ 
+"/usr/bin" โดย<WBR>ที่ "-al" จะ<WBR>เป็น<WBR>ออปชั่น และ "/usr/bin" จะ<WBR>เป็น<WBR>พา<WBR>รา<WBR>มิเตอร์ ซึ่ง<WBR>อ้าง<WBR>ถึงไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ทราบ<WBR>ราย<WBR>ชื่อ<WBR>ไฟล์<WBR>ที่<WBR>มี<WBR>อยู่
+
+ใน<WBR>โปรแกรม<WBR>เชลล์<WBR>ก็<WBR>มี<WBR>ตัวแปร<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ<WBR>อาร์กิวเ<WBR>มนต์<WBR>เช่น<WBR>กัน เรา<WBR>สามารถ<WBR>ระบุ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ผ่าน<WBR>ทาง<WBR>คอม<WBR>มานด์ไลน์<WBR>และ<WBR>นำ<WBR>เอา<WBR>อาร์กิวเ<WBR>มนต์<WBR>ต่างๆ<WBR>มา<WBR>ใช้<WBR>ประ<WBR>โยชน์
+ใน<WBR>โปรแกรม<WBR>เชลล์ ตัวแปร<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ<WBR>อาร์กิวเ<WBR>มนต์ และ<WBR>ตัวแปร<WBR>อื่นๆ<WBR>มี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<table>
+
+<tr>
+<td> $0	</td><td>:ชื่อ<WBR>ของ<WBR>เชลล์สค<WBR>ริปต์ หรือ<WBR>ชื่อ<WBR>โปรแกรม<WBR>เชลล์<WBR>ที่<WBR>ถูก<WBR>เรียก<WBR>ทำ<WBR>งาน </td>
+</tr>
+
+<tr>
+<td>$1-$9 </td><td>:Positional Parameter ที่<WBR>แทน<WBR>อาร์กิวเ<WBR>มนต์<WBR>ของ<WBR>เชลล์ ซึ่ง<WBR>จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ได้<WBR>สูง<WBR>สุด 9 ตัว แต่<WBR>ก็<WBR>มี<WBR>วิธี<WBR>ที่<WBR>จะ<WBR>จัด<WBR>การ<WBR>กับ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ที่<WBR>มี<WBR>จำนวน<WBR>มาก<WBR>กว่า 9 ตัว<WBR>ได้ ดัง<WBR>จะ<WBR>ได้<WBR>อธิบาย<WBR>ต่อ<WBR>ไป</td>
+</tr>
+
+<tr>
+<td>$*  </td><td> : รวม<WBR>อาร์กิวเ<WBR>มนต์<WBR>ทุก<WBR>ตัว<WBR>เข้า<WBR>เป็นส<WBR>ตริง<WBR>เดียว<WBR>กัน "$1 $2 $3...$9"
+</td>
+</tr>
+
+<tr>
+<td>$@ </td><td>  : อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ทุก<WBR>ตัว แต่<WBR>ละ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ถือ<WBR>เป็นส<WBR>ตริง<WBR>หนึ่งส<WBR>ตริง</td>
+</tr>
+
+<tr>
+<td>$#	</td><td>: จำนวน<WBR>อาร์กิวเ<WBR>มนต์</td>
+</tr>
+
+<tr>
+<td>$-	</td><td>: ออปชั่น<WBR>ของ<WBR>เชลล์</td>
+</tr>
+
+<tr>
+<td>$$  </td><td>: หมาย<WBR>เลข<WBR>ประจำ<WBR>โพร<WBR>เซส (PID) ของ<WBR>โปรแกรม<WBR>เชลล์</td>
+</tr>
+
+<tr>
+<td>$!  </td><td>: หมาย<WBR>เลข<WBR>ประจำ<WBR>โพร<WBR>เซส (PID) ของ<WBR>โปรแกรม<WBR>ที่<WBR>ทำ<WBR>งาน<WBR>แบบ<WBR>หลัง<WBR>ฉาก<WBR>ตัว<WBR>ล่า<WBR>สุด</td>
+</tr>
+
+<tr>
+<td>$?   </td><td>: ค่า return code ของ<WBR>คำ<WBR>สั่ง exit</td>
+</tr>
+</table>
+
+โปรแกรม<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>แสดง<WBR>วิธี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ตัวแปร<WBR>ที่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ<WBR>อาร์กิวเ<WBR>มนต์ 
+โดย<WBR>ที่<WBR>แสดง<WBR>ชื่อ<WBR>ของ<WBR>โปรแกรม และ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง<WBR>จน<WBR>ถึง<WBR>ตัว<WBR>ที่<WBR>สาม และ<WBR>จำนวน<WBR>ของ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ทั้ง<WBR>หมด
+
+<pre>
+echo "Name of shell script is" $0
+echo "Parameter 1 is" $1
+echo "Parameter 2 is" $2
+echo "Parameter 3 is" $3
+echo "No. of argument is" $#
+echo "Arguments are" $*
+echo "Arguments are" $@
+</pre>
+
+ให้<WBR>บัน<WBR>ทึก<WBR>ไฟล์<WBR>ข้าง<WBR>ต้น<WBR>ใน<WBR>ชื่อ<WBR>ของ "ex2" จาก<WBR>นั้น<WBR>ก็<WBR>สั่ง<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>ซึ่ง<WBR>สามารถ<WBR>ทำ<WBR>ได้<WBR>สอง<WBR>วิธี<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<ol>
+<li>
+$ sh ex2 a b c
+</li>
+<br>
+วิธี<WBR>นี้<WBR>ไม่<WBR>ต้อง<WBR>เปลี่ยน<WBR>โหมด<WBR>ของ<WBR>ไฟล์<WBR>ให้<WBR>เป็น<WBR>แบบ<WBR>ทำ<WBR>งาน<WBR>ได้ (executable) สามารถ<WBR>สั่ง<WBR>งาน<WBR>ได้<WBR>เลย และ<WBR>ใส่<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตาม<WBR>หลัง<WBR>อีก<WBR>สาม<WBR>ตัว<WBR>คือ a, b และ c
+<li>
+$ ex2 a b c 
+</li>
+<br>
+วิธี<WBR>นี้<WBR>จะ<WBR>ต้อง<WBR>เปลี่ยน<WBR>โหมด<WBR>ของ<WBR>ไฟล์<WBR>ให้<WBR>เป็น<WBR>แบบ<WBR>ทำ<WBR>งาน<WBR>ได้ (executable) เสีย<WBR>ก่อน 
+และ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>ระบุ search path ให้<WBR>ถึงไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ที่<WBR>บรรจุ<WBR>โปรแกรม<WBR>เชลล์<WBR>นี้<WBR>ด้วย 
+และ<WBR>ใส่<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตาม<WBR>หลัง<WBR>อีก<WBR>สาม<WBR>ตัว<WBR>คือ a, b และ c
+</ol>
+
+ผล<WBR>ลัพธ์<WBR>ที่<WBR>ได้<WBR>จาก<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>จะ<WBR>เป็น<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+Name of shell script is ex2
+Parameter 1 is a
+Parameter 2 is b
+Parameter 3 is c
+No. of argument is 3
+Arguments are a b c
+Arguments are a b c
+</pre>
+
+จะ<WBR>เห็น<WBR>ว่า<WBR>เรา<WBR>สามารถ<WBR>ใช้<WBR>ตัวแปร<WBR>ที่<WBR>ได้<WBR>อธิบาย<WBR>ไว้<WBR>ข้าง<WBR>ต้น อ้าง<WBR>อิง<WBR>กับ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ของ<WBR>เชลล์<WBR>ได้<WBR>ดัง<WBR>นี้<WBR>คือ
+<ul>
+<li>
+$0 เป็น<WBR>ชื่อ<WBR>ของ<WBR>เชลล์สค<WBR>ริปต์  = "ex2"
+</li>
+<li>
+$1 เป็น<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>แรก  = "a"
+</li>
+<li>
+$2 เป็น<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สอง = "b"
+</li>
+<li>
+$3 เป็น<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สาม = "c"
+</li>
+<li>
+$# เป็น<WBR>จำนวน<WBR>อาร์กิวเ<WBR>มนต์  = 3 (นับ a, b และ c)
+</li>
+<li>
+$* เป็น<WBR>การ<WBR>อ้าง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ทั้ง<WBR>หมด<WBR>โดย<WBR>รวม<WBR>กัน<WBR>เข้า<WBR>เป็น<WBR>หนึ่งส<WBR>ตริง = "a b c"
+</li>
+<li>
+$@ เป็น<WBR>การ<WBR>อ้าง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ทั้ง<WBR>หมด<WBR>โดย<WBR>แต่<WBR>ละ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ก็<WBR>ยัง<WBR>คง<WBR>เป็น<WBR>แต่<WBR>ละส<WBR>ตริง 
+     = '"a" "b" "c"'
+</li>
+</ul>
+
+<p>
+สำหรับ $* และ $@ จะ<WBR>เห็น<WBR>ว่า<WBR>พิมพ์<WBR>ผล<WBR>ลัพธ์<WBR>ออก<WBR>มา<WBR>ใน<WBR>รูป<WBR>แบบ<WBR>เดียว<WBR>กัน<WBR>ก็<WBR>คือ "a b c"
+แต่<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ใน<WBR>ลักษณะ<WBR>อื่น<WBR>จะ<WBR>เห็น<WBR>ข้อ<WBR>แตก<WBR>ต่าง<WBR>ระหว่าง<WBR>ตัวแปร<WBR>ทั้ง<WBR>สอง<WBR>รูป<WBR>แบบ
+</p>
+
+<H3 ALIGN=CENTER>การ<WBR>เลื่อน<WBR>ตำแหน่ง<WBR>ของ<WBR>อาร์กิวเ<WBR>มนต์</H3>
+เรา<WBR>สามารถ<WBR>เลื่อน<WBR>ตำแหน่ง<WBR>ของ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ได้<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง "shift" เมื่อ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>นี้<WBR>แล้ว Positional Parameter แต่<WBR>ละ<WBR>ตัว<WBR>จะ<WBR>เปลี่ยน<WBR>ไป<WBR>เป็น<WBR>การ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ถัด<WBR>ไป ให้<WBR>ทำ<WBR>การ<WBR>แก้<WBR>ไข<WBR>โปรแกรม "ex2" ให้<WBR>เป็น<WBR>ไป<WBR>ใน<WBR>ลักษณะ<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<pre>
+echo "Name of shell script is" $0
+echo "Parameter 1 is" $1
+echo "Parameter 2 is" $2
+echo "Parameter 3 is" $3
+echo "No. of argument is" $#
+echo "Arguments are" $*
+echo "Arguments are" $@
+
+#Now we will shift arguments 
+shift
+echo "Parameter 1 is" $1
+echo "Parameter 2 is" $2
+echo "Parameter 3 is" $3
+</pre>
+
+คราว<WBR>นี้<WBR>ให้<WBR>สั่ง<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>โดย<WBR>เพิ่ม<WBR>อาร์กิวเ<WBR>มนต์<WBR>เข้า<WBR>ไป<WBR>เป็น<WBR>สี่<WBR>ตัว<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ ex2 a b c d
+</pre>
+
+เมื่อ<WBR>สั่ง<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>จะ<WBR>ได้<WBR>ผล<WBR>ลัพธ์<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+Name of shell script is ex2
+Parameter 1 is a
+Parameter 2 is b
+Parameter 3 is c
+No. of argument is 4
+Arguments are a b c d
+Arguments are a b c d
+Parameter 1 is b
+Parameter 2 is c
+Parameter 3 is d
+</pre>
+
+บรรทัด<WBR>ที่<WBR>มี<WBR>เครื่อง<WBR>หมาย "#" จะ<WBR>เป็น<WBR>การ<WBR>ระบุ<WBR>ว่า<WBR>บรรทัด<WBR>นี้<WBR>เป็น<WBR>หมาย<WBR>เหตุ (comment) 
+เชลล์<WBR>จะ<WBR>ไม่<WBR>ทำ<WBR>การ<WBR>ตี<WBR>ความ<WBR>บรรทัด<WBR>นี้  คำ<WBR>สั่ง<WBR>ตั้ง<WBR>แต่<WBR>บรรทัด<WBR>นี้<WBR>เป็น<WBR>ต้น<WBR>ไป<WBR>จะ<WBR>เป็น<WBR>คำ<WBR>สั่ง<WBR>ใหม่<WBR>ที่<WBR>จะ<WBR>ต้อง<WBR>พิมพ์<WBR>เพิ่ม<WBR>ลง<WBR>ไป ซึ่ง<WBR>จะ<WBR>แสดง<WBR>ให้<WBR>เห็น<WBR>ถึง<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง "shift"
+
+คราว<WBR>นี้<WBR>โปรแกรม<WBR>จะ<WBR>นับ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ได้<WBR>ทั้ง<WBR>หมด<WBR>สี่<WBR>ตัว และ<WBR>การ<WBR>อ้าง Positional Parameter
+กับ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ก่อน<WBR>และ<WBR>หลัง<WBR>คำ<WBR>สั่ง "shift" จะ<WBR>เป็น<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+ก่อน shift
+<br>$1 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง = "a"
+<br>$2 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สอง = "b"
+<br>$3 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สาม = "c"
+<br>
+
+หลัง shift
+<br>$1 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สอง = "b"
+<br>$2 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สาม = "c"
+<br>$3 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สี่   = "d"
+<br>
+
+ให้<WBR>ทด<WBR>ลอง<WBR>ใช้<WBR>คำ<WBR>สั่ง "echo" กับ<WBR>ตัวแปร<WBR>อื่นๆ<WBR>ที่<WBR>ไม่<WBR>เกี่ยว<WBR>ข้อง<WBR>กับ<WBR>อาร์กิวเ<WBR>มนต์
+
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้ set command</H3>
+เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>คง<WBR>ค่า<WBR>ของ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ใน<WBR>เชลล์<WBR>ได้ โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง "set"  ซึ่ง<WBR>เมื่อ<WBR>ใช้<WBR>คำ<WBR>สั่ง<WBR>นี้<WBR>แล้ว<WBR>ค่า<WBR>ของ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ต่างๆ<WBR>จะ<WBR>ถูก<WBR>กำหนด<WBR>โดย<WBR>ปริยาย<WBR>โดย<WBR>คำ<WBR>สั่ง "set" และ<WBR>ไม่<WBR>สามารถ<WBR>จะ<WBR>เปลี่ยน<WBR>แปลง<WBR>ค่า<WBR>ของ<WBR>อาร์กิวเ<WBR>มนต์<WBR>นั้น<WBR>ได้<WBR>อีก จาก<WBR>โปรแกรม ex2 เรา<WBR>จะ<WBR>มี<WBR>การ<WBR>เพิ่ม<WBR>คำ<WBR>สั่ง "set" ไป<WBR>ที่<WBR>ตอน<WBR>ต้น<WBR>สุด<WBR>ของ<WBR>โปรแกรม
+
+<pre>
+set PARA1 PARA2 PARA3 PARA4
+echo "Name of shell script is" $0
+echo "Parameter 1 is" $1
+echo "Parameter 2 is" $2
+echo "Parameter 3 is" $3
+echo "No. of argument is" $#
+echo "Arguments are" $*
+echo "Arguments are" $@
+
+Now shift
+shift
+echo "Parameter 1 is" $1
+echo "Parameter 2 is" $2
+echo "Parameter 3 is" $3
+</pre>
+
+ลอง<WBR>สั่ง<WBR>ให้<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>โดย<WBR>มี<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตาม<WBR>ท้าย<WBR>สี่<WBR>ตัว<WBR>คือ "a", "b", "c" และ "d"
+แบบ<WBR>เดิม<WBR>ดู
+<pre>
+$ ex2 a b c d
+</pre>
+
+จะ<WBR>ได้<WBR>ผล<WBR>ลัพธ์<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+Name of shell script is ex2
+Parameter 1 is PARA1
+Parameter 2 is PARA2
+Parameter 3 is PARA3
+No. of argument is 4
+Arguments are PARA1 PARA2 PARA3 PARA4
+Arguments are PARA1 PARA2 PARA3 PARA4
+Parameter 1 is PARA2
+Parameter 2 is PARA3
+Parameter 3 is PARA4
+</pre>
+
+จะ<WBR>เห็น<WBR>ว่า<WBR>โปรแกรม<WBR>เชลล์<WBR>จะ<WBR>ไม่<WBR>สน<WBR>ใจ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ที่<WBR>ใส่<WBR>ไป<WBR>ที่<WBR>คอม<WBR>มานด์ไลน์ โดย<WBR>จะ<WBR>หัน<WBR>ไป<WBR>ใช้<WBR>อาร์กิวเ<WBR>มนต์<WBR>จาก<WBR>คำ<WBR>สั่ง set แทน ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+
+<br>ก่อน shift
+<br>$1 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>หนึ่ง = "PARA1"
+<br>$2 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สอง = "PARA2"
+<br>$3 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สาม = "PARA3"
+<br>
+
+<br>หลัง shift
+<br>$1 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สอง = "PARA2"
+<br>$2 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สาม = "PARA3"
+<br>$3 จะ<WBR>อ้าง<WBR>ถึง<WBR>อาร์กิวเ<WBR>มนต์<WBR>ตัว<WBR>ที่<WBR>สี่   = "PARA4"
+
+<H3 ALIGN=CENTER>การ<WBR>ใช้<WBR>ตัวแปร<WBR>เชลล์<WBR>แบบ<WBR>มี<WBR>เงื่อน<WBR>ไข</H3>
+<ol>
+<li>
+${varname:-word}
+</li>
+รูป<WBR>แบบ<WBR>การ<WBR>ใช้<WBR>งาน<WBR>แบบ<WBR>นี้ คือ หาก varname มี<WBR>ค่า<WBR>ก็<WBR>จะ<WBR>ส่ง<WBR>ค่า (return) varname กลับ<WBR>ไป<WBR>ให้ แต่<WBR>ถ้า<WBR>ไม่<WBR>มี<WBR>ค่า (หรือ<WBR>เป็น null) ก็<WBR>จะ<WBR>ส่ง<WBR>ค่า word กลับ<WBR>ไป<WBR>ให้ ดัง<WBR>ตัว<WBR>อย่าง
+<pre>
+$ STUDENT=${NAME:-"Peter"}
+$ echo $STUDENT
+Peter
+$ NAME="John"
+$ STUDENT=${NAME:-"Peter"}
+$ echo $STUDENT
+John
+</pre>
+
+จาก<WBR>ตัว<WBR>อย่าง<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>ใน<WBR>ตอน<WBR>แรก<WBR>ไม่<WBR>ได้<WBR>กำหนด<WBR>ค่า<WBR>ให้<WBR>กับ<WBR>ตัวแปร NAME ดัง<WBR>นั้น<WBR>จาก<WBR>รูป<WBR>แบบ<WBR>คำ<WBR>สั่ง จึง<WBR>มี<WBR>การ<WBR>ส่ง<WBR>ค่า "Peter" ไป<WBR>ให้<WBR>กับ<WBR>ตัวแปร STUDENT เมื่อ<WBR>ทำ<WBR>การ echo $STUDENT
+จึง<WBR>เห็น<WBR>เป็น<WBR>ค่า "Peter" แต่<WBR>เมื่อ<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ให้ NAME มี<WBR>ค่า<WBR>เป็น "John" แล้ว<WBR>ตัวแปร STUDENT จึง<WBR>ถูก<WBR>กำหนด<WBR>ค่า<WBR>เป็น "John" ตาม<WBR>ไป<WBR>ด้วย
+
+<li>
+${varname:=word}
+</li>
+รูป<WBR>แบบ<WBR>นี้<WBR>คือ<WBR>ถ้า<WBR>หาก varname มี<WBR>ค่า<WBR>ก็<WBR>จะ<WBR>ส่ง<WBR>ค่า<WBR>ของ varname กลับ<WBR>ไป<WBR>ให้  แต่<WBR>ถ้า varname
+ไม่<WBR>มี<WBR>ค่า<WBR>ก็<WBR>จะ<WBR>มี<WBR>การ<WBR>ทำ<WBR>งาน<WBR>สอง<WBR>ขั้น<WBR>ตอน คือ<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ค่า word ให้<WBR>กับ varname 
+และ<WBR>ส่ง<WBR>ค่า word กลับ<WBR>ไป<WBR>ให้<WBR>ด้วย ดัง<WBR>ตัว<WBR>อย่าง
+<pre>
+$ STUDENT=${NAME:="Peter"}
+$ echo $STUDENT
+Peter
+$ echo $NAME
+Peter
+$ NAME="John"
+$ STUDENT=${NAME="Peter"}
+$ echo $STUDENT
+John
+</pre>
+
+จาก<WBR>ตัว<WBR>อย่าง<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>หาก<WBR>ตัวแปร NAME ไม่<WBR>มี<WBR>ค่า<WBR>แล้ว ตัวแปร NAME ก็<WBR>จะ<WBR>ถูก<WBR>กำหนด<WBR>ค่า<WBR>ให้<WBR>เป็น "Peter" และ<WBR>รวม<WBR>ทั้ง<WBR>มี<WBR>การ<WBR>ส่ง<WBR>ค่า "Peter" ไป<WBR>ให้<WBR>กับ<WBR>ตัวแปร STUDENT ด้วย (ซึ่ง<WBR>จะ<WBR>ต่าง<WBR>กับ<WBR>แบบ<WBR>แรก<WBR>ที่<WBR>ไม่<WBR>มี<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ให้<WBR>กับ<WBR>ตัวแปร NAME, ยัง<WBR>คง<WBR>ไม่<WBR>มี<WBR>ค่า) แต่<WBR>ถ้า<WBR>หาก<WBR>ตัวแปร 
+NAME มี<WBR>ค่า<WBR>อยู่<WBR>แล้ว (เป็น "John") ก็<WBR>จะ<WBR>คือ<WBR>ค่า<WBR>ของ<WBR>ตัวแปร NAME ไป<WBR>ให้<WBR>เหมือน<WBR>กัน
+
+<li>${varname:?message}</li>
+วิธี<WBR>การ<WBR>กำหนด<WBR>ตัวแปร<WBR>แบบ<WBR>นี้ หาก varname ไม่<WBR>มี<WBR>ค่า<WBR>แล้ว<WBR>เชลล์<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แจ้ง<WBR>ว่า<WBR>มี<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>เกิด<WBR>ขึ้น โดย<WBR>ทำ<WBR>การ<WBR>แจ้ง<WBR>ข้อ<WBR>ความ<WBR>ตาม<WBR>ที่<WBR>ได้<WBR>กำหนด<WBR>ไว้<WBR>ใน message แต่<WBR>ถ้า varname มี<WBR>ค่า<WBR>ก็<WBR>จะ<WBR>ส่ง<WBR>ค่า<WBR>ของ varname ให้<WBR>ตาม<WBR>ปกติ ดัง<WBR>ตัว<WBR>อย่าง
+
+<pre>
+$ STUDENT=${NAME:?"Not assigned"}
+bash: NAME: Not assigned
+$ NAME="John"
+$ STUDENT=${NAME:?"Not assigend"}
+$ Echo $STUDENT
+John
+</pre>
+
+จาก<WBR>ตัว<WBR>อย่าง<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>เมื่อ<WBR>ไม่<WBR>ได้<WBR>ทำ<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ให้<WBR>กับ<WBR>ตัวแปร NAME แล้ว เชลล์<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แจ้ง<WBR>ตัวแปร<WBR>ที่<WBR>มี<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>ขึ้น<WBR>มา (ใน<WBR>ที่<WBR>นี้<WBR>คือ NAME) และ<WBR>ตาม<WBR>ด้วย<WBR>ข้อ<WBR>ความ<WBR>ผิด<WBR>พลาด<WBR>ที่<WBR>เรา<WBR>ได้<WBR>กำหนด<WBR>ไว้ (ใน<WBR>ที่<WBR>นี้<WBR>คือ "Not assigned") แต่<WBR>ทั้ง<WBR>ตัวแปร STUDENT และ NAME ก็<WBR>จะ<WBR>ยัง<WBR>คง<WBR>ไม่<WBR>ได้<WBR>มี<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ไว้<WBR>ตาม<WBR>เดิม (เป็น null) แต่<WBR>หาก NAME ถูก<WBR>กำหนด<WBR>ค่า<WBR>เป็น 
+"John" ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>ค่า "John" ให้<WBR>กับ<WBR>ตัวแปร STUDENT
+
+<li>${varname:+word}</li>
+วิธี<WBR>การ<WBR>กำหนด<WBR>ตัวแปร<WBR>แบบ<WBR>สุด<WBR>ท้าย<WBR>จะ<WBR>แตก<WBR>ต่าง<WBR>จาก<WBR>สาม<WBR>วิธี<WBR>ข้าง<WBR>ต้น กล่าว<WBR>คือ<WBR>ถ้า varname 
+มี<WBR>ค่า<WBR>และ<WBR>ไม่<WBR>เป็น null ก็<WBR>จะ<WBR>ส่ง<WBR>ค่า word ไป<WBR>ให้ แต่<WBR>ถ้า<WBR>ไม่<WBR>มี<WBR>ค่า ก็<WBR>จะ<WBR>ส่ง<WBR>ค่า null ไป<WBR>ให้<WBR>สิ่ง<WBR>ที่<WBR>แตก<WBR>ต่าง<WBR>จาก<WBR>สาม<WBR>แบบ<WBR>ข้าง<WBR>ต้น<WBR>ก็<WBR>คือ มี<WBR>การ<WBR>ส่ง<WBR>ค่า<WBR>ไป<WBR>ให้<WBR>หาก varname ถูก<WBR>กำหนด<WBR>ค่า<WBR>มา
+
+<pre>
+$ STUDENT=${NAME:+1}
+$ echo $STUDENT
+
+$ NAME="John"
+$ STUDENT=${NAME:+"exists"}
+$ echo $STUDENT
+exists
+</pre>
+
+จาก<WBR>ตัว<WBR>อย่าง<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>ถ้า NAME ไม่<WBR>มี<WBR>ค่า STUDENT ก็<WBR>จะ<WBR>ไม่<WBR>มี<WBR>ค่า (เป็น null) ตาม<WBR>ไป<WBR>ด้วย<WBR>แต่<WBR>เมื่อ<WBR>มี<WBR>การ<WBR>กำหนด<WBR>ค่า "John" ให้<WBR>กับ<WBR>ตัวแปร NAME ก็<WBR>จะ<WBR>มี<WBR>การ<WBR>ส่ง<WBR>ค่า<WBR>ของ "exist" ไป<WBR>ให้<WBR>กับ<WBR>ตัวแปร STUDENT
+</ol>
+
+<p>
+รูป<WBR>แบบ<WBR>การ<WBR>กำหนด<WBR>ตัวแปร<WBR>แบบ<WBR>มี<WBR>เงื่อน<WBR>ไข<WBR>ทั้ง<WBR>สี่<WBR>แบบ<WBR>ข้าง<WBR>ต้น สามารถ<WBR>นำ<WBR>มา<WBR>ใช้<WBR>ใน<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>และ<WBR>จัด<WBR>การ<WBR>กับ<WBR>ตัวแปร<WBR>ที่<WBR>ไม่<WBR>ได้<WBR>มี<WBR>การ<WBR>กำหนด<WBR>ค่า<WBR>ตาม<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>ได้
+</p>
+
+
+<H3 ALIGN=CENTER>การ<WBR>กำหนด<WBR>ออปชั่น และ<WBR>การ<WBR>เรียก<WBR>เชลล์<WBR>โดย<WBR>มี<WBR>ออปชั่น </H3>
+
+โดย<WBR>ทั่ว<WBR>ไป<WBR>แล้ว<WBR>เรา<WBR>สามารถ<WBR>กำหนด ออปชั่น<WBR>ให้<WBR>กับ<WBR>เชลล์<WBR>ได้ ซึ่ง<WBR>ออปชั่น<WBR>ที่<WBR>กำหนด<WBR>ให้<WBR>มี<WBR>หลาย<WBR>แบบ เช่น<WBR>กำหนด<WBR>ให้<WBR>เชลล์<WBR>พิมพ์<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>ลักษณะ<WBR>ของ<WBR>การ<WBR>ดี<WBR>บัก<WBR>เชลล์สค<WBR>ริปต์<WBR>ออก<WBR>มา<WBR>ให้ หรือ<WBR>ออปชั่น<WBR>ใน<WBR>ลักษณะ<WBR>ไม่<WBR>ให้<WBR>มี<WBR>การ<WBR>ตี<WBR>ความ<WBR>ตัว<WBR>อักษร<WBR>พิเศษ (*,[]) เป็น<WBR>ต้น วิธี<WBR>การ<WBR>กำหนด<WBR>ออปชั่น<WBR>ของ<WBR>เชลล์<WBR>สามารถ<WBR>กำหนด<WBR>โดย<WBR>ใช้<WBR>ผ่าน<WBR>คำ<WBR>สั่ง set ได้ ดัง<WBR>ตัว<WBR>อย่าง<WBR>ต่อ<WBR>ไป<WBR>นี้<WBR>จะ<WBR>เป็น<WBR>การ<WBR>กำหนด<WBR>ให้<WBR>เชลล์<WBR>ทำ<WBR>การ<WBR>พิมพ์<WBR>ข้อ<WBR>ความ<WBR>แบบ<WBR>ดี<WBR>บัก เพื่อ<WBR>ให้<WBR>เรา<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>หา<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>ของ<WBR>เชลล์สค<WBR>ริปต์<WBR>ได้<WBR>โดยง่่าย ให้<WBR>ทำ<WBR>การ<WBR>เพิ่ม<WBR>คำ<WBR>สั่ง "set -x" ไป<WBR>ที่<WBR>บรรทัด<WBR>แรก<WBR>ของ<WBR>โปรแกรม "ex2" 
+
+<pre>
+set -x
+set PARA1 PARA2 PARA3 PARA4
+echo "Name of shell script is" $0
+echo "Parameter 1 is" $1
+echo "Parameter 2 is" $2
+echo "Parameter 3 is" $3
+echo "No. of argument is" $#
+echo "Arguments are" $*
+echo "Arguments are" $@
+
+Now shift
+shift
+echo "Parameter 1 is" $1
+echo "Parameter 2 is" $2
+echo "Parameter 3 is" $3
+</pre>
+
+และ<WBR>ทำ<WBR>การ<WBR>สั่ง<WBR>งาน<WBR>โปรแกรม ex2 จะ<WBR>ได้<WBR>ผลลัพธ<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+$ sh ex2
++ set PARA1 PARA2 PARA3 PARA4
++ echo Name of shell script is ex2
+Name of shell script is ex2
++ echo Parameter 1 is PARA1
+Parameter 1 is PARA1
++ echo Parameter 2 is PARA2
+Parameter 2 is PARA2
++ echo Parameter 3 is PARA3
+Parameter 3 is PARA3
++ echo No. of argument is 4
+No. of argument is 4
++ echo Arguments are PARA1 PARA2 PARA3 PARA4
+Arguments are PARA1 PARA2 PARA3 PARA4
++ echo Arguments are PARA1 PARA2 PARA3 PARA4
+Arguments are PARA1 PARA2 PARA3 PARA4
++ shift
++ echo Parameter 1 is PARA2
+Parameter 1 is PARA2
++ echo Parameter 2 is PARA3
+Parameter 2 is PARA3
++ echo Parameter 3 is PARA4
+Parameter 3 is PARA4
+</pre>
+
+จะ<WBR>เห็น<WBR>ว่าน<WBR>อก<WBR>จาก<WBR>ผล<WBR>ลัพธ์<WBR>ที่<WBR>ได้<WBR>จาก<WBR>คำ<WBR>สั่ง<WBR>ใน<WBR>แต่<WBR>ละ<WBR>บรรทัด<WBR>ของ<WBR>เชลล์สค<WBR>ริปต์<WBR>แล้ว เชลล์<WBR>ยัง<WBR>ทำ<WBR>การ<WBR>พิมพ์ คำ<WBR>สั่ง<WBR>ที่<WBR>มี<WBR>การ<WBR>ใช้<WBR>งาน<WBR>ก่อน<WBR>ที่<WBR>จะ<WBR>เกิด<WBR>ผล<WBR>ลัพธ์<WBR>นั้นๆ<WBR>ขึ้น (บรรทัด<WBR>ที่<WBR>ขึ้น<WBR>ต้น<WBR>ด้วย "+") ซึ่ง<WBR>จะ<WBR>ทำ<WBR>การ<WBR>แทน<WBR>ค่า<WBR>ของ<WBR>ตัวแปร<WBR>ให้<WBR>เรียบ<WBR>ร้อย ด้วย<WBR>วิธี<WBR>นี้<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>เรา<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>ของ<WBR>เชลล์สค<WBR>ริปต์<WBR>ได้
+
+ออปชั่น<WBR>อื่นๆ
+<ul>
+<li>
+-f ไม่<WBR>แทน<WBR>ที่<WBR>ชื่อ<WBR>ไฟล์ (*,[])
+</li>
+<li>
+-u ออก<WBR>จาก<WBR>เชลล์<WBR>ทัน<WBR>ที<WBR>ที่<WBR>พบ<WBR>ตัวแปร<WBR>ที่<WBR>ไม่<WBR>ได้<WBR>มี<WBR>การ<WBR>กำหนด<WBR>ค่า
+</li>
+</ul>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

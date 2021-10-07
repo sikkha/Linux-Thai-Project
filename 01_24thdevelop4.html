@@ -1,0 +1,100 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Linux Thai Design</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<H1 ALIGN=CENTER>แนวทางการออกแบบ และฟังก์ชั่นของระบบ</H1>
+
+    ระบบภาษาไทยบนลีนุกซ์จะถูกจัดแบ่งออกเป็นระดับ เป็นชั้นๆ โดยที่แต่ละชั้นจะต้อง<br>
+มีความเป็นอิสระจากกันมากที่สุด และสิ่งที่อยู่ในลำดับขั้นที่ต่ำกว่าจะนำมาใช้เพื่อ<br>
+เป็น resource ให้กับระบบในลำดับขั้นที่สูงกว่า<br>
+<br>
+    เนื่องจากการพัฒนาระบบภาษาไทยบนลีนุกซ์ในช่วงแรกนี้ จะทำการพัฒนาบนระบบ<br>
+Graphics ซึ่งจะต้องมีความสัมพันธ์กับระบบ X window  โดยที่การแก้ไขหรือเพิ่มเติม<br>
+API ให้กับ X window จำเป็นจะต้องทำในระดับของ Xlib ทั้งนี้เนื่องจากตามโครงสร้าง<br>
+ของ X window นั้น Xlib จะเป็นโครงสร้างในระดับต่ำสุดของระบบ X window ที่<br>
+X clients จะใช้ทำการติดต่อกับระดับ X server<br>
+    ในบางกรณีจำเป็นจะต้องมีการเพิ่มเติมส่วนขยายให้กับระบบของ Xlib ที่มีอยู่แล้ว<br>
+ทั้งนี้เนื่องจากการทำงานของระบบจะมีการเปลี่ยนแปลงเมื่อมีการใช้งานภาษาไทย เช่น<br>
+การแสดงผลนั้นจำเป็นจะต้องมีการปรับแต่ง ในส่วนนี้จำเป็นจะต้องทำส่วนขยาย <br>
+(extension) โดยผ่าน Hooking function<br>
+
+    ระบบภาษาไทยจะมีฟังก์ชั่นในการทำงานดังต่อไปนี้
+<ul>
+<li>
+Level 1:<br>
+    ในระดับนี้จะเป็นส่วนแกนของระบบ (CORE system) ซึ่งจะนำมาใช้เป็น resource <br>
+พื้นฐานของระบบ ได้แก่ <br>
+<ol>
+<li>
+	        การรับอินพุตจากคีย์บอร์ด (keyboard input)<br>
+</li><li>
+                ส่วนการแสดงผล <br>
+		     - normal ไม่มีการจัดระดับสระอย่างถูกต้อง (เป็นแบบ default)<br>
+		     - extra  มีการดักการแสดงผลของสระ <br>
+</li><li>
+		การจัดการเกี่ยวกับฟอนต์ภาษาไทย ทั้ง bitmap, truetype, adobe<br>
+</li><li>
+		การจัดการรหัสภาษาไทย การแปลงรหัสต่างๆ และการใช้รหัสหลัก<br>
+			ASCII, มอก., เกษตร, UNICODE<br>
+</li><li>
+		การพิมพ์ภาษาไทยออกทางพรินเตอร์ (ทั้งแบบ dot-matrix และ laser)<br>
+</li>
+</ol>
+</li><li>
+Level 2:<br>
+    ในระดับนี้จะเป็นส่วนที่เกี่ยวกับฟังก์ชั่นไลบราลีหรือ API ที่เกี่ยวกับการจัด<br>
+การภาษาไทย (Thai API) เช่น<br>
+<ol>
+<li>
+		API สำหรับการ serching text : SearchStr<br>
+<li></li>
+		API สำหรับการเปรียบเทียบ string : StrCmp<br>
+<li></li>
+	        API สำหรับการจัดลำดับ : Index, Soundex<br>
+<li></li>
+		API เกี่ยวกับตัวเลขภาษาไทย วันที่ เดือน ตัวเลข การตัดคำ <br>
+</li>
+</ol>
+
+
+</li><li>
+Level 3:<br>
+    ส่วนของการจัดการและอินเทอร์เฟส ได้แก่<br>
+<ol>
+<li>
+		ระบบเมนูภาษาไทย<br>
+</li><li>
+		ระบบให้ความช่วยเหลือเป็นภาษาไทย (HELP)<br>
+</li><li>
+		 ดิกชั่นนารีระบบ ไทย/อังกฤษ เอาไว้เป็น resource ของระบบเนื่อง<br>
+</li><li>
+		   จากระบบภาษาไทยต้องการ dictionary เข้ามาช่วยเหลือในการ<br>
+		   ประมวลผล<br>
+</li><li>
+		 การคอนฟิกข้อมูลภาษาไทย เช่น วันที่, ระบบเงินตรา, อื่นๆ<br>
+</li>
+</ol>
+</li><li>
+Level 4:<br>
+    ส่วนของแอพพลิเคชั่นหลักภาษาไทย (Thai Applications) แอพพลิเคชั่นทั่วไป และ AI<br>
+แอพพลิเคชั่น<br>
+</li>
+</ul>
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="01ltp.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+

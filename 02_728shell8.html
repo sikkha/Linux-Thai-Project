@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Shell Programming (8)</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (X11; I; Linux 2.0.0 i586) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EF" VLINK="#55188A" ALINK="#FF0000">
+
+<CENTER><P><IMG SRC="PXlinux-main.gif" HEIGHT=80 WIDTH=280> </P></CENTER>
+
+<H1 ALIGN=CENTER>การ<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์ (8)</H1>
+
+<H3 ALIGN=CENTER>ราย<WBR>ละเอียด<WBR>ของ<WBR>โปรแกรม copydir </H3>
+
+ต้น<WBR>แบบ<WBR>ของ copydir
+
+<pre>
+#!/bin/sh
+
+if [ $# -ne 2 ] ;then
+    echo "Usage : $0 [source dir] [dest dir]"
+    exit 1
+fi
+
+if [ ! -d $1 ] ;then
+    echo "\"$1\" must be a directory, please check."
+    exit 1
+fi
+
+if [ ! -w $2 ] ;then
+    if [ ! -a $2 ] ;then
+        echo -n "\"$2\" does not exist, do you want to create it? [y/n] :"
+	read ans
+  	while [ true ] ;do
+	    case "$ans" in
+	    y|Y|yes|YES) 
+	        mkdir $2
+		if [ $? -ne 0 ] ;then
+		    echo "Write \"$2\" error"
+		    exit 1
+		fi
+		break ;;
+	    n|N|no|NO)
+		echo "Ok, don't creat directory, so this will done nothing."
+		exit 0 ;;
+	    *)
+		echo -n "Expect \"yes\" or \"no\", please answer [y/n] :"
+		read ans
+	    esac
+	done
+    else
+        echo "\"$2\" does not have write permission, please check."
+        exit 1
+    fi
+else
+    if [ ! -d $2 ] ;then
+        echo "\"$2\" is not a directory, please check."
+        exit 1
+    fi
+fi
+
+LISTFILE=`ls $2`
+if [ ! -z "$LISTFILE" ] ;then
+    echo -n "There is some file in \"$2\", still process copy directory? [y/n] :"
+    ans=""
+    read ans
+    while [ true ] ;do
+        case "$ans" in
+        y|Y|yes|YES) 
+            break ;;
+        n|N|no|NO)
+	    echo "Ok, don't process, so this will done nothing."
+	    exit 0 ;;
+	*)
+	    echo -n "Expect \"yes\" or \"no\", please answer [y/n] :"
+	    read ans
+	esac
+    done
+fi
+
+SOURCEPARDIR=`dirname $1`
+SOURCENAME=`basename $1`
+DESTPARDIR=`dirname $2`
+DESTNAME=`basename $2`
+CURRDIR=`pwd`
+
+echo "Copy in process..."
+cd $1
+if [ $DESTPARDIR = "." ] ;then
+    # Destination is relative reference
+    find -print | cpio -pd $CURRDIR/$DESTNAME
+else
+    # Destination is full reference
+    find -print | cpio -pd $DESTPARDIR/$DESTNAME
+fi
+cd $CURRDIR
+echo "Copy directory complete."
+exit 0
+</pre>
+
+อธิบาย<WBR>โปรแกรม
+<ul>
+<li>
+มี<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>จำนวน<WBR>อาร์กิวเ<WBR>มนต์<WBR>ที่<WBR>จะ<WBR>ใส่<WBR>เข้า<WBR>มา ต้อง<WBR>มี<WBR>สอง<WBR>อาร์กิวเ<WBR>มนต์<WBR>คือ<WBR>เป็น<WBR>อาร์กิวเ<WBR>มนต์<WBR>ที่<WBR>เป็น<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ต้น<WBR>ทาง และ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ที่<WBR>เป็น<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง ถ้า<WBR>มี<WBR>จำนวน<WBR>อาร์กิวเ<WBR>มนต์<WBR>ไม่<WBR>ครบ<WBR>ก็<WBR>จะ<WBR>แจ้ง<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>และ<WBR>จบ<WBR>โปรแกรม
+<pre>
+   if [ $# -ne 2 ] ;then
+</pre>
+
+</li><li>
+ตรวจ<WBR>สอบ<WBR>อาร์กิวเ<WBR>มนต์<WBR>ต้น<WBR>ทาง<WBR>ว่า<WBR>ต้อง<WBR>เป็นไดเ<WBR>รก<WBR>ทอ<WBR>รี
+<pre>
+   if [ ! -d $1 ] ;then
+</pre>
+
+</li><li>
+ตรวจ<WBR>สอบ<WBR>ว่า<WBR>มีไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง และ<WBR>อนุญาต<WBR>ให้<WBR>สิทธิ<WBR>ใน<WBR>การ<WBR>เขียน<WBR>ได้ แต่<WBR>ถ้า<WBR>ไม่<WBR>มี<WBR>สิทธิ<WBR>ใน<WBR>การ<WBR>เขียน<WBR>ก็<WBR>จะ<WBR>แจ้ง<WBR>ข้อ<WBR>ผิด<WBR>พลาด<WBR>และ<WBR>จบ<WBR>โปรแกรม
+<pre>
+   if [ ! -w $2 ] ;then
+</pre>
+</li><li>
+ถ้า<WBR>ไม่<WBR>มีไดเ<WBR>รก<WBR>ทอ<WBR>รี โปรแกรม<WBR>จะ<WBR>ถาม<WBR>ว่า<WBR>จะ<WBR>สร้างไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใหม่<WBR>หรือ<WBR>ไม่
+<pre>
+   if [ ! -a $2 ] ;then
+</pre>
+ส่วน<WBR>ของ<WBR>โปรแกรม<WBR>ที่<WBR>เป็น<WBR>การ<WBR>ถาม<WBR>ว่า<WBR>จะ<WBR>สร้างไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ใหม่<WBR>นั้น<WBR>จะ<WBR>เป็น<WBR>การ<WBR>วน<WBR>ลูป<WBR>เพื่อ<WBR>รอ<WBR>ป้อน<WBR>ข้อ<WBR>มูล<WBR>เป็น "yes","YES","y","Y" หรือ "no","NO","n","N" เท่า<WBR>นั้น<WBR>ถ้า<WBR>ผู้<WBR>ใช้<WBR>ป้อน<WBR>ข้อ<WBR>มูล<WBR>อย่าง<WBR>อื่น<WBR>เข้า<WBR>มา<WBR>ก็<WBR>จะ<WBR>วน<WBR>ลูป<WBR>ไป<WBR>เรื่อยๆ 
+
+</li><li>
+ถ้า<WBR>ผ่าน<WBR>ช่วง<WBR>การ<WBR>ตรวจ<WBR>สอบไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>มา<WBR>แล้ว<WBR>ก็<WBR>จะ<WBR>ทำ<WBR>การ<WBR>ตัด<WBR>ส่วน<WBR>ชื่อ<WBR>พาธ (คำ<WBR>สั่ง dirname) และ<WBR>ชื่อ<WBR>ตัว (คำ<WBR>สั่ง basename)  โดย<WBR>จะ<WBR>แยก<WBR>เป็น<WBR>สอง<WBR>ส่วน<WBR>คือ<WBR>ส่วน<WBR>ที่<WBR>เป็น relative pathname (อ้าง<WBR>โดย<WBR>การ<WBR>ใช้<WBR>จุด ".") และ full pathname (อ้าง<WBR>ชื่อ<WBR>เต็ม<WBR>ตั้ง<WBR>แต่ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ราก<WBR>ขึ้น<WBR>มา) เนื่อง<WBR>จาก<WBR>คำ<WBR>สั่ง cpio ต้อง<WBR>การ<WBR>ชื่อ<WBR>เต็ม (full pathname) ดัง<WBR>นั้น<WBR>ถ้า<WBR>ผู้<WBR>ใช้<WBR>ทำ<WBR>การ<WBR>อ้าง<WBR>ชื่อ ไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง<WBR>แบบ relative เช่น
+<pre>
+    $ copydir /home/user1 ./user2
+</pre>
+จะ<WBR>ต้อง<WBR>ทำ<WBR>การ<WBR>เปลี่ยน<WBR>ชื่อ<WBR>พาธ (ส่วน<WBR>ที่<WBR>เป็น "./" ที่<WBR>นำ<WBR>หน้า "user2") ให้<WBR>เป็น<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปัจจุบัน<WBR>เสีย<WBR>ก่อน<WBR>โดย<WBR>การ<WBR>ใช้<WBR>คำ<WBR>สั่ง "pwd" แล้ว<WBR>จึง<WBR>นำ<WBR>เอา<WBR>ชื่อ<WBR>พาธ<WBR>ที่<WBR>เปลี่ยน<WBR>ใหม่<WBR>นี้<WBR>มา<WBR>ต่อ<WBR>เข้า<WBR>กับ<WBR>ชื่อ<WBR>ตัว<WBR>เดิม<WBR>ก็<WBR>จะ<WBR>สามารถ<WBR>ทำ<WBR>การ<WBR>ส่ง<WBR>ค่าไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง<WBR>ให้<WBR>กับ<WBR>คำ<WBR>สั่ง cpio ได้
+<pre>
+    CURRDIR=`pwd`
+    find -print | cpio -pd $CURRDIR/$DESTNAME
+</pre>
+
+แต่<WBR>ถ้า<WBR>เป็น<WBR>การ<WBR>อ้าง<WBR>แบบ full pathname อยู่<WBR>แล้ว<WBR>ก็<WBR>นำ<WBR>เอา<WBR>ชื่อไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>นั้น<WBR>มา<WBR>ใช้<WBR>ได้<WBR>เลย<WBR>ทัน<WBR>ที
+</li><li>
+รหัส<WBR>ที่<WBR>โปรแกรม<WBR>ส่ง<WBR>คืน<WBR>เมื่อ<WBR>โปรแกรม<WBR>ทำ<WBR>งาน<WBR>เสร็จ
+
+<ul>
+<li>
+จบ<WBR>โปรแกรม<WBR>ด้วย<WBR>รหัส 1 ใน<WBR>กรณี<WBR>มี<WBR>ข้อ<WBR>ผิด<WBR>พลาด
+</li><li>
+จบ<WBR>โปรแกรม<WBR>ด้วย<WBR>รหัส 0 ใน<WBR>กรณี<WBR>ที่<WBR>เป็น<WBR>การ<WBR>จบ<WBR>งาน<WBR>แบบ<WBR>ปกติ ไม่<WBR>มี<WBR>ข้อ<WBR>ผิด<WBR>พลาด
+</li><li>
+เตรียม<WBR>ไว้<WBR>เผื่อ<WBR>ถูก<WBR>นำ<WBR>ไป<WBR>ใช้<WBR>กับ<WBR>เชลล์<WBR>อื่น เช่น<WBR>ตรวจ<WBR>สอบ<WBR>เงื่อน<WBR>ไข
+</li>
+</ul>
+
+</li>
+</ul>
+
+<H3 ALIGN=CENTER>copydir ฉบับ<WBR>ปรับ<WBR>ปรุง</H3>
+<p>
+จะ<WBR>เห็น<WBR>ว่า<WBR>โปรแกรม copydir ของ<WBR>เรา<WBR>นั้น<WBR>มี<WBR>การ<WBR>ทำ<WBR>งาน<WBR>อยู่<WBR>ขั้น<WBR>ตอน<WBR>หนึ่ง<WBR>ที่<WBR>ซ้ำ<WBR>ซ้อน<WBR>กัน<WBR>อยู่<WBR>ซึ่ง<WBR>ก็<WBR>คือ<WBR>ขั้น<WBR>ตอน<WBR>ของ<WBR>การ<WBR>สอบ<WBR>ถาม<WBR>และ<WBR>รับ<WBR>คำ<WBR>ตอบ<WBR>ยืน<WBR>ยัน ซึ่ง<WBR>ขั้น<WBR>ตอน<WBR>นี้<WBR>จะ<WBR>ถูก<WBR>นำ<WBR>มา<WBR>ใช้<WBR>สอง<WBR>ครั้ง<WBR>คือ<WBR>การ<WBR>ถาม<WBR>ว่า<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>สร้างไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง<WBR>หรือ<WBR>ไม่ และ<WBR>ถาม<WBR>ว่า<WBR>จะ<WBR>ยัง<WBR>ต้อง<WBR>การ<WBR>ทำ<WBR>ขั้น<WBR>ตอน<WBR>ของ<WBR>การ<WBR>สำเนาไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>อยู่<WBR>หรือ<WBR>ไม่<WBR>ใน<WBR>กรณี<WBR>ที่<WBR>มี<WBR>ไฟล์<WBR>อยู่<WBR>ในไดเ<WBR>รก<WBR>ทอ<WBR>รี<WBR>ปลาย<WBR>ทาง<WBR>จะ<WBR>เห็น<WBR>ว่า<WBR>ถ้า<WBR>เรา<WBR>สามารถ<WBR>แยก<WBR>ขั้น<WBR>ตอน<WBR>การ<WBR>ถาม<WBR>ตอบ<WBR>นี้<WBR>ออก<WBR>มา<WBR>เป็น<WBR>ฟังก์ชั่น<WBR>ต่าง<WBR>หาก จะ<WBR>ทำ<WBR>ให้<WBR>เรา<WBR>ไม่<WBR>ต้อง<WBR>เขียน<WBR>โปรแกรม<WBR>ซับ<WBR>ซ้อน และ<WBR>จะ<WBR>ทำ<WBR>ให้<WBR>โปรแกรม<WBR>สามารถ<WBR>อ่าน<WBR>และ<WBR>แก้<WBR>ไข<WBR>ได้<WBR>ง่าย<WBR>ขึ้น<WBR>นอก<WBR>จาก<WBR>นี้<WBR>หาก<WBR>เรา<WBR>เขียน<WBR>โปรแกรม<WBR>เชลล์<WBR>อื่นๆ<WBR>และ<WBR>ต้อง<WBR>การ<WBR>ใช้<WBR>ขั้น<WBR>ตอน<WBR>การ<WBR>ทำ<WBR>งาน<WBR>ใน<WBR>ลักษณะ<WBR>นี้<WBR>เรา<WBR>ก็<WBR>จะ<WBR>สามารถ<WBR>นำ<WBR>เอา<WBR>ฟังก์ชั่น<WBR>นี้<WBR>ไป<WBR>ใช้<WBR>งาน<WBR>ด้วย<WBR>ได้
+</p>
+
+<p>
+สำหรับ<WBR>ฟังก์ชั่น<WBR>การ<WBR>ถาม<WBR>ตอบ<WBR>นี้ ควร<WBR>มี<WBR>การ<WBR>รับ<WBR>พา<WBR>รา<WBR>มิเตอร์<WBR>ที่<WBR>เป็น<WBR>ข้อ<WBR>ความ<WBR>ที่<WBR>ต้อง<WBR>การ<WBR>จะ<WBR>ให้<WBR>โปรแกรม<WBR>พิมพ์<WBR>ออก<WBR>มา<WBR>เป็น<WBR>คำ<WBR>ถาม เพื่อ<WBR>ที่<WBR>เรา<WBR>สามารถ<WBR>จะ<WBR>ใช้<WBR>โปรแกรม<WBR>นี้<WBR>กับ<WBR>การ<WBR>ถาม<WBR>คำ<WBR>ถาม<WBR>แบบ<WBR>ต่างๆ<WBR>ได้ และ<WBR>เมื่อ<WBR>ผู้<WBR>ใช้<WBR>ใส่<WBR>ข้อ<WBR>มูล<WBR>มา<WBR>ใน<WBR>ลักษณะ<WBR>ตอบ<WBR>รับ (YES, yes, Y, y) ก็<WBR>จะ<WBR>ออก<WBR>จาก<WBR>ฟังก์ชั่น<WBR>พร้อม<WBR>ทั้ง<WBR>คืน<WBR>ค่า<WBR>ด้วย<WBR>รหัส "0" แต่<WBR>ถ้า<WBR>ถ้า<WBR>รับ<WBR>ข้อ<WBR>มูล<WBR>ใน<WBR>ลักษณะ<WBR>การ<WBR>ตอบ<WBR>ปฏิเสธ (NO, no, N, n) ก็<WBR>จะ<WBR>ออก<WBR>จาก<WBR>ฟังก์ชั่น<WBR>พร้อม<WBR>ทั้ง<WBR>คืน<WBR>ค่า<WBR>ด้วย<WBR>รหัส "1"
+</p>
+
+<p>
+ใน<WBR>ส่วน<WBR>ของ<WBR>ตัว<WBR>โปรแกรม<WBR>หลัก<WBR>เมื่อ<WBR>มี<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>ฟังก์ชั่น<WBR>ถาม<WBR>ตอบ<WBR>นี้<WBR>แล้ว จะ<WBR>สามารถ<WBR>ตรวจ<WBR>สอบ<WBR>ว่า<WBR>ผู้<WBR>ใช้<WBR>มี<WBR>การ<WBR>ตอบ<WBR>ยืน<WBR>ยัน<WBR>หรือ<WBR>ตอบ<WBR>ปฏิเสธ<WBR>ได้<WBR>จาก<WBR>รหัส<WBR>ที่<WBR>ถูก<WBR>คืน<WBR>ค่า<WBR>มา<WBR>จาก<WBR>ฟังก์ชั่น<WBR>ถาม<WBR>ตอบ<WBR>นี้ โดย<WBR>การ<WBR>ตรวจ<WBR>สอบ<WBR>จาก<WBR>ตัวแปร<WBR>เชลล์ "$?" ใน<WBR>โปรแกรม<WBR>หลัก<WBR>จะ<WBR>ใช้<WBR>ฟังก์ชั่น<WBR>ถาม<WBR>ตอบ<WBR>สอง<WBR>ครั้ง<WBR>ดัง<WBR>ต่อ<WBR>ไป<WBR>นี้
+<pre>
+fyesno "\"$2\" does not exist, do you want to create it? [y/n] :"
+และ
+fyesno "There is some file in \"$2\", still process copy directory? [y/n] :"
+</pre>
+
+สำหรับ<WBR>การ<WBR>ประกาศ<WBR>ฟังก์ชั่น<WBR>จะ<WBR>ต้อง<WBR>ทำ<WBR>ก่อน<WBR>ที่<WBR>จะ<WBR>มี<WBR>การ<WBR>เรียก<WBR>ใช้<WBR>ฟังก์ชั่น<WBR>นั้นๆ โดย<WBR>ที่<WBR>จะ<WBR>ต้อง<WBR>ประกาศ<WBR>ไว้<WBR>แยก<WBR>ต่าง<WBR>หาก<WBR>จาก<WBR>ส่วน<WBR>ของ<WBR>โปรแกรม<WBR>หลัก<WBR>ที่<WBR>จะ<WBR>เรียก<WBR>ใช้<WBR>ด้วย
+
+<pre>
+#!/bin/sh
+
+#--------------------------------------------------------
+
+fyesno () {
+    echo -n $1
+    read ans
+    while [ true ] ;do
+        case "$ans" in
+        y|Y|yes|YES) 
+	    # 0 - on success (true in shell)
+            return 0 ;;
+        n|N|no|NO)
+	    # 1 - on fail (false in shell)
+	    return 1 ;;
+	*)
+	    echo -n "Expect \"yes\" or \"no\", please answer [y/n] :"
+	    read ans
+	esac
+    done
+}
+
+#-----------------------------------------------------------
+
+if [ $# -ne 2 ] ;then
+    echo "Usage : $0 [source dir] [dest dir]"
+    exit 1
+fi
+
+if [ ! -d $1 ] ;then
+    echo "\"$1\" must be a directory, please check."
+    exit 1
+fi
+
+if [ ! -w $2 ] ;then
+    if [ ! -a $2 ] ;then
+        fyesno "\"$2\" does not exist, do you want to create it? [y/n] :"
+	if [ $? -eq 0 ] ;then
+	    mkdir $2
+	    if [ $? -ne 0 ] ;then
+	        echo "Write \"$2\" error"
+		exit 1
+	    fi
+        else 
+	    echo "Ok, don't creat directory, so this will done nothing."
+	    exit 0 
+	fi
+    else
+        echo "\"$2\" does not have write permission, please check."
+        exit 1
+    fi
+else
+    if [ ! -d $2 ] ;then
+        echo "\"$2\" is not a directory, please check."
+        exit 1
+    fi
+fi
+
+LISTFILE=`ls $2`
+if [ ! -z "$LISTFILE" ] ;then
+    fyesno "There is some file in \"$2\", still process copy directory? [y/n] :"
+    if [ $? -eq 1 ] ;then
+        echo "Ok, don't process, so this will done nothing."
+        exit 0 
+    fi
+fi
+
+SOURCEPARDIR=`dirname $1`
+SOURCENAME=`basename $1`
+DESTPARDIR=`dirname $2`
+DESTNAME=`basename $2`
+CURRDIR=`pwd`
+
+echo "Copy in process..."
+cd $1
+if [ $DESTPARDIR = "." ] ;then
+    # Destination is relative reference
+    find -print | cpio -pd $CURRDIR/$DESTNAME
+else
+    # Destination is full reference
+    find -print | cpio -pd $DESTPARDIR/$DESTNAME
+fi
+cd $CURRDIR
+echo "Copy directory complete."
+exit 0
+</pre>
+
+ใน<WBR>ส่วน<WBR>ของ<WBR>ตัว<WBR>โปรแกรม<WBR>อาจ<WBR>มี<WBR>บาง<WBR>ส่วน<WBR>ที่<WBR>ยัง<WBR>ไม่<WBR>สมบูรณ์ นอก<WBR>จาก<WBR>เรื่อง<WBR>การ<WBR>ปรับ<WBR>ปรุง<WBR>ส่วน<WBR>ของ<WBR>ฟังก์ชั่น<WBR>ถาม<WBR>ตอบ<WBR>แล้ว<WBR>คุณ<WBR>อาจ<WBR>สามารถ<WBR>จะ<WBR>ดัด<WBR>แปลง<WBR>แก้<WBR>ไข<WBR>เพื่อ<WBR>เพิ่ม<WBR>ประสิทธิภาพ<WBR>ของ<WBR>ตัว<WBR>โปรแกรม<WBR>ได้
+
+<!-- BEGIN Footer code -->
+<P>
+<HR><FONT SIZE=-1>HTML developed by Kaiwal Development Team <I><A HREF="mailto:kaiwal@geocities.com">(kaiwal@geocities.com)</A>
+</I></FONT></P>
+
+<a href="http://www.geocities.com"><img src="PXtown.gif" align=right></a>
+<a href="02tld.html"><img src="PXprev.gif" ></a>
+<a href="index.html"><img src="PXhome_blu.gif" ></a>
+<!-- END Footer code -->
+</BODY>
+</HTML>
+
